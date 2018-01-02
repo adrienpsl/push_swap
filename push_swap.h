@@ -10,33 +10,46 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap/push_swap.h"
+#ifndef PUSH_SWAP_PUSH_SWAP_H
+# define PUSH_SWAP_PUSH_SWAP_H
 
-// une f pour aller a au bonne index en checkant le nb a chaque fois
-void put_good_nb(t_dlist *lst, int nb)
+# include "../libft/includes/libft.h"
+
+/*
+**    struct push
+*/
+
+typedef struct		s_pw
 {
-	t_dlink *link;
-	t_dlink *new;
+	t_dlist			*lst_a;
+	t_dlist			*lst_b;
+	t_list			*instruct;
+}					t_pw;
 
-	link = lst->head;
-	while (link && nb <= *(int*)link->content)
-	{
-		if (nb == *(int*)link->content)
-			ft_error_pw();
-		link = link->next;
-	}
-	if ((new = ft_dlist_link_new(&nb, sizeof(int))) == FAIL)
-		ft_exit_lack_memory();
-	if (lst->length == 0)
-	{
-		if (ft_dlst_add_end(lst,&nb,sizeof(int)) == FAIL)
-			ft_exit_lack_memory();
-		return ;
-	}
-	new->next = link;
-	new->prev = link->prev;
-	new->prev->prev = new;
 
-};
+/*
+**  ==============  push reader  ======================================
+*/
+t_dlist *ft_pw_reader(int ac, char **av);
+long	ft_atol(const char *s);
+int					*get_tab(t_pw *pw);
 
-//une f pour check si je suis dans le
+/*
+**  ==============  push swap  ======================================
+*/
+void		ft_sa(t_pw *pw);
+void		ft_pb(t_pw *pw);
+void		ft_pa(t_pw *pw);
+/*
+**  ================ checker  =======================================
+*/
+t_dlist *ft_checker_reader(int ac, char **av);
+/*
+**    utils
+*/
+void	ft_error_pw(void);
+void	ft_error_ck(void);
+void	pl(t_dlist *l);
+void	make_circle(t_dlist *lst);
+
+#endif

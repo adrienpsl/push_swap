@@ -10,52 +10,70 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
-int *get_tab(t_pw *pw)
+static void put_good_nb(t_dlist *lst, int nb)
 {
-	int *tab;
 	t_dlink *link;
-	long i;
 
-	link = pw->lst->head;
-	i = 0;
-	if ((tab = (int*)malloc(sizeof(int) * pw->lst->length + 1)) == FAIL)
-		ft_exit_lack_memory();
-	tab[pw->lst->length] = 0;
+	link = lst->head;
 	while (link)
 	{
-		tab[i] = *(int*)link->content;
+		if (nb == *(int *)link->content)
+			ft_error_pw();
 		link = link->next;
-		i++;
 	}
-	return (tab);
-}
+	ft_dlst_add_end(lst, &nb, sizeof(int));
+};
 
-long	ft_atol(const char *s)
+static void put_into_lst(t_dlist *lst, char *data)
 {
-	int i;
 	long nb;
-	int neg;
 
-	i = 0;
-	nb = 0;
-	neg = 1;
-	while (s[i] == '\t' || s[i] == '\v' || s[i] == '\r' || s[i] == '\n'
-		   || s[i] == '\f' || s[i] == ' ')
-		i++;
-	if (s[i] == '+')
-		i++;
-	else if (s[i] == '-')
-	{
-		i++;
-		neg = -neg;
-	}
-	while (s[i] <= '9' && s[i] >= '0')
-	{
-		nb = (nb * 10) + (s[i] - '0');
-		i++;
-	}
-	return (nb * neg);
+	if (ft_is_all_number(data) == FALSE)
+		ft_error_pw();
+	nb = ft_atol(data);
+	if (nb < INT_MIN || nb > INT_MAX)
+		ft_error_pw();
+	put_good_nb(lst, nb);
 }
 
+static void single_str(t_dlist *lst, char *str)
+{
+	char **data;
+
+	if ((data = ft_strsplit(str, ' ')) == FAIL)
+		ft_exit_lack_memory();
+	while (*data)
+	{
+		put_into_lst(lst, *data);
+		data++;
+	}
+	ft_free_doublechar_tab(&data);
+}
+
+static void get_argv(t_dlist *lst, int ac, char **av)
+{
+	long i;
+
+	i = 1;
+
+	while (i < ac)
+	{
+		put_into_lst(lst, av[i]);
+		i++;
+	}
+}
+
+t_dlist *ft_pw_reader(int ac, char **av)
+{
+	t_dlist *lst;
+
+	if ((lst = ft_new_dlst()) == FAIL)
+		ft_exit_lack_memory();
+	if (ac == 2)
+		single_str(lst, av[1]);
+	else
+		get_argv(lst, ac, av);
+	return (lst);
+}

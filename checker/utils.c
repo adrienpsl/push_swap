@@ -10,10 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap/push_swap.h"
+#include "../../libft/includes/src/libft_d_lst_function.h"
 
-void	ft_error_pw(void)
+
+void pl(t_dlist *l)
 {
-	ft_putstr("Error\n");
-	exit(42);
+	size_t i;
+	t_dlink *tmp;
+
+	i = 0;
+	tmp = l->where;
+	printf("[[ ");
+	while(i < l->length)
+	{
+		printf("%d, ", *(int *)tmp->content);
+		tmp = tmp->next;
+		i++;
+	}
+	printf("]] \n");
 }
+

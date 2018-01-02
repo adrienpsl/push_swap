@@ -12,38 +12,36 @@
 
 #include "push_swap.h"
 
-void		p_tab(int tab[], int limit)
+void make_circle(t_dlist *lst)
+{
+	lst->where = lst->head;
+	lst->head->prev = lst->tail;
+	lst->tail->next = lst->head;
+}
+
+long	ft_atol(const char *s)
 {
 	int i;
+	long nb;
+	int neg;
 
 	i = 0;
-	printf("[[ ");
-	while (i < limit)
+	nb = 0;
+	neg = 1;
+	while (s[i] == '\t' || s[i] == '\v' || s[i] == '\r' || s[i] == '\n'
+		   || s[i] == '\f' || s[i] == ' ')
+		i++;
+	if (s[i] == '+')
+		i++;
+	else if (s[i] == '-')
 	{
-		printf("%d, ", tab[i]);
-		++i;
+		i++;
+		neg = -neg;
 	}
-	printf("]]\n");
-}
-
-void push_swap(t_pw *pw)
-{
-	int *tab;
-
-	tab = get_tab(pw);
-
-	ft_quick_sort(tab,0,pw->lst->length - 1,pw->lst->length - 1);
-	p_tab(tab,pw->lst->length);
-}
-
-int main(int ac, char **av)
-{
-	t_pw pw;
-
-	if (ac == NO_ARGV)
-		exit(42);
-	pw.lst = ft_main_reader(ac, av);
-	push_swap(&pw);
-
-	return (0);
+	while (s[i] <= '9' && s[i] >= '0')
+	{
+		nb = (nb * 10) + (s[i] - '0');
+		i++;
+	}
+	return (nb * neg);
 }
