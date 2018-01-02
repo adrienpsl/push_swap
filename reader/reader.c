@@ -10,40 +10,58 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap/push_swap.h"
 
-void		p_tab(int tab[], int limit)
+static void put_into_lst(t_dlist *lst, char *data)
 {
-	int i;
+	long nb;
 
-	i = 0;
-	printf("[[ ");
-	while (i < limit)
+	if (ft_is_all_number(data) == FALSE)
+		ft_error_pw();
+	nb = ft_atol(data);
+	if (nb < INT_MIN || nb > INT_MAX)
+		ft_error_pw();
+	put_good_nb(lst, nb);
+	if ((ft_dlst_add_end(lst, &nb, sizeof(int))) == FAIL)
+		ft_exit_lack_memory();
+}
+
+static void single_str(t_dlist *lst, char *str)
+{
+	char **data;
+
+	if ((data = ft_strsplit(str, ' ')) == FAIL)
+		ft_exit_lack_memory();
+	while (*data)
 	{
-		printf("%d, ", tab[i]);
-		++i;
+		put_into_lst(lst, *data);
+		data++;
 	}
-	printf("]]\n");
+	ft_free_doublechar_tab(&data);
 }
 
-void push_swap(t_pw *pw)
+static void get_argv(t_dlist *lst, int ac, char **av)
 {
-	int *tab;
+	long i;
 
-	tab = get_tab(pw);
+	i = 1;
 
-	ft_quick_sort(tab,0,pw->lst->length - 1,pw->lst->length - 1);
-	p_tab(tab,pw->lst->length);
+	while (i < ac)
+	{
+		put_into_lst(lst, av[i]);
+		i++;
+	}
 }
 
-int main(int ac, char **av)
+t_dlist *ft_main_reader(int ac, char **av)
 {
-	t_pw pw;
+	t_dlist *lst;
 
-	if (ac == NO_ARGV)
-		exit(42);
-	pw.lst = ft_main_reader(ac, av);
-	push_swap(&pw);
-
-	return (0);
+	if ((lst = ft_new_dlst()) == FAIL)
+		ft_exit_lack_memory();
+	if (ac == 2)
+		single_str(lst, av[1]);
+	else
+		get_argv(lst, ac, av);
+	return (lst);
 }

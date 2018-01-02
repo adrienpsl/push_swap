@@ -12,6 +12,26 @@
 
 #include "../push_swap.h"
 
+int *get_tab(t_pw *pw)
+{
+	int *tab;
+	t_dlink *link;
+	long i;
+
+	link = pw->lst->head;
+	i = 0;
+	if ((tab = (int*)malloc(sizeof(int) * pw->lst->length + 1)) == FAIL)
+		ft_exit_lack_memory();
+	tab[pw->lst->length] = 0;
+	while (link)
+	{
+		tab[i] = *(int*)link->content;
+		link = link->next;
+		i++;
+	}
+	return (tab);
+}
+
 long	ft_atol(const char *s)
 {
 	int i;

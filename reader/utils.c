@@ -10,40 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap/push_swap.h"
 
-void		p_tab(int tab[], int limit)
+// une f pour aller a au bonne index en checkant le nb a chaque fois
+void put_good_nb(t_dlist *lst, int nb)
 {
-	int i;
+	t_dlink *link;
+	t_dlink *new;
 
-	i = 0;
-	printf("[[ ");
-	while (i < limit)
+	link = lst->head;
+	while (link && nb <= *(int*)link->content)
 	{
-		printf("%d, ", tab[i]);
-		++i;
+		if (nb == *(int*)link->content)
+			ft_error_pw();
+		link = link->next;
 	}
-	printf("]]\n");
-}
+	if ((new = ft_dlist_link_new(&nb, sizeof(int))) == FAIL)
+		ft_exit_lack_memory();
+	if (lst->length == 0)
+	{
+		if (ft_dlst_add_end(lst,&nb,sizeof(int)) == FAIL)
+			ft_exit_lack_memory();
+		return ;
+	}
+	new->next = link;
+	new->prev = link->prev;
+	new->prev->prev = new;
 
-void push_swap(t_pw *pw)
-{
-	int *tab;
+};
 
-	tab = get_tab(pw);
-
-	ft_quick_sort(tab,0,pw->lst->length - 1,pw->lst->length - 1);
-	p_tab(tab,pw->lst->length);
-}
-
-int main(int ac, char **av)
-{
-	t_pw pw;
-
-	if (ac == NO_ARGV)
-		exit(42);
-	pw.lst = ft_main_reader(ac, av);
-	push_swap(&pw);
-
-	return (0);
-}
+//une f pour check si je suis dans le
