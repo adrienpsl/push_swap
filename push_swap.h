@@ -15,13 +15,26 @@
 
 # include "../libft/includes/libft.h"
 
-# define RIGHT 3
+# define RIGHT 30
+# define RIGHT_UP 31
+# define RIGHT_DOWN 32
+
+
 # define KEEP_RIGHT 4
+
+
 # define KEEP_LEFT 5
 
 /*
 **    struct push
 */
+
+typedef struct		s_solver
+{
+	int			nb;
+	int			op;
+	int			i;
+}					t_solver;
 
 typedef struct		s_lim
 {
@@ -63,6 +76,12 @@ void		ft_rr(t_pw *pw);
 void		ft_rra(t_pw *pw);
 void		ft_rrb(t_pw *pw);
 void		ft_rrr(t_pw *pw);
+
+/*
+**  ==============  push solver  ======================================
+*/
+void ft_solver(t_pw *pw);
+void g_nb(int *nb, t_dlist *l);
 
 /*
 **  ================ checker  =======================================

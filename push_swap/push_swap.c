@@ -57,6 +57,8 @@ void push_swap(t_pw *pw)
 
 	p_tab(tab, pw->lst_a->length);
 	get_lim(pw, tab);
+	ft_solver(pw);
+	pll(pw);
 }
 
 int main(int ac, char **av)
