@@ -33,7 +33,7 @@ typedef struct		s_solver
 {
 	int			nb;
 	int			op;
-	int			i;
+	size_t		i;
 }					t_solver;
 
 typedef struct		s_lim
@@ -86,7 +86,7 @@ void g_nb(int *nb, t_dlist *l);
 /*
 **  ================ checker  =======================================
 */
-t_dlist *ft_checker_reader(int ac, char **av);
+int ft_checker_reader(t_pw *pw, int ac, char **av, int *i);
 /*
 **    utils
 */
@@ -94,5 +94,8 @@ void	ft_error_pw(void);
 void	ft_error_ck(void);
 void	pl(t_dlist *l);
 void	make_circle(t_dlist *lst);
+
+void pll(t_pw *pw);
+
 
 #endif

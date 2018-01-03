@@ -29,4 +29,3 @@ void pl(t_dlist *l)
 	}
 	printf("]] \n");
 }
-

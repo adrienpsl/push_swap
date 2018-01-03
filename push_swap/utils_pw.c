@@ -16,7 +16,7 @@ int *get_tab(t_pw *pw)
 {
 	int *tab;
 	t_dlink *link;
-	long i;
+	size_t i;
 
 	link = pw->lst_a->head;
 	i = 0;

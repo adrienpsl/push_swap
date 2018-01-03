@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	ft_error_ck(void)
+void ft_error_ck(void)
 {
 	ft_putstr("KO\n");
 	exit(42);
@@ -20,19 +20,36 @@ void	ft_error_ck(void)
 
 void checker()
 {
-
 }
 
+void do_op(char *op)
+{
+//	if check_char_into_str("")
+}
 
-//int main(int ac, char **av)
-//{
-//	t_pw pw;
-//
-//	if (ac == NO_ARGV)
-//		exit(42);
-//	pw.lst_a = ft_checker_reader(ac, av);
-//	pl(pw.lst_a->head);
-//	return (0);
-//}
+int get_op(int ac, char **av, int i)
+{
+	while (i < ac)
+	{
+		printf("%s \n", av[i]);
+		i++;
+	}
+	return (DONE);
+}
+
+int main(int ac, char **av)
+{
+	t_pw pw;
+	int i;
+
+	i = 0;
+	if (ac == NO_ARGV)
+		exit(42);
+	ft_memset(&pw, 0, sizeof(t_pw));
+	ft_checker_reader(&pw, ac, av, &i);
+	get_op(ac,av,i);
+	pll(&pw);
+	return (0);
+}
 
 

@@ -61,18 +61,18 @@ void push_swap(t_pw *pw)
 	pll(pw);
 }
 
-int main(int ac, char **av)
-{
-	t_pw pw;
-
-	if (ac == NO_ARGV)
-		exit(42);
-	ft_memset(&pw, 0, sizeof(t_pw));
-	pw.lst_a = ft_pw_reader(ac, av);
-	if ((pw.lst_b = ft_new_dlst()) == FAIL)
-		ft_exit_lack_memory();
-
-	push_swap(&pw);
-
-	return (0);
-}
+//int main(int ac, char **av)
+//{
+//	t_pw pw;
+//
+//	if (ac == NO_ARGV)
+//		exit(42);
+//	ft_memset(&pw, 0, sizeof(t_pw));
+//	pw.lst_a = ft_pw_reader(ac, av);
+//	if ((pw.lst_b = ft_new_dlst()) == FAIL)
+//		ft_exit_lack_memory();
+//
+//	push_swap(&pw);
+//
+//	return (0);
+//}

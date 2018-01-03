@@ -20,13 +20,13 @@ static void check_lim_right(t_solver *s, t_pw *pw)
 		s->op = RIGHT_DOWN;
 }
 
-static void check_lim_r(t_solver *s, t_pw *pw)
-{
-	if (s->nb <= pw->lim.fst)
-		s->op = RIGHT_UP;
-	else
-		s->op = RIGHT_DOWN;
-}
+//static void check_lim_r(t_solver *s, t_pw *pw)
+//{
+//	if (s->nb <= pw->lim.fst)
+//		s->op = RIGHT_UP;
+//	else
+//		s->op = RIGHT_DOWN;
+//}
 
 static void check_lim(t_solver *s, t_pw *pw)
 {
@@ -54,7 +54,7 @@ void ft_solver(t_pw *pw)
 	t_solver s;
 
 	ft_memset(&s, 0, sizeof(t_solver));
-	pll(pw);
+	make_circle(pw->lst_a);
 	while (s.i < pw->lst_a->length)
 	{
 		g_nb(&s.nb, pw->lst_a);
