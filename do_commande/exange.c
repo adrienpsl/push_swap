@@ -12,28 +12,29 @@
 
 #include "../push_swap.h"
 
-int *get_tab(t_pw *pw)
+static void mv(t_dlist *lst)
 {
-	int *tab;
-	t_dlink *link;
-	long i;
+	int tmp;
 
-	link = pw->lst_a->head;
-	i = 0;
-	if ((tab = (int*)malloc(sizeof(int) * pw->lst_a->length + 1)) == FAIL)
-		ft_exit_lack_memory();
-	tab[pw->lst_a->length] = 0;
-	while (i <= pw->lst_a->length)
-	{
-		tab[i] = *(int*)link->content;
-		link = link->next;
-		i++;
-	}
-	return (tab);
+	if (lst->length == 1 || lst->length == 0)
+		return ;
+	tmp = *(int*)lst->where->content;
+	*(int*)lst->where->content = *(int*)lst->where->next->content;
+	*(int*)lst->where->next->content = tmp;
 }
 
-void	ft_error_pw(void)
+void ft_sa(t_pw *pw)
 {
-	ft_putstr("Error\n");
-	exit(42);
+	mv(pw->lst_a);
+}
+
+void ft_sb(t_pw *pw)
+{
+	mv(pw->lst_b);
+}
+
+void ft_ss(t_pw *pw)
+{
+	ft_sa(pw);
+	ft_sb(pw);
 }

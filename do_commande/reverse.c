@@ -12,29 +12,18 @@
 
 #include "../push_swap.h"
 
-static void mv(t_dlist *lst)
+void ft_ra(t_pw *pw)
 {
-	int tmp;
-
-	if (lst->length == 1 && lst->length == 0)
-		return ;
-	tmp = *(int*)lst->where->content;
-	*(int*)lst->where->content = *(int*)lst->where->next->content;
-	*(int*)lst->where->next->content = tmp;
+	pw->lst_a->where = pw->lst_a->where->next;
 }
 
-void ft_sa(t_pw *pw)
+void ft_rb(t_pw *pw)
 {
-	mv(pw->lst_a);
+	pw->lst_b->where = pw->lst_b->where->next;
 }
 
-void ft_sb(t_pw *pw)
+void ft_rr(t_pw *pw)
 {
-	mv(pw->lst_b);
-}
-
-void ft_ss(t_pw *pw)
-{
-	ft_sa(pw);
-	ft_sb(pw);
+	ft_ra(pw);
+	ft_rb(pw);
 }

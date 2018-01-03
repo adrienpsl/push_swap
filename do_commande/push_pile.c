@@ -54,7 +54,6 @@ void mv(t_dlist *dst, t_dlist *src)
 	t_dlink *nxt;
 	t_dlink *prv;
 	t_dlink *new;
-
 	t_dlink *nw;
 
 	nw = src->where;
@@ -62,23 +61,15 @@ void mv(t_dlist *dst, t_dlist *src)
 	src->where->prev->next = src->where->next;
 	src->where = src->where->next;
 	src->length--;
-
 	nxt = dst->where;
 	prv = dst->where->prev;
-
 	new = nw;
-
 	new->next = nxt;
 	nxt->prev = new;
-
 	new->prev = prv;
-
 	prv->next = new;
-
 	dst->where = new;
 	dst->length += 1;
-	o(dst->where);
-
 }
 
 void ft_pa(t_pw *pw)

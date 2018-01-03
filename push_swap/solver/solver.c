@@ -10,30 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
-int *get_tab(t_pw *pw)
+static int fit(int nb, t_pw *pw)
 {
-	int *tab;
-	t_dlink *link;
-	long i;
-
-	link = pw->lst_a->head;
-	i = 0;
-	if ((tab = (int*)malloc(sizeof(int) * pw->lst_a->length + 1)) == FAIL)
-		ft_exit_lack_memory();
-	tab[pw->lst_a->length] = 0;
-	while (i <= pw->lst_a->length)
-	{
-		tab[i] = *(int*)link->content;
-		link = link->next;
-		i++;
-	}
-	return (tab);
+	if (nb >= pw->lim.med)
+		return (RIGHT);
+	return (KEEP_LEFT);
 }
 
-void	ft_error_pw(void)
+static void do_op(int op, t_pw *pw)
 {
-	ft_putstr("Error\n");
-	exit(42);
+	if (op == RIGHT)
+		ft_pb(pw);
+	if (op == KEEP_LEFT)
+		ft_sa(pw);
+}
+
+void ft_solver(t_pw *pw)
+{
+	int a;
+	while (a < pw->lst_a->length)
+	{
+		Dfit;
+	}
 }

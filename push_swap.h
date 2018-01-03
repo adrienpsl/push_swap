@@ -15,15 +15,27 @@
 
 # include "../libft/includes/libft.h"
 
+# define RIGHT 3
+# define KEEP_RIGHT 4
+# define KEEP_LEFT 5
+
 /*
 **    struct push
 */
+
+typedef struct		s_lim
+{
+	int			fst;
+	int			med;
+	int			lst;
+}					t_lim;
 
 typedef struct		s_pw
 {
 	t_dlist			*lst_a;
 	t_dlist			*lst_b;
 	t_list			*instruct;
+	t_lim			lim;
 }					t_pw;
 
 
@@ -38,8 +50,20 @@ int					*get_tab(t_pw *pw);
 **  ==============  push swap  ======================================
 */
 void		ft_sa(t_pw *pw);
+void		ft_sb(t_pw *pw);
+void 		ft_ss(t_pw *pw);
+
 void		ft_pb(t_pw *pw);
 void		ft_pa(t_pw *pw);
+
+void		ft_ra(t_pw *pw);
+void		ft_rb(t_pw *pw);
+void		ft_rr(t_pw *pw);
+
+void		ft_rra(t_pw *pw);
+void		ft_rrb(t_pw *pw);
+void		ft_rrr(t_pw *pw);
+
 /*
 **  ================ checker  =======================================
 */

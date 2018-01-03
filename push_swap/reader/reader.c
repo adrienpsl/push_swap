@@ -19,7 +19,7 @@ static void put_good_nb(t_dlist *lst, int nb)
 	link = lst->head;
 	while (link)
 	{
-		if (nb == *(int *)link->content)
+		if (nb == *(int *) link->content)
 			ft_error_pw();
 		link = link->next;
 	}
