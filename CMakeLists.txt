@@ -4,7 +4,7 @@ project(push_swap C)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_COMPILER "/usr/bin/gcc")
 
-set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
+#set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
 add_executable(push_swap main.c push_swap/reader/reader.c push_swap.h push_swap/push_swap.c push_swap/utils_pw.c utils_projet.c checker/utils.c checker/main_checker.c checker/checker_reader.c do_commande/first.c do_commande/push_pile.c)
 

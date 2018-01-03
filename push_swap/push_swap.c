@@ -12,8 +12,12 @@
 
 #include "../push_swap.h"
 
+static int call = 0;
+
 void pll(t_pw *pw)
 {
+	call++;
+	printf("=====  call %d ============================= \n", call);
 	if (pw->lst_a->length)
 	{
 		printf("list a :  ");
@@ -24,9 +28,13 @@ void pll(t_pw *pw)
 		printf("list b :  ");
 		pl(pw->lst_b);
 	}
-
 }
 
+void pp(void (*fun)(t_pw *pw), t_pw *p)
+{
+	fun(p);
+	pll(p);
+}
 void push_swap(t_pw *pw)
 {
 	int *tab;
@@ -49,18 +57,21 @@ int main(int ac, char **av)
 
 	//	push_swap(&pw);
 	make_circle(pw.lst_a);
-		pll(&pw);
-	ft_pb(&pw);
-	pll(&pw);
-	//	ft_pb(&pw);
-//	pll(&pw);
-//	ft_pa(&pw);
-//	pll(&pw);
-//
-//	ft_pb(&pw);
-//	pll(&pw);
-//	ft_pb(&pw);
-//	pll(&pw);
+	pp(&ft_pb, &pw);
+	pp(&ft_pb, &pw);
+
+//	pp(&ft_sa, &pw);
+
+	pp(&ft_pb, &pw);
+	pp(&ft_pb, &pw);
+	pp(&ft_pb, &pw);
+
+//		pp(& ft_pb, &pw);
+	//	pp(& ft_pb, &pw);
+	//
+	//	pp(& ft_pa, &pw);
+
+
 
 	return (0);
 }
