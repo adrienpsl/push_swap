@@ -22,16 +22,39 @@ void checker()
 {
 }
 
-void do_op(char *op)
+void do_op(char *op,t_pw *pw)
 {
-//	if check_char_into_str("")
+	if (ft_strstr("sa", op))
+		ft_sa(pw);
+	else if (ft_strstr("sb", op))
+		ft_sb(pw);
+	else if (ft_strstr("ss", op))
+		ft_ss(pw);
+	else if (ft_strstr("pa", op))
+		ft_pa(pw);
+	else if (ft_strstr("pb", op))
+		ft_pb(pw);
+	else if (ft_strstr("ra", op))
+		ft_ra(pw);
+	else if (ft_strstr("rb", op))
+		ft_rb(pw);
+	else if (ft_strstr("rr", op))
+		ft_rr(pw);
+	else if (ft_strstr("rra", op))
+		ft_rra(pw);
+	else if (ft_strstr("rrb", op))
+		ft_rrb(pw);
+	else if (ft_strstr("rrr", op))
+		ft_rrr(pw);
+	else
+		ft_error_ck();
 }
 
-int get_op(int ac, char **av, int i)
+int get_op(int ac, char **av, int i, t_pw *pw)
 {
 	while (i < ac)
 	{
-		printf("%s \n", av[i]);
+		do_op(av[i], pw);
 		i++;
 	}
 	return (DONE);
@@ -47,7 +70,7 @@ int main(int ac, char **av)
 		exit(42);
 	ft_memset(&pw, 0, sizeof(t_pw));
 	ft_checker_reader(&pw, ac, av, &i);
-	get_op(ac,av,i);
+	get_op(ac, av, i, &pw);
 	pll(&pw);
 	return (0);
 }
