@@ -60,16 +60,15 @@ int main(int ac, char **av)
 	pp(&ft_pb, &pw);
 	pp(&ft_pb, &pw);
 
-//	pp(&ft_sa, &pw);
-
 	pp(&ft_pb, &pw);
 	pp(&ft_pb, &pw);
 	pp(&ft_pb, &pw);
 
-//		pp(& ft_pb, &pw);
-	//	pp(& ft_pb, &pw);
-	//
-	//	pp(& ft_pa, &pw);
+	pp(&ft_pa, &pw);
+	pp(&ft_pa, &pw);
+	pp(&ft_pa, &pw);
+	pp(&ft_pa, &pw);
+	pp(&ft_pa, &pw);
 
 
 

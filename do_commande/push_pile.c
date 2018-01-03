@@ -17,31 +17,36 @@ void o(t_dlink *o)
 	printf("nxt  %d \n", *(int *) o->next->content);
 	printf("prev %d \n", *(int *) o->prev->content);
 }
-void empty(t_dlist *r_lst, t_dlist *s_lst)
-{
-	r_lst->where = s_lst->where;
-	s_lst->where->prev->next = s_lst->where->next;
-	s_lst->where->next->prev = s_lst->where->prev;
-	s_lst->where = s_lst->where->next;
-	r_lst->length++;
-	s_lst->length--;
-	r_lst->where->prev = r_lst->where;
-	r_lst->where->next = r_lst->where;
-}
-
 void one(t_dlist *dst, t_dlist *src)
 {
-	dst->where->prev->next = src->where;
-	dst->where->prev = dst->where;
 
-	src->where->prev = dst->where->prev;
-	src->where->next = dst->where;
+	t_dlink *new;
+	t_dlink *prev;
+	t_dlink *nxt;
 
+	new = src->where;
+	prev = dst->where->prev;
+	nxt = dst->where;
+	new->next = nxt;
+	nxt->prev = new;
+	new->prev = prev;
+	prev->next = new;
 	dst->where = src->where;
 	src->where = NULL;
-
 	dst->length++;
 	src->length--;
+}
+
+void empty(t_dlist *dst, t_dlist *src)
+{
+	dst->where = src->where;
+	src->where->prev->next = src->where->next;
+	src->where->next->prev = src->where->prev;
+	src->where = src->where->next;
+	dst->length++;
+	src->length--;
+	dst->where->prev = dst->where;
+	dst->where->next = dst->where;
 }
 
 void mv(t_dlist *dst, t_dlist *src)
@@ -72,6 +77,7 @@ void mv(t_dlist *dst, t_dlist *src)
 
 	dst->where = new;
 	dst->length += 1;
+	o(dst->where);
 
 }
 
