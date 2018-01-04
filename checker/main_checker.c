@@ -18,11 +18,26 @@ void ft_error_ck(void)
 	exit(42);
 }
 
-void checker()
+void checker(t_pw *pw)
 {
+	size_t i;
+	int nb;
+	int nb2;
+
+	i = 0;
+	g_nb(&nb, pw->lst_a);
+	while (i < pw->lst_a->length)
+	{
+		g_nb(&nb2, pw->lst_a);
+		if (nb > nb2)
+			ft_error_ck();
+		nb = nb2;
+		pw->lst_a->where = pw->lst_a->where->next;
+		i++;
+	}
 }
 
-void do_op(char *op,t_pw *pw)
+void do_op(char *op, t_pw *pw)
 {
 	if (ft_strstr("sa", op))
 		ft_sa(pw);
@@ -72,6 +87,7 @@ int main(int ac, char **av)
 	ft_checker_reader(&pw, ac, av, &i);
 	get_op(ac, av, i, &pw);
 	pll(&pw);
+	checker(&pw);
 	return (0);
 }
 
