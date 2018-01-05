@@ -10,15 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../../push_swap.h"
 
-void g_nb(int *nb, t_dlist *l)
+
+int under_limit(size_t count, t_dlist *lst)
 {
-	*nb  = *(int *)l->where->content;
+	return (count < lst->length);
 }
 
-int gn(t_dlink *link)
+
+int nb_bigger_head(t_solver *s, t_dlist *lst)
 {
-	return (*(int *) link->content);
+	return (s->nb > gn(lst->head));
 }
 
+int prev_smaller(t_dlist *lst)
+{
+	return (gn(lst->head) > gn(lst->head->prev));
+}
+
+int next_smaller(t_dlist *lst)
+{
+	return (gn(lst->head) > gn(lst->head->next));
+}

@@ -10,15 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../../push_swap.h"
 
-void g_nb(int *nb, t_dlist *l)
+
+
+size_t loop_taller_head(t_solver *s, t_dlist *l)
 {
-	*nb  = *(int *)l->where->content;
+	size_t count;
+
+	count = 0;
+	while (nb_bigger_head(s, l) == TRUE
+		   && under_limit(count, l) == TRUE
+		   && next_smaller(l) == TRUE)
+	{
+		count++;
+		l->head = l->head->next;
+	}
+	if (nb_bigger_head(s, l) == TRUE && under_limit(count, l) == TRUE)
+		count++;
+	while (nb_bigger_head(s, l) == FALSE && under_limit(count, l) == TRUE)
+	{
+		count++;
+		l->head = l->head->next;
+	}
+	return (count);
 }
 
-int gn(t_dlink *link)
+size_t loop_smaller_head(t_solver *s, t_dlist *l)
 {
-	return (*(int *) link->content);
-}
+	size_t count;
 
+	count = 0;
+	while (nb_bigger_head(s, l) == FALSE && under_limit(count, l) == TRUE)
+	{
+		count++;
+		if (next_smaller(l) == FALSE)
+			break;
+		l->head = l->head->next;
+	}
+	return (count);
+}

@@ -12,6 +12,12 @@
 
 #include "../push_swap.h"
 
+void	ft_error_pw(void)
+{
+	ft_putstr("Error\n");
+	exit(42);
+}
+
 int *get_tab(t_pw *pw)
 {
 	int *tab;
@@ -32,8 +38,37 @@ int *get_tab(t_pw *pw)
 	return (tab);
 }
 
-void	ft_error_pw(void)
+void find_into_lst(int nb, t_dlist *lst)
 {
-	ft_putstr("Error\n");
-	exit(42);
+//	int nb_lst;
+//
+//	g_nb(&nb_lst, lst);
+	lst->head = lst->where;
+	while ( nb != *(int *)lst->head->content)
+		lst->head = lst->head->next;
+}
+
+void put_index_lst(t_dlist *lst, int tab[])
+{
+	size_t i;
+
+	i = 0;
+	while (i < lst->length)
+	{
+		find_into_lst(tab[i], lst);
+		ft_memcpy(lst->head->content,&i, sizeof(int));
+		i++;
+	}
+}
+
+void get_lim(t_pw *pw)
+{
+	int m;
+
+	m = (pw->lst_a->length - 1) / 2;
+	if (pw->lst_a->length % 2 == TRUE)
+		m += 1;
+	pw->lim.fst = m - m / 2;
+	pw->lim.med = m;
+	pw->lim.lst = m + m / 2;
 }

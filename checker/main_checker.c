@@ -75,20 +75,20 @@ int get_op(int ac, char **av, int i, t_pw *pw)
 	return (DONE);
 }
 
-int main(int ac, char **av)
-{
-	t_pw pw;
-	int i;
-
-	i = 0;
-	if (ac == NO_ARGV)
-		exit(42);
-	ft_memset(&pw, 0, sizeof(t_pw));
-	ft_checker_reader(&pw, ac, av, &i);
-	get_op(ac, av, i, &pw);
-	pll(&pw);
-	checker(&pw);
-	return (0);
-}
+//int main(int ac, char **av)
+//{
+//	t_pw pw;
+//	int i;
+//
+//	i = 0;
+//	if (ac == NO_ARGV)
+//		exit(42);
+//	ft_memset(&pw, 0, sizeof(t_pw));
+//	ft_checker_reader(&pw, ac, av, &i);
+//	get_op(ac, av, i, &pw);
+//	pll(&pw);
+//	checker(&pw);
+//	return (0);
+//}
 
 

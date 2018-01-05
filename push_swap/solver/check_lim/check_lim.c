@@ -10,56 +10,53 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../../push_swap.h"
 
-/*
-**    avance du bon nombre de nb pour placer 
-*/
-static void loop_nb(t_pw *pw, t_solver *s, void (*fun)(t_pw *pw))
+static size_t loop_speed_way(t_solver *s, t_dlist *lst, int sens)
 {
-	printf("============== \n");
-	pl(pw->lst_b);
-	while (s->index)
+
+	lst->head = lst->where;
+	if (sens == HEAD)
 	{
-		fun(pw);
-		pl(pw->lst_b);
-		s->index--;
+		if (s->nb > gn(lst->head))
+			return (loop_taller_head(s, lst));
+		else
+			return (loop_smaller_head(s, lst));
+	}
+	else
+	{
+		if (s->nb > gn(lst->head))
+			return (loop_taller_tail(s, lst));
+		else
+			return (loop_smaller_tail(s, lst));
 	}
 }
 
-static int one_el(t_pw *pw, t_solver *s)
+static int the_speed_way(t_solver *s, t_dlist *lst)
 {
-	ft_pb(pw);
-	if (s->nb < *(int*)pw->lst_b->where->next->content)
-		ft_rb(pw);
-	return (DONE);
+	int head;
+	int tail;
+
+	if (lst->where == NULL)
+		return (s->op = UP);
+	if (lst->length == 1)
+		return (s->op = ONE);
+//	head = loop_speed_way(s, lst, HEAD);
+	tail = loop_speed_way(s, lst, TAIL);
+	head = 1000;
+//	tail = 1000;
+	s->index = head < tail ? head : tail;
+	return (s->op = head < tail ? UP : DOWN);
 }
 
-static int put_nb(t_pw *pw, t_solver *s)
+void check_lim(t_solver *s, t_pw *pw)
 {
-	if ((s->op == UP || s->op == DOWN) && s->index >= pw->lst_b->length)
-		return one_el(pw, s);
-	else if (s->op == UP)
-		loop_nb(pw, s, &ft_rb);
-	else if (s->op == DOWN)
-		loop_nb(pw, s, &ft_rrb);
-	else if (s->op == ONE)
-		return (one_el(pw, s));
-	if (s->op != KEEP_LEFT)
-		ft_pb(pw);
-	return (DONE);
-}
-
-void ft_solver(t_pw *pw)
-{
-	t_solver s;
-
-	ft_memset(&s, 0, sizeof(t_solver));
-	while (s.i < pw->lst_a->length)
+	if (s->nb < pw->lim.med)
+		the_speed_way(s, pw->lst_b);
+	else
 	{
-		g_nb(&s.nb, pw->lst_a);
-		check_lim(&s, pw);
-		put_nb(pw, &s);
-		pll(pw);
+		s->op = KEEP_LEFT;
+		s->i++;
+		pw->lst_a->where = pw->lst_a->where->next;
 	}
 }
