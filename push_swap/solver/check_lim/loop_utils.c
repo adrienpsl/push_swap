@@ -12,24 +12,30 @@
 
 #include "../../../push_swap.h"
 
-
-int under_limit(size_t count, t_dlist *lst)
+int next_bigger(t_loop *l)
 {
-	return (count < lst->length);
+	if (l->sens == TAIL)
+		return (gn(l->lst->head) > gn(l->lst->head->prev));
+	else
+		return (gn(l->lst->head) > gn(l->lst->head->next));
 }
 
-
-int nb_bigger_head(t_solver *s, t_dlist *lst)
+int next_smaller(t_loop *l)
 {
-	return (s->nb > gn(lst->head));
+	return (!next_bigger(l));
 }
 
-int prev_smaller(t_dlist *lst)
+int end_lst(t_loop *l,int count)
 {
-	return (gn(lst->head) > gn(lst->head->prev));
+	return (count > l->lst->length);
 }
 
-int next_smaller(t_dlist *lst)
+int nb_bigger(t_loop *l)
 {
-	return (gn(lst->head) > gn(lst->head->next));
+	return (l->nb > gn(l->lst->head));
+}
+
+int nb_lower(t_loop *l)
+{
+	return (!nb_bigger(l));
 }

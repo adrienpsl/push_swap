@@ -17,3 +17,27 @@ void phead(t_dlist *l)
 	}
 	printf("]] \n");
 }
+
+static int call = 0;
+
+void pll(t_pw *pw)
+{
+	call++;
+	printf("=====  call %d ============================= \n", call);
+	if (pw->lst_a->length)
+	{
+		printf("list a :  ");
+		pl(pw->lst_a);
+	}
+	if (pw->lst_b->length)
+	{
+		printf("list b :  ");
+		pl(pw->lst_b);
+	}
+}
+
+void pp(void (*fun)(t_pw *pw), t_pw *p)
+{
+	fun(p);
+	pll(p);
+}

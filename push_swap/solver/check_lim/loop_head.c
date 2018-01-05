@@ -20,15 +20,15 @@ size_t loop_taller_head(t_solver *s, t_dlist *l)
 
 	count = 0;
 	while (nb_bigger_head(s, l) == TRUE
-		   && under_limit(count, l) == TRUE
+		   && end_lst(count, l) == FALSE
 		   && next_smaller(l) == TRUE)
 	{
 		count++;
 		l->head = l->head->next;
 	}
-	if (nb_bigger_head(s, l) == TRUE && under_limit(count, l) == TRUE)
+	if (nb_bigger_head(s, l) == TRUE && end_lst(count, l) == FALSE)
 		count++;
-	while (nb_bigger_head(s, l) == FALSE && under_limit(count, l) == TRUE)
+	while (nb_bigger_head(s, l) == FALSE && end_lst(count, l) == FALSE)
 	{
 		count++;
 		l->head = l->head->next;
@@ -41,7 +41,7 @@ size_t loop_smaller_head(t_solver *s, t_dlist *l)
 	size_t count;
 
 	count = 0;
-	while (nb_bigger_head(s, l) == FALSE && under_limit(count, l) == TRUE)
+	while (nb_bigger_head(s, l) == FALSE && end_lst(count, l) == FALSE)
 	{
 		count++;
 		if (next_smaller(l) == FALSE)

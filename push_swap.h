@@ -36,30 +36,21 @@
 **    struct push
 */
 
-typedef struct		s_solver
+typedef struct		s_loop
 {
-	int			nb;
-	int			op;
-	size_t		i;
-	size_t		index;
-	int more;
-}					t_solver;
-
-typedef struct		s_lim
-{
-	int			fst;
-	int			med;
-	int			lst;
-}					t_lim;
+	t_dlist			*lst;
+	int				sens;
+	int				nb;
+	int				nb_operation;
+}					t_loop;
 
 typedef struct		s_pw
 {
 	t_dlist			*lst_a;
 	t_dlist			*lst_b;
-	t_list			*instruct;
-	t_lim			lim;
+	int				lim;
+	t_loop			loop;
 }					t_pw;
-
 
 /*
 **  ==============  push reader  ======================================
@@ -73,7 +64,7 @@ int					*get_tab(t_pw *pw);
 */
 void		ft_sa(t_pw *pw);
 void		ft_sb(t_pw *pw);
-void 		ft_ss(t_pw *pw);
+void		ft_ss(t_pw *pw);
 
 void		ft_pb(t_pw *pw);
 void		ft_pa(t_pw *pw);
@@ -96,14 +87,17 @@ void get_lim(t_pw *pw);
 void g_nb(int *nb, t_dlist *l);
 
 /*
-**    set the good index number to put the nb in the good way
+**    set the good number of operation to put the nb by the end or start of the stack
 */
-void check_lim(t_solver *s, t_pw *pw);
-
-int under_limit(size_t count, t_dlist *lst);
-int nb_bigger_head(t_solver *s, t_dlist *lst);
-int prev_smaller(t_dlist *lst);
-int next_smaller(t_dlist *lst);
+void find_best_way(t_pw *pw);
+/*
+**    comparaison int
+*/
+int next_bigger(t_loop *l);
+int next_smaller(t_loop *l);
+int end_lst(t_loop *l,int count);
+int nb_bigger(t_loop *l);
+int nb_lower(t_loop *l);
 
 size_t loop_taller_head(t_solver *s, t_dlist *l);
 size_t loop_smaller_head(t_solver *s, t_dlist *l);

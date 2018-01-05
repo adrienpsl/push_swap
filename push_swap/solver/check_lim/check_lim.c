@@ -49,7 +49,7 @@ static int the_speed_way(t_solver *s, t_dlist *lst)
 	return (s->op = head < tail ? UP : DOWN);
 }
 
-void check_lim(t_solver *s, t_pw *pw)
+void find_best_way(t_pw *pw)
 {
 	if (s->nb < pw->lim.med)
 		the_speed_way(s, pw->lst_b);
