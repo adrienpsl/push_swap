@@ -41,3 +41,21 @@ int nb_lower(t_loop *l, t_dlink *link)
 {
 	return (!nb_bigger(l,link));
 }
+
+/*
+**    return nb is biggest that all the nb in the lst
+*/
+
+int nb_is_bigest(t_dlink *tmp, t_loop *loop)
+{
+	return (tmp == loop->lst->head && loop->nb > gn(loop->lst->head));
+}
+
+/*
+**    return nb is the lowest in all the nb in the lst
+*/
+
+int nb_is_lowest(t_dlink *tmp, t_loop *loop)
+{
+	return (tmp == loop->lst->tail && loop->nb < gn(loop->lst->tail));
+}

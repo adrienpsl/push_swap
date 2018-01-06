@@ -17,6 +17,14 @@
 //	printf(" la head est %d \n", gn(pw->loop.lst->head));
 //	printf(" la queue est %d \n", gn(pw->loop.lst->tail ));
 //}
+ void is_ranger(t_dlist *l)
+{
+	t_dlink *link = l->tail;
+
+	while (gn(link) == gn(link->next) -1)
+	    link = link->next;
+	printf("%d \n", gn(link));
+}
 
 void put_in_b_ordered(t_pw *pw)
 {
@@ -24,7 +32,7 @@ void put_in_b_ordered(t_pw *pw)
 
 	pos_in_a = 0;
 	ft_memset(&pw->loop, 0, sizeof(t_loop));
-	while (pos_in_a <= pw->lst_a->length)
+	while (pos_in_a < pw->lst_a->length)
 	{
 		g_nb(&pw->loop.nb, pw->lst_a);
 		pw->loop.lst = pw->lst_b;
@@ -33,6 +41,7 @@ void put_in_b_ordered(t_pw *pw)
 //		pp(pw);
 		pll(pw);
 	}
+	is_ranger(pw->lst_b);
 }
 
 void ft_solver(t_pw *pw)

@@ -69,13 +69,21 @@ void ft_rrr(t_pw *pw);
 
 void ft_solver(t_pw *pw);
 
-void get_lim(t_pw *pw);
+/*
+**    the fatest way
+*/
+long way_by_head(t_loop *loop);
+long way_by_tail(t_loop *loop);
+
 void g_nb(int *nb, t_dlist *l);
+
+
 
 /*
 **    set the good number of operation to put the nb by the end or start of the stack
 */
 int find_best_way(t_pw *pw);
+
 /*
 **    comparaison int
 */
@@ -85,6 +93,8 @@ int end_lst(t_loop *l, size_t count);
 int nb_bigger(t_loop *l, t_dlink *link);
 int nb_lower(t_loop *l, t_dlink *link);
 int prev_smaller(t_loop *l, t_dlink *link);
+int nb_is_bigest(t_dlink *tmp, t_loop *loop);
+int nb_is_lowest(t_dlink *tmp, t_loop *loop);
 
 void set_bigger_taller(t_loop *loop);
 

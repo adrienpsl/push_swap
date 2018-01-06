@@ -21,4 +21,3 @@ int gn(t_dlink *link)
 {
 	return (*(int *) link->content);
 }
-

@@ -33,7 +33,7 @@ static void one_el(t_pw *pw)
 		ft_rb(pw);
 }
 
-static void put_by_head(t_pw *pw)
+void put_by_head(t_pw *pw)
 {
 	if (pw->loop.end)
 		return (one_el(pw));
@@ -42,6 +42,12 @@ static void put_by_head(t_pw *pw)
 		ft_rb(pw);
 		pl(pw->lst_b);
 		pw->loop.nb_operation -= 1;
+	}
+	while (pw->loop.nb_operation < 0)
+	{
+		ft_rrb(pw);
+		pl(pw->lst_b);
+		pw->loop.nb_operation += 1;
 	}
 	ft_pb(pw);
 }
@@ -56,11 +62,12 @@ void set_min_max(t_pw *pw)
 
 static int the_speed_way(t_loop *loop)
 {
-	size_t head;
-	//	int tail;
+//	long head;
+	long tail;
 
-	head = nb_taller_head(loop);
-	loop->nb_operation = head;
+//	head = way_by_head(loop);
+	tail = way_by_tail(loop);
+	loop->nb_operation = tail;
 	//	tail = loop_speed_way(s, lst, TAIL);
 	//	head = 1000;
 	//	tail = 1000;
@@ -82,10 +89,8 @@ int find_best_way(t_pw *pw)
 			one_el(pw);
 		else
 		{
-			if (the_speed_way(&pw->loop) == -1)
-				one_el(pw);
-			else
-				put_by_head(pw);
+			the_speed_way(&pw->loop);
+			put_by_head(pw);
 		}
 		set_min_max(pw);
 	}

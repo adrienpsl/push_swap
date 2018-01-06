@@ -29,7 +29,7 @@ void plt(t_dlink *tmp, t_dlist *l)
 	while(i < l->length)
 	{
 		printf("%d, ", *(int *)tmp->content);
-		tmp = tmp->next;
+		tmp = tmp->prev;
 		i++;
 	}
 	printf("]] \n");

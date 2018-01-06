@@ -13,25 +13,7 @@
 #include "../../../push_swap.h"
 
 /*
-**    return nb is biggest that all the nb in the lst
-*/
-
-static int nb_is_bigest(t_dlink *tmp, t_loop *loop)
-{
-	return (tmp == loop->lst->head && loop->nb > gn(loop->lst->head));
-}
-
-/*
-**    return nb is the lowest in all the nb in the lst
-*/
-
-static int nb_is_lowest(t_dlink *tmp, t_loop *loop)
-{
-	return (tmp == loop->lst->tail && loop->nb < gn(loop->lst->tail));
-}
-
-/*
-**	return nb is lower that link(hi) all the nb in the lst
+**	return nb is lower that link(highest) all the nb in the lst
 **	like lst - 1 < nb < lst
 */
 
@@ -45,7 +27,7 @@ static int good_place(t_dlink *link, t_loop *l)
 **	the head and the tail are the bornes max and min of the b_lst
 */
 
-long nb_taller_head(t_loop *loop)
+long way_by_head(t_loop *loop)
 {
 	size_t count;
 	t_dlink *tmp;
@@ -54,15 +36,10 @@ long nb_taller_head(t_loop *loop)
 	tmp = loop->lst->where;
 	while (end_lst(loop, count) == FALSE)
 	{
-		printf("nb = %d ", loop->nb);
-		printf("tmp = %d ", gn(tmp));
-		printf("prv = %d \n", gn(tmp->prev));
 		if (good_place(tmp,loop))
 			break;
 		if (nb_is_bigest(tmp, loop))
 		{
-			if (count == 0)
-				return (-1);
 			(count += 1);
 			break;
 		}
