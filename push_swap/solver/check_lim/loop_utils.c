@@ -12,19 +12,19 @@
 
 #include "../../../push_swap.h"
 
-int next_bigger(t_loop *l)
+int next_bigger(t_loop *l, t_dlink *link)
 {
-	return (gn(l->lst->head) > gn(l->lst->head->next));
+	return (l->nb > gn(link->next));
 }
 
-int prev_smaller(t_loop *l)
+int prev_smaller(t_loop *l, t_dlink *link)
 {
-	return (gn(l->lst->head) > gn(l->lst->head->prev));
+	return (l->nb > gn(link->prev));
 }
 
-int next_smaller(t_loop *l)
+int next_smaller(t_loop *l, t_dlink *link)
 {
-	return (!next_bigger(l));
+	return (!next_bigger(l,link));
 }
 
 int end_lst(t_loop *l, size_t count)
@@ -32,12 +32,12 @@ int end_lst(t_loop *l, size_t count)
 	return (count >= l->lst->length);
 }
 
-int nb_bigger(t_loop *l)
+int nb_bigger(t_loop *l, t_dlink *link)
 {
-	return (l->nb > gn(l->lst->head));
+	return (l->nb > gn(link));
 }
 
-int nb_lower(t_loop *l)
+int nb_lower(t_loop *l, t_dlink *link)
 {
-	return (!nb_bigger(l));
+	return (!nb_bigger(l,link));
 }

@@ -15,23 +15,6 @@
 
 # include "../libft/includes/libft.h"
 
-# define RIGHT 30
-# define RIGHT_UP 31
-# define RIGHT_DOWN 32
-
-# define ONE -1
-# define UP 1
-# define DOWN 2
-
-# define HEAD 1
-# define TAIL 2
-
-# define TALLER 2
-# define FIRST_CALL 10
-
-
-# define KEEP_RIGHT 4
-
 # define KEEP_LEFT 5
 
 /*
@@ -96,15 +79,16 @@ int find_best_way(t_pw *pw);
 /*
 **    comparaison int
 */
-int next_bigger(t_loop *l);
-int next_smaller(t_loop *l);
+int next_bigger(t_loop *l, t_dlink *link);
+int next_smaller(t_loop *l, t_dlink *link);
 int end_lst(t_loop *l, size_t count);
-int nb_bigger(t_loop *l);
-int nb_lower(t_loop *l);
+int nb_bigger(t_loop *l, t_dlink *link);
+int nb_lower(t_loop *l, t_dlink *link);
+int prev_smaller(t_loop *l, t_dlink *link);
 
 void set_bigger_taller(t_loop *loop);
 
-size_t nb_taller_head(t_loop *loop);
+long nb_taller_head(t_loop *loop);
 size_t nb_smaller_head(t_loop *loop);
 //
 //size_t loop_taller_tail(t_solver *s, t_dlist *l);
@@ -132,6 +116,5 @@ void pll(t_pw *pw);
 */
 void phead(t_dlist *l);
 void plt(t_dlink *tmp, t_dlist *l);
-
 
 #endif

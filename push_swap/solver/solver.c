@@ -11,31 +11,12 @@
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
-
-/*
-**    avance du bon nombre de nb pour placer 
-*/
-//static void loop_nb(t_pw *pw, t_solver *s, void (*fun)(t_pw *pw))
-//{
-//	printf("============== \n");
-//	pl(pw->lst_b);
-//	while (s->index)
-//	{
-//		fun(pw);
-//		pl(pw->lst_b);
-//		s->index--;
-//	}
-//}
 //
-
-
-
-
-static void pp(t_pw *pw)
-{
-	printf(" la head est %d \n", gn(pw->loop.lst->head));
-	printf(" la queue est %d \n", gn(pw->loop.lst->tail ));
-}
+// void pp(t_pw *pw)
+//{
+//	printf(" la head est %d \n", gn(pw->loop.lst->head));
+//	printf(" la queue est %d \n", gn(pw->loop.lst->tail ));
+//}
 
 void put_in_b_ordered(t_pw *pw)
 {
@@ -49,7 +30,7 @@ void put_in_b_ordered(t_pw *pw)
 		pw->loop.lst = pw->lst_b;
 		pos_in_a += find_best_way(pw);
 //		do_op(pw);
-		pp(pw);
+//		pp(pw);
 		pll(pw);
 	}
 }

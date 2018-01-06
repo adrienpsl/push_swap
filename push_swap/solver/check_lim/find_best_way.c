@@ -43,7 +43,7 @@ static void put_by_head(t_pw *pw)
 		pl(pw->lst_b);
 		pw->loop.nb_operation -= 1;
 	}
-		ft_pb(pw);
+	ft_pb(pw);
 }
 
 void set_min_max(t_pw *pw)
@@ -82,8 +82,10 @@ int find_best_way(t_pw *pw)
 			one_el(pw);
 		else
 		{
-			the_speed_way(&pw->loop);
-			put_by_head(pw);
+			if (the_speed_way(&pw->loop) == -1)
+				one_el(pw);
+			else
+				put_by_head(pw);
 		}
 		set_min_max(pw);
 	}
