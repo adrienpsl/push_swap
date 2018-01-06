@@ -60,15 +60,3 @@ void put_index_lst(t_dlist *lst, int tab[])
 		i++;
 	}
 }
-
-void get_lim(t_pw *pw)
-{
-	int m;
-
-	m = (pw->lst_a->length - 1) / 2;
-	if (pw->lst_a->length % 2 == TRUE)
-		m += 1;
-	pw->lim.fst = m - m / 2;
-	pw->lim.med = m;
-	pw->lim.lst = m + m / 2;
-}

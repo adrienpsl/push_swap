@@ -6,6 +6,6 @@ set(CMAKE_C_COMPILER "/usr/bin/gcc")
 
 set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
-add_executable(push_swap main.c push_swap/reader/reader.c push_swap.h push_swap/push_swap.c push_swap/utils_pw.c utils_projet.c checker/utils.c checker/main_checker.c checker/checker_reader.c do_commande/exange.c do_commande/push_pile.c do_commande/rev.c do_commande/reverse.c push_swap/solver/solver.c push_swap/solver/utils_solver.c push_swap/solver/check_lim/check_lim.c push_swap/solver/check_lim/loop_head.c push_swap/solver/check_lim/loop_tail.c push_swap/solver/check_lim/loop_utils.c debug.c push_swap/solver/check_lim/loop_utils_2.c)
+add_executable(push_swap main.c push_swap/reader/reader.c push_swap.h push_swap/push_swap.c push_swap/utils_pw.c utils_projet.c checker/utils.c checker/main_checker.c checker/checker_reader.c do_commande/exange.c do_commande/push_pile.c do_commande/rev.c do_commande/reverse.c push_swap/solver/solver.c push_swap/solver/utils_solver.c push_swap/solver/check_lim/find_best_way.c push_swap/solver/check_lim/loop_head.c push_swap/solver/check_lim/loop_tail.c push_swap/solver/check_lim/loop_utils.c debug.c)
 
 target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/libft/libft.a)

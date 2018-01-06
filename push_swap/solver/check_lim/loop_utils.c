@@ -14,10 +14,12 @@
 
 int next_bigger(t_loop *l)
 {
-	if (l->sens == TAIL)
-		return (gn(l->lst->head) > gn(l->lst->head->prev));
-	else
-		return (gn(l->lst->head) > gn(l->lst->head->next));
+	return (gn(l->lst->head) > gn(l->lst->head->next));
+}
+
+int prev_smaller(t_loop *l)
+{
+	return (gn(l->lst->head) > gn(l->lst->head->prev));
 }
 
 int next_smaller(t_loop *l)
@@ -25,9 +27,9 @@ int next_smaller(t_loop *l)
 	return (!next_bigger(l));
 }
 
-int end_lst(t_loop *l,int count)
+int end_lst(t_loop *l, size_t count)
 {
-	return (count > l->lst->length);
+	return (count >= l->lst->length);
 }
 
 int nb_bigger(t_loop *l)

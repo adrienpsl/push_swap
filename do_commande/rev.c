@@ -14,12 +14,14 @@
 
 void ft_rra(t_pw *pw)
 {
+	if (pw->lst_a->where)
 	pw->lst_a->where = pw->lst_a->where->prev;
 }
 
 void ft_rrb(t_pw *pw)
 {
-	pw->lst_b->where = pw->lst_b->where->prev;
+	if (pw->lst_b->where)
+		pw->lst_b->where = pw->lst_b->where->prev;
 }
 
 void ft_rrr(t_pw *pw)

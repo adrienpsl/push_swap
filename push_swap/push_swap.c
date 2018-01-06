@@ -25,7 +25,7 @@ void push_swap(t_pw *pw)
 	p_tab(tab, pw->lst_a->length);
 	put_index_lst(pw->lst_a, tab);
 
-	get_lim(pw);
+	pw->mediane = pw->lst_a->length / 2;
 	pll(pw);
 	ft_solver(pw);
 }

@@ -12,20 +12,3 @@
 
 #include "../../libft/includes/src/libft_d_lst_function.h"
 
-
-void pl(t_dlist *l)
-{
-	size_t i;
-	t_dlink *tmp;
-
-	i = 0;
-	tmp = l->where;
-	printf("[[ ");
-	while(i < l->length)
-	{
-		printf("%d, ", *(int *)tmp->content);
-		tmp = tmp->next;
-		i++;
-	}
-	printf("]] \n");
-}

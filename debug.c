@@ -18,6 +18,43 @@ void phead(t_dlist *l)
 	printf("]] \n");
 }
 
+void plt(t_dlink *tmp, t_dlist *l)
+{
+	size_t i;
+
+	i = 0;
+	if (!l->where)
+		return;
+	printf("[[ ");
+	while(i < l->length)
+	{
+		printf("%d, ", *(int *)tmp->content);
+		tmp = tmp->next;
+		i++;
+	}
+	printf("]] \n");
+}
+
+
+void pl(t_dlist *l)
+{
+	size_t i;
+	t_dlink *tmp;
+
+	i = 0;
+	tmp = l->where;
+	if (!l->where)
+		return;
+	printf("[[ ");
+	while(i < l->length)
+	{
+		printf("%d, ", *(int *)tmp->content);
+		tmp = tmp->next;
+		i++;
+	}
+	printf("]] \n");
+}
+
 static int call = 0;
 
 void pll(t_pw *pw)

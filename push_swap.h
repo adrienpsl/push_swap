@@ -26,9 +26,11 @@
 # define HEAD 1
 # define TAIL 2
 
+# define TALLER 2
+# define FIRST_CALL 10
+
 
 # define KEEP_RIGHT 4
-
 
 # define KEEP_LEFT 5
 
@@ -36,46 +38,47 @@
 **    struct push
 */
 
-typedef struct		s_loop
+typedef struct s_loop
 {
-	t_dlist			*lst;
-	int				sens;
-	int				nb;
-	int				nb_operation;
-}					t_loop;
+	t_dlist *lst;
+	int sens;
+	int end;
+	int nb;
+	int nb_operation;
+} t_loop;
 
-typedef struct		s_pw
+typedef struct s_pw
 {
-	t_dlist			*lst_a;
-	t_dlist			*lst_b;
-	int				lim;
-	t_loop			loop;
-}					t_pw;
+	t_dlist *lst_a;
+	t_dlist *lst_b;
+	int mediane;
+	t_loop loop;
+} t_pw;
 
 /*
 **  ==============  push reader  ======================================
 */
 t_dlist *ft_pw_reader(int ac, char **av);
-long	ft_atol(const char *s);
-int					*get_tab(t_pw *pw);
+long ft_atol(const char *s);
+int *get_tab(t_pw *pw);
 
 /*
 **  ==============  push swap  ======================================
 */
-void		ft_sa(t_pw *pw);
-void		ft_sb(t_pw *pw);
-void		ft_ss(t_pw *pw);
+void ft_sa(t_pw *pw);
+void ft_sb(t_pw *pw);
+void ft_ss(t_pw *pw);
 
-void		ft_pb(t_pw *pw);
-void		ft_pa(t_pw *pw);
+void ft_pb(t_pw *pw);
+void ft_pa(t_pw *pw);
 
-void		ft_ra(t_pw *pw);
-void		ft_rb(t_pw *pw);
-void		ft_rr(t_pw *pw);
+void ft_ra(t_pw *pw);
+void ft_rb(t_pw *pw);
+void ft_rr(t_pw *pw);
 
-void		ft_rra(t_pw *pw);
-void		ft_rrb(t_pw *pw);
-void		ft_rrr(t_pw *pw);
+void ft_rra(t_pw *pw);
+void ft_rrb(t_pw *pw);
+void ft_rrr(t_pw *pw);
 
 /*
 **  ==============  push solver  ======================================
@@ -89,25 +92,26 @@ void g_nb(int *nb, t_dlist *l);
 /*
 **    set the good number of operation to put the nb by the end or start of the stack
 */
-void find_best_way(t_pw *pw);
+int find_best_way(t_pw *pw);
 /*
 **    comparaison int
 */
 int next_bigger(t_loop *l);
 int next_smaller(t_loop *l);
-int end_lst(t_loop *l,int count);
+int end_lst(t_loop *l, size_t count);
 int nb_bigger(t_loop *l);
 int nb_lower(t_loop *l);
 
-size_t loop_taller_head(t_solver *s, t_dlist *l);
-size_t loop_smaller_head(t_solver *s, t_dlist *l);
+void set_bigger_taller(t_loop *loop);
 
-size_t loop_taller_tail(t_solver *s, t_dlist *l);
-size_t loop_smaller_tail(t_solver *s, t_dlist *l);
+size_t nb_taller_head(t_loop *loop);
+size_t nb_smaller_head(t_loop *loop);
+//
+//size_t loop_taller_tail(t_solver *s, t_dlist *l);
+//size_t loop_smaller_tail(t_solver *s, t_dlist *l);
 
- void put_index_lst(t_dlist *lst, int tab[]);
+void put_index_lst(t_dlist *lst, int tab[]);
 int gn(t_dlink *link);
-
 
 /*
 **  ================ checker  =======================================
@@ -116,10 +120,10 @@ int ft_checker_reader(t_pw *pw, int ac, char **av, int *i);
 /*
 **    utils
 */
-void	ft_error_pw(void);
-void	ft_error_ck(void);
-void	pl(t_dlist *l);
-void	make_circle(t_dlist *lst);
+void ft_error_pw(void);
+void ft_error_ck(void);
+void pl(t_dlist *l);
+void make_circle(t_dlist *lst);
 
 void pll(t_pw *pw);
 
@@ -127,5 +131,7 @@ void pll(t_pw *pw);
 **    debug
 */
 void phead(t_dlist *l);
+void plt(t_dlink *tmp, t_dlist *l);
+
 
 #endif

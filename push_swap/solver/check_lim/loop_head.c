@@ -12,41 +12,54 @@
 
 #include "../../../push_swap.h"
 
+// une fonction pour mettre a head ou tail au bon endroit
 
 
-size_t loop_taller_head(t_solver *s, t_dlist *l)
+// une f pour check head ou tail si mon nb est inferiereu == put
+// s'il est supeieur == put
+static int nb_is_bigest(t_dlink *tmp, t_loop *loop)
 {
-	size_t count;
-
-	count = 0;
-	while (nb_bigger_head(s, l) == TRUE
-		   && end_lst(count, l) == FALSE
-		   && next_smaller(l) == TRUE)
-	{
-		count++;
-		l->head = l->head->next;
-	}
-	if (nb_bigger_head(s, l) == TRUE && end_lst(count, l) == FALSE)
-		count++;
-	while (nb_bigger_head(s, l) == FALSE && end_lst(count, l) == FALSE)
-	{
-		count++;
-		l->head = l->head->next;
-	}
-	return (count);
+	return (tmp == loop->lst->head && loop->nb > gn(loop->lst->head));
 }
 
-size_t loop_smaller_head(t_solver *s, t_dlist *l)
+static int nb_is_lowest(t_dlink *tmp, t_loop *loop)
+{
+	return (tmp == loop->lst->tail && loop->nb < gn(loop->lst->tail));
+}
+
+static int good_place(t_loop *loop)
+{
+	return (next_smaller(loop) && nb_lower(loop));
+}
+
+/*
+**	return the nb of operation for put the nb into b_lst,
+**	the head and the tail are the borne max and min of the b_lst
+*/
+
+size_t nb_taller_head(t_loop *loop)
 {
 	size_t count;
+	t_dlink *tmp;
 
 	count = 0;
-	while (nb_bigger_head(s, l) == FALSE && end_lst(count, l) == FALSE)
+	tmp = loop->lst->where;
+//	plt(tmp,loop->lst);
+	while (end_lst(loop, count) == FALSE)
 	{
-		count++;
-		if (next_smaller(l) == FALSE)
+		if (good_place(loop))
 			break;
-		l->head = l->head->next;
+		if (nb_is_bigest(tmp, loop))
+		{
+			(count += 1);
+			break;
+		}
+		if (nb_is_lowest(tmp, loop))
+			break;
+		tmp = tmp->next;
+		plt(tmp, loop->lst);
+		count += 1;
 	}
-	return (count);
+
+	return (count >= loop->lst->length ? 0 : count);
 }

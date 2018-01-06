@@ -27,47 +27,34 @@
 //	}
 //}
 //
-//static int one_el(t_pw *pw, t_solver *s)
-//{
-//	ft_pb(pw);
-//	if (s->nb < *(int *) pw->lst_b->where->next->content)
-//		ft_rb(pw);
-//	return (DONE);
-//}
-//
-//static int put_nb(t_pw *pw, t_solver *s)
-//{
-//	if ((s->op == UP || s->op == DOWN) && s->index >= pw->lst_b->length)
-//		return one_el(pw, s);
-//	else if (s->op == UP)
-//		loop_nb(pw, s, &ft_rb);
-//	else if (s->op == DOWN)
-//		loop_nb(pw, s, &ft_rrb);
-//	else if (s->op == ONE)
-//		return (one_el(pw, s));
-//	if (s->op != KEEP_LEFT)
-//		ft_pb(pw);
-//	return (DONE);
-//}
+
+
+
+
+static void pp(t_pw *pw)
+{
+	printf(" la head est %d \n", gn(pw->loop.lst->head));
+	printf(" la queue est %d \n", gn(pw->loop.lst->tail ));
+}
 
 void put_in_b_ordered(t_pw *pw)
 {
-	int pos_in_a;
+	size_t pos_in_a;
 
 	pos_in_a = 0;
-	while (pos_in_a < pw->lst_a->length)
+	ft_memset(&pw->loop, 0, sizeof(t_loop));
+	while (pos_in_a <= pw->lst_a->length)
 	{
-		ft_memset(&pw->loop, 0, sizeof(t_loop));
 		g_nb(&pw->loop.nb, pw->lst_a);
 		pw->loop.lst = pw->lst_b;
-		find_best_way(pw);
-		// do op
-		pos_in_a += 1;
+		pos_in_a += find_best_way(pw);
+//		do_op(pw);
+		pp(pw);
+		pll(pw);
 	}
 }
 
 void ft_solver(t_pw *pw)
 {
 	put_in_b_ordered(pw);
-	pll(pw);
 }
