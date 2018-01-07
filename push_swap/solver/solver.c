@@ -16,8 +16,10 @@
 {
 	t_dlink *link = l->tail;
 
-	while (gn(link) == gn(link->next) -1)
-	    link = link->next;
+	while (gn(link) == gn(link->prev) -1)
+	{
+		link = link->prev;
+	}
 	printf("%d \n", gn(link));
 }
 

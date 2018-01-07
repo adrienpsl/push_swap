@@ -62,16 +62,16 @@ long way_by_tail(t_loop *loop)
 	tmp2 = loop->lst->where;
 	if (!big(loop) && !low(loop))
 	{
-		tmp = loop->lst->head;
-		while (prev_bigger(loop,tmp) && end_lst(loop,a) == FALSE)
+		tmp = loop->lst->tail;
+		while (prev_smaller(loop,tmp) && end_lst(loop,a) == FALSE)
 		{
 			tmp = tmp->prev;
 			a++;
 		}
 	}
 	if (big(loop))
-		tmp = loop->lst->tail;
+		tmp = loop->lst->head;
 	if (low(loop))
-		tmp = loop->lst->tail;
+		tmp = loop->lst->head;
 	return (get_result(tmp,tmp2));
 }
