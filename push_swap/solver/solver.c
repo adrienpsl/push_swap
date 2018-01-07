@@ -11,12 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
-//
-// void pp(t_pw *pw)
-//{
-//	printf(" la head est %d \n", gn(pw->loop.lst->head));
-//	printf(" la queue est %d \n", gn(pw->loop.lst->tail ));
-//}
+
  void is_ranger(t_dlist *l)
 {
 	t_dlink *link = l->tail;
@@ -37,14 +32,14 @@ void put_in_b_ordered(t_pw *pw)
 		g_nb(&pw->loop.nb, pw->lst_a);
 		pw->loop.lst = pw->lst_b;
 		pos_in_a += find_best_way(pw);
-//		do_op(pw);
-//		pp(pw);
 		pll(pw);
 	}
 	is_ranger(pw->lst_b);
 }
 
+
 void ft_solver(t_pw *pw)
 {
 	put_in_b_ordered(pw);
+
 }

@@ -60,14 +60,18 @@ void set_min_max(t_pw *pw)
 		pw->loop.lst->tail = pw->loop.lst->where;
 }
 
+static int cc = 0;
+
 static int the_speed_way(t_loop *loop)
 {
-//	long head;
+	long head;
 	long tail;
 
-//	head = way_by_head(loop);
+	head = way_by_head(loop);
 	tail = way_by_tail(loop);
-	loop->nb_operation = tail;
+	loop->nb_operation = head > tail ? tail * -1 : head;
+	cc += head > tail ? tail : head;
+	printf("%d \n", cc);
 	//	tail = loop_speed_way(s, lst, TAIL);
 	//	head = 1000;
 	//	tail = 1000;
