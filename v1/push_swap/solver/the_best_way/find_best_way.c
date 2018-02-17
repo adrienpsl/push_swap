@@ -29,7 +29,7 @@ static void first_call(t_pw *pw)
 static void one_el(t_pw *pw)
 {
 	ft_pb(pw);
-	if (pw->loop.nb > *(int *) pw->lst_b->where->next->content)
+	if (pw->loop.nb < *(int *) pw->lst_b->where->next->content)
 		ft_rb(pw);
 }
 
@@ -40,13 +40,11 @@ void put_by_head(t_pw *pw)
 	while (pw->loop.nb_operation > 0)
 	{
 		ft_rb(pw);
-		pl(pw->lst_b);
 		pw->loop.nb_operation -= 1;
 	}
 	while (pw->loop.nb_operation < 0)
 	{
 		ft_rrb(pw);
-		pl(pw->lst_b);
 		pw->loop.nb_operation += 1;
 	}
 	ft_pb(pw);
@@ -71,12 +69,6 @@ static int the_speed_way(t_loop *loop)
 	tail = way_by_tail(loop);
 	loop->nb_operation = head > tail ? tail * -1 : head;
 	cc += head > tail ? tail : head;
-	printf("%d \n", cc);
-	//	tail = loop_speed_way(s, lst, TAIL);
-	//	head = 1000;
-	//	tail = 1000;
-	//	s->index = head < tail ? head : tail;
-	//	return (s->op = head < tail ? UP : DOWN);
 	return (1);
 }
 

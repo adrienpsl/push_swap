@@ -35,6 +35,11 @@ typedef struct s_pw
 	t_dlist *lst_a;
 	t_dlist *lst_b;
 	int mediane;
+	int *tab;
+	int tab_max;
+	int tab_min;
+	t_dlink *lim_head;
+	t_dlink *lim_tail;
 	t_loop loop;
 } t_pw;
 
@@ -75,7 +80,7 @@ void ft_solver(t_pw *pw);
 long way_by_head(t_loop *loop);
 long way_by_tail(t_loop *loop);
 
-void g_nb(int *nb, t_dlist *l);
+void get_nbtop_stack_lst(int *nb, t_dlist *l);
 
 
 
@@ -119,7 +124,7 @@ void ft_error_ck(void);
 void pl(t_dlist *l);
 void make_circle(t_dlist *lst);
 
-void pll(t_pw *pw);
+void pll(t_pw *pw, char *str);
 
 /*
 **    debug

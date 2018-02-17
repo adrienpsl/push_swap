@@ -55,12 +55,11 @@ void pl(t_dlist *l)
 	printf("]] \n");
 }
 
-static int call = 0;
+//static int call = 0;
 
-void pll(t_pw *pw)
+void pll(t_pw *pw, char *str)
 {
-	call++;
-	printf("=====  call %d ============================= \n", call);
+	printf("%s\n",str);
 	if (pw->lst_a->length)
 	{
 		printf("list a :  ");
@@ -76,5 +75,4 @@ void pll(t_pw *pw)
 void pp(void (*fun)(t_pw *pw), t_pw *p)
 {
 	fun(p);
-	pll(p);
 }

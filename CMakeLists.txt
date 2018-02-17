@@ -6,6 +6,15 @@ set(CMAKE_C_COMPILER "/usr/bin/gcc")
 
 set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
-add_executable(push_swap main.c push_swap/reader/reader.c push_swap.h push_swap/push_swap.c push_swap/utils_pw.c utils_projet.c checker/utils.c checker/main_checker.c checker/checker_reader.c do_commande/exange.c do_commande/push_pile.c do_commande/rev.c do_commande/reverse.c push_swap/solver/solver.c push_swap/solver/utils_solver.c push_swap/solver/the_best_way/find_best_way.c push_swap/solver/the_best_way/way_by_head.c push_swap/solver/the_best_way/way_by_tail.c push_swap/solver/the_best_way/loop_utils.c debug.c)
+file(GLOB SRC
+        "checker/**"
+#        "checker/**/**"
+#        "checker/**/**/**"
+        )
+
+add_executable(push_swap ${SRC}
+
+        checker/getter_data/header_getter_data.h
+        main.c checker/getter_data/header_getter_data.c checker/getter_data/header_getter_data.h checker/checker.h checker/test/test_getter.c checker/getter_data/src/getter_is_good_nb.c checker/getter_data/utils/utils.c checker/getter_data/src/push_nb.c)
 
 target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/libft/libft.a)

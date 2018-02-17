@@ -10,53 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
-void	ft_error_pw(void)
+void get_nbtop_stack_lst(int *nb, t_dlist *l)
 {
-	ft_putstr("Error\n");
-	exit(42);
+	*nb  = *(int *)l->where->content;
 }
 
-int *get_tab(t_pw *pw)
+int gn(t_dlink *link)
 {
-	int *tab;
-	t_dlink *link;
-	size_t i;
-
-	link = pw->lst_a->head;
-	i = 0;
-	if ((tab = (int*)malloc(sizeof(int) * pw->lst_a->length + 1)) == FAIL)
-		ft_exit_lack_memory();
-	tab[pw->lst_a->length] = 0;
-	while (i <= pw->lst_a->length)
-	{
-		tab[i] = *(int*)link->content;
-		link = link->next;
-		i++;
-	}
-	return (tab);
-}
-
-void find_into_lst(int nb, t_dlist *lst)
-{
-//	int nb_lst;
-//
-//	g_nb(&nb_lst, lst);
-	lst->head = lst->where;
-	while ( nb != *(int *)lst->head->content)
-		lst->head = lst->head->next;
-}
-
-void put_index_lst(t_dlist *lst, int tab[])
-{
-	size_t i;
-
-	i = 0;
-	while (i < lst->length)
-	{
-		find_into_lst(tab[i], lst);
-		ft_memcpy(lst->head->content,&i, sizeof(int));
-		i++;
-	}
+	if (link)
+	return (*(int *) link->content);
+	return (-1);
 }

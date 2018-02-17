@@ -77,34 +77,3 @@ long way_by_head(t_loop *loop)
 		tmp = loop->lst->head;
 	return (get_result(tmp,tmp2));
 }
-
-
-//
-///*
-//**	return the nb of operation for put the nb into b_lst,
-//**	the head and the tail are the bornes max and min of the b_lst
-//*/
-//
-//long way_by_head(t_loop *loop)
-//{
-//	size_t count;
-//	t_dlink *tmp;
-//
-//	count = 0;
-//	tmp = loop->lst->where;
-//	while (end_lst(loop, count) == FALSE)
-//	{
-//		if (good_place(tmp,loop))
-//			break;
-//		if (nb_is_bigest(tmp, loop))
-//		{
-//			(count += 1);
-//			break;
-//		}
-//		if (nb_is_lowest(tmp, loop))
-//			break;
-//		tmp = tmp->next;
-//		count += 1;
-//	}
-//	return (count >= loop->lst->length ? 0 : count);
-//}

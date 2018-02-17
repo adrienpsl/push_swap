@@ -25,10 +25,10 @@ void checker(t_pw *pw)
 	int nb2;
 
 	i = 0;
-	g_nb(&nb, pw->lst_a);
+	get_nbtop_stack_lst(&nb, pw->lst_a);
 	while (i < pw->lst_a->length)
 	{
-		g_nb(&nb2, pw->lst_a);
+		get_nbtop_stack_lst(&nb2, pw->lst_a);
 		if (nb > nb2)
 			ft_error_ck();
 		nb = nb2;

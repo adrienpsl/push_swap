@@ -10,38 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../push_swap.h"
 
- void is_ranger(t_dlist *l)
+void ft_ra(t_pw *pw)
 {
-	t_dlink *link = l->tail;
-
-	while (gn(link) == gn(link->prev) -1)
-	{
-		link = link->prev;
-	}
-	printf("%d \n", gn(link));
+	if(pw->lst_a->where)
+	pw->lst_a->where = pw->lst_a->where->next;
 }
 
-void put_in_b_ordered(t_pw *pw)
+void ft_rb(t_pw *pw)
 {
-	size_t pos_in_a;
-
-	pos_in_a = 0;
-	ft_memset(&pw->loop, 0, sizeof(t_loop));
-	while (pos_in_a < pw->lst_a->length)
-	{
-		g_nb(&pw->loop.nb, pw->lst_a);
-		pw->loop.lst = pw->lst_b;
-		pos_in_a += find_best_way(pw);
-		pll(pw);
-	}
-	is_ranger(pw->lst_b);
+	if(pw->lst_b->where)
+	pw->lst_b->where = pw->lst_b->where->next;
 }
 
-
-void ft_solver(t_pw *pw)
+void ft_rr(t_pw *pw)
 {
-	put_in_b_ordered(pw);
-
+	ft_ra(pw);
+	ft_rb(pw);
 }

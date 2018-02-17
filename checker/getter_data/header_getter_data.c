@@ -10,14 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../checker.h"
 
-void g_nb(int *nb, t_dlist *l)
+#include "header_getter_data.h"
+
+static void destroy(t_getter *g)
 {
-	*nb  = *(int *)l->where->content;
+	free(*g);
+	*g = NULL;
 }
 
-int gn(t_dlink *link)
+static void init_method(t_getter getter)
 {
-	return (*(int *) link->content);
+	getter->mm.destroy = &destroy;
+	getter->mm.exit_wrong_nb = &exit_wrong_nb;
+	getter->mm.is_valide_number = &is_valide_number;
+	getter->mm.get_lst_a = &get_lst_a;
+}
+
+t_getter new_getter(t_argv argv)
+{
+	t_getter getter;
+
+	getter = ft_malloc_protect(sizeof(struct s_getter));
+	init_method(getter);
+
+	getter->argv = argv;
+	getter->pile_a = new_double_linked_list();
+
+	return (getter);
 }
