@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../checker.h"
+#include "../../checker.h"
 
 static void
 test__1_() // test si le getter link bien avec le getter pour les options
@@ -61,8 +61,10 @@ static void test__2_() // test add nb man
 	pile_a = getter->pile_a;
 	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where));
 	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where->next));
-	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where->next->next));
-	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where->next->next->next));
+	printf("%d \n",
+		   pile_a->where->mm.get_content_int(pile_a->where->next->next));
+	printf("%d \n",
+		   pile_a->where->mm.get_content_int(pile_a->where->next->next->next));
 
 	pile_a->cc.circular_destroy(&pile_a);
 	getter->mm.destroy(&getter);
@@ -75,9 +77,9 @@ static void test__3_() // test add nb man
 	char *str = "test 3 \n test avec une seule chaine comme av  ";
 	(void) str;
 	char **av;
-	av = ft_malloc_protect(sizeof(char*) * 3);
+	av = ft_malloc_protect(sizeof(char *) * 3);
 	av[0] = ft_strdup("programme");
-	av[1] = ft_strdup("1");
+	av[1] = ft_strdup("1 4 5 6 8888  7  ");
 	av[2] = 0;
 	t_getter getter;
 	t_dll pile_a;
@@ -89,10 +91,12 @@ static void test__3_() // test add nb man
 	getter->mm.get_lst_a(getter);
 
 	pile_a = getter->pile_a;
-	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where));
-	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where->next));
-	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where->next->next));
-	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where->next->next->next));
+//	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where));
+//	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where->next));
+//	printf("%d \n",
+//		   pile_a->where->mm.get_content_int(pile_a->where->next->next));
+//	printf("%d \n",
+//		   pile_a->where->mm.get_content_int(pile_a->where->next->next->next));
 
 	pile_a->cc.circular_destroy(&pile_a);
 	getter->mm.destroy(&getter);
@@ -100,17 +104,47 @@ static void test__3_() // test add nb man
 	ft_free_split(&av);
 }
 
-void test_getter()
+static void test__4_(int ac,
+ char **av) // avec les argument qui viennent directemetn du main
 {
-	test__1_();
-	printf("-- \n");
-	test__2_();
-	printf("-- \n");
-	test__3_();
+	char *str = "test 4 \n test de avec les argument qui viennent directemetn du main";
+	(void) str;
+	t_getter getter;
+	t_dll pile_a;
+
+	t_argv argv;
+	argv = new_argv(ac, av);
+
+	getter = new_getter(argv);
+	getter->mm.get_lst_a(getter);
+
+	pile_a = getter->pile_a;
+//	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where));
+//	printf("%d \n", pile_a->where->mm.get_content_int(pile_a->where->next));
+//	printf("%d \n",
+//		   pile_a->where->mm.get_content_int(pile_a->where->next->next));
+//	printf("%d \n",
+//		   pile_a->where->mm.get_content_int(pile_a->where->next->next->next));
+	getter->pile_a->cc.print_circular_nb(pile_a, ' ');
+
+	printf("%zu  %d\n", pile_a->length, ac);
+	printf("%s \n",av[argv->count]);
+
+	pile_a->cc.circular_destroy(&pile_a);
+	getter->mm.destroy(&getter);
+	argv->mm.destroy(&argv);
 }
 
-int main()
+void test_getter(int ac, char **av)
 {
-	test_getter();
+//	test__1_();
+//	test__2_();
+//	test__3_();
+	test__4_(ac, av);
+}
+
+int main(int ac, char **av)
+{
+	test_getter(ac, av);
 	return (0);
 }

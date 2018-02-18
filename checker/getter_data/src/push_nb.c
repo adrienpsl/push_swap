@@ -12,15 +12,6 @@
 
 #include "../../checker.h"
 
-//char **(t_getter getter)
-//{
-//
-//};
-static int inline_argv(t_argv argv)
-{
-	return (argv->ac - argv->count == 1);
-}
-
 static int nb_argv_split(char **tab)
 {
 	int i;
@@ -34,43 +25,45 @@ static int nb_argv_split(char **tab)
 	return (i);
 }
 
-static void av_need_ft_split(t_getter getter, char ***av, int *need_free)
+static void av_need_ft_split(t_getter getter, char ***av,
+ int *need_free, unsigned int *nb_count)
 {
 	t_argv argv;
 
 	argv = getter->argv;
-	if (inline_argv(argv))
+	if (ft_strchr(argv->av[1], ' '))
 	{
 		*av = ft_strsplit(argv->av[1], ' ');
-		*need_free = nb_argv_split(*av);
-		argv->count = 0;
-		argv->ac -= 2;
+		*nb_count = nb_argv_split(*av);
+		argv->count += 1;
+		*need_free = 1;
 	}
 	else
 	{
 		*av = argv->av;
+		*nb_count = UINT_MAX;
 		*need_free = 0;
 	}
-	getter->argv->ac += *need_free;
 }
 
-static void build_list_a(t_getter getter, char **av)
+static void build_list_a(t_getter getter, unsigned int nb_count,
+ char **av, int is_split)
 {
 	int i;
 	int nb;
-	t_argv argv;
 	t_dll pile_a;
 
-	argv = getter->argv;
-	i = argv->count;
+	i = is_split ? 0 : 1;
 	pile_a = getter->pile_a;
-	argv = getter->argv;
-	while (i < argv->ac)
+	while (i < nb_count)
 	{
+		if (is_argv(av[i]))
+			break;
 		nb = getter->mm.is_valide_number(getter, av[i]);
 		pile_a->cc.circular_add_begin(pile_a, &nb, sizeof(int), NULL);
 		i++;
 	}
+	getter->argv->count =  is_split ? 2 : i;
 }
 
 /*
@@ -83,10 +76,11 @@ t_dll get_lst_a(t_getter getter)
 {
 	char **av;
 	int need_free;
+	unsigned int nb_count;
 	t_dll pile_a;
 
-	av_need_ft_split(getter, &av, &need_free);
-	build_list_a(getter, av);
+	av_need_ft_split(getter, &av, &need_free, &nb_count);
+	build_list_a(getter, nb_count, av, need_free);
 	pile_a = getter->pile_a;
 	if (need_free)
 		ft_free_split(&av);

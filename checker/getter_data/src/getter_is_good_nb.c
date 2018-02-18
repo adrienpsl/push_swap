@@ -12,23 +12,16 @@
 
 #include "../../checker.h"
 
-static long is_a_number(char *nb_str)
+static long is_a_number(int nb, char *nb_str)
 {
-	long nb;
-
-	nb = ft_atoi(nb_str);
 	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
-	{
-		exit_wrong_nb();
-	}
-	return (nb);
+		return (FALSE);
+	return (TRUE);
 }
 
-static int is_an_int(char *nb_str)
+static int is_an_int(long nb)
 {
-	long nb;
 
-	nb = is_a_number(nb_str);
 	if (nb > INT_MAX || nb < INT_MIN)
 		exit_wrong_nb();
 	return ((int) nb);
@@ -53,9 +46,12 @@ int is_valide_number(t_getter getter, char *nb_str)
 {
 	long nb;
 
-	nb = is_an_int(nb_str);
+	nb = ft_atoi(nb_str);
+	if (is_a_number(nb, nb_str) == FALSE)
+		exit_wrong_nb();
+	nb = is_an_int(nb);
 	is_single(getter->pile_a, nb);
-	return ((int)nb);
+	return ((int) nb);
 }
 
 

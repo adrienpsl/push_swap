@@ -1,39 +1,50 @@
-#ifndef PUSH_SWAP_GETTER_DATA_CONSTRUC_H
-#define PUSH_SWAP_GETTER_DATA_CONSTRUC_H
-
-#include "../checker.h"
+#ifndef PUSH_SWAP_PILE_H
+#define PUSH_SWAP_PILE_H
 
 /*
 **    ==== define the type of my object ======================================
 */
-typedef struct s_getter *t_getter;
+typedef struct s_pile *t_pile;
 
 /*
 **    ==== methods ===========================================================
 */
-typedef struct s_m_getter
+typedef struct s_m_pile
 {
-	int (*is_valide_number)(t_getter getter, char *nb_str);
-	void (*exit_wrong_nb)();
-	t_dll (*get_lst_a)(t_getter getter);
-	void (*destroy)(t_getter *);
-} t_m_getter;
+	void (*destroy)(t_pile *);
+} t_m_pile;
+
+
+/*
+**    ==== method debug ======================================================
+*/
+typedef struct s_d_pile
+{
+} t_d_pile;
+
+/*
+**    ==== utils =============================================================
+*/
+typedef struct s_u_pile
+{
+
+} t_u_pile;
 
 /*
 **    ==== define my object ==================================================
 */
 
-struct s_getter
+struct s_pile
 {
-	t_m_getter mm;
-	t_dll pile_a;
-	t_argv argv;
+	t_m_pile mm;
+	t_d_pile dd;
+	t_u_pile uu;
 };
 
 /*
 **    ==== prototype method ==================================================
 */
-int is_a_valid_number(char *str, int *nb_out);
+
 
 /*
 **    ==== prototype debug ===================================================
@@ -42,17 +53,11 @@ int is_a_valid_number(char *str, int *nb_out);
 /*
 **    ==== utils =============================================================
 */
-int is_argv(char *str);
-void exit_wrong_nb();
+
 
 /*
 **    ==== prototype constructor =============================================
 */
-t_getter new_getter(t_argv arg);
-int is_valide_number(t_getter getter, char *nb_str);
-t_dll get_lst_a(t_getter getter);
+t_pile new_pile();
 
 #endif
-
-
-
