@@ -1,0 +1,2 @@
+faut il reverse la liste dans lstmap ?
+
