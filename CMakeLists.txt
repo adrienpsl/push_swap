@@ -4,17 +4,49 @@ project(push_swap C)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_COMPILER "/usr/bin/gcc")
 
-#set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
+set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
-file(GLOB SRC
-        "checker/**"
-#        "checker/**/**"
-#        "checker/**/**/**"
-        )
+file(GLOB head "header/*.h")
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
-add_executable(push_swap ${SRC}
+include_directories(sources/include/*.h)
+file(GLOB sources1 "sources/src/**/*.c")
+file(GLOB sources2 "sources/src/**/**/*.c")
+file(GLOB sources3 "sources/src/**/**/**/*.c")
+file(GLOB sources4 "sources/src/**/**/**/**/*.c")
+file(GLOB sources5 "sources/src/**/**/**/**/**/*.c")
+file(GLOB sources6 "test/*.c")
 
-        checker/getter_data/header_getter_data.h
-        main.c checker/getter_data/header_getter_data.c checker/getter_data/header_getter_data.h checker/checker.h checker/getter_data/test/test_getter.c checker/getter_data/src/getter_is_good_nb.c checker/getter_data/utils/utils.c checker/getter_data/src/push_nb.c pile/pile.h)
+# all sources
+set(
+        sources
+        ${sources1}
+        ${sources2}
+        ${sources3}
+        ${sources4}
+        ${sources5}
+        ${sources6}
+        src/solver/build_list_a_index.c src/solver/src/median_calculation.c src/solver/src/search_utils.c src/solver/src/push_in_b/push_in_b.c debug.c src/solver/src/push_in_b/push_in_b_utils.c src/solver/src/push_in_b/push_in_b_way.c src/solver/src/manip_list_instruct/push_new_instruct.c src/commun_all_prg.c)
 
-target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/libft/libft.a)
+
+add_executable(push_swap
+
+        main.c
+        ${sources}
+        ${head}
+
+        test/getter_test.c
+        src/getter_data/getter_is_good_nb.c
+        src/getter_data/getter_utils.c
+        src/stack/construct_stack.c
+        src/checker/main_checker.c
+        test/checker_test.c
+        src/getter_data/get_list_a.c
+        src/stack/src/pile_s.c
+        src/stack/src/pile_p.c
+        src/stack/src/pile_r.c
+        src/stack/src/pile_rr.c
+        test/pile_test.c
+        src/solver/main_solver.c
+        header/debug.c)
+

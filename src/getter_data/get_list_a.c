@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/getter_header.h"
+#include "../../header/all_includes.h"
 
 static int is_argv(t_argv argv, char **str)
 {
@@ -43,10 +43,9 @@ t_dll_c get_list_a(t_argv argv, int is_solver)
 	{
 		if (break_action_for_solver(is_solver, cur_av, argv) == TRUE)
 			break;
-		printf("%s \n", cur_av);
 		nb = is_valide_number(cur_av, c_list);
 		link = new_dll_l(&nb, sizeof(int));
-		dll_c_push_link(link, c_list);
+		dll_c_add_after(link, c_list);
 	}
 	return (c_list);
 }

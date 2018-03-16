@@ -12,30 +12,28 @@
 
 #include "../../../header/all_includes.h"
 
-void rra(t_stack stack)
+void get_median(t_stack stack)
 {
-	t_dll_c pile_a;
+	static int count = 0;
 
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
-	{
-		pile_a->top = pile_a->top->prev;
-	}
-}
+	stack->mediane_down = stack->mediane_up;
 
-void rrb(t_stack stack)
-{
-	t_dll_c pile_b;
+	stack->mediane_up = (stack->pile_a->length / 2) + stack->mediane_up;
 
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
-	{
-		pile_b->top = pile_b->top->prev;
-	}
-}
+	if (stack->pile_a->length % 2)
+		stack->mediane_up += 1;
+	stack->min_lim = stack->mediane_up;
 
-void rrr(t_stack stack)
-{
-	rra(stack);
-	rrb(stack);
+
+
+	// faire un calcule pour les nombre impaires
+	// j'ai un de trop voir comment equilibrer
+	// min deviens le premier nb de la nouvelle sequence
+	// une fonction qui update medium plus et medium minus
+	// c'est la que ca bloque pour le moment.
+//	if (count)
+//	{
+		stack->max_lim = stack->mediane_down;
+//	}
+	count += 1;
 }

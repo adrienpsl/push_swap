@@ -10,32 +10,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../header/all_includes.h"
 
-void rra(t_stack stack)
+static long is_a_number(int nb, char *nb_str)
 {
-	t_dll_c pile_a;
-
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
-	{
-		pile_a->top = pile_a->top->prev;
-	}
+	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
+		return (FALSE);
+	return (TRUE);
 }
 
-void rrb(t_stack stack)
+static int is_an_int(long nb)
 {
-	t_dll_c pile_b;
-
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
-	{
-		pile_b->top = pile_b->top->prev;
-	}
+	if (nb > INT_MAX || nb < INT_MIN)
+		exit_wrong_nb();
+	return ((int) nb);
 }
 
-void rrr(t_stack stack)
+static int cmp_exist(int nb1, int nb2)
 {
-	rra(stack);
-	rrb(stack);
+	return (nb1 == nb2);
+}
+
+static void is_single(t_dll_c c_list, int nb)
+{
+	if (dll_l_iter_int(c_list, nb, &cmp_exist) != FALSE)
+		exit_wrong_nb();
+}
+
+int is_valide_number(char *nb_str, t_dll_c c_liste)
+{
+	long nb;
+
+	nb = ft_atoi(nb_str);
+	if (is_a_number(nb, nb_str) == FALSE)
+		exit_wrong_nb();
+	nb = is_an_int(nb);
+	is_single(c_liste, nb);
+	return ((int) nb);
 }

@@ -10,32 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../../../header/all_includes.h"
 
-void rra(t_stack stack)
+static void save_instruct_in_strack(char *instruct, t_stack stack)
 {
-	t_dll_c pile_a;
+	t_dll_l link;
 
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
-	{
-		pile_a->top = pile_a->top->prev;
-	}
+	link = new_dll_l(instruct, ft_strlen(instruct));
+	dll_c_add_after(link, stack->instruction);
 }
 
-void rrb(t_stack stack)
+void do_instruct(char *instruc, t_stack stack)
 {
-	t_dll_c pile_b;
-
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
-	{
-		pile_b->top = pile_b->top->prev;
-	}
-}
-
-void rrr(t_stack stack)
-{
-	rra(stack);
-	rrb(stack);
+	check_and_apply_instruct(instruc, stack);
+	save_instruct_in_strack(instruc,stack);
+	printf("%s ",instruc);
 }

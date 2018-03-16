@@ -10,32 +10,57 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../header/all_includes.h"
 
-void rra(t_stack stack)
+static void fill_tab(t_dll_c c_list, int *tab)
 {
-	t_dll_c pile_a;
+	size_t i;
+	t_dll_l link;
 
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
+	i = 0;
+	link = c_list->top;
+	while (i < c_list->length)
 	{
-		pile_a->top = pile_a->top->prev;
+		tab[i] = get_int_ddl_l(link);
+		link = link->next;
+		++i;
 	}
 }
 
-void rrb(t_stack stack)
+static size_t get_index_tab(int nb, int *tab)
 {
-	t_dll_c pile_b;
+	size_t index;
 
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
+	index = 0;
+	while (tab[index] != nb)
 	{
-		pile_b->top = pile_b->top->prev;
+		++index;
+	}
+	return (index);
+}
+
+static void set_index(t_dll_c c_list, int *tab)
+{
+	size_t i;
+	t_dll_l link;
+
+	i = 0;
+	link = c_list->top;
+	while (i < c_list->length)
+	{
+		*(int *) link->content = get_index_tab(get_int_ddl_l(link), tab);
+		link = link->next;
+		++i;
 	}
 }
 
-void rrr(t_stack stack)
+void build_lst_a_index(t_dll_c c_list)
 {
-	rra(stack);
-	rrb(stack);
+	int *tab;
+
+	tab = ft_malloc_protect(sizeof(int) * (c_list->length + 1));
+	fill_tab(c_list, tab);
+	ft_quick_sort(tab, 0, c_list->length -1, c_list->length - 1);
+	set_index(c_list, tab);
+	free(tab);
 }

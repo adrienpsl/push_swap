@@ -12,30 +12,35 @@
 
 #include "../../../header/all_includes.h"
 
-void rra(t_stack stack)
-{
-	t_dll_c pile_a;
+// si je dois le poser en par le haut ou par le bas
 
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
-	{
-		pile_a->top = pile_a->top->prev;
-	}
-}
+// si je peux utiliser rr et rrr
 
-void rrb(t_stack stack)
-{
-	t_dll_c pile_b;
+// je coupe en deux avec la medianne si c'est trop de calcul, je referai avec des morceau
 
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
-	{
-		pile_b->top = pile_b->top->prev;
-	}
-}
+// fonction qui stocke les list
 
-void rrr(t_stack stack)
-{
-	rra(stack);
-	rrb(stack);
-}
+// les limite deja en place ? set sa sur ma liste ? ou dans stack ! == au premier nb que je met.
+// puis je les updates. je peux les mettre en var static
+
+
+
+//// check the limit
+//int pile_b_empty(t_stack stack)
+//{
+//	return (stack->pile_b->length == 0);
+//}
+//
+//
+//void by_up_or_down(t_stack stack)
+//{
+//	static int max_limit = 0;
+//	static int min_limit = 0;
+//
+//	if (stack->temp_instuct == NULL)
+//	    stack->temp_instuct = new_dll_c();
+//
+//	if (pile_b_empty(stack) == TRUE)
+//
+//
+//}

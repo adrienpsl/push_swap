@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/stack_header.h"
+#include "../../../header/all_includes.h"
 
 void pb(t_stack stack)
 {

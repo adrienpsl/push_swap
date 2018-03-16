@@ -10,32 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../header/all_includes.h"
 
-void rra(t_stack stack)
+void exit_wrong_nb()
 {
-	t_dll_c pile_a;
-
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
-	{
-		pile_a->top = pile_a->top->prev;
-	}
+	ft_putstr_fd("Error",2);
+	exit(42);
 }
 
-void rrb(t_stack stack)
+int is_action(char *str)
 {
-	t_dll_c pile_b;
+	static char instruct[11][3] = {
+	 "sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"
+	};
+	int i;
 
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
+	i = 0;
+	while (i < 11)
 	{
-		pile_b->top = pile_b->top->prev;
+		if (ft_strcmp(instruct[i], str) == FALSE)
+			return (TRUE);
+		++i;
 	}
-}
-
-void rrr(t_stack stack)
-{
-	rra(stack);
-	rrb(stack);
+	return (FALSE);
 }

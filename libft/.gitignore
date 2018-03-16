@@ -1,5 +1,0 @@
-# IntelliJ project files
-.idea
-cmake-build-debug
-*.o
-libft.a

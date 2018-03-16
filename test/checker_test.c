@@ -10,32 +10,4 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
-
-void rra(t_stack stack)
-{
-	t_dll_c pile_a;
-
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
-	{
-		pile_a->top = pile_a->top->prev;
-	}
-}
-
-void rrb(t_stack stack)
-{
-	t_dll_c pile_b;
-
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
-	{
-		pile_b->top = pile_b->top->prev;
-	}
-}
-
-void rrr(t_stack stack)
-{
-	rra(stack);
-	rrb(stack);
-}
+#include "../header/all_includes.h"

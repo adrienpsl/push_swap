@@ -10,32 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../header/all_includes.h"
 
-void rra(t_stack stack)
+void check_and_apply_instruct(char *str, t_stack stack)
 {
-	t_dll_c pile_a;
-
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
-	{
-		pile_a->top = pile_a->top->prev;
-	}
-}
-
-void rrb(t_stack stack)
-{
-	t_dll_c pile_b;
-
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
-	{
-		pile_b->top = pile_b->top->prev;
-	}
-}
-
-void rrr(t_stack stack)
-{
-	rra(stack);
-	rrb(stack);
+	if (ft_strcmp("sa", str) == FALSE)
+		sa(stack);
+	else if (ft_strcmp("sb", str) == FALSE)
+		sb(stack);
+	else if (ft_strcmp("ss", str) == FALSE)
+		ss(stack);
+	else if (ft_strcmp("pa", str) == FALSE)
+		pa(stack);
+	else if (ft_strcmp("pb", str) == FALSE)
+		pb(stack);
+	else if (ft_strcmp("ra", str) == FALSE)
+		ra(stack);
+	else if (ft_strcmp("rb", str) == FALSE)
+		rb(stack);
+	else if (ft_strcmp("rr", str) == FALSE)
+		rr(stack);
+	else if (ft_strcmp("rra", str) == FALSE)
+		rra(stack);
+	else if (ft_strcmp("rrb", str) == FALSE)
+		rrb(stack);
+	else if (ft_strcmp("rrr", str) == FALSE)
+		rrr(stack);
+	else
+		exit_wrong_nb();
 }
