@@ -22,7 +22,23 @@ static void save_instruct_in_strack(char *instruct, t_stack stack)
 
 void do_instruct(char *instruc, t_stack stack)
 {
+	stack->count++;
 	check_and_apply_instruct(instruc, stack);
 	save_instruct_in_strack(instruc,stack);
 	printf("%s ",instruc);
+}
+
+void do_the_ops(t_stack stack, long operations)
+{
+	while (operations > 0)
+	{
+		do_instruct("rb", stack);
+		operations--;
+	}
+	while (operations < 0)
+	{
+		do_instruct("rrb", stack);
+		operations++;
+	}
+	do_instruct("pb", stack);
 }

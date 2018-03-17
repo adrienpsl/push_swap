@@ -51,12 +51,22 @@ void build_lst_a_index(t_dll_c c_list);
 void put_by_top_orbuttom(t_stack stack);
 
 
+
+/*
+**    trouve s'il est plus pertinent d'aller par le top ou le bas de la stack
+**    pour depenser le moins possible de coup
+*/
+long
+find_up_down(t_dll_l link, int researched_nb, t_dll_l top_link, t_stack stack);
+void do_the_ops(t_stack stack, long operations);
+
 void nb_is_limit(t_stack stack);
+void nb_isnt_limit(t_stack stack);
 
 /*
 **    put_by_top_or_buttom
 */
-int link_is_bigger_prev(t_dll_l link, t_dll_l top_link);
+int link_is_bigger_top(t_dll_l link, t_dll_l top_link);
 int link_is_lower_top(t_dll_l link, t_dll_l top_link);
 int current_is_the_biggest(t_dll_l link_top, t_stack stack);
 

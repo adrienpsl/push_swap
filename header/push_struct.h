@@ -16,6 +16,7 @@ typedef struct		s_stack
 	int min_lim;
 	t_dll_c instruction;
 	t_dll_c temp_instuct;
+	int count;
 } 					*t_stack;
 
 

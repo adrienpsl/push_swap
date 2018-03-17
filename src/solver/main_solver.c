@@ -33,7 +33,7 @@ void get_first_pasage(t_stack stack)
 
 	temp = stack->pile_a->length;
 	i = 0;
-	while (i <= temp)
+	while (i < temp)
 	{
 		if (need_pb(stack))
 			push_in_b(stack);
@@ -51,6 +51,14 @@ void repush_b(t_stack stack)
 		do_instruct("pa",stack);
 }
 
+void beguin_pile_by_number(int nb, t_dll_c pile, char *instruct, t_stack stack)
+{
+	while (get_int_ddl_l(pile->top) != nb)
+	{
+	    do_instruct(instruct, stack);
+	}
+}
+
 int main(int ac, char **av)
 {
 	t_argv argv;
@@ -65,11 +73,24 @@ int main(int ac, char **av)
 	printf(" =================\n");
 
 	get_first_pasage(stack);
+	beguin_pile_by_number(stack->max_lim, stack->pile_b, "rb", stack);
 	repush_b(stack);
+
+	print_stack(stack);
+
 	get_median(stack);
 
 	get_first_pasage(stack);
 
 	print_stack(stack);
+
+	get_first_pasage(stack);
+	beguin_pile_by_number(stack->max_lim, stack->pile_b, "rb", stack);
+	beguin_pile_by_number(0, stack->pile_a, "ra", stack);
+	print_stack(stack);
+	repush_b(stack);
+	beguin_pile_by_number(0, stack->pile_a, "ra", stack);
+	print_stack(stack);
+	printf("%d \n", stack->count);
 	return (EXIT_SUCCESS);
 }

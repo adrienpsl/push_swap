@@ -30,14 +30,15 @@ void set_min_max(t_stack stack, int nb)
 		stack->min_lim = nb;
 }
 
-//static void search_and_do_instruct(t_stack stack)
-//{
-//	int resultat_best_way;
-//
-//	resultat_best_way = is_biggest_lowest(stack, SEARCH);
-//	is_biggest_lowest(stack, resultat_best_way);
-//	do_instruct("pb", stack);
-//}
+void nb_is_limit(t_stack stack)
+{
+	t_dll_l top_link;
+	long nb_op;
+
+	top_link = stack->pile_b->top;
+	nb_op = find_up_down(NULL, stack->max_lim, top_link, stack);
+	do_the_ops(stack, nb_op);
+}
 
 void push_in_b(t_stack stack)
 {
@@ -49,29 +50,8 @@ void push_in_b(t_stack stack)
 	if (pile_b->length <= 1)
 		is_empty_or_one(stack);
 	else if (nb_is_more_lim(nb, stack) == TRUE)
-	{
-
 		nb_is_limit(stack);
-
-		// je trouve le nb
-			// lim ?
-			// plus petit ?
-			// plus grand ?
-		// je regarde le nombre de mouvement min pour le put
-		// je les fais
-
-
-		// je cherche direct le plus grand avec une function find nb,
-		// qui me retourn le nb de rb ou rrb a faire pour put le nb
-		//		resultat_best_way = is_biggest_lowest(stack, SEARCH);
-		//		is_biggest_lowest(stack, resultat_best_way);
-		//		do_instruct("pb", stack);
-	}
 	else
-	{
-//		resultat_best_way = is_normal(stack, resultat_best_way);
-//		is_normal(stack, resultat_best_way);
-		do_instruct("pb", stack);
-	}
+		nb_isnt_limit(stack);
 	set_min_max(stack, nb);
 }
