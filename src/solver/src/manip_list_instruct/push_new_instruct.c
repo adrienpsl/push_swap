@@ -14,10 +14,10 @@
 
 static void save_instruct_in_strack(char *instruct, t_stack stack)
 {
-	t_dll_l link;
+	t_list *link;
 
-	link = new_dll_l(instruct, ft_strlen(instruct));
-	dll_c_add_after(link, stack->instruction);
+	link = ft_lstnew(instruct, ft_strlen(instruct));
+	ft_lstadd(&stack->instruction, link);
 }
 
 void do_instruct(char *instruc, t_stack stack)
@@ -28,17 +28,30 @@ void do_instruct(char *instruc, t_stack stack)
 	printf("%s ",instruc);
 }
 
-void do_the_ops(t_stack stack, long operations)
+void do_the_ops_pileb(t_stack stack, long nb_operations)
 {
-	while (operations > 0)
+	while (nb_operations > 0)
 	{
 		do_instruct("rb", stack);
-		operations--;
+		nb_operations--;
 	}
-	while (operations < 0)
+	while (nb_operations < 0)
 	{
 		do_instruct("rrb", stack);
-		operations++;
+		nb_operations++;
 	}
-	do_instruct("pb", stack);
+}
+
+void do_the_ops_pilea(t_stack stack, long nb_operations)
+{
+	while (nb_operations > 0)
+	{
+		do_instruct("ra", stack);
+		nb_operations--;
+	}
+	while (nb_operations < 0)
+	{
+		do_instruct("rra", stack);
+		nb_operations++;
+	}
 }

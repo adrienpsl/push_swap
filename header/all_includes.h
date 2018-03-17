@@ -8,6 +8,8 @@
 #define SEARCH 1
 #define APPLY_BY_TOP 2
 #define APPLY_BY_BOTTOM 3
+#define LIST_A 1
+#define LIST_B 2
 
 /*
 **    method commun
@@ -58,7 +60,8 @@ void put_by_top_orbuttom(t_stack stack);
 */
 long
 find_up_down(t_dll_l link, int researched_nb, t_dll_l top_link, t_stack stack);
-void do_the_ops(t_stack stack, long operations);
+void do_the_ops_pileb(t_stack stack, long operations);
+void do_the_ops_pilea(t_stack stack, long nb_operations);
 
 void nb_is_limit(t_stack stack);
 void nb_isnt_limit(t_stack stack);

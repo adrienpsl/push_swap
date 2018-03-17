@@ -47,7 +47,6 @@ static int top_a_is_smaller(t_dll_l top_link,t_dll_l link)
 	return (researched_nb);
 }
 
-#define LIST_A 1
 void nb_isnt_limit(t_stack stack)
 {
 	t_dll_l link;
@@ -62,5 +61,6 @@ void nb_isnt_limit(t_stack stack)
 	else
 		nb_researched = top_a_is_smaller(top_link, link);
 	nb_op = find_up_down(NULL, nb_researched, top_link,stack);
-	do_the_ops(stack, nb_op);
+	do_the_ops_pileb(stack, nb_op);
+	do_instruct("pb", stack);
 }

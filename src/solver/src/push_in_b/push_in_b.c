@@ -37,7 +37,8 @@ void nb_is_limit(t_stack stack)
 
 	top_link = stack->pile_b->top;
 	nb_op = find_up_down(NULL, stack->max_lim, top_link, stack);
-	do_the_ops(stack, nb_op);
+	do_the_ops_pileb(stack, nb_op);
+	do_instruct("pb", stack);
 }
 
 void push_in_b(t_stack stack)

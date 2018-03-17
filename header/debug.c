@@ -18,4 +18,5 @@ void print_stack(t_stack stack)
 {
 	dll_c_print_lst(stack->pile_a);
 	dll_c_print_lst(stack->pile_b);
+	printf(" \n");
 };

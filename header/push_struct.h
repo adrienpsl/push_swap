@@ -14,7 +14,7 @@ typedef struct		s_stack
 	size_t	mediane_down;
 	int max_lim;
 	int min_lim;
-	t_dll_c instruction;
+	t_list *instruction;
 	t_dll_c temp_instuct;
 	int count;
 } 					*t_stack;

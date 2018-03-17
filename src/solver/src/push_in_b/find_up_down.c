@@ -27,7 +27,7 @@ static long try_by_up(int researched_nb, t_dll_l top_link)
 
 static int up_is_good_way(unsigned long direction, t_stack stack)
 {
-	return (direction < stack->pile_b->length / 2);
+	return (direction <= stack->pile_b->length / 2);
 }
 
 static long calcule_by_down(int researched_nb, t_dll_l top_link)
