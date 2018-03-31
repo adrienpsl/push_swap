@@ -20,6 +20,9 @@ size_t need_pb(t_stack stack)
 	return (nb_top < stack->mediane_up && nb_top >= stack->mediane_down);
 }
 
+/*
+**    deroule liste_a, si top list_a est inclu dans median, je l'envoie dans b
+*/
 void get_first_pasage(t_stack stack)
 {
 	size_t i;
@@ -33,8 +36,9 @@ void get_first_pasage(t_stack stack)
 			push_in_b(stack);
 		else
 			do_instruct("ra", stack);
-		printf(" \n\n");
 		print_stack(stack);
+		if (stack->pile_b->length == stack->median_junp)
+			break;
 		i++;
 	}
 }
@@ -59,38 +63,66 @@ set_good_beguin(int researched_nb, t_dll_l top_link, int pile, t_stack stack)
 		do_the_ops_pileb(stack, opt);
 }
 
+void first_p(t_stack stack, int med)
+{
+	dll_c_print_lst(stack->pile_a);
+
+	get_median(stack, med);
+	get_first_pasage(stack);
+
+	// il ya une optimisation a faire ici
+	set_good_beguin(stack->max_lim, stack->pile_b->top, LIST_B, stack);
+	repush_b(stack);
+//	print_stack(stack);
+};
+void one_tour(t_stack stack, int med)
+{
+	get_median(stack, med);
+
+	get_first_pasage(stack);
+
+	// good beguin lst_b
+	set_good_beguin(stack->max_lim, stack->pile_b->top, LIST_B, stack);
+//	print_stack(stack);
+
+	// good beguin lst_a
+	set_good_beguin(0, stack->pile_a->top, LIST_A, stack);
+//	print_stack(stack);
+
+	repush_b(stack);
+}
+
+// quand je remet b au bon endoit, il faut que je regarde si je peux faire rra ou rr en meme temps
 int main(int ac, char **av)
 {
 	t_argv argv;
 	t_stack stack;
 
+	int med = 2 ;
+	int tour = 2;
+
 	argv = new_argv(ac, av);
 	stack = get_stack_filled(argv);
 	build_lst_a_index(stack->pile_a);
-	get_median(stack);
 
-	dll_c_print_lst(stack->pile_a);
-	printf(" =================\n");
 
 	// premier pasage
-	get_first_pasage(stack);
-	repush_b(stack);
-	print_stack(stack);
+	first_p(stack, med);
 
-	// deuxieme passage
-	get_median(stack);
-	get_first_pasage(stack);
-	print_stack(stack);
+	while (med != 1)
+	{
+		printf(
+		 "-------- tour : %d -------------------------------------------------------------------------------------------------\n",
+		tour);
+		one_tour(stack, med);
+		med -= 1;
+		tour++;
+	}
 
-	set_good_beguin(stack->max_lim, stack->pile_b->top, LIST_B, stack);
-	print_stack(stack);
 	set_good_beguin(0, stack->pile_a->top, LIST_A, stack);
 
 	print_stack(stack);
-	repush_b(stack);
-	set_good_beguin(0, stack->pile_a->top, LIST_A, stack);
-	printf(" \n");
-	print_stack(stack);
+
 	printf("%d \n", stack->count);
 	return (EXIT_SUCCESS);
 }

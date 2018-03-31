@@ -12,6 +12,7 @@
 
 #include "../../../../header/all_includes.h"
 
+
 static void save_instruct_in_strack(char *instruct, t_stack stack)
 {
 	t_sll_l link;
@@ -24,8 +25,7 @@ void do_instruct(char *instruc, t_stack stack)
 {
 	stack->count++;
 	check_and_apply_instruct(instruc, stack);
-	save_instruct_in_strack(instruc,stack);
-	printf("%s ",instruc);
+	save_instruct_in_strack(instruc, stack);
 }
 
 void do_the_ops_pileb(t_stack stack, long nb_operations)

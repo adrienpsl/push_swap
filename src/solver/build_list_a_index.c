@@ -53,14 +53,16 @@ static void set_index(t_dll_c c_list, int *tab)
 		++i;
 	}
 }
-
+/*
+**    creer la liste et change les nb par leur index definitif
+*/
 void build_lst_a_index(t_dll_c c_list)
 {
 	int *tab;
 
 	tab = ft_malloc_protect(sizeof(int) * (c_list->length + 1));
 	fill_tab(c_list, tab);
-	ft_quick_sort(tab, 0, c_list->length -1, c_list->length - 1);
+	ft_quick_sort(tab, 0, c_list->length - 1, c_list->length - 1);
 	set_index(c_list, tab);
 	free(tab);
 }
