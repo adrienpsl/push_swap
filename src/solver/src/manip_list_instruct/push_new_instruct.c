@@ -14,10 +14,10 @@
 
 static void save_instruct_in_strack(char *instruct, t_stack stack)
 {
-	t_list *link;
+	t_sll_l link;
 
-	link = ft_lstnew(instruct, ft_strlen(instruct));
-	ft_lstadd(&stack->instruction, link);
+	link = new_sll_l(instruct, ft_strlen(instruct));
+	sll_add(link, stack->instruction);
 }
 
 void do_instruct(char *instruc, t_stack stack)

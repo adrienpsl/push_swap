@@ -21,8 +21,8 @@ void destroy_stack(t_stack *s)
 		destroy_dll_c(&stack->pile_a);
 	if (stack->pile_b)
 		destroy_dll_c(&stack->pile_b);
-//	if (stack->instruction)
-//		destroy_dll_c(&stack->instruction);
+	if (stack->instruction)
+		destroy_sll(&stack->instruction);
 	if (stack->temp_instuct)
 		destroy_dll_c(&stack->temp_instuct);
 	free(stack);
@@ -36,7 +36,7 @@ t_stack new_stack()
 
 	stack = (t_stack)ft_malloc_protect(sizeof(struct s_stack));
 	ft_memset(stack,0, sizeof(struct s_stack));
-	stack->instruction = ft_lstnew("", sizeof(char));
+	stack->instruction = new_sll();
 	stack->pile_a = NULL;
 	stack->pile_b = new_dll_c();
 	return (stack);
