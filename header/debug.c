@@ -34,8 +34,8 @@ void print_stack(t_stack stack)
 
 
 	printf("===================================== ");
-	printf("  med: %zu <> %zu, lim: %d <> %d ===== \n\n", stack->mediane_down,
-		   stack->mediane_up, stack->min_lim, stack->max_lim);
+	printf("  med: %zu <> %zu, lim: %d <> %d ===== %d ---- %zu \n\n", stack->mediane_down,
+		   stack->mediane_up, stack->min_lim, stack->max_lim, stack->count, stack->nb_already_sorted);
 
 	// printe les lists
 	printf("list_a : ");

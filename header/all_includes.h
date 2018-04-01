@@ -88,7 +88,7 @@ void do_instruct(char *instruc, t_stack stack);
 **    debug
 */
 void p_tab(int tab[], int limit);
-void get_median(t_stack stack, int occurs);
+void get_median(t_stack stack, int occurs, int is_the_last);
 void print_stack(t_stack stack);
 
 #endif //PUSH_SWAP_ALL_INCLUDES_H

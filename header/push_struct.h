@@ -22,6 +22,7 @@ typedef struct		s_stack
 	t_sll instruction;
 	t_dll_c temp_instuct;
 	int count;
+	size_t nb_already_sorted;
 } 					*t_stack;
 
 
