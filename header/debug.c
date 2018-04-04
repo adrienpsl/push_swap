@@ -21,7 +21,9 @@ void p_tab(int tab[], int limit)
 
 void print_stack(t_stack stack)
 {
-	static t_sll_l last_prev_instruct = NULL;
+	(void)stack;
+
+		static t_sll_l last_prev_instruct = NULL;
 
 	//print les instruction
 	printf("instrc : ");

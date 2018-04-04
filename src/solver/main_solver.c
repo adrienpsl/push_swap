@@ -20,12 +20,21 @@ size_t need_pb(t_stack stack)
 	return (nb_top < stack->mediane_up && nb_top >= stack->mediane_down);
 }
 
-//size_t is_already_sorted(t_stack stack){
-//	size_t nb_top;
-//
-//	nb_top = get_int_ddl_l(stack->pile_a->top);
-//	return
-//}
+size_t is_4(t_stack stack)
+{
+	size_t nb_top;
+
+	nb_top = get_int_ddl_l(stack->pile_a->top);
+	return (nb_top % 4 == FALSE);
+}
+
+size_t is_already_sorted(t_stack stack)
+{
+	size_t nb_top;
+
+	nb_top = get_int_ddl_l(stack->pile_a->top);
+	return (nb_top < stack->mediane_down);
+}
 
 /*
 **    deroule liste_a, si top list_a est inclu dans median, je l'envoie dans b
@@ -40,15 +49,54 @@ void get_first_pasage(t_stack stack)
 	while (i < temp)
 	{
 		if (need_pb(stack))
+//		if (is_4(stack))
 			push_in_b(stack);
+//					do_instruct("pb", stack);
+
 		else
+		{
 			do_instruct("ra", stack);
+			i++;
+			continue;
+		}
 		print_stack(stack);
-		if (stack->pile_b->length == stack->median_junp)
+		if (stack->pile_b->length > stack->median_junp)
 			break;
+		//		if (is_already_sorted(stack))
+		//			break;
 		i++;
 	}
 }
+
+
+void get_first_pasage2(t_stack stack, int test)
+{
+	size_t i;
+	size_t temp;
+
+	temp = stack->pile_b->length;
+	i = 0;
+	while (i < temp)
+	{
+		if ( get_int_ddl_l(stack->pile_b->top) > test)
+						push_in_b(stack);
+//			do_instruct("pa", stack);
+
+		else
+		{
+			do_instruct("rb", stack);
+			i++;
+			continue;
+		}
+		print_stack(stack);
+		if (stack->pile_b->length > stack->median_junp)
+			break;
+		//		if (is_already_sorted(stack))
+		//			break;
+		i++;
+	}
+}
+
 
 void repush_b(t_stack stack)
 {
@@ -79,10 +127,30 @@ void first_p(t_stack stack, int med)
 	get_first_pasage(stack);
 
 	// il ya une optimisation a faire ici
-	//	set_good_beguin(stack->max_lim, stack->pile_b->top, LIST_B, stack);
+	set_good_beguin(stack->max_lim, stack->pile_b->top, LIST_B, stack);
 	repush_b(stack);
-	//	print_stack(stack);
+
+//	get_first_pasage2(stack, 25);
+//	get_first_pasage2(stack, 12);
+//	get_first_pasage2(stack, 6);
+//	get_first_pasage2(stack, 3);
+//	get_first_pasage2(stack, 1);
+//	repush_b(stack);
+//	get_median(stack, med, FALSE);
+//
+//	get_first_pasage(stack);
+//	get_first_pasage2(stack, 75);
+//	get_first_pasage2(stack, 62);
+//	get_first_pasage2(stack, 56);
+//	get_first_pasage2(stack, 53);
+//	repush_b(stack);
+
+	print_stack(stack);
 };
+
+
+
+
 void one_tour(t_stack stack, int med, int is_the_last)
 {
 	get_median(stack, med, is_the_last);
@@ -106,8 +174,7 @@ int main(int ac, char **av)
 	t_argv argv;
 	t_stack stack;
 
-	int med = 2;
-	int tour = 2;
+	int med = 3;
 
 	argv = new_argv(ac, av);
 	stack = get_stack_filled(argv);
@@ -117,22 +184,25 @@ int main(int ac, char **av)
 	// premier pasage
 	first_p(stack, med);
 
+	int tour = 2;
 	while (med != 2)
 	{
 		printf(
-		 "-------- tour : %d -------------------------------------------------------------------------------------------------\n",
-		 tour);
+		 "-------- tour : %d  ------------------------------------------------------------------------------------\n"
+		 "-----------------------------------------------------------------------------------------------------------------------------------------------------\n"
+		 "--------------------------------------------------------------------------------------------------------\n"
+		 "%d", tour, stack->count);
 		one_tour(stack, med, FALSE);
 		med -= 1;
 		tour++;
 	}
 
 	one_tour(stack, med, TRUE);
-
+	//
 	set_good_beguin(0, stack->pile_a->top, LIST_A, stack);
+	//
+		print_stack(stack);
 
-	print_stack(stack);
-
-	printf("%d \n", stack->count);
+	printf("\n%d \n", stack->count);
 	return (EXIT_SUCCESS);
 }
