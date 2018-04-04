@@ -26,7 +26,7 @@ set(
         ${sources4}
         ${sources5}
         ${sources6}
-        src/solver/build_list_a_index.c src/solver/src/median_calculation.c src/solver/src/search_utils.c src/solver/src/push_in_b/push_in_b.c debug.c src/solver/src/push_in_b/push_in_b_utils.c src/solver/src/manip_list_instruct/push_new_instruct.c src/commun_all_prg.c src/solver/src/push_in_b/nb_isnt_limit.c src/solver/src/push_in_b/find_up_down.c)
+        src/solver_v1/build_list_a_index.c src/solver_v1/src/median_calculation.c src/solver_v1/src/search_utils.c src/solver_v1/src/push_in_b/push_in_b.c debug.c src/solver_v1/src/push_in_b/push_in_b_utils.c src/solver_v1/src/manip_list_instruct/push_new_instruct.c src/commun_all_prg.c src/solver_v1/src/push_in_b/nb_isnt_limit.c src/solver_v1/src/push_in_b/find_up_down.c src/solver/main_solver.c)
 
 
 add_executable(push_swap
@@ -47,6 +47,6 @@ add_executable(push_swap
         src/stack/src/pile_r.c
         src/stack/src/pile_rr.c
         test/pile_test.c
-        src/solver/main_solver.c
+        src/solver_v1/main_solver.c
         header/debug.c)
 
