@@ -14,8 +14,8 @@
 
 static void fill_nb(t_dll_l link, int *nb, t_dll_l top_link, int *nb_top)
 {
-	*nb = get_int_ddl_l(link);
-	*nb_top = get_int_ddl_l(top_link);
+	*nb = dll_l_get_int(link);
+	*nb_top = dll_l_get_int(top_link);
 }
 
 int link_is_bigger_top(t_dll_l link, t_dll_l top_link)
@@ -39,6 +39,6 @@ int link_is_lower_top(t_dll_l link, t_dll_l top_link)
 int top_is_research_nb(int researched_nb, t_dll_l top_link)
 {
 	int top_nb;
-	top_nb = get_int_ddl_l(top_link);
+	top_nb = dll_l_get_int(top_link);
 	return (researched_nb == top_nb);
 }

@@ -46,7 +46,7 @@ void push_in_b(t_stack stack)
 	t_dll_c pile_b;
 	int nb;
 
-	nb = get_int_ddl_l(stack->pile_a->top);
+	nb = dll_l_get_int(stack->pile_a->top);
 	pile_b = stack->pile_b;
 	if (pile_b->length <= 1)
 		is_empty_or_one(stack);

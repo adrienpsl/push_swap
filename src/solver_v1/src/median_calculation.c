@@ -29,6 +29,4 @@ void get_median(t_stack stack, int occurs, int is_the_last)
 	stack->min_lim = stack->mediane_up;
 
 	stack->max_lim = stack->mediane_down;
-
-
 }

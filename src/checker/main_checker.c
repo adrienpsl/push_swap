@@ -23,7 +23,7 @@ void is_ordered(t_dll_c c_list)
 	next = link->next;
 	while (i < c_list->length)
 	{
-		if (get_int_ddl_l(link) >= get_int_ddl_l(next))
+		if (dll_l_get_int(link) >= dll_l_get_int(next))
 		{
 			ft_putstr_fd("KO",2);
 			exit(42);
@@ -45,7 +45,14 @@ void do_intructions(t_argv argv, t_stack stack)
 	}
 }
 
+t_stack get_stack_filled(t_argv argv)
+{
+	t_stack stack;
 
+	stack = new_stack();
+	stack->pile_a = get_list_a(argv, ACTIVATE);
+	return (stack);
+}
 //
 //int main(int ac, char **av)
 //{

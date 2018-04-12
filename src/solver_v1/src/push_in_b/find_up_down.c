@@ -49,7 +49,7 @@ find_up_down(t_dll_l link, int researched_nb, t_dll_l top_link, t_stack stack)
 	long direction;
 
 	if (link != NULL)
-		researched_nb = get_int_ddl_l(link);
+		researched_nb = dll_l_get_int(link);
 	direction = try_by_up(researched_nb, top_link);
 	if (up_is_good_way(direction, stack) == FALSE)
 		direction = calcule_by_down(researched_nb, top_link);

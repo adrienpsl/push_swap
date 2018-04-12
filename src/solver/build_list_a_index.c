@@ -12,43 +12,54 @@
 
 #include "../../header/all_includes.h"
 
-static void fill_tab(t_dll_c c_list, int *tab)
+static void fill_list(t_dll_c c_list, t_dll quicks_list)
 {
+	int nb;
 	size_t i;
+	t_dll_l new_link;
 	t_dll_l link;
 
 	i = 0;
 	link = c_list->top;
 	while (i < c_list->length)
 	{
-		tab[i] = get_int_ddl_l(link);
+		nb = dll_l_get_int(link);
+		new_link = new_dll_l(&nb, sizeof(int));
+
+		dll_add(new_link, quicks_list);
+
 		link = link->next;
 		++i;
 	}
 }
 
-static size_t get_index_tab(int nb, int *tab)
+static size_t get_index_tab(int nb, t_dll list)
 {
 	size_t index;
+	t_dll_l link;
 
+	link = list->top;
 	index = 0;
-	while (tab[index] != nb)
+	while (nb != dll_l_get_int(link))
 	{
 		++index;
+		link = link->next;
 	}
 	return (index);
 }
 
-static void set_index(t_dll_c c_list, int *tab)
+static void set_index(t_dll_c c_list, t_dll quicks_list)
 {
 	size_t i;
 	t_dll_l link;
+	int index;
 
 	i = 0;
 	link = c_list->top;
 	while (i < c_list->length)
 	{
-		*(int *) link->content = get_index_tab(get_int_ddl_l(link), tab);
+		index = get_index_tab(dll_l_get_int(link), quicks_list);
+		*(int *) link->content = index;
 		link = link->next;
 		++i;
 	}
@@ -58,11 +69,15 @@ static void set_index(t_dll_c c_list, int *tab)
 */
 void build_lst_a_index(t_dll_c c_list)
 {
-	int *tab;
+	t_dll list;
 
-	tab = ft_malloc_protect(sizeof(int) * (c_list->length + 1));
-	fill_tab(c_list, tab);
-	ft_quick_sort(tab, 0, c_list->length - 1, c_list->length - 1);
-	set_index(c_list, tab);
-	free(tab);
+	list = new_dll();
+	fill_list(c_list, list);
+	dll_print_nb(list);
+
+	ft_quick_sort_dll(list->top, list->end, list);
+
+	set_index(c_list, list);
+	dll_c_print_lst(c_list);
+	destroy_dll(&list);
 }

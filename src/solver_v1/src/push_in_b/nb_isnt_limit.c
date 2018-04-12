@@ -20,8 +20,8 @@ static int who_is_bigger(t_stack stack)
 	int nb_top_pile_a;
 	int nb_top_pile_b;
 
-	nb_top_pile_a = get_int_ddl_l(stack->pile_a->top);
-	nb_top_pile_b= get_int_ddl_l(stack->pile_b->top);
+	nb_top_pile_a = dll_l_get_int(stack->pile_a->top);
+	nb_top_pile_b= dll_l_get_int(stack->pile_b->top);
 	return (nb_top_pile_a > nb_top_pile_b);
 }
 
@@ -33,7 +33,7 @@ static int top_a_is_bigger(t_dll_l top_link,t_dll_l link)
 		top_link = top_link->next;
 	while (link_is_lower_top(link, top_link) == TRUE)
 		top_link = top_link->next;
-	researched_nb = get_int_ddl_l(top_link);
+	researched_nb = dll_l_get_int(top_link);
 	return (researched_nb);
 }
 
@@ -43,7 +43,7 @@ static int top_a_is_smaller(t_dll_l top_link,t_dll_l link)
 
 	while (link_is_lower_top(link, top_link) == TRUE)
 		top_link = top_link->next;
-	researched_nb = get_int_ddl_l(top_link);
+	researched_nb = dll_l_get_int(top_link);
 	return (researched_nb);
 }
 

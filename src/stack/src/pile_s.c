@@ -21,8 +21,8 @@ void sa(t_stack stack)
 	pile_a = stack->pile_a;
 	if (pile_a->length > 1)
 	{
-		a = get_int_ddl_l(pile_a->top);
-		b = get_int_ddl_l(pile_a->top->next);
+		a = dll_l_get_int(pile_a->top);
+		b = dll_l_get_int(pile_a->top->next);
 		*(int *)pile_a->top->content = b;
 		*(int *)pile_a->top->next->content = a;
 	}
@@ -37,8 +37,8 @@ void sb(t_stack stack)
 	pile_b = stack->pile_b;
 	if (pile_b->length > 1)
 	{
-		a = get_int_ddl_l(pile_b->top);
-		b = get_int_ddl_l(pile_b->top->next);
+		a = dll_l_get_int(pile_b->top);
+		b = dll_l_get_int(pile_b->top->next);
 		*(int *)pile_b->top->content = b;
 		*(int *)pile_b->top->next->content = a;
 	}

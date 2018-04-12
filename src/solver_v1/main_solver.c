@@ -16,7 +16,7 @@ size_t need_pb(t_stack stack)
 {
 	size_t nb_top;
 
-	nb_top = get_int_ddl_l(stack->pile_a->top);
+	nb_top = dll_l_get_int(stack->pile_a->top);
 	return (nb_top < stack->mediane_up && nb_top >= stack->mediane_down);
 }
 
@@ -24,7 +24,7 @@ size_t is_4(t_stack stack)
 {
 	size_t nb_top;
 
-	nb_top = get_int_ddl_l(stack->pile_a->top);
+	nb_top = dll_l_get_int(stack->pile_a->top);
 	return (nb_top % 4 == FALSE);
 }
 
@@ -32,7 +32,7 @@ size_t is_already_sorted(t_stack stack)
 {
 	size_t nb_top;
 
-	nb_top = get_int_ddl_l(stack->pile_a->top);
+	nb_top = dll_l_get_int(stack->pile_a->top);
 	return (nb_top < stack->mediane_down);
 }
 
@@ -78,7 +78,7 @@ void get_first_pasage2(t_stack stack, int test)
 	i = 0;
 	while (i < temp)
 	{
-		if ( get_int_ddl_l(stack->pile_b->top) > test)
+		if ( dll_l_get_int(stack->pile_b->top) > test)
 						push_in_b(stack);
 //			do_instruct("pa", stack);
 
@@ -169,40 +169,40 @@ void one_tour(t_stack stack, int med, int is_the_last)
 }
 
 // quand je remet b au bon endoit, il faut que je regarde si je peux faire rra ou rr en meme temps
-int main(int ac, char **av)
-{
-	t_argv argv;
-	t_stack stack;
-
-	int med = 3;
-
-	argv = new_argv(ac, av);
-	stack = get_stack_filled(argv);
-	build_lst_a_index(stack->pile_a);
-
-
-	// premier pasage
-	first_p(stack, med);
-
-	int tour = 2;
-	while (med != 2)
-	{
-		printf(
-		 "-------- tour : %d  ------------------------------------------------------------------------------------\n"
-		 "-----------------------------------------------------------------------------------------------------------------------------------------------------\n"
-		 "--------------------------------------------------------------------------------------------------------\n"
-		 "%d", tour, stack->count);
-		one_tour(stack, med, FALSE);
-		med -= 1;
-		tour++;
-	}
-
-	one_tour(stack, med, TRUE);
-	//
-	set_good_beguin(0, stack->pile_a->top, LIST_A, stack);
-	//
-		print_stack(stack);
-
-	printf("\n%d \n", stack->count);
-	return (EXIT_SUCCESS);
-}
+//int main(int ac, char **av)
+//{
+//	t_argv argv;
+//	t_stack stack;
+//
+//	int med = 3;
+//
+//	argv = new_argv(ac, av);
+//	stack = get_stack_filled(argv);
+//	build_lst_a_index(stack->pile_a);
+//
+//
+//	// premier pasage
+//	first_p(stack, med);
+//
+//	int tour = 2;
+//	while (med != 2)
+//	{
+//		printf(
+//		 "-------- tour : %d  ------------------------------------------------------------------------------------\n"
+//		 "-----------------------------------------------------------------------------------------------------------------------------------------------------\n"
+//		 "--------------------------------------------------------------------------------------------------------\n"
+//		 "%d", tour, stack->count);
+//		one_tour(stack, med, FALSE);
+//		med -= 1;
+//		tour++;
+//	}
+//
+//	one_tour(stack, med, TRUE);
+//	//
+//	set_good_beguin(0, stack->pile_a->top, LIST_A, stack);
+//	//
+//		print_stack(stack);
+//
+//	printf("\n%d \n", stack->count);
+//	return (EXIT_SUCCESS);
+//}
