@@ -26,4 +26,15 @@ typedef struct		s_stack
 } 					*t_stack;
 
 
+/*
+**    structure
+*/
+typedef struct		s_link
+{
+	int		nb;
+	int 	op;
+} 					*t_link;
+
+
+
 #endif

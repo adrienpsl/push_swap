@@ -11,6 +11,16 @@
 #define LIST_A 1
 #define LIST_B 2
 
+
+/*
+**    v2
+*/
+int whose_the_best(t_dll_c list_a);
+
+int get_med(t_dll_c c_list, size_t lenght);
+
+void browse_pile_a(t_stack stack, int max, size_t lim, int option);
+
 /*
 **    method commun
 */

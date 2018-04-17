@@ -12,27 +12,6 @@
 
 #include "../../header/all_includes.h"
 
-static void fill_list(t_dll_c c_list, t_dll quicks_list)
-{
-	int nb;
-	size_t i;
-	t_dll_l new_link;
-	t_dll_l link;
-
-	i = 0;
-	link = c_list->top;
-	while (i < c_list->length)
-	{
-		nb = dll_l_get_int(link);
-		new_link = new_dll_l(&nb, sizeof(int));
-
-		dll_add(new_link, quicks_list);
-
-		link = link->next;
-		++i;
-	}
-}
-
 static size_t get_index_tab(int nb, t_dll list)
 {
 	size_t index;
@@ -64,6 +43,32 @@ static void set_index(t_dll_c c_list, t_dll quicks_list)
 		++i;
 	}
 }
+
+int get_med(t_dll_c c_list, size_t lenght)
+{
+	t_dll list;
+	t_dll_l link;
+	size_t half_lenght;
+	size_t i;
+
+	list = new_dll();
+	dll_fill_list_circular(c_list, list, lenght);
+	ft_quick_sort_dll(list->top, list->end, list);
+
+	i = 0;
+	half_lenght = lenght / 2;
+	link = list->top;
+
+	while (i < half_lenght)
+	{
+		link = link->next;
+		++i;
+	}
+	i = dll_l_get_int(link);
+	destroy_dll(&list);
+	return (i);
+}
+
 /*
 **    creer la liste et change les nb par leur index definitif
 */
@@ -72,8 +77,7 @@ void build_lst_a_index(t_dll_c c_list)
 	t_dll list;
 
 	list = new_dll();
-	fill_list(c_list, list);
-	dll_print_nb(list);
+	dll_fill_list_circular(c_list, list, c_list->length);
 
 	ft_quick_sort_dll(list->top, list->end, list);
 

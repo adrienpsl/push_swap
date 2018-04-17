@@ -11,22 +11,22 @@
 /* ************************************************************************** */
 
 #include "../../../header/all_includes.h"
-
-// ca ne prends pas en compte le dernier nb, ajouter +1 si nb impaire
-void get_median(t_stack stack, int occurs, int is_the_last)
-{
-
-	if (stack->median_junp == 0)
-		stack->median_junp = stack->pile_a->length / occurs;
-
-
-	stack->mediane_down = stack->mediane_up;
-
-	stack->mediane_up += stack->median_junp;
-	if (is_the_last == TRUE)
-		stack->mediane_up += 2;
-
-	stack->min_lim = stack->mediane_up;
-
-	stack->max_lim = stack->mediane_down;
-}
+//
+//// ca ne prends pas en compte le dernier nb, ajouter +1 si nb impaire
+//void get_median(t_stack stack, int occurs, int is_the_last)
+//{
+//
+//	if (stack->median_junp == 0)
+//		stack->median_junp = stack->pile_a->length / occurs;
+//
+//
+//	stack->mediane_down = stack->mediane_up;
+//
+//	stack->mediane_up += stack->median_junp;
+//	if (is_the_last == TRUE)
+//		stack->mediane_up += 2;
+//
+//	stack->min_lim = stack->mediane_up;
+//
+//	stack->max_lim = stack->mediane_down;
+//}

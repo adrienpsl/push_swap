@@ -31,6 +31,8 @@ static int break_action_for_solver(int is_solver, char *cur_av, t_argv argv)
 	return (FALSE);
 }
 
+
+
 t_dll_c get_list_a(t_argv argv, int is_solver)
 {
 	t_dll_c c_list;

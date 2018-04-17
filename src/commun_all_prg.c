@@ -39,3 +39,20 @@ void check_and_apply_instruct(char *str, t_stack stack)
 	else
 		exit_wrong_nb();
 }
+
+
+
+int link_get_int(t_dll_l link)
+{
+	return (((t_link) link->content)->nb);
+}
+
+int link_get_op(t_dll_l link)
+{
+	return (((t_link) link->content)->op);
+}
+
+void link_set_int()
+{
+
+};
