@@ -118,7 +118,7 @@ void need_swap_b(t_stack stack)
 	}
 }
 
-void manage_end_algo(t_stack stack)
+void a_2_b_2(t_stack stack)
 {
 	int median;
 
@@ -132,78 +132,53 @@ void manage_end_algo(t_stack stack)
 	do_instruct("pa", stack);
 	do_instruct("pa", stack);
 }
-// je fait le premier passage
-//je trouve une solution pour manager les medianne
 
-// fonction qui parcours une liste de a a b en et push des nb qui sont inferieurs a ce que je veux
-
-
-void devant_derriere(int nb, int max, t_stack stack)
+void two_end_b(t_stack stack)
 {
-	if (nb >= max)
-		do_instruct("pb", stack);
-	else
-	{
-		do_instruct("pb", stack);
-		do_instruct("rb", stack);
-	}
+	do_instruct("rrb", stack);
+	do_instruct("rrb", stack);
+	need_swap_a(stack);
+	need_swap_b(stack);
+	do_instruct("pa", stack);
+	do_instruct("pa", stack);
 }
 
-int med_devant_derriere(t_stack stack, int max, size_t lim)
+void b_2_2(t_stack stack)
 {
-	int nb_link;
-	t_dll_l link;
-	t_dll_l link_copie;
-	t_dll_c pile_copie;
+	do_instruct("pa", stack);
+	do_instruct("pa", stack);
+	two_end_b(stack);
+
+}
+
+void nb_4_pile_b(t_stack stack)
+{
+	// je dois parcourir la moitier de la liste
+	// je trouve la med et je fais une browser dessus
+	// je reviens de deux en arriere et je vois si je dois swap
+	// je met sur b
+
 	int median;
 
-	pile_copie = new_dll_c();
-	link = stack->pile_a->top;
-	while (lim > 0)
-	{
-		nb_link = dll_l_get_int(link);
-		if (nb_link <= max)
-		{
-			link_copie = new_dll_l(link->content, sizeof(int));
-			dll_c_push_link(link_copie, pile_copie);
-		}
-		lim -= 1;
-		link = link->next;
-	}
+	median = get_med(stack->pile_b, 4);
 
-	// dll_c_print_lst(pile_copie);
-
-	median = get_med(pile_copie, pile_copie->length);
-	destroy_dll_c(&pile_copie);
-	return (median);
+	browse_pile_b(stack, median, 4, FALSE);
+	print_stack(stack);
+	two_end_b(stack);
 }
 
-#define DEVANT_DERRIERE 1
-// stop le passage quand la lsite du bas est pleine
-void browse_pile_a(t_stack stack, int max, size_t lim, int option)
+void nb_pile_b_last(t_stack stack)
 {
-	int top_pile;
-	t_dll_c pile;
-	int med_devant_derrier;
+	int median;
 
-	pile = stack->pile_a;
-	if (option == DEVANT_DERRIERE)
-		med_devant_derrier = med_devant_derriere(stack, max, lim);
-	while (lim > 0)
-	{
-		top_pile = dll_l_get_int(pile->top);
-		if (top_pile < max)
-		{
-			if (option == DEVANT_DERRIERE)
-				devant_derriere(top_pile, med_devant_derrier, stack);
-			else
-				do_instruct("pb", stack);
-		}
-		else
-			do_instruct("ra", stack);
-		lim -= 1;
-//		print_stack(stack);
-	}
+	median = get_med(stack->pile_b, 4);
+
+	browse_pile_b(stack, median, 4, FALSE);
+	print_stack(stack);
+	need_swap_a(stack);
+	need_swap_b(stack);
+	do_instruct("pa", stack);
+	do_instruct("pa", stack);
 }
 
 int main(int ac, char **av)
@@ -215,6 +190,8 @@ int main(int ac, char **av)
 	argv = new_argv(ac, av);
 	stack = get_stack_filled(argv);
 	build_lst_a_index(stack->pile_a);
+	print_quick(stack->pile_a);
+
 
 	// premier passsage
 	int max = stack->pile_a->length / 2;
@@ -224,16 +201,26 @@ int main(int ac, char **av)
 	browse_pile_a(stack, max, stack->pile_a->length, DEVANT_DERRIERE);
 
 	print_stack(stack);
-	whose_the_best(stack->pile_a);
+//	whose_the_best(stack->pile_a);
 
 	max = max + max / 2;
 	browse_pile_a(stack, max, stack->pile_a->length, DEVANT_DERRIERE);
-	print_stack(stack);
-
-	manage_end_algo(stack);
 
 	print_stack(stack);
 
+	a_2_b_2(stack);
+//	ft_printf("%d \n", count_quick(1, stack->pile_b));
+	print_stack(stack);
+
+	b_2_2(stack);
+	print_stack(stack);
+
+	nb_4_pile_b(stack);
+	nb_pile_b_last(stack);
+	print_stack(stack);
+
+	
+ft_printf("%d \n", stack->count);
 	destroy_stack(&stack);
 	destroy_argv(&argv);
 	return (EXIT_SUCCESS);

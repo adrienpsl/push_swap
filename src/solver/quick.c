@@ -12,45 +12,34 @@
 
 #include "../../header/all_includes.h"
 
-static int is_argv(t_argv argv, char **str)
+long count_quick(int quick_searched, t_dll_c pile)
 {
-	*str = get_next_argv(argv);
-	return (*str != NULL);
-}
-
-static int break_action_for_solver(int is_solver, char *cur_av, t_argv argv)
-{
-	if (is_solver == ACTIVATE)
-	{
-		if (is_action(cur_av))
-		{
-			argv_go_prev_argv(argv);
-			return (TRUE);
-		}
-	}
-	return (FALSE);
-}
-
-t_dll_c get_list_a(t_argv argv, int is_solver)
-{
-	t_dll_c c_list;
+	long nb_quick_in_pile;
+	int current_quick;
 	t_dll_l link;
-	t_data data;
+	size_t size;
 
-	char *cur_av;
-
-	c_list = new_dll_c();
-	while (is_argv(argv, &cur_av) == TRUE)
+	nb_quick_in_pile = 0;
+	size = 0;
+	link = pile->top;
+	current_quick = get_quick(link);
+	while (current_quick == quick_searched && size < pile->length)
 	{
-		if (break_action_for_solver(is_solver, cur_av, argv) == TRUE)
-			break;
-		data = malloc(sizeof(struct s_data));
-		ft_memset(data, 0, sizeof(struct s_data));
-		data->nb = is_valide_number(cur_av, c_list);
-
-		link = new_dll_l(data, sizeof(struct s_data));
-		dll_c_add_after(link, c_list);
-		free(data);
+		link = link->next;
+		current_quick = get_quick(link);
+		nb_quick_in_pile += 1;
+		size++;
 	}
-	return (c_list);
+	return (nb_quick_in_pile);
+}
+
+
+int get_quick(t_dll_l link)
+{
+	return (((t_data) link->content)->quick);
+}
+
+void set_quick(int quick, t_dll_l link)
+{
+	((t_data)link->content)->quick = quick;
 }

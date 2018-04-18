@@ -10,6 +10,8 @@
 #define APPLY_BY_BOTTOM 3
 #define LIST_A 1
 #define LIST_B 2
+#define DEVANT_DERRIERE 1
+
 
 
 /*
@@ -20,11 +22,19 @@ int whose_the_best(t_dll_c list_a);
 int get_med(t_dll_c c_list, size_t lenght);
 
 void browse_pile_a(t_stack stack, int max, size_t lim, int option);
+void browse_pile_b(t_stack stack, int max, size_t lim, int option);
 
 /*
 **    method commun
 */
 void check_and_apply_instruct(char *str, t_stack stack);
+
+/*
+**    quick
+*/
+int get_quick(t_dll_l link);
+void set_quick(int quick, t_dll_l link);
+long count_quick(int quick_searched, t_dll_c pile);
 
 /*
 **    method get_number
@@ -100,5 +110,6 @@ void do_instruct(char *instruc, t_stack stack);
 void p_tab(int tab[], int limit);
 void get_median(t_stack stack, int occurs, int is_the_last);
 void print_stack(t_stack stack);
+void print_quick(t_dll_c lst);
 
 #endif //PUSH_SWAP_ALL_INCLUDES_H

@@ -29,11 +29,11 @@ typedef struct		s_stack
 /*
 **    structure
 */
-typedef struct		s_link
+typedef struct		s_data
 {
 	int		nb;
-	int 	op;
-} 					*t_link;
+	int 	quick;
+} 					*t_data;
 
 
 
