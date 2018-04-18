@@ -148,7 +148,6 @@ void b_2_2(t_stack stack)
 	do_instruct("pa", stack);
 	do_instruct("pa", stack);
 	two_end_b(stack);
-
 }
 
 void nb_4_pile_b(t_stack stack)
@@ -181,9 +180,38 @@ void nb_pile_b_last(t_stack stack)
 	do_instruct("pa", stack);
 }
 
+void set_brower(int med, size_t lim, int option, t_stack stack)
+{
+	t_browse *browse;
+
+	browse = &stack->browse;
+	ft_memset(browse, 0, (sizeof(*browse) - sizeof(size_t)));
+	browse->lim = lim;
+	browse->count = lim;
+	browse->med = med;
+	browse->option = option;
+}
+
+void first_passage_a(t_stack stack)
+{
+	t_dll_c pile;
+	int median;
+
+	pile = stack->pile_a;
+	median = get_med(pile, pile->length);
+	while (pile->length > 4)
+	{
+//		set_brower(median, stack->pile_a->length, DEVANT_DERRIERE, stack);
+//		browse_pile(stack, &stack->browse);
+		browse_pile_a(stack, median, stack->pile_a->length, DEVANT_DERRIERE);
+		print_stack(stack);
+		median = get_med(pile, pile->length);
+		if (median % 2)
+			median++;
+	}
+}
 int main(int ac, char **av)
 {
-
 	t_argv argv;
 	t_stack stack;
 
@@ -192,35 +220,23 @@ int main(int ac, char **av)
 	build_lst_a_index(stack->pile_a);
 	print_quick(stack->pile_a);
 
-
-	// premier passsage
-	int max = stack->pile_a->length / 2;
-	if (stack->pile_a->length % 2)
-		max++;
-
-	browse_pile_a(stack, max, stack->pile_a->length, DEVANT_DERRIERE);
-
+	first_passage_a(stack);
 	print_stack(stack);
-//	whose_the_best(stack->pile_a);
+	//
+	//	a_2_b_2(stack);
+	//	//	ft_printf("%d \n", count_quick(1, stack->pile_b));
+	//	print_stack(stack);
+	//
+	//	b_2_2(stack);
+	//	print_stack(stack);
+	//
+	//	nb_4_pile_b(stack);
+	//	nb_pile_b_last(stack);
+	//	print_stack(stack);
 
-	max = max + max / 2;
-	browse_pile_a(stack, max, stack->pile_a->length, DEVANT_DERRIERE);
 
-	print_stack(stack);
 
-	a_2_b_2(stack);
-//	ft_printf("%d \n", count_quick(1, stack->pile_b));
-	print_stack(stack);
-
-	b_2_2(stack);
-	print_stack(stack);
-
-	nb_4_pile_b(stack);
-	nb_pile_b_last(stack);
-	print_stack(stack);
-
-	
-ft_printf("%d \n", stack->count);
+	ft_printf("%d \n", stack->count);
 	destroy_stack(&stack);
 	destroy_argv(&argv);
 	return (EXIT_SUCCESS);

@@ -36,10 +36,12 @@ void print_stack(t_stack stack)
 {
 	(void) stack;
 
-	static t_sll_l last_prev_instruct = NULL;
 
 	//print les instruction
 	ft_printf(" \n");
+
+	static t_sll_l last_prev_instruct = NULL;
+	//
 	if (last_prev_instruct != NULL)
 		sll_print_str_link(last_prev_instruct->next);
 	else

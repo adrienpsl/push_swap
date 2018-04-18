@@ -12,7 +12,29 @@
 
 #include "../../header/all_includes.h"
 
-void devant_derriere_a(int nb, int max, t_stack stack)
+char *m_inst(int pile, char instruct, t_stack stack)
+{
+	char *instr;
+
+	instr = stack->instruct;
+	instr[0] = instruct;
+	instr[1] = pile == PILE_A ? 'a' : 'b';
+	instr[2] = 0;
+	return (instr);
+}
+
+//void devant_derriere(int nb, int max, int pile, t_stack stack)
+//{
+//	if (nb >= max)
+//		do_instruct(m_inst(pile, 'p', stack), stack);
+//	else
+//	{
+//		do_instruct(m_inst(pile, 'p', stack), stack);
+//		do_instruct(m_inst(pile, 'r', stack), stack);
+//	}
+//}
+
+void devant_derriere(int nb, int max, t_stack stack)
 {
 	if (nb >= max)
 		do_instruct("pb", stack);
@@ -20,17 +42,6 @@ void devant_derriere_a(int nb, int max, t_stack stack)
 	{
 		do_instruct("pb", stack);
 		do_instruct("rb", stack);
-	}
-}
-
-void devant_derriere_b(int nb, int max, t_stack stack)
-{
-	if (nb >= max)
-		do_instruct("pa", stack);
-	else
-	{
-		do_instruct("pa", stack);
-		do_instruct("ra", stack);
 	}
 }
 
@@ -56,13 +67,73 @@ int med_devant_derriere(t_dll_c pile, int max, size_t lim)
 		link = link->next;
 	}
 
-	// dll_c_print_lst(pile_copie);
-
 	median = get_med(pile_copie, pile_copie->length);
 	destroy_dll_c(&pile_copie);
 	return (median);
 }
 
+int med_devant_derriere2(t_dll_c pile, t_browse *browse)
+{
+	size_t nb_link;
+	t_dll_l link;
+	t_dll_l link_copie;
+	t_dll_c pile_copie;
+	int median;
+	size_t lim;
+
+	pile_copie = new_dll_c();
+	link = pile->top;
+	lim = browse->lim;
+	while (lim > 0)
+	{
+		nb_link = dll_l_get_int(link);
+		if (nb_link <= browse->med)
+		{
+			link_copie = new_dll_l(link->content, sizeof(int));
+			dll_c_push_link(link_copie, pile_copie);
+		}
+		lim -= 1;
+		link = link->next;
+	}
+	if (pile_copie->length <= 5)
+		browse->option = 0;
+	dll_c_print_lst(pile_copie);
+	median = get_med(pile_copie, pile_copie->length);
+	destroy_dll_c(&pile_copie);
+	return (median);
+}
+
+static void browse_push(t_browse *browse, t_stack stack, int top_pile, int med)
+{
+	if (browse->option == DEVANT_DERRIERE)
+		set_quick(browse->quick_count, stack->pile_a->top);
+	else
+		do_instruct("pb", stack);
+//	devant_derriere(top_pile, med, PILE_B, stack);
+	devant_derriere(top_pile, med, stack);
+}
+
+void browse_pile(t_stack stack, t_browse *browse)
+{
+	size_t top_pile;
+	t_dll_c pile;
+	size_t lim;
+	int med_devant_derrier;
+
+	lim = browse->lim;
+	pile = stack->pile_a;
+	med_devant_derrier = med_devant_derriere2(pile, browse);
+	while (lim > 0)
+	{
+		top_pile = dll_l_get_int(pile->top);
+		if (top_pile < browse->med)
+			browse_push(browse, stack, top_pile, med_devant_derrier);
+		else
+			do_instruct("ra", stack);
+		lim -= 1;
+	}
+	browse->quick_count += 1;
+}
 
 void browse_pile_a(t_stack stack, int max, size_t lim, int option)
 {
@@ -81,7 +152,8 @@ void browse_pile_a(t_stack stack, int max, size_t lim, int option)
 			if (option == DEVANT_DERRIERE)
 			{
 				set_quick(quick_count, stack->pile_a->top);
-				devant_derriere_a(top_pile, med_devant_derrier, stack);
+//				devant_derriere(top_pile, med_devant_derrier, PILE_B, stack);
+				devant_derriere(top_pile, med_devant_derrier, stack);
 			}
 			else
 				do_instruct("pb", stack);
@@ -110,7 +182,8 @@ void browse_pile_b(t_stack stack, int max, size_t lim, int option)
 			if (option == DEVANT_DERRIERE)
 			{
 				set_quick(quick_count, stack->pile_b->top);
-				devant_derriere_b(top_pile, med_devant_derrier, stack);
+//				devant_derriere(top_pile, med_devant_derrier, PILE_A, stack);
+				devant_derriere(top_pile, med_devant_derrier, stack);
 			}
 			else
 				do_instruct("pa", stack);

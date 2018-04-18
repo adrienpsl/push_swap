@@ -12,7 +12,8 @@
 #define LIST_B 2
 #define DEVANT_DERRIERE 1
 
-
+#define PILE_A 1
+#define PILE_B 2
 
 /*
 **    v2
@@ -35,6 +36,8 @@ void check_and_apply_instruct(char *str, t_stack stack);
 int get_quick(t_dll_l link);
 void set_quick(int quick, t_dll_l link);
 long count_quick(int quick_searched, t_dll_c pile);
+
+void browse_pile(t_stack stack, t_browse *browse);
 
 /*
 **    method get_number
@@ -71,8 +74,6 @@ void rrr(t_stack pile);
 */
 void build_lst_a_index(t_dll_c c_list);
 void put_by_top_orbuttom(t_stack stack);
-
-
 
 /*
 **    trouve s'il est plus pertinent d'aller par le top ou le bas de la stack

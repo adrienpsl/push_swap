@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../header/all_includes.h"
+#include "../../header/all_includes.h"
 
 
 static void save_instruct_in_strack(char *instruct, t_stack stack)
