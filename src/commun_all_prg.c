@@ -39,5 +39,3 @@ void check_and_apply_instruct(char *str, t_stack stack)
 	else
 		exit_wrong_nb();
 }
-
-;

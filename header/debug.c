@@ -38,27 +38,22 @@ void print_stack(t_stack stack)
 
 
 	//print les instruction
-	ft_printf(" \n");
 
-	static t_sll_l last_prev_instruct = NULL;
-	//
-	if (last_prev_instruct != NULL)
-		sll_print_str_link(last_prev_instruct->next);
-	else
-		sll_print_str(stack->instruction);
-	last_prev_instruct = stack->instruction->tail;
+//	static t_sll_l last_prev_instruct = NULL;
+//	//
+//	if (last_prev_instruct != NULL)
+//		sll_print_str_link(last_prev_instruct->next);
+//	else
+//		sll_print_str(stack->instruction);
+//	last_prev_instruct = stack->instruction->tail;
 
-	ft_printf("\n------------------------------------------- \n");
+	ft_printf("\n\n------------------------------------------- \n");
 
 	// printe les lists
 	dll_c_print_lst(stack->pile_a);
 	print_quick(stack->pile_a);
-	if (stack->pile_a->length == 0)
-		printf(" \n");;
 	ft_printf(" \n");
-
 	dll_c_print_lst(stack->pile_b);
 	print_quick(stack->pile_b);
-	if (stack->pile_b->length == 0)
 		printf(" \n");;
 };

@@ -8,7 +8,8 @@ typedef struct		s_browse
 	size_t		lim;
 	size_t		option;
 	size_t		med;
-	size_t 		quick;
+	size_t		pile;
+	size_t 		median_push;
 	size_t 		count;
 	size_t		browse_size;
 	size_t		quick_count;
@@ -46,6 +47,9 @@ typedef struct		s_data
 	int 	quick;
 } 					*t_data;
 
+// le bug de la median c'est pas normal
+// je remet de l'order
+// je m'occupe de browse
 
 
 

@@ -13,19 +13,33 @@
 #include "../../header/all_includes.h"
 
 
-static void save_instruct_in_strack(char *instruct, t_stack stack)
-{
-	t_sll_l link;
+//static void save_instruct_in_strack(char *instruct, t_stack stack)
+//{
+//	t_sll_l link;
+//
+//	link = new_sll_l(instruct, ft_strlen(instruct));
+//	sll_add(link, stack->instruction);
+//}
 
-	link = new_sll_l(instruct, ft_strlen(instruct));
-	sll_add(link, stack->instruction);
+char *m_inst(char instruct, t_stack stack, int option)
+{
+	char *instr;
+	instr = stack->instruct;
+	instr[0] = instruct;
+	if (instruct == 'p' || option == FORCE_OP)
+		instr[1] = stack->browse.pile == PILE_A ? 'b' : 'a';
+	else
+		instr[1] = stack->browse.pile == PILE_A ? 'a' : 'b';
+	instr[2] = 0;
+	return (instr);
 }
 
 void do_instruct(char *instruc, t_stack stack)
 {
 	stack->count++;
 	check_and_apply_instruct(instruc, stack);
-	save_instruct_in_strack(instruc, stack);
+//	save_instruct_in_strack(instruc, stack);
+//	ft_printf("%s ",instruc);
 }
 
 void do_the_ops_pileb(t_stack stack, long nb_operations)

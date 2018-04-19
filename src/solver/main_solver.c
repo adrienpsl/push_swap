@@ -124,7 +124,7 @@ void a_2_b_2(t_stack stack)
 
 	median = get_med(stack->pile_a, stack->pile_a->length);
 
-	browse_pile_a(stack, median, stack->pile_a->length, FALSE);
+//	browse_pile_a(stack, median, stack->pile_a->length, FALSE);
 
 	need_swap_a(stack);
 	need_swap_b(stack);
@@ -161,7 +161,7 @@ void nb_4_pile_b(t_stack stack)
 
 	median = get_med(stack->pile_b, 4);
 
-	browse_pile_b(stack, median, 4, FALSE);
+//	browse_pile_b(stack, median, 4, FALSE);
 	print_stack(stack);
 	two_end_b(stack);
 }
@@ -172,7 +172,7 @@ void nb_pile_b_last(t_stack stack)
 
 	median = get_med(stack->pile_b, 4);
 
-	browse_pile_b(stack, median, 4, FALSE);
+//	browse_pile_b(stack, median, 4, FALSE);
 	print_stack(stack);
 	need_swap_a(stack);
 	need_swap_b(stack);
@@ -201,9 +201,10 @@ void first_passage_a(t_stack stack)
 	median = get_med(pile, pile->length);
 	while (pile->length > 4)
 	{
-//		set_brower(median, stack->pile_a->length, DEVANT_DERRIERE, stack);
-//		browse_pile(stack, &stack->browse);
-		browse_pile_a(stack, median, stack->pile_a->length, DEVANT_DERRIERE);
+		set_brower(median, stack->pile_a->length, DEVANT_DERRIERE, stack);
+		stack->browse.pile = PILE_A;
+		browse_pile(stack, &stack->browse);
+//		browse_pile_a(stack, median, stack->pile_a->length, DEVANT_DERRIERE);
 		print_stack(stack);
 		median = get_med(pile, pile->length);
 		if (median % 2)
