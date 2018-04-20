@@ -54,9 +54,11 @@ int get_med(t_dll_c c_list, size_t lenght)
 	list = new_dll();
 	dll_fill_list_circular(c_list, list, lenght);
 	ft_quick_sort_dll(list->top, list->end, list);
-
+//	dll_print_nb(list);
+	
 	i = 0;
 	half_lenght = lenght / 2;
+//	ft_printf("%d %d\n", half_lenght, list->length);
 	link = list->top;
 
 	while (i < half_lenght)
@@ -82,6 +84,5 @@ void build_lst_a_index(t_dll_c c_list)
 	ft_quick_sort_dll(list->top, list->end, list);
 
 	set_index(c_list, list);
-	dll_c_print_lst(c_list);
 	destroy_dll(&list);
 }

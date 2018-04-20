@@ -10,44 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../header/all_includes.h"
 
-void sa(t_stack stack)
+void need_swap_a(t_stack stack)
 {
-	t_dll_c pile_a;
-	struct s_data a;
-	struct s_data b;
+	int a;
+	int b;
+	t_dll_c pile;
 
-	pile_a = stack->pile_a;
-	if (pile_a->length > 1)
+	pile = stack->pile_a;
+	a = dll_l_get_int(pile->top);
+	b = dll_l_get_int(pile->top->next);
+	if (a > b)
 	{
-		ft_memcpy(&a, pile_a->top->content, sizeof(struct s_data));
-		ft_memcpy(&b, pile_a->top->next->content, sizeof(struct s_data));
-
-		ft_memcpy(pile_a->top->content, &b, sizeof(struct s_data));
-		ft_memcpy(pile_a->top->next->content, &a, sizeof(struct s_data));
+		do_instruct("sa", stack);
 	}
 }
 
-void sb(t_stack stack)
+void need_swap_b(t_stack stack)
 {
-	t_dll_c pile_b;
-	struct s_data a;
-	struct s_data b;
+	int a;
+	int b;
+	t_dll_c pile;
 
-	pile_b = stack->pile_b;
-	if (pile_b->length > 1)
+	pile = stack->pile_b;
+	a = dll_l_get_int(pile->top);
+	b = dll_l_get_int(pile->top->next);
+	if (a < b)
 	{
-		ft_memcpy(&a, pile_b->top->content, sizeof(struct s_data));
-		ft_memcpy(&b, pile_b->top->next->content, sizeof(struct s_data));
-
-		ft_memcpy(pile_b->top->content, &b, sizeof(struct s_data));
-		ft_memcpy(pile_b->top->next->content, &a, sizeof(struct s_data));
+		do_instruct("sb", stack);
 	}
 }
 
-void ss(t_stack stack)
+void need_swap(t_stack stack)
 {
-	sa(stack);
-	sb(stack);
+	if (stack->pile_a->length)
+		need_swap_a(stack);
+	if (stack->pile_b->length)
+		need_swap_b(stack);
 }

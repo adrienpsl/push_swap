@@ -15,6 +15,9 @@
 #define PILE_A 1
 #define PILE_B 2
 
+#define TOP_PUSH 2
+#define END_PUSH 3
+
 # define FORCE_OP 10
 /*
 **    v2
@@ -23,8 +26,11 @@ int whose_the_best(t_dll_c list_a);
 
 int get_med(t_dll_c c_list, size_t lenght);
 
+void need_swap(t_stack stack);
 
-void browse_pile(t_stack stack, t_browse *browse);
+
+void set_brower(int med, size_t lim, int option, t_stack stack);
+int browse_pile(t_stack stack, t_browse *browse);
 
 /*
 **    namage instruc
@@ -41,8 +47,15 @@ void check_and_apply_instruct(char *str, t_stack stack);
 */
 int get_quick(t_dll_l link);
 void set_quick(int quick, t_dll_l link);
-long count_quick(int quick_searched, t_dll_c pile);
+void set_quick_1(int quick, t_dll_l link);
+long count_quick(int quick_searched, t_dll_c pile, int sens);
 
+/*
+**    short
+*/
+void a_4(t_stack stack);
+void b_4(t_stack stack);
+void b_3(t_stack stack);
 
 /*
 **    method get_number

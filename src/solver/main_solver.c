@@ -41,157 +41,6 @@ void dll_c_print_colorlst(t_dll_c lst, int a, int b)
 	ft_printf(" \n");
 }
 
-void print_stack2(t_stack stack, int a, int b)
-{
-	(void) stack;
-
-	//	static t_sll_l last_prev_instruct = NULL;
-
-	//print les instruction
-	//	printf("\ninstrc : ");
-	//	if (last_prev_instruct != NULL)
-	//		sll_print_str_link(last_prev_instruct->next);
-	//	else
-	//		sll_print_str(stack->instruction);
-	//	last_prev_instruct = stack->instruction->tail;
-
-	printf("===================================== \n");
-	//	printf("  med: %zu <> %zu, lim: %d <> %d ===== %d ---- %zu \n\n",
-	//		   stack->mediane_down,
-	//		   stack->mediane_up, stack->min_lim, stack->max_lim, stack->count,
-	//		   stack->nb_already_sorted);
-
-	// printe les lists
-	//	printf("list_a : ");
-	dll_c_print_colorlst(stack->pile_a, a, b);
-	if (stack->pile_a->length == 0)
-		printf(" \n");;
-
-	//	printf("list_b : ");
-	dll_c_print_colorlst(stack->pile_b, a, b);
-	if (stack->pile_b->length == 0)
-		printf(" \n");;
-
-
-	//les mediane
-
-
-	printf(" %d \n", stack->count);
-};
-
-size_t top_big_nb(t_dll_c pile, int nb)
-{
-	int nb_top;
-
-	nb_top = dll_l_get_int(pile->top);
-	return (nb_top > nb);
-}
-
-// annalyser si je fais un swap a et ou b
-void need_swap_a(t_stack stack)
-{
-	int a;
-	int b;
-	t_dll_c pile;
-
-	pile = stack->pile_a;
-	a = dll_l_get_int(pile->top);
-	b = dll_l_get_int(pile->top->next);
-	if (a > b)
-	{
-		do_instruct("sa", stack);
-	}
-}
-
-void need_swap_b(t_stack stack)
-{
-	int a;
-	int b;
-	t_dll_c pile;
-
-	pile = stack->pile_b;
-	a = dll_l_get_int(pile->top);
-	b = dll_l_get_int(pile->top->next);
-	if (a < b)
-	{
-		do_instruct("sb", stack);
-	}
-}
-
-void a_2_b_2(t_stack stack)
-{
-	int median;
-
-	median = get_med(stack->pile_a, stack->pile_a->length);
-
-//	browse_pile_a(stack, median, stack->pile_a->length, FALSE);
-
-	need_swap_a(stack);
-	need_swap_b(stack);
-
-	do_instruct("pa", stack);
-	do_instruct("pa", stack);
-}
-
-void two_end_b(t_stack stack)
-{
-	do_instruct("rrb", stack);
-	do_instruct("rrb", stack);
-	need_swap_a(stack);
-	need_swap_b(stack);
-	do_instruct("pa", stack);
-	do_instruct("pa", stack);
-}
-
-void b_2_2(t_stack stack)
-{
-	do_instruct("pa", stack);
-	do_instruct("pa", stack);
-	two_end_b(stack);
-}
-
-void nb_4_pile_b(t_stack stack)
-{
-	// je dois parcourir la moitier de la liste
-	// je trouve la med et je fais une browser dessus
-	// je reviens de deux en arriere et je vois si je dois swap
-	// je met sur b
-
-	int median;
-
-	median = get_med(stack->pile_b, 4);
-
-//	browse_pile_b(stack, median, 4, FALSE);
-	print_stack(stack);
-	two_end_b(stack);
-}
-
-void nb_pile_b_last(t_stack stack)
-{
-	int median;
-
-	median = get_med(stack->pile_b, 4);
-
-//	browse_pile_b(stack, median, 4, FALSE);
-	print_stack(stack);
-	need_swap_a(stack);
-	need_swap_b(stack);
-	do_instruct("pa", stack);
-	do_instruct("pa", stack);
-}
-
-void set_brower(int med, size_t lim, int option, t_stack stack)
-{
-	t_browse *browse;
-
-	browse = &stack->browse;
-	ft_memset(browse, 0, (sizeof(*browse) - sizeof(size_t)));
-	browse->lim = lim;
-	browse->count = lim;
-	browse->med = med;
-	browse->option = option;
-}
-
 void first_passage_a(t_stack stack)
 {
 	t_dll_c pile;
@@ -199,18 +48,108 @@ void first_passage_a(t_stack stack)
 
 	pile = stack->pile_a;
 	median = get_med(pile, pile->length);
+
 	while (pile->length > 4)
 	{
 		set_brower(median, stack->pile_a->length, DEVANT_DERRIERE, stack);
 		stack->browse.pile = PILE_A;
+		stack->browse.stop = 4;
 		browse_pile(stack, &stack->browse);
-//		browse_pile_a(stack, median, stack->pile_a->length, DEVANT_DERRIERE);
-		print_stack(stack);
+		//		browse_pile_a(stack, median, stack->pile_a->length, DEVANT_DERRIERE);
+		//		print_stack(stack);
 		median = get_med(pile, pile->length);
-		if (median % 2)
-			median++;
+	}
+	print_stack(stack);
+	a_4(stack);
+}
+
+void reset_quick(t_dll_c pile)
+{
+	size_t size;
+	t_dll_l link;
+
+	size = pile->length;
+	link = pile->top;
+	while (size > 0)
+	{
+		set_quick(0, link);
+		link = link->next;
+		size--;
 	}
 }
+
+void quick_quick(int *quick, int *counter_quick, t_stack stack)
+{
+	*quick = get_quick(stack->pile_b->top);
+	*counter_quick = count_quick(*quick, stack->pile_b, TOP_PUSH);
+}
+
+void r(int a, t_stack stack)
+{
+	while (a > 0)
+	{
+		do_instruct("rrb", stack);
+		a--;
+	}
+}
+
+void quick_is_4(t_stack stack, int *quick, int *counter_quick)
+{
+
+	quick_quick(quick, counter_quick, stack);
+	while (*counter_quick == 4)
+	{
+		if (*counter_quick == 4)
+			b_4(stack);
+		*counter_quick = count_quick(*quick, stack->pile_b, END_PUSH);
+
+		if (*counter_quick == 4)
+		{
+			r(4,stack);
+			b_4(stack);
+		}
+		quick_quick(quick, counter_quick, stack);
+	}
+	reset_quick(stack->pile_a);
+}
+
+void manage_b(t_stack stack)
+{
+	int quick;
+	int counter_quick;
+	int med;
+	int retour;
+
+	quick_quick(&quick, &counter_quick, stack);
+	if (counter_quick == 4)
+		quick_is_4(stack, &quick, &counter_quick);
+
+//	print_stack(stack);
+
+	med = get_med(stack->pile_b, counter_quick);
+
+
+	set_brower(med, counter_quick, FALSE, stack);
+	stack->browse.pile = PILE_B;
+
+	//	if (counter_quick > 4)
+	//	{
+	//		set_brower()
+	ft_printf("8888888 \n");
+	print_stack(stack);
+	retour = browse_pile(stack, &stack->browse);
+	quick_quick(&quick, &counter_quick, stack);
+	print_stack(stack);
+
+	a_4(stack);
+//	r(retour, stack);
+
+	ft_printf(" --- %d %d %d\n", quick, counter_quick, med);
+//	b_3(stack);
+	print_stack(stack);
+	//	}
+}
+
 int main(int ac, char **av)
 {
 	t_argv argv;
@@ -222,21 +161,12 @@ int main(int ac, char **av)
 	print_quick(stack->pile_a);
 
 	first_passage_a(stack);
-	print_stack(stack);
-	//
-	//	a_2_b_2(stack);
-	//	//	ft_printf("%d \n", count_quick(1, stack->pile_b));
-	//	print_stack(stack);
-	//
-	//	b_2_2(stack);
-	//	print_stack(stack);
-	//
-	//	nb_4_pile_b(stack);
-	//	nb_pile_b_last(stack);
-	//	print_stack(stack);
+	manage_b(stack);
+	//	b_4(stack);
 
 
 
+	//	print_stack(stack);
 	ft_printf("%d \n", stack->count);
 	destroy_stack(&stack);
 	destroy_argv(&argv);

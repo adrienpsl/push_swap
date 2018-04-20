@@ -12,7 +12,7 @@
 
 #include "../../header/all_includes.h"
 
-long count_quick(int quick_searched, t_dll_c pile)
+long count_quick(int quick_searched, t_dll_c pile, int sens)
 {
 	long nb_quick_in_pile;
 	int current_quick;
@@ -21,18 +21,17 @@ long count_quick(int quick_searched, t_dll_c pile)
 
 	nb_quick_in_pile = 0;
 	size = 0;
-	link = pile->top;
+	link = sens == TOP_PUSH ? pile->top : pile->top->prev;
 	current_quick = get_quick(link);
 	while (current_quick == quick_searched && size < pile->length)
 	{
-		link = link->next;
+		link = sens == TOP_PUSH ? link->next : link->prev;
 		current_quick = get_quick(link);
 		nb_quick_in_pile += 1;
 		size++;
 	}
 	return (nb_quick_in_pile);
 }
-
 
 int get_quick(t_dll_l link)
 {
@@ -41,5 +40,10 @@ int get_quick(t_dll_l link)
 
 void set_quick(int quick, t_dll_l link)
 {
-	((t_data)link->content)->quick = quick;
+	((t_data) link->content)->quick = quick;
+}
+
+void set_quick_1(int quick, t_dll_l link)
+{
+	((t_data) link->content)->quick = quick + 1;
 }

@@ -6,6 +6,7 @@
 typedef struct		s_browse
 {
 	size_t		lim;
+	size_t		stop;
 	size_t		option;
 	size_t		med;
 	size_t		pile;
@@ -45,6 +46,7 @@ typedef struct		s_data
 {
 	int		nb;
 	int 	quick;
+	int 	short_;
 } 					*t_data;
 
 // le bug de la median c'est pas normal
