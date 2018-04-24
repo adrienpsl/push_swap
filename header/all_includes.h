@@ -37,7 +37,7 @@ void browse_pile_a(t_stack stack, t_browse *browse, size_t remaining);
 **    namage instruc
 */
 char *m_inst(char instruct, t_stack stack, int option);
-
+void do_inst(char *raw_instruction, int option, t_stack stack);
 
 
 /*
@@ -53,7 +53,7 @@ void set_index_sort_algo(t_dll_c pile_1, size_t size);
 /*
 **    short_4
 */
-void sort_4(t_stack stack);
+void sort_4_(t_stack stack);
 void do_ab(t_stack stack);
 void is_abab(t_stack stack);
 void is_abba(t_stack stack);

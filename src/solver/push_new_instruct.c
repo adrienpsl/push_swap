@@ -38,10 +38,36 @@ void do_instruct(char *instruc, t_stack stack)
 {
 	stack->count++;
 	check_and_apply_instruct(instruc, stack);
-//	save_instruct_in_strack(instruc, stack);
-//	ft_printf("%s ",instruc);
+	//	save_instruct_in_strack(instruc, stack);
+	//	ft_printf("%s ",instruc);
 }
 
+char *
+manage_instruction(char instruction, int op, t_stack stack, char tab_ins[])
+{
+	tab_ins[0] = instruction;
+	if (instruction == 'p' && op == NO)
+		tab_ins[1] = stack->current_pile == 'A' ? 'b' : 'a';
+	else if (instruction == 'a')
+	{
+		tab_ins[0] = 'r';
+		tab_ins[1] = 'r';
+		tab_ins[2] = stack->current_pile == 'A' ? 'a' : 'b';
+	}
+	else
+		tab_ins[1] = stack->current_pile == 'A'? 'a' : 'b';
+	return (tab_ins);
+}
+
+void do_inst(char *raw_instruction, int option, t_stack stack)
+{
+	char instruction[4];
+
+	ft_memset(instruction, 0, sizeof(char) * 4);
+	manage_instruction(raw_instruction, option, stack, instruction);
+	check_and_apply_instruct(instruction, stack);
+
+}
 void do_the_ops_pileb(t_stack stack, long nb_operations)
 {
 	while (nb_operations > 0)

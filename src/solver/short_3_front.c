@@ -73,7 +73,7 @@ void     is_bba(t_stack stack)
 	do_instruct(m_inst('p', stack, FALSE), stack);
 }
 
-void sort_3_front(t_stack stack)
+void sort_3_front_b(t_stack stack)
 {
 	t_dll_c pile;
 	char tab[4];

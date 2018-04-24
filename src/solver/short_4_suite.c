@@ -56,6 +56,7 @@ void is_baba(t_stack stack)
 
 void is_baab(t_stack stack)
 {
+	do_inst('p', NO, stack);
 	do_instruct(m_inst('p', stack, FALSE), stack);
 	print_stack(stack);
 	do_instruct(m_inst('r', stack, FALSE), stack);
