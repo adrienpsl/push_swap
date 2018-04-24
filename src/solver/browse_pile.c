@@ -15,11 +15,19 @@
 void devant_derriere(int nb, int max, t_stack stack)
 {
 	if (nb >= max)
+	{
+		set_quick(stack->browse.quick_count, stack->browse.pile == LIST_A ?
+											 stack->pile_a->top
+																		  : stack->pile_b->top);
 		do_instruct(m_inst('p', stack, FALSE), stack);
+	}
 
 		// quand il y a juste un nb au debut je fais un mouv pour rien
 	else
 	{
+		set_quick_1(stack->browse.quick_count, stack->browse.pile == LIST_A ?
+											   stack->pile_a->top
+																			: stack->pile_b->top);
 		do_instruct(m_inst('p', stack, FALSE), stack);
 		do_instruct(m_inst('r', stack, FORCE_OP), stack);
 	}
@@ -56,9 +64,6 @@ void get_median_push(t_dll_c pile, t_browse *browse)
 
 static void browse_push(t_browse *browse, t_stack stack, int top_pile, int med)
 {
-	t_dll_c pile;
-	pile = browse->pile == PILE_A ? stack->pile_a : stack->pile_b;
-	set_quick(browse->quick_count, pile->top);
 	if (browse->option == DEVANT_DERRIERE)
 		devant_derriere(top_pile, med, stack);
 	else
@@ -89,12 +94,41 @@ int browse_pile(t_stack stack, t_browse *browse)
 		}
 		lim -= 1;
 		if (pile->length == browse->stop)
-		    break;
-//		print_stack(stack);
-//		ft_printf("%d \n", stack->count);
+			break;
+		//		print_stack(stack);
+		//		ft_printf("%d \n", stack->count);
 	}
-	browse->quick_count += 1;
+	browse->quick_count += 2;
 	return (retour);
+}
+
+void
+browse_pile_a(t_stack stack, t_browse *browse, size_t four_remaining)
+{
+	size_t top_pile;
+	t_dll_c pile;
+	size_t lim;
+
+	lim = browse->lim;
+	pile = browse->pile == PILE_A ? stack->pile_a : stack->pile_b;
+	get_median_push(pile, browse);
+	if ((lim / 2) / 2 % 2)
+		browse->median_push++;
+	while (lim > 0)
+	{
+		top_pile = dll_l_get_int(pile->top);
+		if ((browse->pile == PILE_A && top_pile < browse->med) &&
+			top_pile < four_remaining)
+			browse_push(browse, stack, top_pile, browse->median_push);
+		else
+			do_instruct(m_inst('r', stack, FALSE), stack);
+		lim -= 1;
+		if (pile->length == browse->stop)
+			break;
+		//		print_stack(stack);
+		//		ft_printf("%d \n", stack->count);
+	}
+	browse->quick_count += 2;
 }
 
 void set_brower(int med, size_t lim, int option, t_stack stack)

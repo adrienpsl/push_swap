@@ -19,18 +19,19 @@
 #define END_PUSH 3
 
 # define FORCE_OP 10
+# define NO_OP 12
 /*
 **    v2
 */
 int whose_the_best(t_dll_c list_a);
 
-int get_med(t_dll_c c_list, size_t lenght);
+int get_med(t_dll_c c_list, int length);
 
 void need_swap(t_stack stack);
 
-
 void set_brower(int med, size_t lim, int option, t_stack stack);
 int browse_pile(t_stack stack, t_browse *browse);
+void browse_pile_a(t_stack stack, t_browse *browse, size_t remaining);
 
 /*
 **    namage instruc
@@ -38,9 +39,23 @@ int browse_pile(t_stack stack, t_browse *browse);
 char *m_inst(char instruct, t_stack stack, int option);
 
 /*
+**    short_4
+*/
+void sort_4(t_stack stack);
+void do_ab(t_stack stack);
+void is_abab(t_stack stack);
+void is_abba(t_stack stack);
+void is_bbaa(t_stack stack);
+void is_aabb(t_stack stack);
+void is_baba(t_stack stack);
+void is_baab(t_stack stack);
+
+/*
 **    method commun
 */
 void check_and_apply_instruct(char *str, t_stack stack);
+
+void to_4(t_stack stack);
 
 /*
 **    quick
@@ -50,12 +65,15 @@ void set_quick(int quick, t_dll_l link);
 void set_quick_1(int quick, t_dll_l link);
 long count_quick(int quick_searched, t_dll_c pile, int sens);
 
+int is_ordered(t_dll_c c_list, size_t lenght);
+
 /*
 **    short
 */
 void a_4(t_stack stack);
 void b_4(t_stack stack);
 void b_3(t_stack stack);
+void get_ab(t_stack stack);
 
 /*
 **    method get_number
@@ -98,7 +116,8 @@ void put_by_top_orbuttom(t_stack stack);
 **    pour depenser le moins possible de coup
 */
 long
-find_up_down(t_dll_l link, int researched_nb, t_dll_l top_link, t_stack stack);
+find_up_down(t_dll_l link, int researched_nb, t_dll_l top_link,
+ t_stack stack);
 void do_the_ops_pileb(t_stack stack, long operations);
 void do_the_ops_pilea(t_stack stack, long nb_operations);
 

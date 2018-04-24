@@ -12,22 +12,19 @@
 
 #include "../../header/all_includes.h"
 
-static size_t get_index_tab(int nb, t_dll list)
+static size_t get_index_tab(int nb, int *tab)
 {
 	size_t index;
-	t_dll_l link;
 
-	link = list->top;
 	index = 0;
-	while (nb != dll_l_get_int(link))
+	while (nb != tab[index])
 	{
 		++index;
-		link = link->next;
 	}
 	return (index);
 }
 
-static void set_index(t_dll_c c_list, t_dll quicks_list)
+static void set_index(t_dll_c c_list, int *tab)
 {
 	size_t i;
 	t_dll_l link;
@@ -37,38 +34,42 @@ static void set_index(t_dll_c c_list, t_dll quicks_list)
 	link = c_list->top;
 	while (i < c_list->length)
 	{
-		index = get_index_tab(dll_l_get_int(link), quicks_list);
+		index = get_index_tab(dll_l_get_int(link), tab);
 		*(int *) link->content = index;
 		link = link->next;
 		++i;
 	}
 }
 
-int get_med(t_dll_c c_list, size_t lenght)
+int *get_fill_tab(t_dll_c list, size_t length)
 {
-	t_dll list;
+	int *tab;
+	size_t lim;
 	t_dll_l link;
-	size_t half_lenght;
-	size_t i;
 
-	list = new_dll();
-	dll_fill_list_circular(c_list, list, lenght);
-	ft_quick_sort_dll(list->top, list->end, list);
-//	dll_print_nb(list);
-	
-	i = 0;
-	half_lenght = lenght / 2;
-//	ft_printf("%d %d\n", half_lenght, list->length);
 	link = list->top;
-
-	while (i < half_lenght)
+	lim = 0;
+	tab = ft_malloc_protect(length);
+	ft_memset(tab, 0, sizeof(int) * length);
+	while (lim < length)
 	{
+		tab[lim] = dll_l_get_int(link);
+		lim += 1;
 		link = link->next;
-		++i;
 	}
-	i = dll_l_get_int(link);
-	destroy_dll(&list);
-	return (i);
+	return (tab);
+}
+
+int get_med(t_dll_c c_list, int length)
+{
+	int a;
+	int *tab;
+
+	tab = get_fill_tab(c_list, length);
+	ft_quick_sort(tab, 0, length);
+
+	a = tab[length / 2];
+	return (a);
 }
 
 /*
@@ -76,13 +77,16 @@ int get_med(t_dll_c c_list, size_t lenght)
 */
 void build_lst_a_index(t_dll_c c_list)
 {
-	t_dll list;
+	int *tab;
 
-	list = new_dll();
-	dll_fill_list_circular(c_list, list, c_list->length);
+	tab = get_fill_tab(c_list, c_list->length);
 
-	ft_quick_sort_dll(list->top, list->end, list);
+	debug_print_tab_nb(tab, c_list->length);
+	ft_quick_sort(tab, 0, c_list->length - 1);
+	debug_print_tab_nb(tab, c_list->length);
 
-	set_index(c_list, list);
-	destroy_dll(&list);
+	set_index(c_list, tab);
+	dll_c_print_lst(c_list);
+
+	free(tab);
 }

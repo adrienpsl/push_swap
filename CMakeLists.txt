@@ -26,7 +26,7 @@ set(
         ${sources4}
         ${sources5}
         ${sources6}
-        src/solver/build_list_a_index.c src/solver_v1/src/median_calculation.c src/solver_v1/src/search_utils.c src/solver_v1/src/push_in_b/push_in_b.c debug.c src/solver_v1/src/push_in_b/push_in_b_utils.c src/solver/push_new_instruct.c src/commun_all_prg.c src/solver_v1/src/push_in_b/nb_isnt_limit.c src/solver_v1/src/push_in_b/find_up_down.c src/solver/main_solver.c src/solver/who_s_the_best.c src/solver/quick.c src/solver/browse_pile.c src/solver/short.c src/solver/swap.c)
+        src/solver/build_list_a_index.c src/solver_v1/src/median_calculation.c src/solver_v1/src/search_utils.c src/solver_v1/src/push_in_b/push_in_b.c debug.c src/solver_v1/src/push_in_b/push_in_b_utils.c src/solver/push_new_instruct.c src/commun_all_prg.c src/solver_v1/src/push_in_b/nb_isnt_limit.c src/solver_v1/src/push_in_b/find_up_down.c src/solver/main_solver.c src/solver/who_s_the_best.c src/solver/quick.c src/solver/browse_pile.c src/solver/short.c src/solver/swap.c src/solver/short_4.c src/solver/short_4_suite.c)
 
 
 add_executable(push_swap

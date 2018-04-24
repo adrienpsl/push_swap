@@ -67,8 +67,8 @@ void b_4(t_stack stack)
 	stack->browse.pile = PILE_B;
 	browse_pile(stack, &stack->browse);
 
-	do_instruct("rrb",stack);
-	do_instruct("rrb",stack);
+	do_instruct("rrb", stack);
+	do_instruct("rrb", stack);
 	need_swap(stack);
 	do_instruct("pa", stack);
 	do_instruct("pa", stack);
@@ -97,123 +97,106 @@ int get_short_(t_dll_l link)
 	return (((t_data) link->content)->short_);
 }
 
-void set_index_sort_algo(t_dll_c pile_1, t_dll_c pile_2)
-{
-	size_t size;
-	t_dll_l link_p1;
-	t_dll_l link_p2;
 
-	dll_c_copie(pile_1, pile_2);
-	build_lst_a_index(pile_2);
-	link_p1 = pile_1->top;
-	link_p2 = pile_2->top;
 
-	size = pile_1->length;
-	while (size > 0)
-	{
-		((t_data) link_p1->content)->short_ = dll_l_get_int(link_p2);
-		link_p1 = link_p1->next;
-		link_p2 = link_p2->next;
-		size--;
-	}
-}
+//void is_abab(t_dll_c pile, t_stack stack)
+//{
+//	int a;
+//	int b;
+//	int c;
+//
+//	(void) stack;
+//	a = get_short_(pile->top);
+//	b = get_short_(pile->top->next);
+//	c = get_short_(pile->top->next->next);
+//	if ((((a == 0 || a == 1) && (b == 2 || b == 3)) && (c == 0 || c == 1)) ||
+//		(((a == 2 || a == 3) && (b == 0 || b == 1)) && (c == 2 || c == 3)))
+//	{
+//		do_instruct(stack->browse.pile == PILE_A ? "sa" : "sb", stack);
+//		do_instruct(stack->browse.pile == PILE_A ? "rra" : "rrb", stack);
+//		need_swap(stack);
+//	}
+//}
 
-void is_abab(t_dll_c pile, t_stack stack)
-{
-	int a;
-	int b;
-	int c;
+//int is_bigest_start(t_dll_c pile, t_stack stack)
+//{
+//	int a;
+//	int b;
+//	int c;
+//	t_browse browse;
+//
+//	browse = stack->browse;
+//	a = get_short_(pile->top);
+//	b = get_short_(pile->top->next);
+//	c = get_short_(pile->top->next->next->next);
+//
+//	ft_printf("%d %d\n", stack->browse.pile, PILE_A);
+//	if ((a == 0 || a == 1) && (c == 0 || c == 1))
+//		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
+//	else if ((a == 2 || a == 3) && (c == 2 || c == 3))
+//		do_instruct(stack->browse.pile == PILE_A ? "rra" : "rrb", stack);
+//
+//	a = get_short_(pile->top);
+//	b = get_short_(pile->top->next);
+//	print_stack(stack);
+//	if (a == 2 || a == 3)
+//	{
+//		need_swap(stack);
+//		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
+//		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
+//		need_swap(stack);
+//		return (TRUE);
+//	}
+//	return (FALSE);
+//}
+//
+//int is_lowest_start(t_dll_c pile, t_stack stack)
+//{
+//	int a;
+//	int b;
+//	t_browse browse;
+//
+//	browse = stack->browse;
+//	a = get_short_(pile->top);
+//	b = get_short_(pile->top->next);
+//	if (a == 0 || a == 1)
+//	{
+//		need_swap(stack);
+//		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
+//		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
+//		need_swap(stack);
+//		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
+//		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
+//	}
+//	return (TRUE);
+//}
 
-	(void) stack;
-	a = get_short_(pile->top);
-	b = get_short_(pile->top->next);
-	c = get_short_(pile->top->next->next);
-	if ((((a == 0 || a == 1) && (b == 2 || b == 3)) && (c == 0 || c == 1)) ||
-		(((a == 2 || a == 3) && (b == 0 || b == 1)) && (c == 2 || c == 3)))
-	{
-		do_instruct(stack->browse.pile == PILE_A ? "sa" : "sb", stack);
-		do_instruct(stack->browse.pile == PILE_A ? "rra" : "rrb", stack);
-		need_swap(stack);
-	}
-}
-
-int is_bigest_start(t_dll_c pile, t_stack stack)
-{
-	int a;
-	int b;
-	int c;
-	t_browse browse;
-
-	browse = stack->browse;
-	a = get_short_(pile->top);
-	b = get_short_(pile->top->next);
-	c = get_short_(pile->top->next->next->next);
-
-	if ((a == 0 || a == 1) && (c == 0 || c == 1))
-		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
-	else if ((a == 2 || a == 3) && (c == 2 || c == 3))
-		do_instruct(stack->browse.pile == PILE_A ? "rra" : "rrb", stack);
-
-	a = get_short_(pile->top);
-	b = get_short_(pile->top->next);
-	if (a == 2 || a == 3)
-	{
-		need_swap(stack);
-		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
-		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
-		need_swap(stack);
-		return (TRUE);
-	}
-	return (FALSE);
-}
-
-int is_lowest_start(t_dll_c pile, t_stack stack)
-{
-	int a;
-	int b;
-	t_browse browse;
-
-	browse = stack->browse;
-	a = get_short_(pile->top);
-	b = get_short_(pile->top->next);
-	if (a == 0 || a == 1)
-	{
-		need_swap(stack);
-		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
-		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
-		need_swap(stack);
-		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
-		do_instruct(stack->browse.pile == PILE_A ? "ra" : "rb", stack);
-	}
-	return (TRUE);
-}
-
-// faut il ranger ?
-void a_4(t_stack stack)
-{
-	//	int median;
-	t_dll_c pile;
-	t_dll_c pile_tmp;
-
-	pile = stack->pile_a;
-	pile_tmp = new_dll_c();
-	set_index_sort_algo(pile, pile_tmp);
-
-	is_abab(pile, stack);
-	(is_bigest_start(pile, stack) || is_lowest_start(pile, stack));
-	destroy_dll_c(&pile_tmp);
-}
+//void a_4(t_stack stack)
+//{
+//	//	int median;
+//	t_dll_c pile;
+//
+//	pile = stack->pile_a;
+//	set_index_sort_algo(pile);
+//
+//	is_abab(pile, stack);
+//	(is_bigest_start(pile, stack) || is_lowest_start(pile, stack));
+//}
 
 void b_3(t_stack stack)
 {
-//	int a;
-//	int b;
-//	t_dll_c pile_a;
-//	t_dll_c pile_b;
+	//	int a;
+	//	int b;
+	//	t_dll_c pile_a;
+	//	t_dll_c pile_b;
 
-//	do_instruct("pa", stack);
-//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
 	need_swap(stack);
-//	if ()
+	//	if ()
 
 }
+
+
+
+

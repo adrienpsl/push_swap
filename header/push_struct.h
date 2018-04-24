@@ -16,6 +16,12 @@ typedef struct		s_browse
 	size_t		quick_count;
 } 					t_browse;
 
+
+typedef struct		s_quick
+{
+	int 	quick;
+	int 	counter_quick;
+} 					*t_quick;
 /*
 **    structure
 */
@@ -38,6 +44,7 @@ typedef struct		s_stack
 	int count;
 	size_t nb_already_sorted;
 	t_browse browse;
+	t_quick  quick;
 
 } 					*t_stack;
 
@@ -47,12 +54,7 @@ typedef struct		s_data
 	int		nb;
 	int 	quick;
 	int 	short_;
+	char 	n;
 } 					*t_data;
-
-// le bug de la median c'est pas normal
-// je remet de l'order
-// je m'occupe de browse
-
-
 
 #endif

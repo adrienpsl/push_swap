@@ -12,7 +12,7 @@
 
 #include "../../header/all_includes.h"
 
-void is_ordered(t_dll_c c_list)
+int is_ordered(t_dll_c c_list, size_t lenght)
 {
 	size_t i;
 	t_dll_l link;
@@ -21,18 +21,15 @@ void is_ordered(t_dll_c c_list)
 	i = 1;
 	link = c_list->top;
 	next = link->next;
-	while (i < c_list->length)
+	while (i < lenght)
 	{
 		if (dll_l_get_int(link) >= dll_l_get_int(next))
-		{
-			ft_putstr_fd("KO",2);
-			exit(42);
-		}
+			return (FALSE);
 		link = next;
 		next = link->next;
 		++i;
 	}
-	ft_putstr("ok \n");
+	return (TRUE);
 }
 
 void do_intructions(t_argv argv, t_stack stack)

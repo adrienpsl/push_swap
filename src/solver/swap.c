@@ -21,7 +21,7 @@ void need_swap_a(t_stack stack)
 	pile = stack->pile_a;
 	a = dll_l_get_int(pile->top);
 	b = dll_l_get_int(pile->top->next);
-	if (a > b)
+	if (a - b == +1)
 	{
 		do_instruct("sa", stack);
 	}
@@ -36,7 +36,7 @@ void need_swap_b(t_stack stack)
 	pile = stack->pile_b;
 	a = dll_l_get_int(pile->top);
 	b = dll_l_get_int(pile->top->next);
-	if (a < b)
+	if (a - b == -1)
 	{
 		do_instruct("sb", stack);
 	}

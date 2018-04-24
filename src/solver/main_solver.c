@@ -45,22 +45,24 @@ void first_passage_a(t_stack stack)
 {
 	t_dll_c pile;
 	int median;
+	size_t four_remaining;
 
 	pile = stack->pile_a;
+	four_remaining = pile->length - 4;
 	median = get_med(pile, pile->length);
+
 
 	while (pile->length > 4)
 	{
 		set_brower(median, stack->pile_a->length, DEVANT_DERRIERE, stack);
 		stack->browse.pile = PILE_A;
 		stack->browse.stop = 4;
-		browse_pile(stack, &stack->browse);
-		//		browse_pile_a(stack, median, stack->pile_a->length, DEVANT_DERRIERE);
-		//		print_stack(stack);
+		browse_pile_a(stack, &stack->browse, four_remaining);
 		median = get_med(pile, pile->length);
+		print_stack(stack);
 	}
+	sort_4(stack);
 	print_stack(stack);
-	a_4(stack);
 }
 
 void reset_quick(t_dll_c pile)
@@ -105,7 +107,7 @@ void quick_is_4(t_stack stack, int *quick, int *counter_quick)
 
 		if (*counter_quick == 4)
 		{
-			r(4,stack);
+			r(4, stack);
 			b_4(stack);
 		}
 		quick_quick(quick, counter_quick, stack);
@@ -113,41 +115,13 @@ void quick_is_4(t_stack stack, int *quick, int *counter_quick)
 	reset_quick(stack->pile_a);
 }
 
+
+
 void manage_b(t_stack stack)
 {
-	int quick;
-	int counter_quick;
-	int med;
-	int retour;
+	t_quick quick;
 
-	quick_quick(&quick, &counter_quick, stack);
-	if (counter_quick == 4)
-		quick_is_4(stack, &quick, &counter_quick);
-
-//	print_stack(stack);
-
-	med = get_med(stack->pile_b, counter_quick);
-
-
-	set_brower(med, counter_quick, FALSE, stack);
-	stack->browse.pile = PILE_B;
-
-	//	if (counter_quick > 4)
-	//	{
-	//		set_brower()
-	ft_printf("8888888 \n");
-	print_stack(stack);
-	retour = browse_pile(stack, &stack->browse);
-	quick_quick(&quick, &counter_quick, stack);
-	print_stack(stack);
-
-	a_4(stack);
-//	r(retour, stack);
-
-	ft_printf(" --- %d %d %d\n", quick, counter_quick, med);
-//	b_3(stack);
-	print_stack(stack);
-	//	}
+	quick = stack->quick;
 }
 
 int main(int ac, char **av)
@@ -158,13 +132,15 @@ int main(int ac, char **av)
 	argv = new_argv(ac, av);
 	stack = get_stack_filled(argv);
 	build_lst_a_index(stack->pile_a);
-	print_quick(stack->pile_a);
+	//	print_quick(stack->pile_a);
 
 	first_passage_a(stack);
 	manage_b(stack);
-	//	b_4(stack);
+	//	print_stack(stack);
+	//	sort_4(stack);
+	//	stack->browse.pile = PILE_A;
 
-
+	ft_printf("%d \n", 5 % 2);
 
 	//	print_stack(stack);
 	ft_printf("%d \n", stack->count);

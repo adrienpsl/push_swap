@@ -40,7 +40,8 @@ int get_quick(t_dll_l link)
 
 void set_quick(int quick, t_dll_l link)
 {
-	((t_data) link->content)->quick = quick;
+	if (((t_data) link->content)->quick == 0)
+		((t_data) link->content)->quick = quick;
 }
 
 void set_quick_1(int quick, t_dll_l link)

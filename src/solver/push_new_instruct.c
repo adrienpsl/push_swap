@@ -26,7 +26,7 @@ char *m_inst(char instruct, t_stack stack, int option)
 	char *instr;
 	instr = stack->instruct;
 	instr[0] = instruct;
-	if (instruct == 'p' || option == FORCE_OP)
+	if ((instruct == 'p' || option == FORCE_OP) && option != NO_OP)
 		instr[1] = stack->browse.pile == PILE_A ? 'b' : 'a';
 	else
 		instr[1] = stack->browse.pile == PILE_A ? 'a' : 'b';
