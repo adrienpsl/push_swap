@@ -136,13 +136,13 @@ int main(int ac, char **av)
 
 	first_passage_a(stack);
 	manage_b(stack);
-	//	print_stack(stack);
-	//	sort_4(stack);
-	//	stack->browse.pile = PILE_A;
 
-	ft_printf("%d \n", 5 % 2);
+	stack->browse.pile = PILE_B;
+	sort_3_front(stack);
 
-	//	print_stack(stack);
+	sort_4(stack);
+
+	print_stack(stack);
 	ft_printf("%d \n", stack->count);
 	destroy_stack(&stack);
 	destroy_argv(&argv);

@@ -38,6 +38,18 @@ void browse_pile_a(t_stack stack, t_browse *browse, size_t remaining);
 */
 char *m_inst(char instruct, t_stack stack, int option);
 
+
+
+/*
+**    short 3
+*/
+void sort_3_front(t_stack stack);
+
+/*
+**    all short
+*/
+void set_index_sort_algo(t_dll_c pile_1, size_t size);
+
 /*
 **    short_4
 */

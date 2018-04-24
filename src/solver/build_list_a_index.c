@@ -49,8 +49,8 @@ int *get_fill_tab(t_dll_c list, size_t length)
 
 	link = list->top;
 	lim = 0;
-	tab = ft_malloc_protect(length);
-	ft_memset(tab, 0, sizeof(int) * length);
+	tab = ft_malloc_protect(sizeof(int) * length);
+	ft_memset(tab, 0, sizeof(int) * (length));
 	while (lim < length)
 	{
 		tab[lim] = dll_l_get_int(link);
@@ -66,9 +66,10 @@ int get_med(t_dll_c c_list, int length)
 	int *tab;
 
 	tab = get_fill_tab(c_list, length);
-	ft_quick_sort(tab, 0, length);
+	ft_quick_sort(tab, 0, length - 1);
 
 	a = tab[length / 2];
+	free(tab);
 	return (a);
 }
 
@@ -80,13 +81,7 @@ void build_lst_a_index(t_dll_c c_list)
 	int *tab;
 
 	tab = get_fill_tab(c_list, c_list->length);
-
-	debug_print_tab_nb(tab, c_list->length);
 	ft_quick_sort(tab, 0, c_list->length - 1);
-	debug_print_tab_nb(tab, c_list->length);
-
 	set_index(c_list, tab);
-	dll_c_print_lst(c_list);
-
 	free(tab);
 }
