@@ -10,27 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../../header/all_includes.h"
 
-void do_ab(t_stack stack)
-{
-	do_instruct(m_inst('r', stack, FALSE), stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
-	need_swap(stack);
-	do_instruct(m_inst('p', stack, NO_OP), stack);
-	do_instruct(m_inst('p', stack, NO_OP), stack);
-	do_instruct(stack->browse.pile == PILE_A ? "rra" : "rrb", stack);
-	do_instruct(stack->browse.pile == PILE_A ? "rra" : "rrb", stack);
-}
-
-void is_abab(t_stack stack)
-{
-	do_instruct(m_inst('r', stack, FALSE), stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
-	do_ab(stack);
-}
-
-void set_index_sort_algo(t_dll_c pile_1, size_t size)
+static void set_index(t_dll_c pile_1, size_t size)
 {
 	t_dll_l link_p1;
 	t_dll_l link_p2;
@@ -69,19 +51,11 @@ void sort_4(t_stack stack)
 	char tab[5];
 
 	ft_memset(tab, 0, sizeof(char) * 5);
-	pile = stack->browse.pile == PILE_A ? stack->pile_a : stack->pile_b;
-	set_index_sort_algo(pile, 4);
+	pile = stack->current_pile == 'A' ? stack->pile_a : stack->pile_b;
+	set_index(pile, 4);
 	set_tab_ab(pile, tab);
-	if (tab[0] == 'a' && tab[1] == 'a')
-		is_aabb(stack);
-	else if (tab[0] == 'b' && tab[1] == 'b')
-		is_bbaa(stack);
-	else if (ft_strcmp(tab, "abab") == FALSE)
-		is_abab(stack);
-	else if (ft_strcmp(tab, "abba") == FALSE)
-		is_abba(stack);
-	else if (ft_strcmp(tab, "baba") == FALSE)
-		is_baba(stack);
-	else if (ft_strcmp(tab, "baab") == FALSE)
-		is_baab(stack);
+	if (stack->current_pile == 'A')
+		sort_4_top_a(tab, stack);
+	else
+		sort_4_top_b(tab, stack);
 }

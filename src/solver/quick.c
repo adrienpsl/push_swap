@@ -38,13 +38,20 @@ int get_quick(t_dll_l link)
 	return (((t_data) link->content)->quick);
 }
 
-void set_quick(int quick, t_dll_l link)
+void set_quick(t_stack stack)
 {
+	t_dll_l link;
+
+	link = stack->current_pile == 'A' ? stack->pile_a->top : stack->pile_b->top;
 	if (((t_data) link->content)->quick == 0)
-		((t_data) link->content)->quick = quick;
+		((t_data) link->content)->quick = stack->browse.quick_count;
 }
 
-void set_quick_1(int quick, t_dll_l link)
+void set_quick_1(t_stack stack)
 {
-	((t_data) link->content)->quick = quick + 1;
+	t_dll_l link;
+
+	link = stack->current_pile == 'A' ? stack->pile_a->top : stack->pile_b->top;
+	if (((t_data) link->content)->quick == 0)
+		((t_data) link->content)->quick = stack->browse.quick_count + 1;
 }

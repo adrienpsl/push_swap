@@ -51,11 +51,10 @@ void first_passage_a(t_stack stack)
 	four_remaining = pile->length - 4;
 	median = get_med(pile, pile->length);
 
-
 	while (pile->length > 4)
 	{
 		set_brower(median, stack->pile_a->length, DEVANT_DERRIERE, stack);
-		stack->browse.pile = PILE_A;
+		set_stack('A', stack);
 		stack->browse.stop = 4;
 		browse_pile_a(stack, &stack->browse, four_remaining);
 		median = get_med(pile, pile->length);
@@ -74,7 +73,7 @@ void reset_quick(t_dll_c pile)
 	link = pile->top;
 	while (size > 0)
 	{
-		set_quick(0, link);
+		//		set_quick(0, link);
 		link = link->next;
 		size--;
 	}
@@ -115,8 +114,6 @@ void quick_is_4(t_stack stack, int *quick, int *counter_quick)
 	reset_quick(stack->pile_a);
 }
 
-
-
 void manage_b(t_stack stack)
 {
 	t_quick quick;
@@ -134,14 +131,29 @@ int main(int ac, char **av)
 	build_lst_a_index(stack->pile_a);
 	//	print_quick(stack->pile_a);
 
-	first_passage_a(stack);
-	manage_b(stack);
+	//	first_passage_a(stack);
+	//	manage_b(stack);
+	//
+	//	stack->browse.pile = PILE_B;
+	//	sort_3_front_b(stack);
+	//
+	do_instruct("pb", stack);
+	do_instruct("pb", stack);
+	do_instruct("pb", stack);
+	do_instruct("pb", stack);
+	do_instruct("pb", stack);
+	do_instruct("rb", stack);
+//
+	set_stack('B', stack);
 
-	stack->browse.pile = PILE_B;
-	sort_3_front(stack);
+//	set_stack('A', stack);
+
+	print_stack(stack);
+	ft_printf("%d \n", stack->count);
 
 	sort_4(stack);
 
+//	print_stack(stack);
 	print_stack(stack);
 	ft_printf("%d \n", stack->count);
 	destroy_stack(&stack);

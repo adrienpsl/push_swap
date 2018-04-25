@@ -10,40 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../../header/all_includes.h"
 
-void set_stack(char name_pile, t_stack stack)
+void abab_sort4top_a(t_stack stack)
 {
-	stack->current_pile = name_pile == 'A' ? 'A' : 'B';
-	stack->currrent_pile_dll =
-	 name_pile == 'A' ? stack->pile_a : stack->pile_b;
+	do_inst('p', NO, stack);
+	do_inst('s', NO, stack);
+	if (is_ordered_link(stack->pile_a->top->next, 2))
+	{
+		do_inst('p', YES, stack);
+		need_swap(stack);
+	}
+	else
+	{
+		do_inst('p', NO, stack);
+		need_swap(stack);
+		do_inst('p', YES, stack);
+		do_inst('p', YES, stack);
+	}
 }
 
-void destroy_stack(t_stack *s)
+void baab_sort4top_a(t_stack stack)
 {
-	t_stack stack;
-
-	stack = *s;
-	if (stack->pile_a)
-		destroy_dll_c(&stack->pile_a);
-	if (stack->pile_b)
-		destroy_dll_c(&stack->pile_b);
-	if (stack->instruction)
-		destroy_sll(&stack->instruction);
-	if (stack->temp_instuct)
-		destroy_dll_c(&stack->temp_instuct);
-	free(stack);
-	*s = NULL;
+	do_inst('s', NO, stack);
+	abab_sort4top_a(stack);
 }
 
-t_stack new_stack()
+// optimisation si les deux b sont ok
+static void end_1(t_stack stack)
 {
-	t_stack stack;
+	do_inst('s', NO, stack);
+	do_inst('p', NO, stack);
+	do_inst('a', NO, stack);
+	need_swap(stack);
+	do_inst('p', YES, stack);
+	do_inst('p', YES, stack);
+}
+void abba_sort4top_a(t_stack stack)
+{
+	do_inst('p', NO, stack);
+	do_inst('r', NO, stack);
+	end_1(stack);
+}
 
-	stack = (t_stack) ft_malloc_protect(sizeof(struct s_stack));
-	ft_memset(stack, 0, sizeof(struct s_stack));
-	stack->instruction = new_sll();
-	stack->pile_a = NULL;
-	stack->pile_b = new_dll_c();
-	return (stack);
+void baba_sort4top_a(t_stack stack)
+{
+	do_inst('r', NO, stack);
+	do_inst('p', NO, stack);
+	end_1(stack);
 }

@@ -50,10 +50,15 @@ void print_stack(t_stack stack)
 	ft_printf("\n\n------------------------------------------- \n");
 
 	// printe les lists
+	ft_printf("A :");
 	dll_c_print_lst(stack->pile_a);
+	ft_printf("   ");
 	print_quick(stack->pile_a);
 	ft_printf(" \n");
+
+	ft_printf("B :");
 	dll_c_print_lst(stack->pile_b);
+	ft_printf("   ");
 	print_quick(stack->pile_b);
 		printf(" \n");;
 };

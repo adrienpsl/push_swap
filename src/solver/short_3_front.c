@@ -45,32 +45,32 @@ void static set_tab_ab(t_dll_c pile, char tab[])
 	tab[2] = ((t_data) pile->top->next->next->content)->n;
 }
 
-void     is_abb(t_stack stack)
+void is_abb(t_stack stack)
 {
-	do_instruct(m_inst('r', stack, FALSE), stack);
+	do_inst('r', NO, stack);
 	need_swap(stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
+	do_inst('p', NO, stack);
+	do_inst('p', NO, stack);
 	do_instruct(stack->browse.pile == PILE_A ? "rra" : "rrb", stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
+	do_inst('p', NO, stack);
 }
 
-void     is_bab(t_stack stack)
+void is_bab(t_stack stack)
 {
-	do_instruct(m_inst('p', stack, FALSE), stack);
-	do_instruct(m_inst('r', stack, FALSE), stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
+	do_inst('p', NO, stack);
+	do_inst('r', NO, stack);
+	do_inst('p', NO, stack);
 	need_swap(stack);
-	do_instruct(stack->browse.pile == PILE_A ? "rra" : "rrb", stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
+	do_inst('a', NO, stack);
+	do_inst('p', NO, stack);
 }
 
-void     is_bba(t_stack stack)
+void is_bba(t_stack stack)
 {
-	do_instruct(m_inst('p', stack, FALSE), stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
+	do_inst('p', NO, stack);
+	do_inst('p', NO, stack);
 	need_swap(stack);
-	do_instruct(m_inst('p', stack, FALSE), stack);
+	do_inst('p', NO, stack);
 }
 
 void sort_3_front_b(t_stack stack)
@@ -82,7 +82,7 @@ void sort_3_front_b(t_stack stack)
 	pile = stack->browse.pile == PILE_A ? stack->pile_a : stack->pile_b;
 	set_index_sort_algo2(pile, 3);
 	set_tab_ab(pile, tab);
-	ft_printf("%s \n",tab);
+	ft_printf("%s \n", tab);
 	if (ft_strcmp(tab, "abb") == FALSE)
 		is_abb(stack);
 	else if (ft_strcmp(tab, "bab") == FALSE)

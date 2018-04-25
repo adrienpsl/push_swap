@@ -36,24 +36,26 @@ void browse_pile_a(t_stack stack, t_browse *browse, size_t remaining);
 /*
 **    namage instruc
 */
-char *m_inst(char instruct, t_stack stack, int option);
-void do_inst(char *raw_instruction, int option, t_stack stack);
+void do_inst(char raw_instruction, int option, t_stack stack);
 
 
 /*
 **    short 3
 */
-void sort_3_front(t_stack stack);
+void sort_3_front_b(t_stack stack);
 
 /*
 **    all short
 */
 void set_index_sort_algo(t_dll_c pile_1, size_t size);
+void do_ab_front_a(t_stack stack);
+void sort_4_a(char *tab, t_stack stack);
+void sort_top_4_b(char *tab, t_stack stack);
 
 /*
 **    short_4
 */
-void sort_4_(t_stack stack);
+void sort_4(t_stack stack);
 void do_ab(t_stack stack);
 void is_abab(t_stack stack);
 void is_abba(t_stack stack);
@@ -73,15 +75,36 @@ void to_4(t_stack stack);
 **    quick
 */
 int get_quick(t_dll_l link);
-void set_quick(int quick, t_dll_l link);
-void set_quick_1(int quick, t_dll_l link);
+void set_quick(t_stack stack);
+void set_quick_1(t_stack stack);
 long count_quick(int quick_searched, t_dll_c pile, int sens);
 
 int is_ordered(t_dll_c c_list, size_t lenght);
+int is_ordered_link(t_dll_l link, size_t lenght);
+
+
+
+void sort_4(t_stack stack);
 
 /*
-**    short
+**    short 4 top a
 */
+void sort_4_top_a(char *tab, t_stack stack);
+void abab_sort4top_a(t_stack stack);
+void baab_sort4top_a(t_stack stack);
+void abba_sort4top_a(t_stack stack);
+void baba_sort4top_a(t_stack stack);
+
+/*
+**    short 4 top b
+*/
+void sort_4_top_b(char *tab, t_stack stack);
+void abab_sort4top_b(t_stack stack);
+void baab_sort4top_b(t_stack stack);
+void abba_sort4top_b(t_stack stack);
+void baba_sort4top_b(t_stack stack);
+
+
 void a_4(t_stack stack);
 void b_4(t_stack stack);
 void b_3(t_stack stack);
@@ -98,6 +121,7 @@ int is_action(char *str);
 /*
 **    method stack
 */
+void set_stack(char name_pile, t_stack stack);
 void destroy_stack(t_stack *s);
 t_stack new_stack();
 t_stack get_stack_filled(t_argv argv);

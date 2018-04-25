@@ -16,20 +16,14 @@ void devant_derriere(int nb, int max, t_stack stack)
 {
 	if (nb >= max)
 	{
-		set_quick_1(stack->browse.quick_count, stack->browse.pile == LIST_A ?
-											   stack->pile_a->top
-																			: stack->pile_b->top);
-		do_instruct(m_inst('p', stack, FALSE), stack);
+		set_quick_1(stack);
+		do_inst('p', NO, stack);
 	}
-
-		// quand il y a juste un nb au debut je fais un mouv pour rien
 	else
 	{
-		set_quick(stack->browse.quick_count, stack->browse.pile == LIST_A ?
-											 stack->pile_a->top
-																		  : stack->pile_b->top);
-		do_instruct(m_inst('p', stack, FALSE), stack);
-		do_instruct(m_inst('r', stack, FORCE_OP), stack);
+		set_quick(stack);
+		do_inst('p', NO, stack);
+		do_inst('r', YES, stack);
 	}
 }
 
@@ -64,25 +58,23 @@ void get_median_push(t_dll_c pile, t_browse *browse)
 static void browse_push(t_browse *browse, t_stack stack, int top_pile, int med)
 {
 
-//	if (1)
-//	{
-//		set_quick(stack->browse.quick_count, stack->browse.pile == LIST_A ?
-//											 stack->pile_a->top
-//																		  : stack->pile_b->top);
-//		do_instruct(m_inst('p', stack, FALSE), stack);
-//	}
-//
-//	else {
-		if (browse->option == DEVANT_DERRIERE)
-			devant_derriere(top_pile, med, stack);
-		else
-		{
-			set_quick(stack->browse.quick_count, stack->browse.pile == LIST_A ?
-												 stack->pile_a->top
-																			  : stack->pile_b->top);
-			do_instruct(m_inst('p', stack, FALSE), stack);
-		}
-//	}
+	//	if (1)
+	//	{
+	//		set_quick(stack->browse.quick_count, stack->browse.pile == LIST_A ?
+	//											 stack->pile_a->top
+	//																		  : stack->pile_b->top);
+	//		do_instruct(m_inst('p', stack, FALSE), stack);
+	//	}
+	//
+	//	else {
+	if (browse->option == DEVANT_DERRIERE)
+		devant_derriere(top_pile, med, stack);
+	else
+	{
+		set_quick(stack);
+		do_inst('p', NO, stack);
+	}
+	//	}
 
 }
 
@@ -95,7 +87,7 @@ int browse_pile(t_stack stack, t_browse *browse)
 
 	retour = 0;
 	lim = browse->lim;
-	pile = browse->pile == PILE_A ? stack->pile_a : stack->pile_b;
+	pile = stack->currrent_pile_dll;
 	get_median_push(pile, browse);
 	while (lim > 0)
 	{
@@ -105,7 +97,7 @@ int browse_pile(t_stack stack, t_browse *browse)
 			browse_push(browse, stack, top_pile, browse->median_push);
 		else
 		{
-			do_instruct(m_inst('r', stack, FALSE), stack);
+			do_inst('r', NO, stack);
 			retour++;
 		}
 		lim -= 1;
@@ -126,22 +118,21 @@ browse_pile_a(t_stack stack, t_browse *browse, size_t four_remaining)
 	size_t lim;
 
 	lim = browse->lim;
-	pile = browse->pile == PILE_A ? stack->pile_a : stack->pile_b;
+	pile = stack->currrent_pile_dll;
 	get_median_push(pile, browse);
 	if ((lim / 2) / 2 % 2 && lim > 6)
 		browse->median_push--;
 	while (lim > 0)
 	{
 		top_pile = dll_l_get_int(pile->top);
-		if ((browse->pile == PILE_A && top_pile < browse->med) &&
+		if (top_pile < browse->med &&
 			top_pile < four_remaining)
 			browse_push(browse, stack, top_pile, browse->median_push);
 		else
-			do_instruct(m_inst('r', stack, FALSE), stack);
+			do_inst('r', NO, stack);
 		lim -= 1;
 		if (pile->length == browse->stop)
 			break;
-		//		print_stack(stack);
 		//		ft_printf("%d \n", stack->count);
 	}
 	browse->quick_count += 2;

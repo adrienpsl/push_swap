@@ -32,6 +32,24 @@ int is_ordered(t_dll_c c_list, size_t lenght)
 	return (TRUE);
 }
 
+int is_ordered_link(t_dll_l link, size_t lenght)
+{
+	size_t i;
+	t_dll_l next;
+
+	i = 1;
+	next = link->next;
+	while (i < lenght)
+	{
+		if (dll_l_get_int(link) >= dll_l_get_int(next))
+			return (FALSE);
+		link = next;
+		next = link->next;
+		++i;
+	}
+	return (TRUE);
+}
+
 void do_intructions(t_argv argv, t_stack stack)
 {
 	char *instruct;

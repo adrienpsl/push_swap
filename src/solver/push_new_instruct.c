@@ -48,25 +48,26 @@ manage_instruction(char instruction, int op, t_stack stack, char tab_ins[])
 	tab_ins[0] = instruction;
 	if (instruction == 'p' && op == NO)
 		tab_ins[1] = stack->current_pile == 'A' ? 'b' : 'a';
+	else if (instruction == 'p' && op == YES)
+		tab_ins[1] = stack->current_pile == 'A' ? 'a' : 'b';
 	else if (instruction == 'a')
 	{
 		tab_ins[0] = 'r';
 		tab_ins[1] = 'r';
-		tab_ins[2] = stack->current_pile == 'A' ? 'a' : 'b';
+		tab_ins[2] = stack->current_pile == 'A' && op == NO ? 'a' : 'b';
 	}
 	else
-		tab_ins[1] = stack->current_pile == 'A'? 'a' : 'b';
+		tab_ins[1] = stack->current_pile == 'A' && op == NO ? 'a' : 'b';
 	return (tab_ins);
 }
 
-void do_inst(char *raw_instruction, int option, t_stack stack)
+void do_inst(char raw_instruction, int option, t_stack stack)
 {
 	char instruction[4];
 
 	ft_memset(instruction, 0, sizeof(char) * 4);
 	manage_instruction(raw_instruction, option, stack, instruction);
-	check_and_apply_instruct(instruction, stack);
-
+	do_instruct(instruction, stack);
 }
 void do_the_ops_pileb(t_stack stack, long nb_operations)
 {

@@ -30,8 +30,10 @@ typedef struct		s_stack
 	t_dll_c pile_a;
 	t_dll_c pile_b;
 
-	char 	instruct[4];
 	char	current_pile;
+	t_dll_c currrent_pile_dll;
+
+	char 	instruct[4];
 	t_sll instruction;
 	t_dll_c temp_instuct;
 	int count;
