@@ -42,7 +42,9 @@ void do_inst(char raw_instruction, int option, t_stack stack);
 /*
 **    short 3
 */
+void sort_3_top(t_stack stack);
 void sort_3_front_b(t_stack stack);
+void sort_3_end(t_stack stack);
 
 /*
 **    all short
@@ -51,6 +53,13 @@ void set_index_sort_algo(t_dll_c pile_1, size_t size);
 void do_ab_front_a(t_stack stack);
 void sort_4_a(char *tab, t_stack stack);
 void sort_top_4_b(char *tab, t_stack stack);
+
+
+void sort_4_end(t_stack stack);
+void sort_4_top(t_stack stack);
+
+
+void sort_4_end_a(t_stack stack);
 
 /*
 **    short_4
@@ -64,20 +73,36 @@ void is_aabb(t_stack stack);
 void is_baba(t_stack stack);
 void is_baab(t_stack stack);
 
+
+void browser_inverse(t_stack stack, size_t med, size_t lim, int need_quick);
 /*
 **    method commun
 */
 void check_and_apply_instruct(char *str, t_stack stack);
 
-void to_4(t_stack stack);
 
+void browser(t_stack stack, size_t med, size_t lim, int need_quick);
+void browser_reverse(t_stack stack, size_t med, size_t lim, int need_quick);
+//void browser_quick(t_stack stack, size_t med, size_t lim, int need_quick);
+
+void to_4(t_stack stack);
+void get_med_quick(t_stack stack);
 /*
 **    quick
 */
+int reset_quick(t_stack stack);
 int get_quick(t_dll_l link);
 void set_quick(t_stack stack);
 void set_quick_1(t_stack stack);
-long count_quick(int quick_searched, t_dll_c pile, int sens);
+long count_quick(t_stack stack);
+void placed_quick(t_dll_l link, size_t lim);
+void update_quick(t_stack stack);
+
+void sort_2_top(t_stack stack);
+void sort_2_end(t_stack stack);
+
+void quick_get_good_pile(t_stack stack);
+void placed_quick_by_sort(t_stack stack);
 
 int is_ordered(t_dll_c c_list, size_t lenght);
 int is_ordered_link(t_dll_l link, size_t lenght);
@@ -85,7 +110,7 @@ int is_ordered_link(t_dll_l link, size_t lenght);
 
 
 void sort_4(t_stack stack);
-
+void get_med_quick_rev(t_stack stack);
 /*
 **    short 4 top a
 */

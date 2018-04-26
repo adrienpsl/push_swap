@@ -58,60 +58,8 @@ void first_passage_a(t_stack stack)
 		stack->browse.stop = 4;
 		browse_pile_a(stack, &stack->browse, four_remaining);
 		median = get_med(pile, pile->length);
-		print_stack(stack);
 	}
 	sort_4(stack);
-	print_stack(stack);
-}
-
-void reset_quick(t_dll_c pile)
-{
-	size_t size;
-	t_dll_l link;
-
-	size = pile->length;
-	link = pile->top;
-	while (size > 0)
-	{
-		//		set_quick(0, link);
-		link = link->next;
-		size--;
-	}
-}
-
-void quick_quick(int *quick, int *counter_quick, t_stack stack)
-{
-	*quick = get_quick(stack->pile_b->top);
-	*counter_quick = count_quick(*quick, stack->pile_b, TOP_PUSH);
-}
-
-void r(int a, t_stack stack)
-{
-	while (a > 0)
-	{
-		do_instruct("rrb", stack);
-		a--;
-	}
-}
-
-void quick_is_4(t_stack stack, int *quick, int *counter_quick)
-{
-
-	quick_quick(quick, counter_quick, stack);
-	while (*counter_quick == 4)
-	{
-		if (*counter_quick == 4)
-			b_4(stack);
-		*counter_quick = count_quick(*quick, stack->pile_b, END_PUSH);
-
-		if (*counter_quick == 4)
-		{
-			r(4, stack);
-			b_4(stack);
-		}
-		quick_quick(quick, counter_quick, stack);
-	}
-	reset_quick(stack->pile_a);
 }
 
 void manage_b(t_stack stack)
@@ -119,6 +67,79 @@ void manage_b(t_stack stack)
 	t_quick quick;
 
 	quick = stack->quick;
+}
+
+void is44(t_stack stack)
+{
+	stack->quick.sens == 'T' ?
+	sort_4_top(stack) :
+	sort_4_end(stack);
+}
+
+void is33(t_stack stack)
+{
+	stack->quick.sens == 'T' ?
+	sort_3_top(stack) :
+	sort_3_end(stack);
+}
+
+void is22(t_stack stack)
+{
+	stack->quick.sens == 'T' ?
+	sort_2_top(stack) :
+	sort_2_end(stack);
+}
+
+void test(t_stack stack)
+{
+	t_quick *quick;
+
+	quick = &stack->quick;
+	update_quick(stack);
+
+	while (quick->counter_quick < 5)
+	{
+		if (quick->counter_quick == 4)
+			is44(stack);
+		else if (quick->counter_quick == 3)
+			is33(stack);
+		else if (quick->counter_quick == 2)
+			is22(stack);
+//		print_stack(stack);
+		placed_quick_by_sort(stack);
+		update_quick(stack);
+	}
+}
+
+void test_2(t_stack stack)
+{
+	get_med_quick(stack);
+	browser_inverse(stack, stack->browse.med, stack->quick.counter_quick, TRUE);
+}
+
+void test_2_rev(t_stack stack)
+{
+	get_med_quick_rev(stack);
+	browser_reverse(stack, stack->browse.med, stack->quick.counter_quick, TRUE);
+}
+
+
+void ultra(t_stack stack)
+{
+	t_quick *quick;
+
+	quick = &stack->quick;
+	// get la ou il y a le plus grand
+	update_quick(stack);
+	while (quick->counter_quick > 4)
+	{
+		quick->sens == 'T' ?
+		test_2(stack) :
+		test_2_rev(stack);
+		update_quick(stack);
+		print_stack(stack);
+	}
+	test(stack);
 }
 
 int main(int ac, char **av)
@@ -129,6 +150,39 @@ int main(int ac, char **av)
 	argv = new_argv(ac, av);
 	stack = get_stack_filled(argv);
 	build_lst_a_index(stack->pile_a);
+
+	first_passage_a(stack);
+
+
+//	test(stack);
+//	print_stack(stack);
+//	test_2(stack);
+//
+//	test(stack);
+//
+//	get_med_quick_rev(stack);
+//	browser_reverse(stack, stack->browse.med, stack->quick.counter_quick,
+//					TRUE);
+//	test(stack);
+//	print_stack(stack);
+//
+//	ultra(stack);
+//	print_stack(stack);
+//
+//	ft_printf("=====================================\n===================================== \n");
+
+
+	while (stack->pile_b->length > 6)
+	{
+		ultra(stack);
+		print_stack(stack);
+	}
+
+
+
+
+
+
 	//	print_quick(stack->pile_a);
 
 	//	first_passage_a(stack);
@@ -137,25 +191,47 @@ int main(int ac, char **av)
 	//	stack->browse.pile = PILE_B;
 	//	sort_3_front_b(stack);
 	//
-	do_instruct("pb", stack);
-	do_instruct("pb", stack);
-	do_instruct("pb", stack);
-	do_instruct("pb", stack);
-	do_instruct("pb", stack);
-	do_instruct("rb", stack);
-//
-	set_stack('B', stack);
+	//	do_instruct("ra", stack);
+	//	do_instruct("ra", stack);
+	//	do_instruct("ra", stack);
+	//	do_instruct("ra", stack);
+	//
+	//	do_instruct("ra", stack);
+	//	do_instruct("pb", stack);
+	//	do_instruct("pb", stack);
+	//	do_instruct("pb", stack);
+	//	do_instruct("pb", stack);
+	//		do_instruct("pb", stack);
+	//	do_instruct("pb", stack);
+	//	do_instruct("pb", stack);
+	//	do_instruct("pb", stack);
+	//
+	//	set_stack('B', stack);
+	//	set_stack('A', stack);
+	//	print_stack(stack);
+	//	sort_3_top(stack);
+	//
+	//	print_stack(stack);
 
-//	set_stack('A', stack);
+	//	sort_4_top(stack);
 
-	print_stack(stack);
+	//	print_stack(stack);
+	//	sort_4_end(stack);
+
+
+	//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
+	//	do_instruct("pa", stack);
+
+
+
 	ft_printf("%d \n", stack->count);
 
-	sort_4(stack);
-
-//	print_stack(stack);
-	print_stack(stack);
-	ft_printf("%d \n", stack->count);
 	destroy_stack(&stack);
 	destroy_argv(&argv);
 	return (EXIT_SUCCESS);

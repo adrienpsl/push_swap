@@ -10,41 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../../header/all_includes.h"
 
-void set_stack(char name_pile, t_stack stack)
+void sort_2_top(t_stack stack)
 {
-	stack->current_pile = name_pile == 'A' ? 'A' : 'B';
-	stack->currrent_pile_dll =
-	 name_pile == 'A' ? stack->pile_a : stack->pile_b;
+	do_inst('p', NO, stack);
+	do_inst('p', NO, stack);
+	need_swap(stack);
 }
 
-void destroy_stack(t_stack *s)
+void sort_2_end(t_stack stack)
 {
-	t_stack stack;
-
-	stack = *s;
-	if (stack->pile_a)
-		destroy_dll_c(&stack->pile_a);
-	if (stack->pile_b)
-		destroy_dll_c(&stack->pile_b);
-	if (stack->instruction)
-		destroy_sll(&stack->instruction);
-	if (stack->temp_instuct)
-		destroy_dll_c(&stack->temp_instuct);
-	free(stack);
-	*s = NULL;
-}
-
-t_stack new_stack()
-{
-	t_stack stack;
-
-	stack = (t_stack) ft_malloc_protect(sizeof(struct s_stack));
-	ft_memset(stack, 0, sizeof(struct s_stack));
-	stack->instruction = new_sll();
-	stack->pile_a = NULL;
-	stack->pile_b = new_dll_c();
-	stack->browse.quick_count = 1;
-	return (stack);
+	do_inst('a', NO, stack);
+	do_inst('a', NO, stack);
+	sort_2_top(stack);
 }

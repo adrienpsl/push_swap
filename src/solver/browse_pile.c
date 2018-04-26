@@ -12,6 +12,31 @@
 
 #include "../../header/all_includes.h"
 
+void get_med_quick(t_stack stack)
+{
+	stack->browse.med = get_med(stack->currrent_pile_dll,
+								stack->quick.counter_quick);
+}
+
+void get_med_quick_rev(t_stack stack)
+{
+	t_dll_c pile;
+	int i;
+
+	pile = new_dll_c();
+	pile->top = stack->currrent_pile_dll->top;
+	pile->length = stack->quick.counter_quick;;
+
+	i = stack->quick.counter_quick;
+	while (i)
+	{
+		pile->top = pile->top->prev;
+		--i;
+	}
+	stack->browse.med = get_med(pile,
+								stack->quick.counter_quick);
+}
+
 void devant_derriere(int nb, int max, t_stack stack)
 {
 	if (nb >= max)
@@ -58,15 +83,6 @@ void get_median_push(t_dll_c pile, t_browse *browse)
 static void browse_push(t_browse *browse, t_stack stack, int top_pile, int med)
 {
 
-	//	if (1)
-	//	{
-	//		set_quick(stack->browse.quick_count, stack->browse.pile == LIST_A ?
-	//											 stack->pile_a->top
-	//																		  : stack->pile_b->top);
-	//		do_instruct(m_inst('p', stack, FALSE), stack);
-	//	}
-	//
-	//	else {
 	if (browse->option == DEVANT_DERRIERE)
 		devant_derriere(top_pile, med, stack);
 	else
@@ -74,8 +90,6 @@ static void browse_push(t_browse *browse, t_stack stack, int top_pile, int med)
 		set_quick(stack);
 		do_inst('p', NO, stack);
 	}
-	//	}
-
 }
 
 int browse_pile(t_stack stack, t_browse *browse)

@@ -12,7 +12,6 @@ typedef struct		s_browse
 	size_t		pile;
 	size_t 		median_push;
 	size_t 		count;
-	size_t		browse_size;
 	size_t		quick_count;
 } 					t_browse;
 
@@ -21,7 +20,8 @@ typedef struct		s_quick
 {
 	int 	quick;
 	int 	counter_quick;
-} 					*t_quick;
+	char	sens;
+} 					t_quick;
 /*
 **    structure
 */
