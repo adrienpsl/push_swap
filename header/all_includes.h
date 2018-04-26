@@ -87,6 +87,9 @@ void browser_reverse(t_stack stack, size_t med, size_t lim, int need_quick);
 
 void to_4(t_stack stack);
 void get_med_quick(t_stack stack);
+
+
+void devant_derriere(int nb, int max, t_stack stack);
 /*
 **    quick
 */

@@ -130,6 +130,7 @@ void ultra(t_stack stack)
 
 	quick = &stack->quick;
 	// get la ou il y a le plus grand
+
 	update_quick(stack);
 	while (quick->counter_quick > 4)
 	{
