@@ -5,25 +5,6 @@
 # include "push_struct.h"
 # include <limits.h>
 
-#define SEARCH 1
-#define APPLY_BY_TOP 2
-#define APPLY_BY_BOTTOM 3
-#define LIST_A 1
-#define LIST_B 2
-#define DEVANT_DERRIERE 1
-
-#define PILE_A 1
-#define PILE_B 2
-
-#define NO 0
-#define YES 1
-
-#define TOP_PUSH 2
-#define END_PUSH 3
-
-# define FORCE_OP 10
-# define NO_OP 12
-
 
 /*
 **    v2

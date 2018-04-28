@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../header/all_includes.h"
 
 void aabb_sort4top_b(t_stack stack)
 {
