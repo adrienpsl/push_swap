@@ -1,7 +1,7 @@
 #ifndef PUSH_SWAP_ALL_INCLUDES_H
 #define PUSH_SWAP_ALL_INCLUDES_H
 
-# include "../sources/ft_library_header.h"
+# include "../src/sources/ft_library_header.h"
 # include "push_struct.h"
 # include <limits.h>
 
@@ -15,11 +15,16 @@
 #define PILE_A 1
 #define PILE_B 2
 
+#define NO 0
+#define YES 1
+
 #define TOP_PUSH 2
 #define END_PUSH 3
 
 # define FORCE_OP 10
 # define NO_OP 12
+
+
 /*
 **    v2
 */
