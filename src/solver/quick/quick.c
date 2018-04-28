@@ -12,21 +12,11 @@
 
 #include "../../../header/all_includes.h"
 
-void placed_quick(t_dll_l link, size_t lim)
-{
-	while (lim > 0)
-	{
-		((t_data) link->content)->quick = 0;
-		link = link->next;
-		lim--;
-	}
-}
-
 void quick_get_good_pile(t_stack stack)
 {
-	int quick_a;
-	int quick_b;
-	t_quick *quick;
+	int			quick_a;
+	int			quick_b;
+	t_quick		*quick;
 
 	quick = &stack->quick;
 
