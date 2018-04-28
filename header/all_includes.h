@@ -29,22 +29,29 @@ int get_med(t_dll_c c_list, int length);
 
 void need_swap(t_stack stack);
 
-void set_brower(int med, size_t lim, int option, t_stack stack);
 int browse_pile(t_stack stack, t_browse *browse);
-void browse_pile_a(t_stack stack, t_browse *browse, size_t remaining);
+void browse_pile_a(t_stack stack, size_t lim);
+
+
+int get_median_push(t_dll_c origin, t_browse *browse, int med, int op);
+int *get_fill_tab(t_dll_c list, size_t length);
+
+void browse_push(t_stack stack, int nb_top_pile);
 
 /*
 **    namage instruc
 */
 void do_inst(char raw_instruction, int option, t_stack stack);
 
-
+void med2(t_stack stack);
+void get_min_max(t_dll_l link, size_t length, t_stack stack);
 /*
 **    short 3
 */
 void sort_3_top(t_stack stack);
 void sort_3_front_b(t_stack stack);
 void sort_3_end(t_stack stack);
+void manage_all_short(t_stack stack);
 
 /*
 **    all short
@@ -74,7 +81,7 @@ void is_baba(t_stack stack);
 void is_baab(t_stack stack);
 
 
-void browser_inverse(t_stack stack, size_t med, size_t lim, int need_quick);
+void browser_inverse(t_stack stack, size_t med, size_t lim);
 /*
 **    method commun
 */
@@ -82,11 +89,14 @@ void check_and_apply_instruct(char *str, t_stack stack);
 
 
 void browser(t_stack stack, size_t med, size_t lim, int need_quick);
-void browser_reverse(t_stack stack, size_t med, size_t lim, int need_quick);
+void browser_reverse(t_stack stack, size_t med, size_t lim);
 //void browser_quick(t_stack stack, size_t med, size_t lim, int need_quick);
 
 void to_4(t_stack stack);
 void get_med_quick(t_stack stack);
+
+int reset_quick_1(t_stack stack);
+void sort_3_fuck_little(t_stack stack);
 
 
 void devant_derriere(int nb, int max, t_stack stack);
@@ -114,6 +124,9 @@ int is_ordered_link(t_dll_l link, size_t lenght);
 
 void sort_4(t_stack stack);
 void get_med_quick_rev(t_stack stack);
+
+void sort_browser(t_stack stack, size_t med, size_t lim);
+void sort_browser_reverse(t_stack stack, size_t med, size_t lim);
 /*
 **    short 4 top a
 */

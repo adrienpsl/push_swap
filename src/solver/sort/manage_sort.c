@@ -12,16 +12,46 @@
 
 #include "../../../header/all_includes.h"
 
-void sort_2_top(t_stack stack)
+void is44(t_stack stack)
 {
-	do_inst('p', NO, stack);
-	do_inst('p', NO, stack);
-	need_swap(stack);
+	stack->quick.sens == 'T' ?
+	sort_4_top(stack) :
+	sort_4_end(stack);
+	stack->in44++;
 }
 
-void sort_2_end(t_stack stack)
+void is33(t_stack stack)
 {
-	do_inst('a', NO, stack);
-	do_inst('a', NO, stack);
-	sort_2_top(stack);
+	stack->quick.sens == 'T' ?
+	sort_3_top(stack) :
+	sort_3_end(stack);
+	stack->is33++;
+}
+
+void is22(t_stack stack)
+{
+	stack->quick.sens == 'T' ?
+	sort_2_top(stack) :
+	sort_2_end(stack);
+}
+
+void manage_all_short(t_stack stack)
+{
+	t_quick *quick;
+
+	quick = &stack->quick;
+	update_quick(stack);
+
+	while (quick->counter_quick < 5 && stack->pile_b->length)
+	{
+		if (quick->counter_quick == 4)
+			is44(stack);
+		else if (quick->counter_quick == 3)
+			is33(stack);
+		else if (quick->counter_quick == 2)
+			is22(stack);
+		//		print_stack(stack);
+		placed_quick_by_sort(stack);
+		update_quick(stack);
+	}
 }

@@ -41,108 +41,86 @@ void dll_c_print_colorlst(t_dll_c lst, int a, int b)
 	ft_printf(" \n");
 }
 
+void set_tet_tet(t_dll_c pile, int quick)
+{
+	t_dll_l link;
+	size_t lim;
+
+	lim = pile->length;
+	link = pile->top;
+	while (lim > 0)
+	{
+		((t_data) link->content)->quick = quick;
+		link = link->next;
+		lim--;
+	}
+}
+
 void first_passage_a(t_stack stack)
 {
 	t_dll_c pile;
-	int median;
-	size_t four_remaining;
 
 	pile = stack->pile_a;
-	four_remaining = pile->length - 4;
-	median = get_med(pile, pile->length);
 
 	while (pile->length > 4)
 	{
-		set_brower(median, stack->pile_a->length, DEVANT_DERRIERE, stack);
 		set_stack('A', stack);
-		stack->browse.stop = 4;
-		browse_pile_a(stack, &stack->browse, four_remaining);
-		median = get_med(pile, pile->length);
+		browse_pile_a(stack, stack->currrent_pile_dll->length);
+
+		////////////////////
+		//		print_stack(stack);
+		//		ft_printf("%d \n", stack->browse.option);
 	}
-	sort_4(stack);
-}
 
-void manage_b(t_stack stack)
-{
-	t_quick quick;
+	if (stack->pile_a->length == 3)
+		sort_3_fuck_little(stack);
+	else
+		set_tet_tet(pile, stack->browse.quick_count + 1);
+	// set quick sur toute la pile
+	set_stack('A', stack);
 
-	quick = stack->quick;
-}
-
-void is44(t_stack stack)
-{
-	stack->quick.sens == 'T' ?
-	sort_4_top(stack) :
-	sort_4_end(stack);
-}
-
-void is33(t_stack stack)
-{
-	stack->quick.sens == 'T' ?
-	sort_3_top(stack) :
-	sort_3_end(stack);
-}
-
-void is22(t_stack stack)
-{
-	stack->quick.sens == 'T' ?
-	sort_2_top(stack) :
-	sort_2_end(stack);
-}
-
-void test(t_stack stack)
-{
-	t_quick *quick;
-
-	quick = &stack->quick;
-	update_quick(stack);
-
-	while (quick->counter_quick < 5)
-	{
-		if (quick->counter_quick == 4)
-			is44(stack);
-		else if (quick->counter_quick == 3)
-			is33(stack);
-		else if (quick->counter_quick == 2)
-			is22(stack);
-//		print_stack(stack);
-		placed_quick_by_sort(stack);
-		update_quick(stack);
-	}
+	/////////////////////////////////////////////
+	print_stack(stack);
 }
 
 void test_2(t_stack stack)
 {
 	get_med_quick(stack);
-	browser_inverse(stack, stack->browse.med, stack->quick.counter_quick, TRUE);
+	browser_inverse(stack, stack->med.mediane, stack->quick.counter_quick);
 }
 
 void test_2_rev(t_stack stack)
 {
 	get_med_quick_rev(stack);
-	browser_reverse(stack, stack->browse.med, stack->quick.counter_quick, TRUE);
+	browser_reverse(stack, stack->med.mediane, stack->quick.counter_quick);
 }
 
-
-void ultra(t_stack stack)
+void brain_is_beauty(t_stack stack)
 {
 	t_quick *quick;
+	static int p = 0;
 
 	quick = &stack->quick;
 	// get la ou il y a le plus grand
 
 	update_quick(stack);
-	while (quick->counter_quick > 4)
+	while (quick->counter_quick > 4 && stack->pile_b->length)
 	{
+		p++;
+		if (p == 15)
+			1;
 		quick->sens == 'T' ?
-		test_2(stack) :
+		test_2(stack)
+						   :
 		test_2_rev(stack);
 		update_quick(stack);
-		print_stack(stack);
+		//		ft_printf("%d \n", p);
+		//		print_stack(stack);
 	}
-	test(stack);
+	manage_all_short(stack);
 }
 
+// je ne verifie pas avec les petit si j'ai besoin de faire des trucs.
 int main(int ac, char **av)
 {
 	t_argv argv;
@@ -150,89 +128,35 @@ int main(int ac, char **av)
 
 	argv = new_argv(ac, av);
 	stack = get_stack_filled(argv);
+
 	build_lst_a_index(stack->pile_a);
 
-	first_passage_a(stack);
-
-
-//	test(stack);
-//	print_stack(stack);
-//	test_2(stack);
-//
-//	test(stack);
-//
-//	get_med_quick_rev(stack);
-//	browser_reverse(stack, stack->browse.med, stack->quick.counter_quick,
-//					TRUE);
-//	test(stack);
-//	print_stack(stack);
-//
-//	ultra(stack);
-//	print_stack(stack);
-//
-//	ft_printf("=====================================\n===================================== \n");
-
-
-	while (stack->pile_b->length > 6)
+	if (stack->pile_a->length > 3)
 	{
-		ultra(stack);
-		print_stack(stack);
+		first_passage_a(stack);
+		while (stack->pile_b->length)
+		{
+			brain_is_beauty(stack);
+		}
+	}
+	else
+	{
+		set_stack('A', stack);
+		if (stack->pile_a->length <= 2)
+			need_swap(stack);
+		if (stack->pile_a->length == 3)
+		{
+			sort_3_fuck_little(stack);
+		}
 	}
 
-
-
-
-
-
-	//	print_quick(stack->pile_a);
-
-	//	first_passage_a(stack);
-	//	manage_b(stack);
-	//
-	//	stack->browse.pile = PILE_B;
-	//	sort_3_front_b(stack);
-	//
-	//	do_instruct("ra", stack);
-	//	do_instruct("ra", stack);
-	//	do_instruct("ra", stack);
-	//	do_instruct("ra", stack);
-	//
-	//	do_instruct("ra", stack);
-	//	do_instruct("pb", stack);
-	//	do_instruct("pb", stack);
-	//	do_instruct("pb", stack);
-	//	do_instruct("pb", stack);
-	//		do_instruct("pb", stack);
-	//	do_instruct("pb", stack);
-	//	do_instruct("pb", stack);
-	//	do_instruct("pb", stack);
-	//
-	//	set_stack('B', stack);
-	//	set_stack('A', stack);
-	//	print_stack(stack);
-	//	sort_3_top(stack);
-	//
-	//	print_stack(stack);
-
-	//	sort_4_top(stack);
-
-	//	print_stack(stack);
-	//	sort_4_end(stack);
-
-
-	//	do_instruct("pa", stack);
-	//	do_instruct("pa", stack);
-	//	do_instruct("pa", stack);
-	//	do_instruct("pa", stack);
-	//	do_instruct("pa", stack);
-	//	do_instruct("pa", stack);
-	//	do_instruct("pa", stack);
-	//	do_instruct("pa", stack);
-
-
-
-	ft_printf("%d \n", stack->count);
-
+//	print_stack(stack);
+	if (is_ordered(stack->pile_a, stack->pile_a->length))
+	{
+		ft_printf("yeah \n");
+	}
+	else
+		ft_printf("fuck \n");
 	destroy_stack(&stack);
 	destroy_argv(&argv);
 	return (EXIT_SUCCESS);

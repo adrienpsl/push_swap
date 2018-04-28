@@ -61,4 +61,5 @@ void print_stack(t_stack stack)
 	ft_printf("   ");
 	print_quick(stack->pile_b);
 		printf(" \n");;
+		ft_printf("%d \n", stack->count);
 };

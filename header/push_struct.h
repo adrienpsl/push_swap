@@ -3,15 +3,19 @@
 
 #include "all_includes.h"
 
+
+typedef struct		s_med
+{
+	size_t 	mediane;
+	size_t 	medianne_push;
+
+} 					t_med;
+
 typedef struct		s_browse
 {
 	size_t		lim;
-	size_t		stop;
 	size_t		option;
-	size_t		med;
 	size_t		pile;
-	size_t 		median_push;
-	size_t 		count;
 	size_t		quick_count;
 } 					t_browse;
 
@@ -40,6 +44,10 @@ typedef struct		s_stack
 	size_t nb_already_sorted;
 	t_browse browse;
 	t_quick  quick;
+	t_med	med;
+
+	int is33;
+	int in44;
 
 } 					*t_stack;
 

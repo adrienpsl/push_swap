@@ -10,42 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../../header/all_includes.h"
 
-void need_swap_a(t_stack stack)
+void sort_browser(t_stack stack, size_t med, size_t lim)
 {
-	int a;
-	int b;
+	size_t top_pile;
 	t_dll_c pile;
 
-	pile = stack->pile_a;
-	a = dll_l_get_int(pile->top);
-	b = dll_l_get_int(pile->top->next);
-	if (a - b == +1)
+	pile = stack->currrent_pile_dll;
+	while (lim > 0)
 	{
-		do_instruct("sa", stack);
+		top_pile = dll_l_get_int(pile->top);
+		if ((stack->current_pile == 'A' && top_pile < med) ||
+			(stack->current_pile == 'B' && top_pile >= med))
+			do_inst('p', NO, stack);
+		else
+			do_inst('r', NO, stack);
+		--lim;
 	}
 }
 
-void need_swap_b(t_stack stack)
+void sort_browser_reverse(t_stack stack, size_t med, size_t lim)
 {
-	int a;
-	int b;
+	size_t top_pile;
 	t_dll_c pile;
 
-	pile = stack->pile_b;
-	a = dll_l_get_int(pile->top);
-	b = dll_l_get_int(pile->top->next);
-	if (a - b == -1)
+	pile = stack->currrent_pile_dll;
+	while (lim > 0)
 	{
-		do_instruct("sb", stack);
+		do_inst('a', NO, stack);
+		top_pile = dll_l_get_int(pile->top);
+		if ((stack->current_pile == 'A' && top_pile < med) ||
+			(stack->current_pile == 'B' && top_pile >= med))
+			do_inst('p', NO, stack);
+		--lim;
 	}
-}
-
-void need_swap(t_stack stack)
-{
-	if (stack->pile_a->length)
-		need_swap_a(stack);
-	if (stack->pile_b->length)
-		need_swap_b(stack);
 }

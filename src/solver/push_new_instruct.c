@@ -39,26 +39,39 @@ void do_instruct(char *instruc, t_stack stack)
 	stack->count++;
 	check_and_apply_instruct(instruc, stack);
 	//	save_instruct_in_strack(instruc, stack);
-	//	ft_printf("%s ",instruc);
+		ft_printf("%s ",instruc);
 }
 
-char *
-manage_instruction(char instruction, int op, t_stack stack, char tab_ins[])
+static void pile_a(char instruction, int op, char tab_ins[])
 {
 	tab_ins[0] = instruction;
-	if (instruction == 'p' && op == NO)
-		tab_ins[1] = stack->current_pile == 'A' ? 'b' : 'a';
-	else if (instruction == 'p' && op == YES)
-		tab_ins[1] = stack->current_pile == 'A' ? 'a' : 'b';
+
+	if (instruction == 'p')
+		tab_ins[1] = op == NO ? 'b' : 'a';
 	else if (instruction == 'a')
 	{
 		tab_ins[0] = 'r';
 		tab_ins[1] = 'r';
-		tab_ins[2] = stack->current_pile == 'A' && op == NO ? 'a' : 'b';
+		tab_ins[2] = op == NO ? 'a' : 'b';
 	}
 	else
-		tab_ins[1] = stack->current_pile == 'A' && op == NO ? 'a' : 'b';
-	return (tab_ins);
+		tab_ins[1] = op == NO ? 'a' : 'b';
+}
+
+static void pile_b(char instruction, int op, char tab_ins[])
+{
+	tab_ins[0] = instruction;
+
+	if (instruction == 'p')
+		tab_ins[1] = op == NO ? 'a' : 'b';
+	else if (instruction == 'a')
+	{
+		tab_ins[0] = 'r';
+		tab_ins[1] = 'r';
+		tab_ins[2] = op == NO ? 'b' : 'a';
+	}
+	else
+		tab_ins[1] = op == NO ? 'b' : 'a';
 }
 
 void do_inst(char raw_instruction, int option, t_stack stack)
@@ -66,7 +79,9 @@ void do_inst(char raw_instruction, int option, t_stack stack)
 	char instruction[4];
 
 	ft_memset(instruction, 0, sizeof(char) * 4);
-	manage_instruction(raw_instruction, option, stack, instruction);
+	stack->current_pile == 'A' ?
+	pile_a(raw_instruction, option, instruction) :
+	pile_b(raw_instruction, option, instruction);
 	do_instruct(instruction, stack);
 }
 void do_the_ops_pileb(t_stack stack, long nb_operations)

@@ -24,7 +24,10 @@ int is_ordered(t_dll_c c_list, size_t lenght)
 	while (i < lenght)
 	{
 		if (dll_l_get_int(link) >= dll_l_get_int(next))
+		{
+			ft_printf("%d \n", dll_l_get_int(link));
 			return (FALSE);
+		}
 		link = next;
 		next = link->next;
 		++i;

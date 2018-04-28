@@ -12,52 +12,51 @@
 
 #include "../../header/all_includes.h"
 
-static size_t get_index_tab(int nb, int *tab)
+t_dll_c get_list_med_push(t_dll_c origin, int med, int op)
 {
-	size_t index;
+	t_dll_c pile_push_med;
+	t_dll_l origin_link;
+	t_dll_l copied_link;
+	size_t size;
 
-	index = 0;
-	while (nb != tab[index])
+	pile_push_med = new_dll_c();
+	origin_link = origin->top;
+	size = origin->length;
+	while (size)
 	{
-		++index;
+		if ((op == FALSE && dll_l_get_int(origin_link) <= med) ||
+			(op == TRUE && dll_l_get_int(origin_link) >= med))
+		{
+			copied_link = new_dll_l(origin_link->content, sizeof(int));
+			dll_c_push_link(copied_link, pile_push_med);
+		}
+		size--;
+		origin_link = origin_link->next;
 	}
-	return (index);
+	return (pile_push_med);
 }
 
-static void set_index(t_dll_c c_list, int *tab)
+int get_median_push(t_dll_c origin, t_browse *browse, int med, int op)
 {
-	size_t i;
-	t_dll_l link;
-	int index;
+	int med_push;
 
-	i = 0;
-	link = c_list->top;
-	while (i < c_list->length)
+	t_dll_c pile_push_med;
+
+	if (browse->lim / 2 < 6)
 	{
-		index = get_index_tab(dll_l_get_int(link), tab);
-		*(int *) link->content = index;
-		link = link->next;
-		++i;
+		browse->option = FALSE;
+		return 0;
 	}
-}
+	browse->option = TRUE;
+	pile_push_med = get_list_med_push(origin, med, op);
 
-int *get_fill_tab(t_dll_c list, size_t length)
-{
-	int *tab;
-	size_t lim;
-	t_dll_l link;
+//	dll_c_print_lst(pile_push_med);
 
-	link = list->top;
-	lim = 0;
-	tab = ft_malloc_protect(sizeof(int) * length);
-	ft_memset(tab, 0, sizeof(int) * (length));
-	while (lim < length)
-	{
-		tab[lim] = dll_l_get_int(link);
-		lim += 1;
-		link = link->next;
-	}
-	return (tab);
+	med_push = get_med(pile_push_med,
+					   pile_push_med->length);
+	destroy_dll_c(&pile_push_med);
+
+	return (med_push);
 }
 
 int get_med(t_dll_c c_list, int length)
@@ -71,17 +70,4 @@ int get_med(t_dll_c c_list, int length)
 	a = tab[length / 2];
 	free(tab);
 	return (a);
-}
-
-/*
-**    creer la liste et change les nb par leur index definitif
-*/
-void build_lst_a_index(t_dll_c c_list)
-{
-	int *tab;
-
-	tab = get_fill_tab(c_list, c_list->length);
-	ft_quick_sort(tab, 0, c_list->length - 1);
-	set_index(c_list, tab);
-	free(tab);
 }

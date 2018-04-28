@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../../header/all_includes.h"
 
 void set_index_sort_algo2(t_dll_c pile_1, size_t size)
 {
@@ -73,7 +73,7 @@ void is_bba(t_stack stack)
 	do_inst('p', NO, stack);
 }
 
-void sort_3_front_b(t_stack stack)
+void sort_3(t_stack stack)
 {
 	t_dll_c pile;
 	char tab[4];
