@@ -14,8 +14,7 @@
 
 static int is_argv(t_argv argv, char **str)
 {
-	*str = get_next_argv(argv);
-	return (*str != NULL);
+	return (argv_get_next_argv(str, argv));
 }
 
 static int break_action_for_solver(int is_solver, char *cur_av, t_argv argv)

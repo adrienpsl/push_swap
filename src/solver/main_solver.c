@@ -150,15 +150,15 @@ int main(int ac, char **av)
 		}
 	}
 
-	ft_printf("%s \n",stack->last_instruct);
-
-	print_stack(stack);
-	if (is_ordered(stack->pile_a, stack->pile_a->length))
-	{
-		ft_printf("yeah \n");
-	}
-	else
-		ft_printf("fuck \n");
+	ft_printf("%s\n",stack->last_instruct);
+//
+//	print_stack(stack);
+//	if (is_ordered(stack->pile_a, stack->pile_a->length))
+//	{
+//		ft_printf("yeah \n");
+//	}
+//	else
+//		ft_printf("fuck \n");
 	destroy_stack(&stack);
 	destroy_argv(&argv);
 	return (EXIT_SUCCESS);
