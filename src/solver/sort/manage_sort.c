@@ -17,7 +17,6 @@ void is44(t_stack stack)
 	stack->quick.sens == 'T' ?
 	sort_4_top(stack) :
 	sort_4_end(stack);
-	stack->in44++;
 }
 
 void is33(t_stack stack)
@@ -25,7 +24,6 @@ void is33(t_stack stack)
 	stack->quick.sens == 'T' ?
 	sort_3_top(stack) :
 	sort_3_end(stack);
-	stack->is33++;
 }
 
 void is22(t_stack stack)

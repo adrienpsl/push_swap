@@ -37,7 +37,9 @@ typedef struct		s_stack
 	char	current_pile;
 	t_dll_c currrent_pile_dll;
 
+
 	char 	instruct[4];
+	char 	last_instruct[4];
 	t_sll instruction;
 	t_dll_c temp_instuct;
 	int count;
@@ -46,8 +48,6 @@ typedef struct		s_stack
 	t_quick  quick;
 	t_med	med;
 
-	int is33;
-	int in44;
 
 } 					*t_stack;
 

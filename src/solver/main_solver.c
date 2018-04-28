@@ -80,7 +80,7 @@ void first_passage_a(t_stack stack)
 	set_stack('A', stack);
 
 	/////////////////////////////////////////////
-	print_stack(stack);
+//	print_stack(stack);
 }
 
 void test_2(t_stack stack)
@@ -150,7 +150,9 @@ int main(int ac, char **av)
 		}
 	}
 
-//	print_stack(stack);
+	ft_printf("%s \n",stack->last_instruct);
+
+	print_stack(stack);
 	if (is_ordered(stack->pile_a, stack->pile_a->length))
 	{
 		ft_printf("yeah \n");
@@ -161,3 +163,57 @@ int main(int ac, char **av)
 	destroy_argv(&argv);
 	return (EXIT_SUCCESS);
 }
+
+
+//int rr_style(char *instr, t_stack stack)
+//{
+//	char *last;
+//
+//	last = stack->last_instruct;
+//	if ((ft_strcmp(instr, "rrb") == FALSE &&
+//		 ft_strcmp(last, "rra") == FALSE)
+//		||
+//		(ft_strcmp(instr, "rra") == FALSE &&
+//		 ft_strcmp(last, "rrb") == FALSE)
+//	 )
+//	{
+//		check_and_apply_instruct("rrr", stack);
+//		return (TRUE);
+//	}
+//	return (FALSE);
+//}
+//
+//int r_style(char *instr, t_stack stack)
+//{
+//	char *last;
+//
+//	last = stack->last_instruct;
+//	if ((ft_strcmp(instr, "rb") == FALSE &&
+//		 ft_strcmp(last, "ra") == FALSE)
+//		||
+//		(ft_strcmp(instr, "ra") == FALSE &&
+//		 ft_strcmp(last, "rb") == FALSE)
+//	 )
+//	{
+//		check_and_apply_instruct("rr", stack);
+//		return (TRUE);
+//	}
+//	return (FALSE);
+//}
+
+//void do_instruct(char *instruc, t_stack stack)
+//{
+//
+//	if (*stack->last_instruct)
+//	{
+//		if (r_style(instruc, stack) || rr_style(instruc, stack))
+//			return ;
+//		else
+//			check_and_apply_instruct(stack->last_instruct, stack);
+//		ft_memset(stack->last_instruct, 0, sizeof(char) * 4);
+//		ft_strcpy(stack->last_instruct, instruc);
+//	}
+//	else
+//		ft_strcpy(stack->last_instruct, instruc);
+//
+//}

@@ -12,34 +12,66 @@
 
 #include "../../header/all_includes.h"
 
-
-//static void save_instruct_in_strack(char *instruct, t_stack stack)
-//{
-//	t_sll_l link;
-//
-//	link = new_sll_l(instruct, ft_strlen(instruct));
-//	sll_add(link, stack->instruction);
-//}
-
-char *m_inst(char instruct, t_stack stack, int option)
+int rr_style(char *instr, t_stack stack)
 {
-	char *instr;
-	instr = stack->instruct;
-	instr[0] = instruct;
-	if ((instruct == 'p' || option == FORCE_OP) && option != NO_OP)
-		instr[1] = stack->browse.pile == PILE_A ? 'b' : 'a';
-	else
-		instr[1] = stack->browse.pile == PILE_A ? 'a' : 'b';
-	instr[2] = 0;
-	return (instr);
+	char *last;
+
+	last = stack->last_instruct;
+	if ((ft_strcmp(instr, "rrb") == FALSE &&
+		 ft_strcmp(last, "rra") == FALSE)
+		||
+		(ft_strcmp(instr, "rra") == FALSE &&
+		 ft_strcmp(last, "rrb") == FALSE)
+	 )
+	{
+		ft_printf("rrr ");
+		return (TRUE);
+	}
+	return (FALSE);
 }
+
+int r_style(char *instr, t_stack stack)
+{
+	char *last;
+
+	last = stack->last_instruct;
+	if ((ft_strcmp(instr, "rb") == FALSE &&
+		 ft_strcmp(last, "ra") == FALSE)
+		||
+		(ft_strcmp(instr, "ra") == FALSE &&
+		 ft_strcmp(last, "rb") == FALSE)
+	 )
+	{
+		ft_printf("rr ");
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 
 void do_instruct(char *instruc, t_stack stack)
 {
-	stack->count++;
+
 	check_and_apply_instruct(instruc, stack);
-	//	save_instruct_in_strack(instruc, stack);
-		ft_printf("%s ",instruc);
+//	ft_printf("%s ",instruc);
+
+	if (*stack->last_instruct)
+	{
+		if (r_style(instruc, stack) || rr_style(instruc, stack))
+		{
+			ft_memset(stack->last_instruct, 0, sizeof(char) * 4);
+//			ft_printf("   ");
+			stack->count++;
+			return;
+		}
+		else
+			ft_printf("%s ",stack->last_instruct);
+		stack->count++;
+		ft_memset(stack->last_instruct, 0, sizeof(char) * 4);
+		ft_strcpy(stack->last_instruct, instruc);
+	}
+	else
+		ft_strcpy(stack->last_instruct, instruc);
 }
 
 static void pile_a(char instruction, int op, char tab_ins[])

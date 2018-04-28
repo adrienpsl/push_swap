@@ -9,17 +9,17 @@ set(CMAKE_C_COMPILER "/usr/bin/gcc")
 file(GLOB head "header/*.h")
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-include_directories(sources/include/*.h)
-file(GLOB sources1 "sources/src/**/*.c")
-file(GLOB sources2 "sources/src/**/**/*.c")
-file(GLOB sources3 "sources/src/**/**/**/*.c")
-file(GLOB sources4 "sources/src/**/**/**/**/*.c")
-file(GLOB sources5 "sources/src/**/**/**/**/**/*.c")
+include_directories(src/sources/include/*.h)
+file(GLOB sources1 "src/sources/src/**/*.c")
+file(GLOB sources2 "src/sources/src/**/**/*.c")
+file(GLOB sources3 "src/sources/src/**/**/**/*.c")
+file(GLOB sources4 "src/sources/src/**/**/**/**/*.c")
+file(GLOB sources5 "src/sources/src/**/**/**/**/**/*.c")
 file(GLOB sources6 "test/*.c")
 
 # all sources
 set(
-        sources
+        src/sources
         ${sources1}
         ${sources2}
         ${sources3}
