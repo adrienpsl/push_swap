@@ -18,7 +18,6 @@ void set_stack(char name_pile, t_stack stack)
 	stack->currrent_pile_dll =
 	 name_pile == 'A' ? stack->pile_a : stack->pile_b;
 }
-
 void destroy_stack(t_stack *s)
 {
 	t_stack stack;
@@ -36,6 +35,23 @@ void destroy_stack(t_stack *s)
 	*s = NULL;
 }
 
+t_visualisateur new_visu(int x, int y, char *name)
+{
+	t_visualisateur visu;
+	t_mlx_data mlx;
+
+	visu = ft_malloc_protect(sizeof(t_visualisateur_00));
+	visu->list_color = new_dll();
+	mlx = &visu->mlx_data;
+
+	mlx->mlx = mlx_init();
+	mlx->x = x - 50;
+	mlx->y = y - 50;
+	mlx->window = mlx_new_window(mlx->mlx, x, y, name);
+
+	return (visu);
+}
+
 t_stack new_stack()
 {
 	t_stack stack;
@@ -46,5 +62,8 @@ t_stack new_stack()
 	stack->pile_a = NULL;
 	stack->pile_b = new_dll_c();
 	stack->browse.quick_count = 1;
+	stack->visu = new_visu(X_WINDOW, Y_WINDOW, "Push_Push");
+	stack->visu->pile_a = stack->pile_a;
+	stack->visu->pile_b = stack->pile_b;
 	return (stack);
 }

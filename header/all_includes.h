@@ -1,18 +1,21 @@
 #ifndef PUSH_SWAP_ALL_INCLUDES_H
 #define PUSH_SWAP_ALL_INCLUDES_H
 
+# define X_WINDOW 2000
+# define Y_WINDOW 1500
+
+
 # include "../src/sources/ft_library_header.h"
 # include "push_struct.h"
+# include "struct_visu.h"
+# include "../mlx/mlx.h"
 # include <limits.h>
-
-
 
 int get_med(t_dll_c c_list, int length);
 
 void need_swap(t_stack stack);
 
 void browse_pile_a(t_stack stack, size_t lim);
-
 
 int get_median_push(t_dll_c origin, t_browse *browse, int med, int op);
 int *get_fill_tab(t_dll_c list, size_t length);
@@ -36,15 +39,11 @@ void manage_all_short(t_stack stack);
 void sort_4_end(t_stack stack);
 void sort_4_top(t_stack stack);
 
-
-
-
 void browser_inverse(t_stack stack, size_t med, size_t lim);
 /*
 **    method commun
 */
 void check_and_apply_instruct(char *str, t_stack stack);
-
 
 void browser_reverse(t_stack stack, size_t med, size_t lim);
 
@@ -52,7 +51,6 @@ void get_med_quick(t_stack stack);
 
 int reset_quick_1(t_stack stack);
 void sort_3_fuck_little(t_stack stack);
-
 
 /*
 **    quick
@@ -71,8 +69,6 @@ void quick_get_good_pile(t_stack stack);
 void placed_quick_by_sort(t_stack stack);
 
 int is_ordered(t_dll_c c_list, size_t lenght);
-
-
 
 void get_med_quick_rev(t_stack stack);
 
@@ -125,5 +121,19 @@ void do_instruct(char *instruc, t_stack stack);
 */
 void print_stack(t_stack stack);
 void print_quick(t_dll_c lst);
+
+/*
+**    graphique
+*/
+void recangle(t_fig_2 fig2, t_mlx_data mlx_data);
+
+void trace_legend_rec(t_fig_2 fig2, t_mlx_data visu, t_rec_link rec);
+
+long is_color(t_dll color_list, int quick);
+t_dll_l new_color_link(int quick, long color);
+int is_same_quick(t_dll_l color_link, int quick);
+void set_color(t_dll_l color_link, long color);
+t_dll get_list_rec(t_dll_c pile, t_dll color_pile);
+void print_list(t_visualisateur visu, int x);
 
 #endif //PUSH_SWAP_ALL_INCLUDES_H

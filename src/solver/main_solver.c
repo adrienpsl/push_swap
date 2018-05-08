@@ -30,8 +30,10 @@ void set_middle_algo(t_dll_c pile, int quick)
 void first_passage_a(t_stack stack)
 {
 	t_dll_c pile;
+	t_visualisateur visu;
 
 	pile = stack->pile_a;
+	visu = stack->visu;
 	while (pile->length > 4)
 	{
 		set_stack('A', stack);
@@ -41,6 +43,12 @@ void first_passage_a(t_stack stack)
 		sort_3_fuck_little(stack);
 	else
 		set_middle_algo(pile, stack->browse.quick_count + 1);
+
+	print_stack(stack);
+	stack->visu->rec_pile = get_list_rec(visu->pile_b, visu->list_color);
+	print_list(visu, 50);
+	mlx_loop(visu->mlx_data.mlx);
+
 	set_stack('A', stack);
 }
 

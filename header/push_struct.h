@@ -2,7 +2,7 @@
 #define PUSH_SWAP_PUSH_STRUCT_H
 
 #include "all_includes.h"
-
+#include "struct_visu.h"
 
 typedef struct		s_med
 {
@@ -43,12 +43,10 @@ typedef struct		s_stack
 	t_sll instruction;
 	t_dll_c temp_instuct;
 	int count;
-	size_t nb_already_sorted;
 	t_browse browse;
 	t_quick  quick;
 	t_med	med;
-
-
+	t_visualisateur visu;
 } 					*t_stack;
 
 

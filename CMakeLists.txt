@@ -51,6 +51,7 @@ set(
         ${sources06}
         ${sources07}
         ${sources08}
+
 )
 
 add_executable(push_swap
@@ -60,4 +61,9 @@ add_executable(push_swap
         ${head}
 
         )
+
+target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/mlx/libmlx.a)
+
+target_link_libraries(push_swap "-framework OpenGL")
+target_link_libraries(push_swap "-framework AppKit")
 
