@@ -71,3 +71,7 @@ long count_quick(t_stack stack)
 	return (size);
 }
 
+int get_quick(t_dll_l link)
+{
+	return (((t_data) link->content)->quick);
+}

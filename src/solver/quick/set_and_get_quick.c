@@ -27,8 +27,6 @@ void placed_quick_by_sort(t_stack stack)
 	}
 }
 
-
-
 int reset_quick_1(t_stack stack)
 {
 	t_dll_l link;
@@ -45,11 +43,6 @@ int reset_quick(t_stack stack)
 	link = stack->current_pile == 'A' ? stack->pile_a->top : stack->pile_b->top;
 	((t_data) link->content)->quick = stack->browse.quick_count;
 	return (1);
-}
-
-int get_quick(t_dll_l link)
-{
-	return (((t_data) link->content)->quick);
 }
 
 void set_quick(t_stack stack)

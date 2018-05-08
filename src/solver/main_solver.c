@@ -12,7 +12,7 @@
 
 #include "../../header/all_includes.h"
 
-void set_tet_tet(t_dll_c pile, int quick)
+void set_middle_algo(t_dll_c pile, int quick)
 {
 	t_dll_l link;
 	size_t lim;
@@ -40,7 +40,7 @@ void first_passage_a(t_stack stack)
 	if (stack->pile_a->length == 3)
 		sort_3_fuck_little(stack);
 	else
-		set_tet_tet(pile, stack->browse.quick_count + 1);
+		set_middle_algo(pile, stack->browse.quick_count + 1);
 	set_stack('A', stack);
 }
 
@@ -73,33 +73,47 @@ void brain_is_beauty(t_stack stack)
 	manage_all_short(stack);
 }
 
+static void
+struct_and_list_build(t_argv *argv, t_stack *stack, int ac, char **av)
+{
+	*argv = new_argv(ac, av);
+	*stack = get_stack_filled(*argv);
+	build_lst_a_index((*stack)->pile_a);
+}
+
+static void is_3_algo(t_stack stack)
+{
+	set_stack('A', stack);
+	if (stack->pile_a->length <= 2)
+		need_swap(stack);
+	if (stack->pile_a->length == 3)
+		sort_3_fuck_little(stack);
+}
+
+static void is_more_3(t_stack stack)
+{
+	first_passage_a(stack);
+	while (stack->pile_b->length)
+	{
+		brain_is_beauty(stack);
+	}
+}
+
 int main(int ac, char **av)
 {
 	t_argv argv;
 	t_stack stack;
+	int all_nb;
 
-	argv = new_argv(ac, av);
-	stack = get_stack_filled(argv);
-	build_lst_a_index(stack->pile_a);
-	if (stack->pile_a->length > 3)
-	{
-		first_passage_a(stack);
-		while (stack->pile_b->length)
-		{
-			brain_is_beauty(stack);
-		}
-	}
-	else
-	{
-		set_stack('A', stack);
-		if (stack->pile_a->length <= 2)
-			need_swap(stack);
-		if (stack->pile_a->length == 3)
-		{
-			sort_3_fuck_little(stack);
-		}
-	}
-	destroy_stack(&stack);
+	struct_and_list_build(&argv, &stack, ac, av);
+
+	// get les option au cas ou bitch
 	destroy_argv(&argv);
+	all_nb = stack->pile_a->length;
+	if (all_nb <= 3)
+		is_3_algo(stack);
+	else
+		is_more_3(stack);
+	destroy_stack(&stack);
 	return (EXIT_SUCCESS);
 }

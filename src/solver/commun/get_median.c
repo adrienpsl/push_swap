@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../../header/all_includes.h"
 
 t_dll_c get_list_med_push(t_dll_c origin, int med, int op)
 {
@@ -49,13 +49,9 @@ int get_median_push(t_dll_c origin, t_browse *browse, int med, int op)
 	}
 	browse->option = TRUE;
 	pile_push_med = get_list_med_push(origin, med, op);
-
-//	dll_c_print_lst(pile_push_med);
-
 	med_push = get_med(pile_push_med,
 					   pile_push_med->length);
 	destroy_dll_c(&pile_push_med);
-
 	return (med_push);
 }
 

@@ -48,7 +48,6 @@ void manage_all_short(t_stack stack)
 			is33(stack);
 		else if (quick->counter_quick == 2)
 			is22(stack);
-		//		print_stack(stack);
 		placed_quick_by_sort(stack);
 		update_quick(stack);
 	}

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/all_includes.h"
+#include "../../../header/all_includes.h"
 
 void check_and_apply_instruct(char *str, t_stack stack)
 {
@@ -38,4 +38,47 @@ void check_and_apply_instruct(char *str, t_stack stack)
 		rrr(stack);
 	else
 		exit_wrong_nb();
+}
+
+static void pile_a(char instruction, int op, char tab_ins[])
+{
+	tab_ins[0] = instruction;
+
+	if (instruction == 'p')
+		tab_ins[1] = op == NO ? 'b' : 'a';
+	else if (instruction == 'a')
+	{
+		tab_ins[0] = 'r';
+		tab_ins[1] = 'r';
+		tab_ins[2] = op == NO ? 'a' : 'b';
+	}
+	else
+		tab_ins[1] = op == NO ? 'a' : 'b';
+}
+
+static void pile_b(char instruction, int op, char tab_ins[])
+{
+	tab_ins[0] = instruction;
+
+	if (instruction == 'p')
+		tab_ins[1] = op == NO ? 'a' : 'b';
+	else if (instruction == 'a')
+	{
+		tab_ins[0] = 'r';
+		tab_ins[1] = 'r';
+		tab_ins[2] = op == NO ? 'b' : 'a';
+	}
+	else
+		tab_ins[1] = op == NO ? 'b' : 'a';
+}
+
+void do_inst(char raw_instruction, int option, t_stack stack)
+{
+	char instruction[4];
+
+	ft_memset(instruction, 0, sizeof(char) * 4);
+	stack->current_pile == 'A' ?
+	pile_a(raw_instruction, option, instruction) :
+	pile_b(raw_instruction, option, instruction);
+	do_instruct(instruction, stack);
 }
