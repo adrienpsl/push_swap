@@ -21,33 +21,30 @@ void set_set(t_dll_l visu_link, t_fig_2 fig2)
 	rec = visu_link->content;
 	fig2->color = rec->color;
 
-	fig2->y_2 += (rec->percent * Y_WINDOW);
+	fig2->x_2 += (rec->percent * X_WINDOW);
 }
 
-void print_list(t_visualisateur visu, int x)
+void print_list(t_visualisateur visu, int y)
 {
 	t_dll_l rec_link;
 	t_fig_2_00 fig2;
 	t_rec_link rec;
 
 	rec_link = visu->rec_pile->top;
-	fig2.x_1 = x;
-	fig2.x_2 = x + 150;
-	fig2.y_2 = 0;
-	fig2.y_1 = 0;
+	fig2.x_1 = 0;
+	fig2.x_2 = 0;
+	fig2.y_1 = y;
+	fig2.y_2 = y + 150;
 
 	while (rec_link)
 	{
 		rec = rec_link->content;
 		set_set(rec_link, &fig2);
-		//		trace_legend_rec(&fig2, test->visu, rec_link->content);
 		trace_legend_rec(&fig2, &visu->mlx_data, (t_rec_link)rec_link->content);
-		fig2.y_1 = fig2.y_2;
+		fig2.x_1 = fig2.x_2;
 		rec_link = rec_link->next;
 	}
 }
-
-
 
 void set_(int a, int b, t_dll_c pile)
 {

@@ -45,6 +45,7 @@ long is_color(t_dll color_list, int quick)
 {
 	t_dll_l link;
 	static long color = 0x00004b;
+	static long what_color = 0x1000;
 
 	link = color_list->top;
 	while (link)
@@ -53,7 +54,7 @@ long is_color(t_dll color_list, int quick)
 	       return (get_color_2(link));
 	   link = link->next;
 	}
-	color += 20;
+	color += what_color % 2 ? 0x10 : 0x1000;
 	link = new_color_link(quick, color);
 	dll_add(link, color_list);
 	return (color);

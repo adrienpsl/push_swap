@@ -1,7 +1,7 @@
 #ifndef PUSH_SWAP_ALL_INCLUDES_H
 #define PUSH_SWAP_ALL_INCLUDES_H
 
-# define X_WINDOW 2000
+# define X_WINDOW 3000
 # define Y_WINDOW 1500
 
 

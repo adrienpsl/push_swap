@@ -14,23 +14,23 @@
 
 void horizon_left_right(t_fig_2 fig2, t_mlx_data mlx_data)
 {
-	int x;
+	int y;
 
-	x = fig2->x_1;
-	while (x < fig2->x_2)
+	y = fig2->y_1;
+	while (y < fig2->y_2)
 	{
-		mlx_pixel_put(mlx_data->mlx, mlx_data->window, x, fig2->y_1,
+		mlx_pixel_put(mlx_data->mlx, mlx_data->window, fig2->x_1, y,
 					  fig2->color);
-		x += 1;
+		y += 1;
 	}
 }
 
 void recangle(t_fig_2 fig2, t_mlx_data mlx_data)
 {
-	while (fig2->y_1 < fig2->y_2)
+	while (fig2->x_1 < fig2->x_2)
 	{
 		horizon_left_right(fig2, mlx_data);
-		fig2->y_1++;
+		fig2->x_1++;
 	}
 }
 
@@ -40,25 +40,26 @@ void the_legende(t_mlx_data mlx_data, t_rec_link rec, t_fig_2 fig2)
 	char tab[25];
 	int middle;
 
-	middle = ((fig2->y_2 - fig2->y_1) / 2) + fig2->y_1 - 10;
+	middle = ((fig2->x_2 - fig2->x_1) / 2) + fig2->x_1 - 10;
 
 	ft_putnbr_str(rec->quick, tab);
 	mlx_string_put(mlx_data->mlx, mlx_data->window,
-				   fig2->x_2 + 10,
-				   middle - 20,
+				   middle - 30,
+				   fig2->y_2 + 10,
 				   fig2->color, tab);
 
 
 	ft_putnbr_str(rec->min, tab);
+	ft_strcat(tab,"-");
 	mlx_string_put(mlx_data->mlx, mlx_data->window,
-				   fig2->x_2 + 10,
-				   middle,
+				   middle - 10,
+				   fig2->y_2 + 10,
 				   fig2->color, tab);
 
 	ft_putnbr_str(rec->max, tab);
 	mlx_string_put(mlx_data->mlx, mlx_data->window,
-				   fig2->x_2 + 10,
 				   middle + 20,
+				   fig2->y_2 + 10,
 				   fig2->color, tab);
 }
 

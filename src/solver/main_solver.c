@@ -44,11 +44,10 @@ void first_passage_a(t_stack stack)
 	else
 		set_middle_algo(pile, stack->browse.quick_count + 1);
 
-	print_stack(stack);
-	stack->visu->rec_pile = get_list_rec(visu->pile_b, visu->list_color);
-	print_list(visu, 50);
-	mlx_loop(visu->mlx_data.mlx);
-
+//	print_stack(stack);
+//	stack->visu->rec_pile = get_list_rec(visu->pile_b, visu->list_color);
+//	print_list(visu, 50);
+//	mlx_loop(visu->mlx_data.mlx);
 	set_stack('A', stack);
 }
 
