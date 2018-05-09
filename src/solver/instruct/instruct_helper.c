@@ -82,3 +82,11 @@ void do_inst(char raw_instruction, int option, t_stack stack)
 	pile_b(raw_instruction, option, instruction);
 	do_instruct(instruction, stack);
 }
+
+void push_instruc_list(char *intruct, t_stack stack)
+{
+	t_dll_l link;
+
+	link = new_dll_l(intruct, ft_strlen(intruct));
+	dll_add(link, stack->list_instruc);
+}

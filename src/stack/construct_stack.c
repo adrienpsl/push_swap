@@ -27,14 +27,13 @@ void destroy_stack(t_stack *s)
 		destroy_dll_c(&stack->pile_a);
 	if (stack->pile_b)
 		destroy_dll_c(&stack->pile_b);
-	if (stack->instruction)
-		destroy_sll(&stack->instruction);
-	if (stack->temp_instuct)
-		destroy_dll_c(&stack->temp_instuct);
+	if (stack->list_instruc)
+		destroy_dll(&stack->list_instruc);
 	free(stack);
 	*s = NULL;
 }
 
+/*
 t_visualisateur new_visu(int x, int y, char *name)
 {
 	t_visualisateur visu;
@@ -51,6 +50,7 @@ t_visualisateur new_visu(int x, int y, char *name)
 
 	return (visu);
 }
+*/
 
 t_stack new_stack()
 {
@@ -58,12 +58,12 @@ t_stack new_stack()
 
 	stack = (t_stack) ft_malloc_protect(sizeof(struct s_stack));
 	ft_memset(stack, 0, sizeof(struct s_stack));
-	stack->instruction = new_sll();
 	stack->pile_a = NULL;
 	stack->pile_b = new_dll_c();
+	stack->list_instruc = new_dll();
 	stack->browse.quick_count = 1;
-	stack->visu = new_visu(X_WINDOW, Y_WINDOW, "Push_Push");
-	stack->visu->pile_a = stack->pile_a;
-	stack->visu->pile_b = stack->pile_b;
+//	stack->visu = new_visu(X_WINDOW, Y_WINDOW, "Push_Push");
+//	stack->visu->pile_a = stack->pile_a;
+//	stack->visu->pile_b = stack->pile_b;
 	return (stack);
 }

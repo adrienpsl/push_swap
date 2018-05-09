@@ -33,15 +33,13 @@ typedef struct		s_stack
 {
 	t_dll_c pile_a;
 	t_dll_c pile_b;
+	t_dll list_instruc;
 
 	char	current_pile;
 	t_dll_c currrent_pile_dll;
-
-
 	char 	instruct[4];
 	char 	last_instruct[4];
 	t_sll instruction;
-	t_dll_c temp_instuct;
 	int count;
 	t_browse browse;
 	t_quick  quick;

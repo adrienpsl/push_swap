@@ -11,6 +11,9 @@
 # include "../mlx/mlx.h"
 # include <limits.h>
 
+
+void push_instruc_list(char *intruct, t_stack stack);
+
 int get_med(t_dll_c c_list, int length);
 
 void need_swap(t_stack stack);

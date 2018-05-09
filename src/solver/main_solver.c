@@ -44,7 +44,7 @@ void first_passage_a(t_stack stack)
 	else
 		set_middle_algo(pile, stack->browse.quick_count + 1);
 
-//	print_stack(stack);
+	print_stack(stack);
 //	stack->visu->rec_pile = get_list_rec(visu->pile_b, visu->list_color);
 //	print_list(visu, 50);
 //	mlx_loop(visu->mlx_data.mlx);
@@ -76,6 +76,7 @@ void brain_is_beauty(t_stack stack)
 						   :
 		brain_reverse(stack);
 		update_quick(stack);
+		print_stack(stack);
 	}
 	manage_all_short(stack);
 }
@@ -103,6 +104,7 @@ static void is_more_3(t_stack stack)
 	while (stack->pile_b->length)
 	{
 		brain_is_beauty(stack);
+		print_stack(stack);
 	}
 }
 
@@ -114,13 +116,14 @@ int main(int ac, char **av)
 
 	struct_and_list_build(&argv, &stack, ac, av);
 
-	// get les option au cas ou bitch
 	destroy_argv(&argv);
 	all_nb = stack->pile_a->length;
 	if (all_nb <= 3)
 		is_3_algo(stack);
 	else
 		is_more_3(stack);
+	push_instruc_list(stack->last_instruct, stack);
+	dll_print_str(stack->list_instruc);
 	destroy_stack(&stack);
 	return (EXIT_SUCCESS);
 }
