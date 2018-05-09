@@ -1,7 +1,7 @@
 #ifndef LIBFT_ARGV_H_H
 #define LIBFT_ARGV_H_H
 
-#define OPTION "v"
+#define OPTION "m a"
 #define NO_ARGV "Error no given argv"
 
 /*

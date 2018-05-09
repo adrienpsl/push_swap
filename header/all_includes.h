@@ -41,6 +41,8 @@ void	browser_reverse(t_stack stack, size_t med, size_t lim);
 void	get_med_quick(t_stack stack);
 int		reset_quick_1(t_stack stack);
 void	sort_3_fuck_little(t_stack stack);
+void	first_passage_a(t_stack stack);
+void	brain_is_beauty(t_stack stack);
 
 /*
 **    quick

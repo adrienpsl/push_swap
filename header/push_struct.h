@@ -44,6 +44,7 @@ typedef struct		s_stack
 	t_browse		browse;
 	t_quick			quick;
 	t_med			med;
+	char 			*argv;
 }					*t_stack;
 
 
