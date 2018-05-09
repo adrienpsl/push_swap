@@ -12,25 +12,50 @@
 
 #include "../../header/all_includes.h"
 
-void	set_middle_algo(t_dll_c pile, int quick)
+void set_middle_algo(t_dll_c pile, int quick)
 {
-	t_dll_l		link;
-	size_t		lim;
+	t_dll_l link;
+	size_t lim;
 
 	lim = pile->length;
 	link = pile->top;
 	while (lim > 0)
 	{
-		((t_data)link->content)->quick = quick;
+		((t_data) link->content)->quick = quick;
 		link = link->next;
 		lim--;
 	}
 }
 
-void	first_passage_a(t_stack stack)
+void test(t_stack stack)
 {
-	t_dll_c			pile;
-	t_visualisateur	visu;
+	t_visualisateur visu;
+
+	visu = stack->visu;
+
+	if (stack->pile_b->length > 0)
+	{
+		stack->visu->rec_pile = new_dll();
+		stack->visu->rec_pile = get_list_rec(stack->pile_b, visu->list_color);
+		print_list(visu, 50);
+	}
+
+	if (stack->pile_a->length > 0)
+	{
+		stack->visu->rec_pile = new_dll();
+		stack->visu->rec_pile = get_list_rec(stack->pile_a, visu->list_color);
+		print_list(visu, 300);
+	}
+
+
+	mlx_loop(visu->mlx_data.mlx);
+}
+
+
+void first_passage_a(t_stack stack)
+{
+	t_dll_c pile;
+	t_visualisateur visu;
 
 	pile = stack->pile_a;
 	visu = stack->visu;
@@ -47,9 +72,9 @@ void	first_passage_a(t_stack stack)
 		set_middle_algo(pile, stack->browse.quick_count + 1);
 	if (ft_strchr(stack->argv, 'a') || ft_strchr(stack->argv, 'm'))
 		print_stack(stack);
-		stack->visu->rec_pile = get_list_rec(visu->pile_b, visu->list_color);
-		print_list(visu, 50);
-		mlx_loop(visu->mlx_data.mlx);
+	test(stack);
+
+
 	set_stack('A', stack);
 }
 
