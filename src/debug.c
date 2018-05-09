@@ -34,32 +34,16 @@ void print_quick(t_dll_c lst)
 
 void print_stack(t_stack stack)
 {
-	(void) stack;
-
-
-	//print les instruction
-
-//	static t_sll_l last_prev_instruct = NULL;
-//	//
-//	if (last_prev_instruct != NULL)
-//		sll_print_str_link(last_prev_instruct->next);
-//	else
-//		sll_print_str(stack->instruction);
-//	last_prev_instruct = stack->instruction->tail;
-
 	ft_printf("\n\n------------------------------------------- \n");
-
-	// printe les lists
 	ft_printf("A :");
 	dll_c_print_lst(stack->pile_a);
 	ft_printf("   ");
 	print_quick(stack->pile_a);
 	ft_printf(" \n");
-
 	ft_printf("B :");
 	dll_c_print_lst(stack->pile_b);
 	ft_printf("   ");
 	print_quick(stack->pile_b);
-		printf(" \n");;
-		ft_printf("%d \n", stack->count);
+	printf(" \n");;
+	ft_printf("%d \n", stack->count);
 };

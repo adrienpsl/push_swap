@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-void sort_browser(t_stack stack, size_t med, size_t lim)
+void	sort_browser(t_stack stack, size_t med, size_t lim)
 {
 	size_t top_pile;
 	t_dll_c pile;
@@ -30,7 +30,7 @@ void sort_browser(t_stack stack, size_t med, size_t lim)
 	}
 }
 
-void sort_browser_reverse(t_stack stack, size_t med, size_t lim)
+void	sort_browser_reverse(t_stack stack, size_t med, size_t lim)
 {
 	size_t top_pile;
 	t_dll_c pile;

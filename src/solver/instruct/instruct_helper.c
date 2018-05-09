@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-void check_and_apply_instruct(char *str, t_stack stack)
+void			check_and_apply_instruct(char *str, t_stack stack)
 {
 	if (ft_strcmp("sa", str) == FALSE)
 		sa(stack);
@@ -40,7 +40,7 @@ void check_and_apply_instruct(char *str, t_stack stack)
 		exit_wrong_nb();
 }
 
-static void pile_a(char instruction, int op, char tab_ins[])
+static void		pile_a(char instruction, int op, char tab_ins[])
 {
 	tab_ins[0] = instruction;
 
@@ -56,7 +56,7 @@ static void pile_a(char instruction, int op, char tab_ins[])
 		tab_ins[1] = op == NO ? 'a' : 'b';
 }
 
-static void pile_b(char instruction, int op, char tab_ins[])
+static void		pile_b(char instruction, int op, char tab_ins[])
 {
 	tab_ins[0] = instruction;
 
@@ -72,7 +72,7 @@ static void pile_b(char instruction, int op, char tab_ins[])
 		tab_ins[1] = op == NO ? 'b' : 'a';
 }
 
-void do_inst(char raw_instruction, int option, t_stack stack)
+void			do_inst(char raw_instruction, int option, t_stack stack)
 {
 	char instruction[4];
 
@@ -83,7 +83,7 @@ void do_inst(char raw_instruction, int option, t_stack stack)
 	do_instruct(instruction, stack);
 }
 
-void push_instruc_list(char *intruct, t_stack stack)
+void			push_instruc_list(char *intruct, t_stack stack)
 {
 	t_dll_l link;
 

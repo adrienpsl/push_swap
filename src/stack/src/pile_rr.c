@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-void rra(t_stack stack)
+void	rra(t_stack stack)
 {
 	t_dll_c pile_a;
 
@@ -23,7 +23,7 @@ void rra(t_stack stack)
 	}
 }
 
-void rrb(t_stack stack)
+void	rrb(t_stack stack)
 {
 	t_dll_c pile_b;
 
@@ -34,7 +34,7 @@ void rrb(t_stack stack)
 	}
 }
 
-void rrr(t_stack stack)
+void	rrr(t_stack stack)
 {
 	rra(stack);
 	rrb(stack);

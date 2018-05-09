@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-static void browser_end(t_stack stack)
+static void		browser_end(t_stack stack)
 {
 	do_inst('a', NO, stack);
 	do_inst('a', NO, stack);
@@ -29,7 +29,7 @@ static void browser_end(t_stack stack)
 	}
 }
 
-void sort_4_top(t_stack stack)
+void		sort_4_top(t_stack stack)
 {
 	t_dll_c pile;
 
@@ -38,7 +38,7 @@ void sort_4_top(t_stack stack)
 	browser_end(stack);
 }
 
-static void browser_reverse_end(t_stack stack)
+static void	browser_reverse_end(t_stack stack)
 {
 	need_swap(stack);
 	if (stack->current_pile == 'A')
@@ -53,12 +53,11 @@ static void browser_reverse_end(t_stack stack)
 	}
 }
 
-void sort_4_end(t_stack stack)
+void		sort_4_end(t_stack stack)
 {
 	t_dll_c pile;
 
 	pile = new_dll_c();
-
 	pile->top = stack->current_pile == 'A' ?
 				stack->pile_a->top->prev->prev->prev->prev :
 				stack->pile_b->top->prev->prev->prev->prev;

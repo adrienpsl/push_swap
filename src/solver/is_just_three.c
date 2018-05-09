@@ -12,7 +12,7 @@
 
 #include "../../header/all_includes.h"
 
-void set_index_ab(t_dll_c pile_1, size_t size)
+void	set_index_ab(t_dll_c pile_1, size_t size)
 {
 	t_dll_l link_p1;
 	t_dll_l link_p2;
@@ -24,7 +24,6 @@ void set_index_ab(t_dll_c pile_1, size_t size)
 	build_lst_a_index(pile_2);
 	link_p1 = pile_1->top;
 	link_p2 = pile_2->top;
-
 	while (size > 0)
 	{
 		a = dll_l_get_int(link_p2);

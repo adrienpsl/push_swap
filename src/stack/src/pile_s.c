@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-void sa(t_stack stack)
+void	sa(t_stack stack)
 {
 	t_dll_c pile_a;
 	struct s_data a;
@@ -29,7 +29,7 @@ void sa(t_stack stack)
 	}
 }
 
-void sb(t_stack stack)
+void	sb(t_stack stack)
 {
 	t_dll_c pile_b;
 	struct s_data a;
@@ -46,7 +46,7 @@ void sb(t_stack stack)
 	}
 }
 
-void ss(t_stack stack)
+void	ss(t_stack stack)
 {
 	sa(stack);
 	sb(stack);

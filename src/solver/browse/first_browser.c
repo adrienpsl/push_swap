@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-void push_by_median_push(int nb_top_pile, int med_push, t_stack stack)
+void	push_by_median_push(int nb_top_pile, int med_push, t_stack stack)
 {
 	if (nb_top_pile >= med_push)
 	{
@@ -27,10 +27,10 @@ void push_by_median_push(int nb_top_pile, int med_push, t_stack stack)
 	}
 }
 
-void browse_push(t_stack stack, int nb_top_pile)
+void	browse_push(t_stack stack, int nb_top_pile)
 {
-	t_med med;
-	t_browse *browse;
+	t_med		med;
+	t_browse	*browse;
 
 	med = stack->med;
 	browse = &stack->browse;
@@ -43,7 +43,7 @@ void browse_push(t_stack stack, int nb_top_pile)
 	}
 }
 
-void get_medianne(t_stack stack)
+void	get_medianne(t_stack stack)
 {
 
 	stack->med.mediane = get_med(stack->currrent_pile_dll,

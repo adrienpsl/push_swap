@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-int rr_style(char *instr, t_stack stack)
+int		rr_style(char *instr, t_stack stack)
 {
 	char *last;
 
@@ -30,7 +30,7 @@ int rr_style(char *instr, t_stack stack)
 	return (FALSE);
 }
 
-int r_style(char *instr, t_stack stack)
+int		r_style(char *instr, t_stack stack)
 {
 	char *last;
 
@@ -48,7 +48,7 @@ int r_style(char *instr, t_stack stack)
 	return (FALSE);
 }
 
-void do_instruct(char *instruc, t_stack stack)
+void	do_instruct(char *instruc, t_stack stack)
 {
 	check_and_apply_instruct(instruc, stack);
 	if (*stack->last_instruct)

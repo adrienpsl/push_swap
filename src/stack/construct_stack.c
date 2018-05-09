@@ -12,13 +12,13 @@
 
 #include "../../header/all_includes.h"
 
-void set_stack(char name_pile, t_stack stack)
+void		set_stack(char name_pile, t_stack stack)
 {
 	stack->current_pile = name_pile == 'A' ? 'A' : 'B';
 	stack->currrent_pile_dll =
 	 name_pile == 'A' ? stack->pile_a : stack->pile_b;
 }
-void destroy_stack(t_stack *s)
+void		destroy_stack(t_stack *s)
 {
 	t_stack stack;
 
@@ -52,7 +52,7 @@ t_visualisateur new_visu(int x, int y, char *name)
 }
 */
 
-t_stack new_stack()
+t_stack		new_stack()
 {
 	t_stack stack;
 

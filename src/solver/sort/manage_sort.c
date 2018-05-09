@@ -12,34 +12,33 @@
 
 #include "../../../header/all_includes.h"
 
-void is44(t_stack stack)
+void	is44(t_stack stack)
 {
 	stack->quick.sens == 'T' ?
 	sort_4_top(stack) :
 	sort_4_end(stack);
 }
 
-void is33(t_stack stack)
+void	is33(t_stack stack)
 {
 	stack->quick.sens == 'T' ?
 	sort_3_top(stack) :
 	sort_3_end(stack);
 }
 
-void is22(t_stack stack)
+void	is22(t_stack stack)
 {
 	stack->quick.sens == 'T' ?
 	sort_2_top(stack) :
 	sort_2_end(stack);
 }
 
-void manage_all_short(t_stack stack)
+void	manage_all_short(t_stack stack)
 {
 	t_quick *quick;
 
 	quick = &stack->quick;
 	update_quick(stack);
-
 	while (quick->counter_quick < 5 && stack->pile_b->length)
 	{
 		if (quick->counter_quick == 4)

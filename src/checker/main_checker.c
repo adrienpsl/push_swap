@@ -12,11 +12,11 @@
 
 #include "../../header/all_includes.h"
 
-int is_ordered(t_dll_c c_list, size_t lenght)
+int			is_ordered(t_dll_c c_list, size_t lenght)
 {
-	size_t i;
-	t_dll_l link;
-	t_dll_l next;
+	size_t	i;
+	t_dll_l	link;
+	t_dll_l	next;
 
 	i = 1;
 	link = c_list->top;
@@ -35,7 +35,7 @@ int is_ordered(t_dll_c c_list, size_t lenght)
 	return (TRUE);
 }
 
-int is_ordered_link(t_dll_l link, size_t lenght)
+int		is_ordered_link(t_dll_l link, size_t lenght)
 {
 	size_t i;
 	t_dll_l next;
@@ -53,7 +53,7 @@ int is_ordered_link(t_dll_l link, size_t lenght)
 	return (TRUE);
 }
 
-void do_intructions(t_argv argv, t_stack stack)
+void	do_intructions(t_argv argv, t_stack stack)
 {
 	char *instruct;
 
@@ -63,7 +63,7 @@ void do_intructions(t_argv argv, t_stack stack)
 	}
 }
 
-t_stack get_stack_filled(t_argv argv)
+t_stack	get_stack_filled(t_argv argv)
 {
 	t_stack stack;
 

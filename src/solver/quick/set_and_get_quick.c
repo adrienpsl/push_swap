@@ -12,10 +12,10 @@
 
 #include "../../../header/all_includes.h"
 
-void placed_quick_by_sort(t_stack stack)
+void	placed_quick_by_sort(t_stack stack)
 {
-	t_dll_l link;
-	size_t  lim;
+	t_dll_l	link;
+	size_t	lim;
 
 	lim = stack->quick.counter_quick;
 	link = stack->pile_a->top;
@@ -27,7 +27,7 @@ void placed_quick_by_sort(t_stack stack)
 	}
 }
 
-int reset_quick_1(t_stack stack)
+int		reset_quick_1(t_stack stack)
 {
 	t_dll_l link;
 
@@ -36,7 +36,7 @@ int reset_quick_1(t_stack stack)
 	return (1);
 }
 
-int reset_quick(t_stack stack)
+int		reset_quick(t_stack stack)
 {
 	t_dll_l link;
 
@@ -45,7 +45,7 @@ int reset_quick(t_stack stack)
 	return (1);
 }
 
-void set_quick(t_stack stack)
+void	set_quick(t_stack stack)
 {
 	t_dll_l link;
 
@@ -54,7 +54,7 @@ void set_quick(t_stack stack)
 		((t_data) link->content)->quick = stack->browse.quick_count;
 }
 
-void set_quick_1(t_stack stack)
+void	set_quick_1(t_stack stack)
 {
 	t_dll_l link;
 

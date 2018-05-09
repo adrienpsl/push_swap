@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-void pb(t_stack stack)
+void	pb(t_stack stack)
 {
 	t_dll_l link;
 	t_dll_c pile_a;
@@ -26,7 +26,7 @@ void pb(t_stack stack)
 	dll_c_push_link(link, pile_b);
 }
 
-void pa(t_stack stack)
+void	pa(t_stack stack)
 {
 	t_dll_l link;
 	t_dll_c pile_a;

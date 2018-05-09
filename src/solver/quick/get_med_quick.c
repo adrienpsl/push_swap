@@ -12,7 +12,7 @@
 
 #include "../../../header/all_includes.h"
 
-void get_med_quick(t_stack stack)
+void	get_med_quick(t_stack stack)
 {
 	t_dll_c med_quick_list;
 
@@ -33,7 +33,7 @@ void get_med_quick(t_stack stack)
 	free(med_quick_list);
 }
 
-void get_med_quick_rev(t_stack stack)
+void	get_med_quick_rev(t_stack stack)
 {
 	t_dll_c	pile;
 	int		i;

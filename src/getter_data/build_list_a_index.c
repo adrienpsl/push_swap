@@ -12,7 +12,7 @@
 
 #include "../../header/all_includes.h"
 
-static size_t get_index_tab(int nb, int *tab)
+size_t		get_index_tab(int nb, int *tab)
 {
 	size_t index;
 
@@ -24,11 +24,11 @@ static size_t get_index_tab(int nb, int *tab)
 	return (index);
 }
 
-static void set_index(t_dll_c c_list, int *tab)
+void		set_index(t_dll_c c_list, int *tab)
 {
-	size_t i;
-	t_dll_l link;
-	int index;
+	size_t	i;
+	t_dll_l	link;
+	int		index;
 
 	i = 0;
 	link = c_list->top;
@@ -41,11 +41,11 @@ static void set_index(t_dll_c c_list, int *tab)
 	}
 }
 
-int *get_fill_tab(t_dll_c list, size_t length)
+int			*get_fill_tab(t_dll_c list, size_t length)
 {
-	int *tab;
-	size_t lim;
-	t_dll_l link;
+	int		*tab;
+	size_t	lim;
+	t_dll_l	link;
 
 	link = list->top;
 	lim = 0;
@@ -64,7 +64,7 @@ int *get_fill_tab(t_dll_c list, size_t length)
 /*
 **    creer la liste et change les nb par leur index definitif
 */
-void build_lst_a_index(t_dll_c c_list)
+void		build_lst_a_index(t_dll_c c_list)
 {
 	int *tab;
 

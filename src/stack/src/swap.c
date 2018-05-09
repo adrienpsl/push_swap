@@ -44,7 +44,7 @@ static int test_swap_b(t_stack stack)
 	return (FALSE);
 }
 
-void need_swap_a(t_stack stack)
+void	need_swap_a(t_stack stack)
 {
 	int a;
 	int b;
@@ -59,7 +59,7 @@ void need_swap_a(t_stack stack)
 	}
 }
 
-void need_swap_b(t_stack stack)
+void	need_swap_b(t_stack stack)
 {
 	int a;
 	int b;
@@ -74,7 +74,7 @@ void need_swap_b(t_stack stack)
 	}
 }
 
-void need_swap(t_stack stack)
+void	need_swap(t_stack stack)
 {
 
 	if (stack->pile_b->length)
