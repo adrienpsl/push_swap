@@ -33,8 +33,9 @@ void test(t_stack stack)
 	t_stack_visu_00	stack__v;
 	t_dll_l link;
 
+	visu = stack->visu;
 	stack__v.pile_a = get_list_rec(stack->pile_a, visu->list_color);
-	stack__v.pile_b = get_list_rec(stack->pile_a, visu->list_color);
+	stack__v.pile_b = get_list_rec(stack->pile_b, visu->list_color);
 	link = new_dll_l(&stack__v, sizeof(t_stack_visu_00));
 	dll_add(link, stack->v_data);
 }
@@ -43,10 +44,8 @@ void test(t_stack stack)
 void first_passage_a(t_stack stack)
 {
 	t_dll_c pile;
-	t_visualisateur visu;
-
 	pile = stack->pile_a;
-	visu = stack->visu;
+
 	while (pile->length > 4)
 	{
 		set_stack('A', stack);
@@ -60,6 +59,8 @@ void first_passage_a(t_stack stack)
 		set_middle_algo(pile, stack->browse.quick_count + 1);
 	if (ft_strchr(stack->argv, 'a') || ft_strchr(stack->argv, 'm'))
 		print_stack(stack);
+
+	print_stack(stack);
 	test(stack);
 
 

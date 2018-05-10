@@ -50,8 +50,8 @@ typedef struct		s_stack
 	t_browse		browse;
 	t_quick			quick;
 	t_med			med;
-	char 			*argv;
-	t_dll 			v_data;
+	char			*argv;
+	t_dll			v_data;
 }					*t_stack;
 
 

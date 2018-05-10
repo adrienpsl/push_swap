@@ -4,7 +4,7 @@ project(push_swap C)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_COMPILER "/usr/bin/gcc")
 
-#set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
+set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
 file(GLOB head "header/*.h")
 #include_directories(${PROJECT_SOURCE_DIR}/include)

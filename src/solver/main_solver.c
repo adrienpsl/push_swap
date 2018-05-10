@@ -56,6 +56,17 @@ int main(int ac, char **av)
 	push_instruc_list(stack->last_instruct, stack);
 	dll_print_str(stack->list_instruc);
 
+	t_stack_visu stack_visu;
+
+	stack_visu = stack->v_data->top->content;
+
+	stack->visu->rec_pile = stack_visu->pile_a;
+	print_list(stack->visu, 50);
+
+	stack->visu->rec_pile = stack_visu->pile_b;
+	print_list(stack->visu, 50);
+	mlx_loop(stack->visu->mlx_data.mlx);
+
 	destroy_argv(&argv);
 	destroy_stack(&stack);
 	return (EXIT_SUCCESS);
