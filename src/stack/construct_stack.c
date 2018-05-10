@@ -60,9 +60,5 @@ t_stack		new_stack()
 	stack->pile_b = new_dll_c();
 	stack->list_instruc = new_dll();
 	stack->browse.quick_count = 1;
-	stack->visu = new_visu(X_WINDOW, Y_WINDOW, "Push_Push");
-	stack->visu->pile_a = stack->pile_a;
-	stack->visu->pile_b = stack->pile_b;
-	stack->v_data = new_dll();
 	return (stack);
 }
