@@ -90,7 +90,6 @@ typedef struct		s_visualisateur_00
 {
 	t_mlx_data_00 mlx_data;
 	t_fig_2_00 fig2;
-//	t_rec_link	rec_link;
 	t_dll rec_pile;
 	t_dll list_color;
 	t_dll_c pile_a;

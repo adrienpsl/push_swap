@@ -28,7 +28,6 @@ void	set_index_ab(t_dll_c pile_1, size_t size)
 	{
 		a = dll_l_get_int(link_p2);
 		((t_data) link_p1->content)->n = a == 0 ? 'a' : 'b';
-		((t_data) link_p1->content)->short_ = a;
 		link_p1 = link_p1->next;
 		link_p2 = link_p2->next;
 		size--;

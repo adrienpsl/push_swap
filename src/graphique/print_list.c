@@ -12,8 +12,6 @@
 
 #include "../../header/all_includes.h"
 
-
-
 void set_set(t_dll_l visu_link, t_fig_2 fig2)
 {
 	t_rec_link rec;

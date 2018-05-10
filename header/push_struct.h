@@ -26,6 +26,13 @@ typedef struct		s_quick
 	int				counter_quick;
 	char			sens;
 } 					t_quick;
+
+typedef struct		s_stack_visu_00
+{
+	t_dll			pile_a;
+	t_dll			pile_b;
+} 					t_stack_visu_00;
+typedef t_stack_visu_00 *t_stack_visu;
 /*
 **    structure
 */
@@ -39,12 +46,12 @@ typedef struct		s_stack
 	t_dll_c			currrent_pile_dll;
 	char			instruct[4];
 	char			last_instruct[4];
-	t_sll			instruction;
 	int				count;
 	t_browse		browse;
 	t_quick			quick;
 	t_med			med;
 	char 			*argv;
+	t_dll 			v_data;
 }					*t_stack;
 
 
@@ -52,7 +59,6 @@ typedef struct		s_data
 {
 	int				nb;
 	int				quick;
-	int				short_;
 	char			n;
 } 					*t_data;
 

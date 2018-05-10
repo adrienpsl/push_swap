@@ -63,5 +63,6 @@ t_stack		new_stack()
 	stack->visu = new_visu(X_WINDOW, Y_WINDOW, "Push_Push");
 	stack->visu->pile_a = stack->pile_a;
 	stack->visu->pile_b = stack->pile_b;
+	stack->v_data = new_dll();
 	return (stack);
 }

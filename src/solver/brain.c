@@ -29,26 +29,14 @@ void set_middle_algo(t_dll_c pile, int quick)
 
 void test(t_stack stack)
 {
-	t_visualisateur visu;
+	t_visualisateur	visu;
+	t_stack_visu_00	stack__v;
+	t_dll_l link;
 
-	visu = stack->visu;
-
-	if (stack->pile_b->length > 0)
-	{
-		stack->visu->rec_pile = new_dll();
-		stack->visu->rec_pile = get_list_rec(stack->pile_b, visu->list_color);
-		print_list(visu, 50);
-	}
-
-	if (stack->pile_a->length > 0)
-	{
-		stack->visu->rec_pile = new_dll();
-		stack->visu->rec_pile = get_list_rec(stack->pile_a, visu->list_color);
-		print_list(visu, 300);
-	}
-
-
-	mlx_loop(visu->mlx_data.mlx);
+	stack__v.pile_a = get_list_rec(stack->pile_a, visu->list_color);
+	stack__v.pile_b = get_list_rec(stack->pile_a, visu->list_color);
+	link = new_dll_l(&stack__v, sizeof(t_stack_visu_00));
+	dll_add(link, stack->v_data);
 }
 
 
