@@ -105,12 +105,13 @@ void test_visu(t_stack stack)
 
 void destoye_link(t_dll_l link)
 {
-	t_stack_visu stack_v;
+	(void)link;
+		t_stack_visu stack_v;
 
 	stack_v = link->content;
 	destroy_dll(&stack_v->pile_a);
 	destroy_dll(&stack_v->pile_b);
-	free(link);
+	free(link->content);
 }
 
 int main(int ac, char **av)

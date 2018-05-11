@@ -52,6 +52,7 @@ typedef struct		s_stack
 	t_med			med;
 	char			*argv;
 	t_dll			v_data;
+	t_dll			color_tmp;
 }					*t_stack;
 
 

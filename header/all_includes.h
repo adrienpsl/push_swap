@@ -10,6 +10,7 @@
 # include "../mlx/mlx.h"
 # include <limits.h>
 
+void test(t_stack stack);
 void	push_instruc_list(char *intruct, t_stack stack);
 int		get_med(t_dll_c c_list, int		length);
 void	need_swap(t_stack stack);
@@ -18,6 +19,7 @@ int		get_median_push(t_dll_c origin, t_browse *browse, int		med, int		op);
 int		*get_fill_tab(t_dll_c list, size_t length);
 void	browse_push(t_stack stack, int		nb_top_pile);
 void	ft_putnbr_str(int n, char *str);
+t_visualisateur new_visu(int x, int y, char *name);
 /*
 **    namage instruc
 */
