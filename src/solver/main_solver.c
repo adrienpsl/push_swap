@@ -60,7 +60,6 @@ int main(int ac, char **av)
 	push_instruc_list(stack->last_instruct, stack);
 	dll_print_str(stack->list_instruc);
 
-
 	/////////////////////////////////////////////
 	test_visu(stack);
 

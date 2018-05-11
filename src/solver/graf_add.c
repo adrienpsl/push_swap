@@ -59,25 +59,57 @@ void create_graf_link(t_stack stack)
 	//	build_graf_test_mem(stack);
 }
 
-void test_visu(t_stack stack)
+void clear_wind(t_stack stack)
 {
-	t_stack_visu stack_visu;
-	stack_visu = stack->v_data->top->content;
+	t_fig_2_00 fg;
 
+	ft_memset(&fg, 0, sizeof(t_fig_2_00));
+	fg.x_2 = X_WINDOW;
+	fg.y_2 = Y_WINDOW;
+	recangle(&fg, &stack->visu->mlx_data);
+}
+
+void draw_pile(t_stack stack, t_stack_visu stack_visu)
+{
 	stack->visu->rec_pile = stack_visu->pile_a;
 	print_list(stack->visu, 50);
-
 	stack->visu->rec_pile = stack_visu->pile_b;
-	print_list(stack->visu, 150);
+	print_list(stack->visu, 550);
+}
 
-	stack_visu = stack->v_data->top->next->content;
+int tt(int key, void *p)
+{
+	t_stack stack;
+	t_dll_l link;
 
-	stack->visu->rec_pile = stack_visu->pile_a;
-	print_list(stack->visu, 250);
+	stack = p;
+	link =stack->visu->visu_print_link;
+	if (link == NULL)
+		return (DONE);
+	clear_wind(p);
 
-	stack->visu->rec_pile = stack_visu->pile_b;
-	print_list(stack->visu, 350);
+	if (link != NULL)
+		draw_pile(stack, link->content);
+	stack->visu->visu_print_link = stack->visu->visu_print_link->next;
+	printf("%d \n", key);
+	return (FALSE);
+}
+
+
+
+
+
+void test_visu(t_stack stack)
+{
+	t_dll_l v_link;
+
+	stack->visu->visu_print_link = stack->v_data->top;
+	v_link = stack->v_data->top;
+	draw_pile(stack, v_link->content);
+//	clear_wind(stack);
+
+	mlx_key_hook(stack->visu->mlx_data.window, tt, stack);
 	mlx_loop(stack->visu->mlx_data.mlx);
 
-	mlx_destroy_window(stack->visu->mlx_data.mlx, stack->visu->mlx_data.window);
+	//	mlx_destroy_window(stack->visu->mlx_data.mlx, stack->visu->mlx_data.window);
 }

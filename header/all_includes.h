@@ -1,8 +1,8 @@
 #ifndef PUSH_SWAP_ALL_INCLUDES_H
 #define PUSH_SWAP_ALL_INCLUDES_H
 
-# define X_WINDOW 3000
-# define Y_WINDOW 1500
+# define X_WINDOW 2500
+# define Y_WINDOW 750
 
 # include "../src/sources/ft_library_header.h"
 # include "push_struct.h"

@@ -94,6 +94,7 @@ typedef struct		s_visualisateur_00
 	t_dll list_color;
 	t_dll_c pile_a;
 	t_dll_c pile_b;
+	t_dll_l visu_print_link;
 
 
 } 					t_visualisateur_00;
