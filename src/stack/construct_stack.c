@@ -12,13 +12,27 @@
 
 #include "../../header/all_includes.h"
 
-void		set_stack(char name_pile, t_stack stack)
+void set_stack(char name_pile, t_stack stack)
 {
 	stack->current_pile = name_pile == 'A' ? 'A' : 'B';
 	stack->currrent_pile_dll =
 	 name_pile == 'A' ? stack->pile_a : stack->pile_b;
 }
-void		destroy_stack(t_stack *s)
+
+void destoye_link(t_dll_l link)
+{
+	(void) link;
+	t_stack_visu stack_v;
+
+	stack_v = link->content;
+	if (stack_v->pile_a)
+		destroy_dll(&stack_v->pile_a);
+	if (stack_v->pile_b)
+		destroy_dll(&stack_v->pile_b);
+	free(link->content);
+}
+
+void destroy_stack(t_stack *s)
 {
 	t_stack stack;
 
@@ -29,6 +43,10 @@ void		destroy_stack(t_stack *s)
 		destroy_dll_c(&stack->pile_b);
 	if (stack->list_instruc)
 		destroy_dll(&stack->list_instruc);
+	if (stack->color_tmp)
+		destroy_dll(&stack->color_tmp);
+	if (stack->v_data)
+		destroy_dll_func(&stack->v_data, &destoye_link);
 	free(stack);
 	*s = NULL;
 }
@@ -50,7 +68,7 @@ t_visualisateur new_visu(int x, int y, char *name)
 	return (visu);
 }
 
-t_stack		new_stack()
+t_stack new_stack()
 {
 	t_stack stack;
 

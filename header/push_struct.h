@@ -33,6 +33,7 @@ typedef struct		s_stack_visu_00
 	t_dll			pile_b;
 } 					t_stack_visu_00;
 typedef t_stack_visu_00 *t_stack_visu;
+
 /*
 **    structure
 */
