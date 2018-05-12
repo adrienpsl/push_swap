@@ -78,12 +78,12 @@ $(__NAME__): $(__OBJ__)
 
 clean:
 	@rm -rf $(__OBJ__)
-	@echo "\033[1;34mLibft\t\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
+	@echo "\033[1;34mpush_swap\t\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
 
 
 fclean: clean
 	@rm -rf $(__NAME__)
-	@echo "\033[1;34mLibft\t\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
+	@echo "\033[1;34mpush_swap\t\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
 
 
 re: fclean all
