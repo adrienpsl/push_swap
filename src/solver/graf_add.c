@@ -59,15 +59,6 @@ void create_graf_link(t_stack stack)
 	//	build_graf_test_mem(stack);
 }
 
-void clear_wind(t_stack stack)
-{
-	t_fig_2_00 fg;
-
-	ft_memset(&fg, 0, sizeof(t_fig_2_00));
-	fg.x_2 = X_WINDOW;
-	fg.y_2 = Y_WINDOW;
-	recangle(&fg, &stack->visu->mlx_data);
-}
 
 void draw_pile(t_stack stack, t_stack_visu stack_visu)
 {
@@ -75,6 +66,8 @@ void draw_pile(t_stack stack, t_stack_visu stack_visu)
 	print_list(stack->visu, 50);
 	stack->visu->rec_pile = stack_visu->pile_b;
 	print_list(stack->visu, 550);
+	// dessiner f
+	// poser leg
 }
 
 int tt(int key, void *p)
@@ -86,15 +79,10 @@ int tt(int key, void *p)
 	link = stack->visu->visu_print_link;
 	if (link == NULL)
 		return (DONE);
-	clear_wind(p);
 
 	if (link != NULL)
 	{
-				draw_pile(stack, link->content);
-		/////////////////////////////////////////////////
-//		fill_pixel(stack->visu->mlx_data.str_img, 0, 0, 0xff0000);
-		/////////////////////////////////////////////////
-
+		draw_pile(stack, link->content);
 		mlx_put_image_to_window(stack->visu->mlx_data.mlx,
 								stack->visu->mlx_data.window,
 								stack->visu->mlx_data.img,
@@ -117,23 +105,7 @@ void test_visu(t_stack stack)
 
 	stack->visu->visu_print_link = stack->v_data->top;
 	v_link = stack->v_data->top;
-		draw_pile(stack, v_link->content);
-		clear_wind(stack);
-
-	///////////////////////////////////////////////////////
-//	fill_pixel(stack->visu->mlx_data.str_img, 0, 0, 0xff0000);
-//	fill_pixel(stack->visu->mlx_data.str_img, 1, 0, 0xff0000);
-//	fill_pixel(stack->visu->mlx_data.str_img, 2, 0, 0xff0000);
-//
-//	fill_pixel(stack->visu->mlx_data.str_img, 3, 1, 0xff00ff);
-//	fill_pixel(stack->visu->mlx_data.str_img, 3, 2, 0xff00ff);
-//	fill_pixel(stack->visu->mlx_data.str_img, 3, 3, 0xff00ff);
-//	mlx_put_image_to_window(stack->visu->mlx_data.mlx,
-//							stack->visu->mlx_data.window,
-//							stack->visu->mlx_data.img,
-//							0, 0);
-	///////////////////////////////////////////////////
-
+	draw_pile(stack, v_link->content);
 
 	mlx_key_hook(stack->visu->mlx_data.window, tt, stack);
 	mlx_loop(stack->visu->mlx_data.mlx);

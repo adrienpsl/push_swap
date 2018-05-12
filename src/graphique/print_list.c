@@ -37,7 +37,7 @@ void print_list(t_visualisateur visu, int y)
 	{
 		rec = rec_link->content;
 		set_set(rec_link, &fig2);
-		trace_legend_rec(&fig2, &visu->mlx_data, (t_rec_link)rec_link->content);
+		recangle(&fig2 ,&visu->mlx_data);
 		fig2.x_1 = fig2.x_2;
 		rec_link = rec_link->next;
 	}
