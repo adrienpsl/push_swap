@@ -2,7 +2,7 @@
 #define PUSH_SWAP_ALL_INCLUDES_H
 
 # define X_WINDOW 2500
-# define Y_WINDOW 750
+# define Y_WINDOW 2500
 
 # include "../src/sources/ft_library_header.h"
 # include "push_struct.h"
@@ -31,6 +31,7 @@ void	do_inst(char raw_instruction, int		option, t_stack stack);
 /*
 **    short 3
 */
+void fill_pixel(char *img, long x, long y, int color);
 void	sort_3_top(t_stack stack);
 void	sort_3_end(t_stack stack);
 void	manage_all_short(t_stack stack);

@@ -55,6 +55,9 @@ t_visualisateur new_visu(int x, int y, char *name)
 {
 	t_visualisateur visu;
 	t_mlx_data mlx;
+	int a;
+	int b;
+	int c;
 
 	visu = ft_malloc_protect(sizeof(t_visualisateur_00));
 	visu->list_color = new_dll();
@@ -64,6 +67,8 @@ t_visualisateur new_visu(int x, int y, char *name)
 	mlx->x = x - 50;
 	mlx->y = y - 50;
 	mlx->window = mlx_new_window(mlx->mlx, x, y, name);
+	mlx->img = mlx_new_image(mlx->mlx, X_WINDOW, Y_WINDOW);
+	mlx->str_img = mlx_get_data_addr(mlx->img, &a, &b, &c);
 
 	return (visu);
 }

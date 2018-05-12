@@ -82,6 +82,8 @@ typedef struct		s_mlx_data_00
 	void *mlx;
 	int x;
 	int y;
+	void *img;
+	void *str_img;
 } 					t_mlx_data_00;
 
 typedef t_mlx_data_00 *t_mlx_data;

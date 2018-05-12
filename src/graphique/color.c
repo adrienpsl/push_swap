@@ -42,11 +42,10 @@ int new_color()
 {
 	int a;
 	a = rand() % 255;
-	a = a << 5;
+	a = a << 8;
 	a += rand() % 255;
-	a = a << 5;
+	a = a << 8;
 	a += rand() % 255;
-	a = a << 5;
 	return (a);
 }
 

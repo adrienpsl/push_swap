@@ -18,7 +18,6 @@ void set_set(t_dll_l visu_link, t_fig_2 fig2)
 
 	rec = visu_link->content;
 	fig2->color = rec->color;
-
 	fig2->x_2 += (rec->percent * X_WINDOW);
 }
 
