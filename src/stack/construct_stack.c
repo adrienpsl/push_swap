@@ -12,16 +12,15 @@
 
 #include "../../includes/all_includes.h"
 
-void set_stack(char name_pile, t_stack stack)
+void	set_stack(char name_pile, t_stack stack)
 {
 	stack->current_pile = name_pile == 'A' ? 'A' : 'B';
 	stack->currrent_pile_dll =
 	 name_pile == 'A' ? stack->pile_a : stack->pile_b;
 }
 
-void destoye_link(t_dll_l link)
+void	destoye_link(t_dll_l link)
 {
-	(void) link;
 	t_stack_visu stack_v;
 
 	stack_v = link->content;
@@ -32,7 +31,7 @@ void destoye_link(t_dll_l link)
 	free(link->content);
 }
 
-void destroy_stack(t_stack *s)
+void	destroy_stack(t_stack *s)
 {
 	t_stack stack;
 
@@ -51,13 +50,13 @@ void destroy_stack(t_stack *s)
 	*s = NULL;
 }
 
-t_v new_visu(int x, int y, char *name)
+t_v		new_visu(int x, int y, char *name)
 {
-	t_v visu;
-	t_mlx_data mlx;
-	int a;
-	int b;
-	int c;
+	t_v			visu;
+	t_mlx_data	mlx;
+	int			a;
+	int			b;
+	int			c;
 
 	visu = ft_malloc_protect(sizeof(t_v_00));
 	visu->list_color = new_dll();
@@ -68,11 +67,10 @@ t_v new_visu(int x, int y, char *name)
 	mlx->window = mlx_new_window(mlx->mlx, x, y, name);
 	mlx->img = mlx_new_image(mlx->mlx, X_WINDOW, Y_WINDOW);
 	mlx->str_img = mlx_get_data_addr(mlx->img, &a, &b, &c);
-
 	return (visu);
 }
 
-t_stack new_stack()
+t_stack	new_stack()
 {
 	t_stack stack;
 

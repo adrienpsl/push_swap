@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpusel <adpusel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 10:48:07 by adpusel           #+#    #+#             */
+/*   Updated: 2017/11/16 12:45:50 by adpusel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_PUSH_STRUCT_H
-#define PUSH_SWAP_PUSH_STRUCT_H
+# define PUSH_SWAP_PUSH_STRUCT_H
 
 #include "all_includes.h"
 #include "struct_visu.h"
@@ -17,29 +29,29 @@ typedef struct		s_browse
 	size_t			option;
 	size_t			pile;
 	size_t			quick_count;
-} 					t_browse;
-
+}					t_browse;
 
 typedef struct		s_quick
 {
 	int				quick;
 	int				counter_quick;
 	char			sens;
-} 					t_quick;
+}					t_quick;
 
 typedef struct		s_stack_visu_00
 {
 	t_dll			pile_a;
 	t_dll			pile_b;
-} 					t_stack_visu_00;
+}					t_stack_visu_00;
 typedef t_stack_visu_00 *t_stack_visu;
 
 /*
 **    structure
 */
+
 typedef struct		s_stack
 {
-	t_v	visu;
+	t_v				visu;
 	t_dll_c			pile_a;
 	t_dll_c			pile_b;
 	t_dll			list_instruc;
@@ -56,12 +68,11 @@ typedef struct		s_stack
 	t_dll			color_tmp;
 }					*t_stack;
 
-
 typedef struct		s_data
 {
 	int				nb;
 	int				quick;
 	char			n;
-} 					*t_data;
+}					*t_data;
 
 #endif

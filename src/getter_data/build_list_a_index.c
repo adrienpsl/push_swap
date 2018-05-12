@@ -12,7 +12,7 @@
 
 #include "../../includes/all_includes.h"
 
-t_stack	get_stack_filled(t_argv argv)
+t_stack		get_stack_filled(t_argv argv)
 {
 	t_stack stack;
 
@@ -69,10 +69,6 @@ int			*get_fill_tab(t_dll_c list, size_t length)
 	return (tab);
 }
 
-
-/*
-**    creer la liste et change les nb par leur index definitif
-*/
 void		build_lst_a_index(t_dll_c c_list)
 {
 	int *tab;

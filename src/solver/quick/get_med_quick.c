@@ -25,10 +25,10 @@ void	get_med_quick(t_stack stack)
 	{
 		stack->browse.lim = stack->quick.counter_quick;
 		stack->med.medianne_push = get_median_push(med_quick_list,
-												   &stack->browse,
-												   stack->med.mediane,
-												   stack->current_pile == 'A' ?
-												   FALSE : TRUE);
+													&stack->browse,
+													stack->med.mediane,
+													stack->current_pile == 'A' ?
+													FALSE : TRUE);
 	}
 	free(med_quick_list);
 }
@@ -52,6 +52,6 @@ void	get_med_quick_rev(t_stack stack)
 								 stack->quick.counter_quick);
 	stack->browse.lim = stack->quick.counter_quick;
 	stack->med.medianne_push = get_median_push(pile, &stack->browse,
-											   stack->med.mediane, TRUE);
+												stack->med.mediane, TRUE);
 	free(pile);
 }

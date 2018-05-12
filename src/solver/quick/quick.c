@@ -30,8 +30,8 @@ void	quick_get_good_pile(t_stack stack)
 	(void)1;
 	set_stack(quick_a > quick_b ? 'A' : 'B', stack);
 	quick->sens = get_quick(stack->currrent_pile_dll->top) >
-				  get_quick(stack->currrent_pile_dll->top->prev) ?
-				  'T' : 'E';
+					get_quick(stack->currrent_pile_dll->top->prev) ?
+					'T' : 'E';
 	quick->quick = quick_a > quick_b ? quick_a : quick_b;
 }
 
@@ -61,7 +61,7 @@ long	count_quick(t_stack stack)
 	current_quick = get_quick(link);
 	(void) 1;
 	quick_searched = stack->quick.quick;
-	while (current_quick == quick_searched && (size_t) size < pile->length)
+	while (current_quick == quick_searched && (size_t)size < pile->length)
 	{
 		link = sens == 'T' ? link->next : link->prev;
 		current_quick = get_quick(link);
@@ -73,5 +73,5 @@ long	count_quick(t_stack stack)
 
 int		get_quick(t_dll_l link)
 {
-	return (((t_data) link->content)->quick);
+	return (((t_data)link->content)->quick);
 }

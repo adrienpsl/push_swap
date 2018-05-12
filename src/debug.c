@@ -1,24 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpusel <adpusel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 10:48:07 by adpusel           #+#    #+#             */
+/*   Updated: 2017/11/16 12:45:50 by adpusel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../includes/all_includes.h"
 
-void p_tab(int tab[], int limit)
+void	print_quick(t_dll_c lst)
 {
-	int i;
+	ssize_t i ;
+	t_dll_l link;
 
-	i = 0;
-	ft_putstr("[[ ");
-	while (i < limit)
-	{
-		printf("%d, ", tab[i]);
-		++i;
-	}
-	printf("]]\n");
-}
-
-void print_quick(t_dll_c lst)
-{
-	ssize_t i = lst->length;
-	t_dll_l link = lst->top;
-
+	link= lst->top;
+	i = lst->length;
 	if (lst->length == 0)
 		return;
 	while (i != -1)

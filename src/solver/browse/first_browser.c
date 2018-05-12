@@ -49,9 +49,9 @@ void	get_medianne(t_stack stack)
 	stack->med.mediane = get_med(stack->currrent_pile_dll,
 								 stack->currrent_pile_dll->length);
 	stack->med.medianne_push = get_median_push(stack->currrent_pile_dll,
-											   &stack->browse,
-											   stack->med.mediane,
-											   FALSE);
+												&stack->browse,
+												stack->med.mediane,
+												FALSE);
 }
 
 void

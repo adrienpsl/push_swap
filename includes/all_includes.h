@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_ALL_INCLUDES_H
-#define PUSH_SWAP_ALL_INCLUDES_H
+#ifndef ALL_INCLUDES_H
+# define ALL_INCLUDES_H
 
 # define X_WINDOW 2500
 # define Y_WINDOW 2500

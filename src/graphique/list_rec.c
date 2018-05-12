@@ -12,11 +12,11 @@
 
 #include "../../includes/all_includes.h"
 
-t_dll_l new_rec_link()
+t_dll_l			new_rec_link()
 {
-	t_dll_l visu_link;
-	t_rec_link_00 rec;
-	t_rec_link rec_link;
+	t_dll_l			visu_link;
+	t_rec_link_00	rec;
+	t_rec_link		rec_link;
 
 	visu_link = new_dll_l(&rec, sizeof(t_rec_link_00));
 	ft_memset(visu_link->content, 0, sizeof(t_rec_link_00));
@@ -26,7 +26,7 @@ t_dll_l new_rec_link()
 	return (visu_link);
 }
 
-static void set_rec(t_rec_link rec, t_dll_l link)
+static void		set_rec(t_rec_link rec, t_dll_l link)
 {
 	rec->nb_quick++;
 	if (dll_l_get_int(link) > rec->max)
@@ -35,11 +35,10 @@ static void set_rec(t_rec_link rec, t_dll_l link)
 		rec->min = dll_l_get_int(link);
 }
 
-
-t_dll_l fill_rec_link(t_dll_c pile, int *quick, long size_pile)
+t_dll_l			fill_rec_link(t_dll_c pile, int *quick, long size_pile)
 {
-	t_dll_l rec_link;
-	t_rec_link rec;
+	t_dll_l		rec_link;
+	t_rec_link	rec;
 
 	*quick = get_quick(pile->top);
 	if (pile->length != 0)
@@ -60,12 +59,12 @@ t_dll_l fill_rec_link(t_dll_c pile, int *quick, long size_pile)
 	return (rec_link);
 }
 
-t_dll get_list_rec(t_dll_c pile, t_dll color_pile)
+t_dll			get_list_rec(t_dll_c pile, t_dll color_pile)
 {
-	t_dll_l rec_link;
-	t_dll_c pile_copy;
-	t_dll rec_pile;
-	int quick;
+	t_dll_l		rec_link;
+	t_dll_c		pile_copy;
+	t_dll		rec_pile;
+	int			quick;
 
 	pile_copy = new_dll_c();
 	rec_pile = new_dll();

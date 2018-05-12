@@ -12,15 +12,14 @@
 
 #include "../../includes/all_includes.h"
 
-static void
-struct_and_list_build(t_argv *argv, t_stack *stack, int ac, char **av)
+void	struct_and_list_build(t_argv *argv, t_stack *stack, int ac, char **av)
 {
 	*argv = new_argv(ac, av);
 	*stack = get_stack_filled(*argv);
 	build_lst_a_index((*stack)->pile_a);
 }
 
-static void is_3_algo(t_stack stack)
+void	is_3_algo(t_stack stack)
 {
 	set_stack('A', stack);
 	if (stack->pile_a->length <= 2)
@@ -29,7 +28,7 @@ static void is_3_algo(t_stack stack)
 		sort_3_fuck_little(stack);
 }
 
-static void is_more_3(t_stack stack)
+void	is_more_3(t_stack stack)
 {
 	first_passage_a(stack);
 	if (stack->pile_a->length == 4 && stack->pile_b->length == 0)
@@ -43,7 +42,7 @@ static void is_more_3(t_stack stack)
 	}
 }
 
-void dll_print_str2(t_dll lst)
+void	dll_print_str2(t_dll lst)
 {
 	t_dll_l link;
 
@@ -55,15 +54,14 @@ void dll_print_str2(t_dll lst)
 	}
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
-	t_argv argv;
-	t_stack stack;
-	int all_nb;
+	t_argv	argv;
+	t_stack	stack;
+	int		all_nb;
 
 	struct_and_list_build(&argv, &stack, ac, av);
 	set_stack_visu(stack);
-
 	stack->argv = argv->taken_options;
 	all_nb = stack->pile_a->length;
 	if (all_nb)

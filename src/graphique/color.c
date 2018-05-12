@@ -12,35 +12,25 @@
 
 #include "../../includes/all_includes.h"
 
-long get_color_2(t_dll_l color_link)
+long	get_color_2(t_dll_l color_link)
 {
-	return (((t_color) color_link->content)->color);
+	return (((t_color)color_link->content)->color);
 }
 
-void set_color(t_dll_l color_link, long color)
+void	set_color(t_dll_l color_link, long color)
 {
-	((t_rec_link) color_link->content)->color = color;
+	((t_rec_link)color_link->content)->color = color;
 }
 
-int is_same_quick(t_dll_l color_link, int quick)
+int		is_same_quick(t_dll_l color_link, int quick)
 {
 	return (((t_color) color_link->content)->quick == quick);
 }
 
-t_dll_l new_color_link(int quick, long color_hexa)
-{
-	t_dll_l color_link;
-	t_color_ color;
-
-	color.quick = quick;
-	color.color = color_hexa;
-	color_link = new_dll_l(&color, sizeof(t_color_));
-	return (color_link);
-}
-
-int new_color()
+int		new_color()
 {
 	int a;
+
 	a = rand() % 255;
 	a = a << 8;
 	a += rand() % 255;
@@ -49,7 +39,7 @@ int new_color()
 	return (a);
 }
 
-long is_color(t_dll color_list, int quick)
+long	is_color(t_dll color_list, int quick)
 {
 	t_dll_l link;
 

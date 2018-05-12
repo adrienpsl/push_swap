@@ -21,7 +21,7 @@ void	placed_quick_by_sort(t_stack stack)
 	link = stack->pile_a->top;
 	while (lim > 0)
 	{
-		((t_data) link->content)->quick = 0;
+		((t_data)link->content)->quick = 0;
 		link = link->next;
 		lim--;
 	}
@@ -32,7 +32,7 @@ int		reset_quick_1(t_stack stack)
 	t_dll_l link;
 
 	link = stack->current_pile == 'A' ? stack->pile_a->top : stack->pile_b->top;
-	((t_data) link->content)->quick = stack->browse.quick_count + 1;
+	((t_data)link->content)->quick = stack->browse.quick_count + 1;
 	return (1);
 }
 
@@ -41,7 +41,7 @@ int		reset_quick(t_stack stack)
 	t_dll_l link;
 
 	link = stack->current_pile == 'A' ? stack->pile_a->top : stack->pile_b->top;
-	((t_data) link->content)->quick = stack->browse.quick_count;
+	((t_data)link->content)->quick = stack->browse.quick_count;
 	return (1);
 }
 
@@ -50,8 +50,8 @@ void	set_quick(t_stack stack)
 	t_dll_l link;
 
 	link = stack->current_pile == 'A' ? stack->pile_a->top : stack->pile_b->top;
-	if (((t_data) link->content)->quick == 0)
-		((t_data) link->content)->quick = stack->browse.quick_count;
+	if (((t_data)link->content)->quick == 0)
+		((t_data)link->content)->quick = stack->browse.quick_count;
 }
 
 void	set_quick_1(t_stack stack)
@@ -59,6 +59,6 @@ void	set_quick_1(t_stack stack)
 	t_dll_l link;
 
 	link = stack->current_pile == 'A' ? stack->pile_a->top : stack->pile_b->top;
-	if (((t_data) link->content)->quick == 0)
-		((t_data) link->content)->quick = stack->browse.quick_count + 1;
+	if (((t_data)link->content)->quick == 0)
+		((t_data)link->content)->quick = stack->browse.quick_count + 1;
 }

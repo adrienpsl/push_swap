@@ -12,12 +12,12 @@
 
 #include "../../../includes/all_includes.h"
 
-void	set_index_ab(t_dll_c pile_1, size_t size)
+void			set_index_ab(t_dll_c pile_1, size_t size)
 {
-	t_dll_l link_p1;
-	t_dll_l link_p2;
-	t_dll_c pile_2;
-	int a;
+	t_dll_l	link_p1;
+	t_dll_l	link_p2;
+	t_dll_c	pile_2;
+	int		a;
 
 	pile_2 = new_dll_c();
 	dll_c_copie(pile_2, pile_1, size);
@@ -35,17 +35,17 @@ void	set_index_ab(t_dll_c pile_1, size_t size)
 	destroy_dll_c(&pile_2);
 }
 
-void static set_tab_ab(t_dll_c pile, char tab[])
+void static		set_tab_ab(t_dll_c pile, char tab[])
 {
 	tab[0] = ((t_data) pile->top->content)->n;
 	tab[1] = ((t_data) pile->top->next->content)->n;
 	tab[2] = ((t_data) pile->top->next->next->content)->n;
 }
 
-void sort_3_fuck_little(t_stack stack)
+void			sort_3_fuck_little(t_stack stack)
 {
-	t_dll_c pile;
-	char tab[4];
+	t_dll_c		pile;
+	char		tab[4];
 
 	ft_memset(tab, 0, sizeof(char) * 4);
 	pile = stack->currrent_pile_dll;

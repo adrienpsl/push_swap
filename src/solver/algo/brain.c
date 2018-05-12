@@ -12,7 +12,7 @@
 
 #include "../../../includes/all_includes.h"
 
-void set_middle_algo(t_dll_c pile, int quick)
+void	set_middle_algo(t_dll_c pile, int quick)
 {
 	t_dll_l link;
 	size_t lim;
@@ -21,19 +21,17 @@ void set_middle_algo(t_dll_c pile, int quick)
 	link = pile->top;
 	while (lim > 0)
 	{
-		((t_data) link->content)->quick = quick;
+		((t_data)link->content)->quick = quick;
 		link = link->next;
 		lim--;
 	}
 }
 
-
-
-void first_passage_a(t_stack stack)
+void	first_passage_a(t_stack stack)
 {
 	t_dll_c pile;
-	pile = stack->pile_a;
 
+	pile = stack->pile_a;
 	while (pile->length > 4)
 	{
 		set_stack('A', stack);
@@ -47,24 +45,23 @@ void first_passage_a(t_stack stack)
 		set_middle_algo(pile, stack->browse.quick_count + 1);
 	if (ft_strchr(stack->argv, 'a') || ft_strchr(stack->argv, 'm'))
 		print_stack(stack);
-//	print_stack(stack);
 	create_graf_link(stack);
 	set_stack('A', stack);
 }
 
-void brain_verse(t_stack stack)
+void	brain_verse(t_stack stack)
 {
 	get_med_quick(stack);
 	browser_inverse(stack, stack->med.mediane, stack->quick.counter_quick);
 }
 
-void brain_reverse(t_stack stack)
+void	brain_reverse(t_stack stack)
 {
 	get_med_quick_rev(stack);
 	browser_reverse(stack, stack->med.mediane, stack->quick.counter_quick);
 }
 
-void brain_is_beauty(t_stack stack)
+void	brain_is_beauty(t_stack stack)
 {
 	t_quick *quick;
 
@@ -74,7 +71,7 @@ void brain_is_beauty(t_stack stack)
 	{
 		quick->sens == 'T' ?
 		brain_verse(stack)
-						   :
+							:
 		brain_reverse(stack);
 		update_quick(stack);
 		if (ft_strchr(stack->argv, 'a') || ft_strchr(stack->argv, 'm'))

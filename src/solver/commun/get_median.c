@@ -12,7 +12,8 @@
 
 #include "../../../includes/all_includes.h"
 
-t_dll_c	get_list_med_push(t_dll_c origin, int med, int op)
+t_dll_c		get_list_med_push(t_dll_c origin, int med, int op)
+
 {
 	t_dll_c		pile_push_med;
 	t_dll_l		origin_link;
@@ -36,10 +37,10 @@ t_dll_c	get_list_med_push(t_dll_c origin, int med, int op)
 	return (pile_push_med);
 }
 
-int		get_median_push(t_dll_c origin, t_browse *browse, int med, int op)
+int			get_median_push(t_dll_c origin, t_browse *browse, int med, int op)
 {
-	int med_push;
-	t_dll_c pile_push_med;
+	int		med_push;
+	t_dll_c	pile_push_med;
 
 	if (browse->lim / 2 < 6)
 	{
@@ -54,7 +55,7 @@ int		get_median_push(t_dll_c origin, t_browse *browse, int med, int op)
 	return (med_push);
 }
 
-int		get_med(t_dll_c c_list, int length)
+int			get_med(t_dll_c c_list, int length)
 {
 	int a;
 	int *tab;
