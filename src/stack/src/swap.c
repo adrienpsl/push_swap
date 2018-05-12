@@ -12,11 +12,11 @@
 
 #include "../../../includes/all_includes.h"
 
-static int test_swap_a(t_stack stack)
+static int		test_swap_a(t_stack stack)
 {
-	int a;
-	int b;
-	t_dll_c pile;
+	int			a;
+	int			b;
+	t_dll_c		pile;
 
 	pile = stack->pile_a;
 	a = dll_l_get_int(pile->top);
@@ -28,11 +28,11 @@ static int test_swap_a(t_stack stack)
 	return (FALSE);
 }
 
-static int test_swap_b(t_stack stack)
+static int		test_swap_b(t_stack stack)
 {
-	int a;
-	int b;
-	t_dll_c pile;
+	int			a;
+	int			b;
+	t_dll_c		pile;
 
 	pile = stack->pile_b;
 	a = dll_l_get_int(pile->top);
@@ -44,11 +44,11 @@ static int test_swap_b(t_stack stack)
 	return (FALSE);
 }
 
-void	need_swap_a(t_stack stack)
+void			need_swap_a(t_stack stack)
 {
-	int a;
-	int b;
-	t_dll_c pile;
+	int			a;
+	int			b;
+	t_dll_c		pile;
 
 	pile = stack->pile_a;
 	a = dll_l_get_int(pile->top);
@@ -59,11 +59,11 @@ void	need_swap_a(t_stack stack)
 	}
 }
 
-void	need_swap_b(t_stack stack)
+void			need_swap_b(t_stack stack)
 {
-	int a;
-	int b;
-	t_dll_c pile;
+	int			a;
+	int			b;
+	t_dll_c		pile;
 
 	pile = stack->pile_b;
 	a = dll_l_get_int(pile->top);
@@ -74,9 +74,8 @@ void	need_swap_b(t_stack stack)
 	}
 }
 
-void	need_swap(t_stack stack)
+void			need_swap(t_stack stack)
 {
-
 	if (stack->pile_b->length)
 	{
 		if (test_swap_a(stack) && test_swap_b(stack))
@@ -93,5 +92,4 @@ void	need_swap(t_stack stack)
 	}
 	else
 		need_swap_a(stack);
-
 }

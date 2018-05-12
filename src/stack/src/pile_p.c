@@ -21,7 +21,7 @@ void	pb(t_stack stack)
 	pile_a = stack->pile_a;
 	pile_b = stack->pile_b;
 	if (pile_a->length < 1)
-		return;
+		return ;
 	link = dll_c_drop_link(pile_a);
 	dll_c_push_link(link, pile_b);
 }
@@ -35,7 +35,7 @@ void	pa(t_stack stack)
 	pile_a = stack->pile_a;
 	pile_b = stack->pile_b;
 	if (pile_b->length < 1)
-		return;
+		return ;
 	link = dll_c_drop_link(pile_b);
 	dll_c_push_link(link, pile_a);
 }

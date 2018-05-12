@@ -14,16 +14,15 @@
 
 void	sa(t_stack stack)
 {
-	t_dll_c pile_a;
-	struct s_data a;
-	struct s_data b;
+	t_dll_c			pile_a;
+	struct s_data	a;
+	struct s_data	b;
 
 	pile_a = stack->pile_a;
 	if (pile_a->length > 1)
 	{
 		ft_memcpy(&a, pile_a->top->content, sizeof(struct s_data));
 		ft_memcpy(&b, pile_a->top->next->content, sizeof(struct s_data));
-
 		ft_memcpy(pile_a->top->content, &b, sizeof(struct s_data));
 		ft_memcpy(pile_a->top->next->content, &a, sizeof(struct s_data));
 	}
@@ -31,16 +30,15 @@ void	sa(t_stack stack)
 
 void	sb(t_stack stack)
 {
-	t_dll_c pile_b;
-	struct s_data a;
-	struct s_data b;
+	t_dll_c			pile_b;
+	struct s_data	a;
+	struct s_data	b;
 
 	pile_b = stack->pile_b;
 	if (pile_b->length > 1)
 	{
 		ft_memcpy(&a, pile_b->top->content, sizeof(struct s_data));
 		ft_memcpy(&b, pile_b->top->next->content, sizeof(struct s_data));
-
 		ft_memcpy(pile_b->top->content, &b, sizeof(struct s_data));
 		ft_memcpy(pile_b->top->next->content, &a, sizeof(struct s_data));
 	}

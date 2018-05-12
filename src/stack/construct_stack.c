@@ -16,7 +16,7 @@ void	set_stack(char name_pile, t_stack stack)
 {
 	stack->current_pile = name_pile == 'A' ? 'A' : 'B';
 	stack->currrent_pile_dll =
-	 name_pile == 'A' ? stack->pile_a : stack->pile_b;
+		name_pile == 'A' ? stack->pile_a : stack->pile_b;
 }
 
 void	destoye_link(t_dll_l link)
@@ -70,11 +70,11 @@ t_v		new_visu(int x, int y, char *name)
 	return (visu);
 }
 
-t_stack	new_stack()
+t_stack	new_stack(void)
 {
 	t_stack stack;
 
-	stack = (t_stack) ft_malloc_protect(sizeof(struct s_stack));
+	stack = ft_malloc_protect(sizeof(struct s_stack));
 	ft_memset(stack, 0, sizeof(struct s_stack));
 	stack->pile_a = NULL;
 	stack->pile_b = new_dll_c();
