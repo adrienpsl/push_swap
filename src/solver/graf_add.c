@@ -45,8 +45,13 @@ void build_graf_test_mem(t_stack stack)
 	t_stack_visu_00 stack__v;
 	t_dll_l link;
 
-	stack__v.pile_a = get_list_rec(stack->pile_a, stack->color_tmp);
-	stack__v.pile_b = get_list_rec(stack->pile_b, stack->color_tmp);
+	stack__v.pile_a = stack->pile_a->length ?
+					  get_list_rec(stack->pile_a, stack->color_tmp) :
+					  NULL;
+
+	stack__v.pile_b = stack->pile_b->length ?
+					  get_list_rec(stack->pile_b, stack->color_tmp) :
+					  NULL;
 	link = new_dll_l(&stack__v, sizeof(t_stack_visu_00));
 	dll_add(link, stack->v_data);
 }
@@ -54,20 +59,30 @@ void build_graf_test_mem(t_stack stack)
 void create_graf_link(t_stack stack)
 {
 	(void) stack;
-
-	build_graf_link(stack);
-	//	build_graf_test_mem(stack);
+	ft_strchr(stack->argv, 'v') ?
+	build_graf_link(stack)
+								:
+	build_graf_test_mem(stack);
 }
 
+void print_lst(t_stack stack, t_stack_visu stack_visu, int option)
+{
+	stack->visu->rec_pile = stack_visu->pile_a;
+	if (stack->visu->rec_pile->length > 0)
+		print_list(stack->visu, 50, option);
+	stack->visu->rec_pile = stack_visu->pile_b;
+	if (stack->visu->rec_pile)
+		print_list(stack->visu, 550, option);
+}
 
 void draw_pile(t_stack stack, t_stack_visu stack_visu)
 {
-	stack->visu->rec_pile = stack_visu->pile_a;
-	print_list(stack->visu, 50);
-	stack->visu->rec_pile = stack_visu->pile_b;
-	print_list(stack->visu, 550);
-	// dessiner f
-	// poser leg
+	print_lst(stack, stack_visu, 0);
+	mlx_put_image_to_window(stack->visu->mlx_data.mlx,
+							stack->visu->mlx_data.window,
+							stack->visu->mlx_data.img,
+							0, 0);
+	print_lst(stack, stack_visu, 1);
 }
 
 int tt(int key, void *p)
@@ -83,20 +98,12 @@ int tt(int key, void *p)
 	if (link != NULL)
 	{
 		draw_pile(stack, link->content);
-		mlx_put_image_to_window(stack->visu->mlx_data.mlx,
-								stack->visu->mlx_data.window,
-								stack->visu->mlx_data.img,
-								0, 0);
 	}
 
 	stack->visu->visu_print_link = stack->visu->visu_print_link->next;
 
 	printf("%d \n", key);
 	return (FALSE);
-}
-
-void set_img()
-{
 }
 
 void test_visu(t_stack stack)
@@ -110,5 +117,5 @@ void test_visu(t_stack stack)
 	mlx_key_hook(stack->visu->mlx_data.window, tt, stack);
 	mlx_loop(stack->visu->mlx_data.mlx);
 
-	//	mlx_destroy_window(stack->visu->mlx_data.mlx, stack->visu->mlx_data.window);
+	mlx_destroy_window(stack->visu->mlx_data.mlx, stack->visu->mlx_data.window);
 }

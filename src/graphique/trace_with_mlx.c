@@ -51,20 +51,26 @@ void the_legende(t_mlx_data mlx_data, t_rec_link rec, t_fig_2 fig2)
 
 	ft_putnbr_str(rec->quick, tab);
 	mlx_string_put(mlx_data->mlx, mlx_data->window,
-				   middle - 30,
+				   middle,
 				   fig2->y_2 + 10,
+				   fig2->color, tab);
+
+	ft_putnbr_str(rec->max - rec->min, tab);
+	mlx_string_put(mlx_data->mlx, mlx_data->window,
+				   middle,
+				   fig2->y_2 + 30,
 				   fig2->color, tab);
 
 	ft_putnbr_str(rec->min, tab);
 	ft_strcat(tab, "-");
 	mlx_string_put(mlx_data->mlx, mlx_data->window,
-				   middle - 10,
-				   fig2->y_2 + 10,
+				   middle,
+				   fig2->y_2 + 60,
 				   fig2->color, tab);
 
 	ft_putnbr_str(rec->max, tab);
 	mlx_string_put(mlx_data->mlx, mlx_data->window,
-				   middle + 20,
-				   fig2->y_2 + 10,
+				   middle,
+				   fig2->y_2 + 80,
 				   fig2->color, tab);
 }

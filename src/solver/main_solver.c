@@ -32,6 +32,8 @@ static void is_3_algo(t_stack stack)
 static void is_more_3(t_stack stack)
 {
 	first_passage_a(stack);
+	if (stack->pile_a->length == 4 && stack->pile_b->length == 0)
+		sort_4_top(stack);
 	while (stack->pile_b->length)
 	{
 		brain_is_beauty(stack);
@@ -41,6 +43,17 @@ static void is_more_3(t_stack stack)
 	}
 }
 
+void dll_print_str2(t_dll lst)
+{
+	t_dll_l link;
+
+	link = lst->top;
+	while (link)
+	{
+		ft_printf("%s\n", link->content);
+		link = link->next;
+	}
+}
 
 int main(int ac, char **av)
 {
@@ -53,16 +66,17 @@ int main(int ac, char **av)
 
 	stack->argv = argv->taken_options;
 	all_nb = stack->pile_a->length;
-	if (all_nb <= 3)
-		is_3_algo(stack);
-	else
-		is_more_3(stack);
-	push_instruc_list(stack->last_instruct, stack);
-	dll_print_str(stack->list_instruc);
-
-	/////////////////////////////////////////////
-	test_visu(stack);
-
+	if (all_nb)
+	{
+		if (all_nb <= 3)
+			is_3_algo(stack);
+		else
+			is_more_3(stack);
+		push_instruc_list(stack->last_instruct, stack);
+		dll_print_str2(stack->list_instruc);
+		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
+			test_visu(stack);
+	}
 	destroy_argv(&argv);
 	destroy_stack(&stack);
 	return (EXIT_SUCCESS);

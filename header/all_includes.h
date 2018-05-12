@@ -11,6 +11,7 @@
 # include <limits.h>
 
 void create_graf_link(t_stack stack);
+void print_leg(t_visualisateur visu, int y);
 void	push_instruc_list(char *intruct, t_stack stack);
 int		get_med(t_dll_c c_list, int		length);
 void	need_swap(t_stack stack);
@@ -50,6 +51,8 @@ void	sort_3_fuck_little(t_stack stack);
 void	first_passage_a(t_stack stack);
 void	brain_is_beauty(t_stack stack);
 
+
+int			is_ordered(t_dll_c c_list, size_t lenght);
 /*
 **    quick
 */
@@ -103,6 +106,8 @@ void	rra(t_stack pile);
 void	rrb(t_stack pile);
 void	rrr(t_stack pile);
 
+void the_legende(t_mlx_data mlx_data, t_rec_link rec, t_fig_2 fig2);
+
 /*
 **    solver =============================================================
 */
@@ -129,6 +134,6 @@ t_dll_l	new_color_link(int		quick, long color);
 int		is_same_quick(t_dll_l color_link, int		quick);
 void	set_color(t_dll_l color_link, long color);
 t_dll	get_list_rec(t_dll_c pile, t_dll color_pile);
-void	print_list(t_visualisateur visu, int		x);
+void	print_list(t_visualisateur visu, int x, int mode);
 
 #endif //PUSH_SWAP_ALL_INCLUDES_H
