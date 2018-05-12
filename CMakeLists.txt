@@ -12,11 +12,11 @@ file(GLOB head "includes/*.h")
 include_directories(includes/*.h)
 
 file(GLOB sources0 "src/*.c")
-file(GLOB sources1 "src/sources/src/**/*.c")
-file(GLOB sources2 "src/sources/src/**/**/*.c")
-file(GLOB sources3 "src/sources/src/**/**/**/*.c")
-file(GLOB sources4 "src/sources/src/**/**/**/**/*.c")
-file(GLOB sources5 "src/sources/src/**/**/**/**/**/*.c")
+file(GLOB sources1 "lib/libft/src/**/*.c")
+file(GLOB sources2 "lib/libft/src/**/**/*.c")
+file(GLOB sources3 "lib/libft/src/**/**/**/*.c")
+file(GLOB sources4 "lib/libft/src/**/**/**/**/*.c")
+file(GLOB sources5 "lib/libft/src/**/**/**/**/**/*.c")
 file(GLOB sources6 "test/*.c")
 
 

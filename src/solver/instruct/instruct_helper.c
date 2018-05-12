@@ -14,27 +14,27 @@
 
 void			check_and_apply_instruct(char *str, t_stack stack)
 {
-	if (ft_strcmp("sa", str) == FALSE)
+	if (ft_strcmp("sa\n", str) == FALSE)
 		sa(stack);
-	else if (ft_strcmp("sb", str) == FALSE)
+	else if (ft_strcmp("sb\n", str) == FALSE)
 		sb(stack);
-	else if (ft_strcmp("ss", str) == FALSE)
+	else if (ft_strcmp("ss\n", str) == FALSE)
 		ss(stack);
-	else if (ft_strcmp("pa", str) == FALSE)
+	else if (ft_strcmp("pa\n", str) == FALSE)
 		pa(stack);
-	else if (ft_strcmp("pb", str) == FALSE)
+	else if (ft_strcmp("pb\n", str) == FALSE)
 		pb(stack);
-	else if (ft_strcmp("ra", str) == FALSE)
+	else if (ft_strcmp("ra\n", str) == FALSE)
 		ra(stack);
-	else if (ft_strcmp("rb", str) == FALSE)
+	else if (ft_strcmp("rb\n", str) == FALSE)
 		rb(stack);
-	else if (ft_strcmp("rr", str) == FALSE)
+	else if (ft_strcmp("rr\n", str) == FALSE)
 		rr(stack);
-	else if (ft_strcmp("rra", str) == FALSE)
+	else if (ft_strcmp("rra\n", str) == FALSE)
 		rra(stack);
-	else if (ft_strcmp("rrb", str) == FALSE)
+	else if (ft_strcmp("rrb\n", str) == FALSE)
 		rrb(stack);
-	else if (ft_strcmp("rrr", str) == FALSE)
+	else if (ft_strcmp("rrr\n", str) == FALSE)
 		rrr(stack);
 	else
 		exit_wrong_nb();

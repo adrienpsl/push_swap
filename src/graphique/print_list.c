@@ -21,7 +21,7 @@ void set_set(t_dll_l visu_link, t_fig_2 fig2)
 	fig2->x_2 += (rec->percent * X_WINDOW);
 }
 
-void print_list(t_visualisateur visu, int y, int mode)
+void print_list(t_v visu, int y, int mode)
 {
 	t_dll_l rec_link;
 	t_fig_2_00 fig2;

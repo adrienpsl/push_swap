@@ -12,11 +12,11 @@
 
 #include "../../includes/all_includes.h"
 
-int			is_ordered(t_dll_c c_list, size_t lenght)
+int is_ordered(t_dll_c c_list, size_t lenght)
 {
-	size_t	i;
-	t_dll_l	link;
-	t_dll_l	next;
+	size_t i;
+	t_dll_l link;
+	t_dll_l next;
 
 	i = 1;
 	link = c_list->top;
@@ -25,17 +25,18 @@ int			is_ordered(t_dll_c c_list, size_t lenght)
 	{
 		if (dll_l_get_int(link) >= dll_l_get_int(next))
 		{
-			ft_printf("%d \n", dll_l_get_int(link));
+			ft_printf("KO\n");
 			return (FALSE);
 		}
 		link = next;
 		next = link->next;
 		++i;
 	}
+	ft_printf("OK\n");
 	return (TRUE);
 }
 
-int		is_ordered_link(t_dll_l link, size_t lenght)
+int is_ordered_link(t_dll_l link, size_t lenght)
 {
 	size_t i;
 	t_dll_l next;
@@ -53,7 +54,7 @@ int		is_ordered_link(t_dll_l link, size_t lenght)
 	return (TRUE);
 }
 
-void	do_intructions(t_argv argv, t_stack stack)
+void do_intructions(t_argv argv, t_stack stack)
 {
 	char *instruct;
 
@@ -63,24 +64,18 @@ void	do_intructions(t_argv argv, t_stack stack)
 	}
 }
 
-t_stack	get_stack_filled(t_argv argv)
+int main(int ac, char **av)
 {
+	t_argv argv;
 	t_stack stack;
 
-	stack = new_stack();
-	stack->pile_a = get_list_a(argv, ACTIVATE);
-	return (stack);
+	argv = new_argv(ac, av);
+	stack = get_stack_filled(argv);
+	do_intructions(argv, stack);
+	if (stack->pile_a->length)
+		is_ordered(stack->pile_a, stack->pile_a->length);
+	destroy_argv(&argv);
+	destroy_stack(&stack);
+
+	return (EXIT_SUCCESS);
 }
-//
-//int main(int ac, char **av)
-//{
-//	t_argv argv;
-//	t_stack stack;
-//
-//	argv = new_argv(ac, av);
-//	stack = get_stack_filled(argv);
-//	do_intructions(argv, stack);
-//	is_ordered(stack->pile_a);
-//
-//	return (EXIT_SUCCESS);
-//}

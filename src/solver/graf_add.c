@@ -23,7 +23,7 @@ void set_stack_visu(t_stack stack)
 
 void build_graf_link(t_stack stack)
 {
-	t_visualisateur visu;
+	t_v visu;
 	t_stack_visu_00 stack__v;
 	t_dll_l link;
 

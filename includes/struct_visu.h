@@ -99,9 +99,9 @@ typedef struct		s_visualisateur_00
 	t_dll_l visu_print_link;
 
 
-} 					t_visualisateur_00;
+} 					t_v_00;
 
-typedef t_visualisateur_00 *t_visualisateur;
+typedef t_v_00 *t_v;
 
 
 

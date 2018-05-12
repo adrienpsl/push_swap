@@ -12,6 +12,15 @@
 
 #include "../../includes/all_includes.h"
 
+t_stack	get_stack_filled(t_argv argv)
+{
+	t_stack stack;
+
+	stack = new_stack();
+	stack->pile_a = get_list_a(argv, ACTIVATE);
+	return (stack);
+}
+
 size_t		get_index_tab(int nb, int *tab)
 {
 	size_t index;

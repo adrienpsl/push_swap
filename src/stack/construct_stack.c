@@ -51,15 +51,15 @@ void destroy_stack(t_stack *s)
 	*s = NULL;
 }
 
-t_visualisateur new_visu(int x, int y, char *name)
+t_v new_visu(int x, int y, char *name)
 {
-	t_visualisateur visu;
+	t_v visu;
 	t_mlx_data mlx;
 	int a;
 	int b;
 	int c;
 
-	visu = ft_malloc_protect(sizeof(t_visualisateur_00));
+	visu = ft_malloc_protect(sizeof(t_v_00));
 	visu->list_color = new_dll();
 	mlx = &visu->mlx_data;
 	mlx->mlx = mlx_init();

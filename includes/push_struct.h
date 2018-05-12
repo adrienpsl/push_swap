@@ -39,7 +39,7 @@ typedef t_stack_visu_00 *t_stack_visu;
 */
 typedef struct		s_stack
 {
-	t_visualisateur	visu;
+	t_v	visu;
 	t_dll_c			pile_a;
 	t_dll_c			pile_b;
 	t_dll			list_instruc;
