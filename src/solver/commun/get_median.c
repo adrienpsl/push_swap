@@ -13,7 +13,6 @@
 #include "../../../includes/all_includes.h"
 
 t_dll_c		get_list_med_push(t_dll_c origin, int med, int op)
-
 {
 	t_dll_c		pile_push_med;
 	t_dll_l		origin_link;
@@ -45,12 +44,12 @@ int			get_median_push(t_dll_c origin, t_browse *browse, int med, int op)
 	if (browse->lim / 2 < 6)
 	{
 		browse->option = FALSE;
-		return 0;
+		return (0);
 	}
 	browse->option = TRUE;
 	pile_push_med = get_list_med_push(origin, med, op);
 	med_push = get_med(pile_push_med,
-					   pile_push_med->length);
+						pile_push_med->length);
 	destroy_dll_c(&pile_push_med);
 	return (med_push);
 }

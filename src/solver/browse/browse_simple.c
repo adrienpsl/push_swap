@@ -34,7 +34,6 @@ void	browse_push_2(t_stack stack, int nb_top_pile)
 
 	med = stack->med;
 	browse = &stack->browse;
-
 	if (browse->option == TRUE)
 		push_by_median_push_2(nb_top_pile, med.medianne_push, stack);
 	else
@@ -80,7 +79,6 @@ void	browser_inverse(t_stack stack, size_t med, size_t lim)
 			(stack->current_pile == 'B' && top_pile >= med))
 		{
 			browse_push_2(stack, top_pile);
-			//			browser_push(stack);
 		}
 		else
 			do_inst('r', NO, stack);

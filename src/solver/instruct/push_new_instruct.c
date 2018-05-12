@@ -18,11 +18,10 @@ int		rr_style(char *instr, t_stack stack)
 
 	last = stack->last_instruct;
 	if ((ft_strcmp(instr, "rrb") == FALSE &&
-		 ft_strcmp(last, "rra") == FALSE)
+			ft_strcmp(last, "rra") == FALSE)
 		||
 		(ft_strcmp(instr, "rra") == FALSE &&
-		 ft_strcmp(last, "rrb") == FALSE)
-	 )
+			ft_strcmp(last, "rrb") == FALSE))
 	{
 		push_instruc_list("rrr", stack);
 		return (TRUE);
@@ -36,11 +35,10 @@ int		r_style(char *instr, t_stack stack)
 
 	last = stack->last_instruct;
 	if ((ft_strcmp(instr, "rb") == FALSE &&
-		 ft_strcmp(last, "ra") == FALSE)
+			ft_strcmp(last, "ra") == FALSE)
 		||
 		(ft_strcmp(instr, "ra") == FALSE &&
-		 ft_strcmp(last, "rb") == FALSE)
-	 )
+			ft_strcmp(last, "rb") == FALSE))
 	{
 		push_instruc_list("rr", stack);
 		return (TRUE);
@@ -57,7 +55,7 @@ void	do_instruct(char *instruc, t_stack stack)
 		{
 			ft_memset(stack->last_instruct, 0, sizeof(char) * 4);
 			stack->count++;
-			return;
+			return ;
 		}
 		else
 			push_instruc_list(stack->last_instruct, stack);

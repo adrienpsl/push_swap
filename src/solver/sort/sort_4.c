@@ -29,7 +29,7 @@ static void		browser_end(t_stack stack)
 	}
 }
 
-void		sort_4_top(t_stack stack)
+void			sort_4_top(t_stack stack)
 {
 	t_dll_c pile;
 
@@ -38,7 +38,7 @@ void		sort_4_top(t_stack stack)
 	browser_end(stack);
 }
 
-static void	browser_reverse_end(t_stack stack)
+static void		browser_reverse_end(t_stack stack)
 {
 	need_swap(stack);
 	if (stack->current_pile == 'A')
@@ -53,7 +53,7 @@ static void	browser_reverse_end(t_stack stack)
 	}
 }
 
-void		sort_4_end(t_stack stack)
+void			sort_4_end(t_stack stack)
 {
 	t_dll_c pile;
 

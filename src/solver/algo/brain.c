@@ -14,8 +14,8 @@
 
 void	set_middle_algo(t_dll_c pile, int quick)
 {
-	t_dll_l link;
-	size_t lim;
+	t_dll_l	link;
+	size_t	lim;
 
 	lim = pile->length;
 	link = pile->top;

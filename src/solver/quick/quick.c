@@ -49,7 +49,6 @@ long	count_quick(t_stack stack)
 {
 	long	size;
 	int		current_quick;
-	int		quick_searched;
 	t_dll_l	link;
 	t_dll_c	pile;
 	char	sens;
@@ -59,9 +58,7 @@ long	count_quick(t_stack stack)
 	size = 0;
 	link = sens == 'T' ? pile->top : pile->top->prev;
 	current_quick = get_quick(link);
-	(void) 1;
-	quick_searched = stack->quick.quick;
-	while (current_quick == quick_searched && (size_t)size < pile->length)
+	while (current_quick == stack->quick.quick && (size_t)size < pile->length)
 	{
 		link = sens == 'T' ? link->next : link->prev;
 		current_quick = get_quick(link);

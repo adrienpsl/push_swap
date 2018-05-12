@@ -66,8 +66,8 @@ void	do_intructions(t_argv argv, t_stack stack)
 
 int		main(int ac, char **av)
 {
-	t_argv argv;
-	t_stack stack;
+	t_argv	argv;
+	t_stack	stack;
 
 	argv = new_argv(ac, av);
 	stack = get_stack_filled(argv);
@@ -76,6 +76,5 @@ int		main(int ac, char **av)
 		is_ordered(stack->pile_a, stack->pile_a->length);
 	destroy_argv(&argv);
 	destroy_stack(&stack);
-
 	return (EXIT_SUCCESS);
 }

@@ -24,10 +24,10 @@ void	set_color(t_dll_l color_link, long color)
 
 int		is_same_quick(t_dll_l color_link, int quick)
 {
-	return (((t_color) color_link->content)->quick == quick);
+	return (((t_color)color_link->content)->quick == quick);
 }
 
-int		new_color()
+int		new_color(void)
 {
 	int a;
 

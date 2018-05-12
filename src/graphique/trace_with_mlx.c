@@ -35,16 +35,16 @@ void		recangle(t_fig_2 fig2, t_mlx_data mlx_data)
 
 void		fill_pixel(char *img, long x, long y, int color)
 {
-	y = (x * 4) +  (4 * y * Y_WINDOW);
-	img[y] = color & 0xff;;
+	y = (x * 4) + (4 * y * Y_WINDOW);
+	img[y] = color & 0xff;
 	img[y + 1] = color >> 8 & 0xff;
 	img[y + 2] = color >> 16;
 }
 
-void	the_legende(t_mlx_data mlx_data, t_rec_link rec, t_fig_2 fig2)
+void		the_legende(t_mlx_data mlx_data, t_rec_link rec, t_fig_2 fig2)
 {
 	char	tab[25];
-	int	middle;
+	int		middle;
 
 	middle = ((fig2->x_2 - fig2->x_1) / 2) + fig2->x_1 - 10;
 	ft_putnbr_str(rec->quick, tab);

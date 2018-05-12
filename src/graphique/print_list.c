@@ -49,7 +49,7 @@ void		print_list(t_v visu, int y, int mode)
 		set_set(rec_link, &fig2);
 		mode == 0 ?
 		recangle(&fig2, &visu->mlx_data) :
-		the_legende( &visu->mlx_data, rec, &fig2);
+		the_legende(&visu->mlx_data, rec, &fig2);
 		fig2.x_1 = fig2.x_2;
 		rec_link = rec_link->next;
 	}

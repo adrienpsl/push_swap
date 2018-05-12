@@ -37,7 +37,7 @@ void	sort_3_top(t_stack stack)
 	{
 		do_inst('a', NO, stack);
 		do_inst('p', NO, stack);
-		return;
+		return ;
 	}
 	do_inst('a', NO, stack);
 	do_inst('a', NO, stack);

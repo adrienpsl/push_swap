@@ -20,7 +20,7 @@ void	get_med_quick(t_stack stack)
 	med_quick_list->top = stack->currrent_pile_dll->top;
 	med_quick_list->length = stack->quick.counter_quick;
 	stack->med.mediane = get_med(med_quick_list,
-								 med_quick_list->length);
+									med_quick_list->length);
 	if (med_quick_list->length)
 	{
 		stack->browse.lim = stack->quick.counter_quick;
@@ -40,8 +40,7 @@ void	get_med_quick_rev(t_stack stack)
 
 	pile = new_dll_c();
 	pile->top = stack->currrent_pile_dll->top;
-	pile->length = stack->quick.counter_quick;;
-
+	pile->length = stack->quick.counter_quick;
 	i = stack->quick.counter_quick;
 	while (i)
 	{
@@ -49,7 +48,7 @@ void	get_med_quick_rev(t_stack stack)
 		--i;
 	}
 	stack->med.mediane = get_med(pile,
-								 stack->quick.counter_quick);
+									stack->quick.counter_quick);
 	stack->browse.lim = stack->quick.counter_quick;
 	stack->med.medianne_push = get_median_push(pile, &stack->browse,
 												stack->med.mediane, TRUE);

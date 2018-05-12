@@ -69,7 +69,7 @@ void__		sort_browser(t_stack stack, size_t med, size_t lim);
 void__		sort_browser_reverse(t_stack stack, size_t med, size_t lim);
 t_dll_c		get_list_a(t_argv argv, int___ is_solver);
 int___ 		is_valide_number(char *nb_str, t_dll_c c_liste);
-void__		exit_wrong_nb();
+void__		exit_wrong_nb(void);
 int___		is_action(char *str);
 void__		set_stack(char name_pile, t_stack stack);
 void__		destroy_stack(t_stack *s);

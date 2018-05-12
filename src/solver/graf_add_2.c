@@ -39,7 +39,6 @@ void	build_graf_test_mem(t_stack stack)
 	stack__v.pile_a = stack->pile_a->length ?
 						get_list_rec(stack->pile_a, stack->color_tmp) :
 						NULL;
-
 	stack__v.pile_b = stack->pile_b->length ?
 						get_list_rec(stack->pile_b, stack->color_tmp) :
 						NULL;
@@ -47,9 +46,8 @@ void	build_graf_test_mem(t_stack stack)
 	dll_add(link, stack->v_data);
 }
 
-void create_graf_link(t_stack stack)
+void	create_graf_link(t_stack stack)
 {
-	(void) stack;
 	ft_strchr(stack->argv, 'v') ?
 	build_graf_link(stack)
 								:

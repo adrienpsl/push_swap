@@ -14,8 +14,8 @@
 
 void	sort_browser(t_stack stack, size_t med, size_t lim)
 {
-	size_t top_pile;
-	t_dll_c pile;
+	size_t	top_pile;
+	t_dll_c	pile;
 
 	pile = stack->currrent_pile_dll;
 	while (lim > 0)
@@ -32,8 +32,8 @@ void	sort_browser(t_stack stack, size_t med, size_t lim)
 
 void	sort_browser_reverse(t_stack stack, size_t med, size_t lim)
 {
-	size_t top_pile;
-	t_dll_c pile;
+	size_t	top_pile;
+	t_dll_c	pile;
 
 	pile = stack->currrent_pile_dll;
 	while (lim > 0)

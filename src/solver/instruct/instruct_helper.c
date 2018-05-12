@@ -43,7 +43,6 @@ void			check_and_apply_instruct(char *str, t_stack stack)
 static void		pile_a(char instruction, int op, char tab_ins[])
 {
 	tab_ins[0] = instruction;
-
 	if (instruction == 'p')
 		tab_ins[1] = op == NO ? 'b' : 'a';
 	else if (instruction == 'a')
@@ -59,7 +58,6 @@ static void		pile_a(char instruction, int op, char tab_ins[])
 static void		pile_b(char instruction, int op, char tab_ins[])
 {
 	tab_ins[0] = instruction;
-
 	if (instruction == 'p')
 		tab_ins[1] = op == NO ? 'a' : 'b';
 	else if (instruction == 'a')

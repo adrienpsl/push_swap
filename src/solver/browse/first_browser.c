@@ -45,17 +45,15 @@ void	browse_push(t_stack stack, int nb_top_pile)
 
 void	get_medianne(t_stack stack)
 {
-
 	stack->med.mediane = get_med(stack->currrent_pile_dll,
-								 stack->currrent_pile_dll->length);
+									stack->currrent_pile_dll->length);
 	stack->med.medianne_push = get_median_push(stack->currrent_pile_dll,
 												&stack->browse,
 												stack->med.mediane,
 												FALSE);
 }
 
-void
-browse_pile_a(t_stack stack, size_t lim)
+void	browse_pile_a(t_stack stack, size_t lim)
 {
 	size_t		top_pile;
 	t_dll_c		pile;
