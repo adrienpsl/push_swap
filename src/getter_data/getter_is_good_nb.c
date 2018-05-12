@@ -23,7 +23,7 @@ static int		is_an_int(long nb)
 {
 	if (nb > INT_MAX || nb < INT_MIN)
 		exit_wrong_nb();
-	return ((int) nb);
+	return ((int)nb);
 }
 
 static int		cmp_exist(int nb1, int nb2)
@@ -46,5 +46,5 @@ int				is_valide_number(char *nb_str, t_dll_c c_liste)
 		exit_wrong_nb();
 	nb = is_an_int(nb);
 	is_single(c_liste, nb);
-	return ((int) nb);
+	return ((int)nb);
 }

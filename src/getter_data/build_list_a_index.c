@@ -44,7 +44,7 @@ void		set_index(t_dll_c c_list, int *tab)
 	while (i < c_list->length)
 	{
 		index = get_index_tab(dll_l_get_int(link), tab);
-		*(int *) link->content = index;
+		*(int *)link->content = index;
 		link = link->next;
 		++i;
 	}

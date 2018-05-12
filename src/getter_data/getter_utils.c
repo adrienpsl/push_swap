@@ -12,18 +12,18 @@
 
 #include "../../includes/all_includes.h"
 
-void		exit_wrong_nb()
+void		exit_wrong_nb(void)
 {
-	ft_putstr_fd("Error",2);
+	ft_putstr_fd("Error", 2);
 	exit(42);
 }
 
 int			is_action(char *str)
 {
-	static char instruct[11][3] = {
-	 "sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"
+	static char	instruct[11][3] = {
+		"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"
 	};
-	int i;
+	int			i;
 
 	i = 0;
 	while (i < 11)
