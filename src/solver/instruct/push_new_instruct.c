@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../../includes/all_includes.h"
 
 int		rr_style(char *instr, t_stack stack)
 {

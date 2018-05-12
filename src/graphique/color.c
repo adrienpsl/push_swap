@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../includes/all_includes.h"
 
 long get_color_2(t_dll_l color_link)
 {

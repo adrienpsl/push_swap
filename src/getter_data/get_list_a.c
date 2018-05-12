@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../includes/all_includes.h"
 
 static int		is_argv(t_argv argv, char **str)
 {

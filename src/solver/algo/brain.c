@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../../includes/all_includes.h"
 
 void set_middle_algo(t_dll_c pile, int quick)
 {

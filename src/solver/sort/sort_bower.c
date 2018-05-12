@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../../includes/all_includes.h"
 
 void	sort_browser(t_stack stack, size_t med, size_t lim)
 {

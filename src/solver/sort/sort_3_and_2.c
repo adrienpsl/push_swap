@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../../includes/all_includes.h"
 
 void	sort_2_top(t_stack stack)
 {

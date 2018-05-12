@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../header/all_includes.h"
+#include "../../../includes/all_includes.h"
 
 void	push_by_median_push(int nb_top_pile, int med_push, t_stack stack)
 {

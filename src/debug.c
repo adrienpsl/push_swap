@@ -1,4 +1,4 @@
-# include "../header/all_includes.h"
+# include "../includes/all_includes.h"
 
 void p_tab(int tab[], int limit)
 {

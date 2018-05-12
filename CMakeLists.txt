@@ -6,10 +6,10 @@ set(CMAKE_C_COMPILER "/usr/bin/gcc")
 
 set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
-file(GLOB head "header/*.h")
+file(GLOB head "includes/*.h")
 #include_directories(${PROJECT_SOURCE_DIR}/include)
 
-include_directories(header/*.h)
+include_directories(includes/*.h)
 
 file(GLOB sources0 "src/*.c")
 file(GLOB sources1 "src/sources/src/**/*.c")
@@ -29,8 +29,8 @@ file(GLOB sources05 "src/**/**/**/**/**/*.c")
 
 file(GLOB sources06 "test/*.c")
 
-file(GLOB sources07 "header/*.c")
-file(GLOB sources08 "header/*.h")
+file(GLOB sources07 "includes/*.c")
+file(GLOB sources08 "includes/*.h")
 
 # all sources
 set(
@@ -60,7 +60,7 @@ add_executable(push_swap
         ${head}
         )
 
-target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/mlx/libmlx.a)
+target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/lib/mlx/libmlx.a)
 target_link_libraries(push_swap "-framework OpenGL")
 target_link_libraries(push_swap "-framework AppKit")
 

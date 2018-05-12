@@ -1,4 +1,4 @@
-#include "../header/all_includes.h"
+#include "../includes/all_includes.h"
 
 t_stack test_stack;
 

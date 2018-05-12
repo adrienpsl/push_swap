@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../includes/all_includes.h"
 
 void horizon_left_right2(t_fig_2 fig2, t_mlx_data mlx_data)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../includes/all_includes.h"
 
 void set_set(t_dll_l visu_link, t_fig_2 fig2)
 {

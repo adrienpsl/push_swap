@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../includes/all_includes.h"
 
 static long		is_a_number(int nb, char *nb_str)
 {

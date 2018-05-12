@@ -4,10 +4,10 @@
 # define X_WINDOW 2500
 # define Y_WINDOW 2500
 
-# include "../src/sources/ft_library_header.h"
+# include "../lib/libft/ft_library_header.h"
 # include "push_struct.h"
 # include "struct_visu.h"
-# include "../mlx/mlx.h"
+# include "../lib/mlx/mlx.h"
 # include <limits.h>
 
 void create_graf_link(t_stack stack);

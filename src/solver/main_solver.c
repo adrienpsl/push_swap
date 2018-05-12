@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../header/all_includes.h"
+#include "../../includes/all_includes.h"
 
 static void
 struct_and_list_build(t_argv *argv, t_stack *stack, int ac, char **av)
