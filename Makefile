@@ -125,6 +125,5 @@ fclean: clean
 	@rm -rf $(__CHEKER_NAME__)
 	@echo "\033[1;34mpush_swap\t\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
 
-
 re: fclean all
 
