@@ -14,6 +14,7 @@
 
 void			check_and_apply_instruct(char *str, t_stack stack)
 {
+	ft_printf("--%s--",str);
 	if (ft_strcmp("sa\n", str) == FALSE)
 		sa(stack);
 	else if (ft_strcmp("sb\n", str) == FALSE)
