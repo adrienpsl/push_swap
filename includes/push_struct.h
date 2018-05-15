@@ -57,8 +57,8 @@ typedef struct		s_stack
 	t_dll			list_instruc;
 	char			current_pile;
 	t_dll_c			currrent_pile_dll;
-	char			instruct[4];
-	char			last_instruct[4];
+	char			instruct[5];
+	char			last_instruct[5];
 	int				count;
 	t_browse		browse;
 	t_quick			quick;

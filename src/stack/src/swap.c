@@ -55,7 +55,7 @@ void			need_swap_a(t_stack stack)
 	b = dll_l_get_int(pile->top->next);
 	if (a - b == +1)
 	{
-		do_instruct("sa", stack);
+		do_instruct("sa\n", stack);
 	}
 }
 
@@ -70,7 +70,7 @@ void			need_swap_b(t_stack stack)
 	b = dll_l_get_int(pile->top->next);
 	if (a - b == -1)
 	{
-		do_instruct("sb", stack);
+		do_instruct("sb\n", stack);
 	}
 }
 
@@ -79,7 +79,7 @@ void			need_swap(t_stack stack)
 	if (stack->pile_b->length)
 	{
 		if (test_swap_a(stack) && test_swap_b(stack))
-			do_instruct("ss", stack);
+			do_instruct("ss\n", stack);
 		else
 		{
 			if (stack->pile_a->length)

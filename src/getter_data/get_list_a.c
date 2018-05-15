@@ -12,32 +12,7 @@
 
 #include "../../includes/all_includes.h"
 
-static int		is_argv(t_argv argv, char **str)
-{
-	return (argv_get_next_argv(str, argv));
-}
-
-static int		break_action_for_solver(int is_solver, char *cur_av,
-										t_argv argv)
-{
-	if (is_solver == ACTIVATE)
-	{
-		if (is_action(cur_av))
-		{
-			argv_go_prev_argv(argv);
-			return (TRUE);
-		}
-	}
-	return (FALSE);
-}
-
-
-// un truc pour get les options,
-
-// si espace, et que digit, je split
-// il me faut un truc pour les options
-
-t_dll_c			get_list_a(t_argv argv, int is_solver)
+t_dll_c			get_list_a(t_argv argv)
 {
 	t_dll_c	c_list;
 	t_dll_l	link;
@@ -45,11 +20,9 @@ t_dll_c			get_list_a(t_argv argv, int is_solver)
 	char	*cur_av;
 
 	c_list = new_dll_c();
-	while (is_argv(argv, &cur_av) == TRUE)
+	while (argv_get(&cur_av, argv) == TRUE)
 	{
-		if (break_action_for_solver(is_solver, cur_av, argv) == TRUE)
-			break ;
-		data = malloc(sizeof(struct s_data));
+		data = ft_malloc_protect(sizeof(struct s_data));
 		ft_memset(data, 0, sizeof(struct s_data));
 		data->nb = is_valide_number(cur_av, c_list);
 		link = new_dll_l(data, sizeof(struct s_data));

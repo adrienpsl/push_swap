@@ -18,19 +18,20 @@ void		exit_wrong_nb(void)
 	exit(42);
 }
 
-int			is_action(char *str)
-{
-	static char	instruct[11][3] = {
-		"sa", "sb", "ss", "pa", "pb", "ra", "rb", "rr", "rra", "rrb", "rrr"
-	};
-	int			i;
-
-	i = 0;
-	while (i < 11)
-	{
-		if (ft_strcmp(instruct[i], str) == FALSE)
-			return (TRUE);
-		++i;
-	}
-	return (FALSE);
-}
+//int			is_action(char *str)
+//{
+//	static char	instruct[11][3] = {
+//		"sa\n", "sb\n", "ss\n", "pa\n", "pb\n",
+//		"ra\n", "rb\n", "rr\n", "rra\n", "rrb\n", "rrr\n"
+//	};
+//	int			i;
+//
+//	i = 0;
+//	while (i < 11)
+//	{
+//		if (ft_strcmp(instruct[i], str) == FALSE)
+//			return (TRUE);
+//		++i;
+//	}
+//	return (FALSE);
+//}

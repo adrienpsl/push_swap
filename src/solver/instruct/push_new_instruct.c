@@ -17,13 +17,13 @@ int		rr_style(char *instr, t_stack stack)
 	char *last;
 
 	last = stack->last_instruct;
-	if ((ft_strcmp(instr, "rrb") == FALSE &&
-			ft_strcmp(last, "rra") == FALSE)
+	if ((ft_strcmp(instr, "rrb\n") == FALSE &&
+			ft_strcmp(last, "rra\n") == FALSE)
 		||
-		(ft_strcmp(instr, "rra") == FALSE &&
-			ft_strcmp(last, "rrb") == FALSE))
+		(ft_strcmp(instr, "rra\n") == FALSE &&
+			ft_strcmp(last, "rrb\n") == FALSE))
 	{
-		push_instruc_list("rrr", stack);
+		push_instruc_list("rrr\n", stack);
 		return (TRUE);
 	}
 	return (FALSE);
@@ -34,13 +34,13 @@ int		r_style(char *instr, t_stack stack)
 	char *last;
 
 	last = stack->last_instruct;
-	if ((ft_strcmp(instr, "rb") == FALSE &&
-			ft_strcmp(last, "ra") == FALSE)
+	if ((ft_strcmp(instr, "rb\n") == FALSE &&
+			ft_strcmp(last, "ra\n") == FALSE)
 		||
-		(ft_strcmp(instr, "ra") == FALSE &&
-			ft_strcmp(last, "rb") == FALSE))
+		(ft_strcmp(instr, "ra\n") == FALSE &&
+			ft_strcmp(last, "rb\n") == FALSE))
 	{
-		push_instruc_list("rr", stack);
+		push_instruc_list("rr\n", stack);
 		return (TRUE);
 	}
 	return (FALSE);

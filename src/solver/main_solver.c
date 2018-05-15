@@ -12,9 +12,23 @@
 
 #include "../../includes/all_includes.h"
 
+
+int check(char *s, void *ptr)
+{
+	(void) s;
+	(void) ptr;
+//	if (1
+//		&& ft_strchr(s, ' ') != NULL
+//		&& str_by_func(s, ft_isdigit) == TRUE)
+//		return (' ');
+	return (FALSE);
+}
+
+
 void	struct_and_list_build(t_argv *argv, t_stack *stack, int ac, char **av)
 {
-	*argv = new_argv(ac, av);
+	*argv = new_argv("vam", ac, av);
+	argv_set_check(check, check, *argv);
 	*stack = get_stack_filled(*argv);
 	build_lst_a_index((*stack)->pile_a);
 }
@@ -49,10 +63,11 @@ void	dll_print_str2(t_dll lst)
 	link = lst->top;
 	while (link)
 	{
-		ft_printf("%s\n", link->content);
+		ft_printf("%s", link->content);
 		link = link->next;
 	}
 }
+
 
 int		main(int ac, char **av)
 {
@@ -62,7 +77,7 @@ int		main(int ac, char **av)
 
 	struct_and_list_build(&argv, &stack, ac, av);
 	set_stack_visu(stack);
-	stack->argv = argv->taken_options;
+	stack->argv = argv->option_found;
 	all_nb = stack->pile_a->length;
 	if (all_nb)
 	{

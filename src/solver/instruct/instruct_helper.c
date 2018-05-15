@@ -14,7 +14,6 @@
 
 void			check_and_apply_instruct(char *str, t_stack stack)
 {
-	ft_printf("--%s--",str);
 	if (ft_strcmp("sa\n", str) == FALSE)
 		sa(stack);
 	else if (ft_strcmp("sb\n", str) == FALSE)
@@ -73,12 +72,13 @@ static void		pile_b(char instruction, int op, char tab_ins[])
 
 void			do_inst(char raw_instruction, int option, t_stack stack)
 {
-	char instruction[4];
+	char instruction[5];
 
 	ft_memset(instruction, 0, sizeof(char) * 4);
 	stack->current_pile == 'A' ?
 	pile_a(raw_instruction, option, instruction) :
 	pile_b(raw_instruction, option, instruction);
+	ft_strcat(instruction, "\n");
 	do_instruct(instruction, stack);
 }
 
