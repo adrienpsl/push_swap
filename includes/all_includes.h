@@ -25,7 +25,8 @@
 typedef int int___;
 
 typedef void void__;
-	
+
+int			check(char *s, void *ptr);
 void__		create_graf_link(t_stack stack);
 void__		push_instruc_list(char *int______ruct, t_stack stack);
 int___		get_med(t_dll_c c_list, int___ length);
@@ -67,14 +68,14 @@ void__		placed_quick_by_sort(t_stack stack);
 void__		get_med_quick_rev(t_stack stack);
 void__		sort_browser(t_stack stack, size_t med, size_t lim);
 void__		sort_browser_reverse(t_stack stack, size_t med, size_t lim);
-t_dll_c		get_list_a(t_argv argv);
+t_dll_c		get_list_a(int ac, char **av);
 int___ 		is_valide_number(char *nb_str, t_dll_c c_liste);
 void__		exit_wrong_nb(void);
 int___		is_action(char *str);
 void__		set_stack(char name_pile, t_stack stack);
 void__		destroy_stack(t_stack *s);
 t_stack		new_stack();
-t_stack		get_stack_filled(t_argv argv);
+t_stack		get_stack_filled(int ac, char **av);
 void__		sa(t_stack pile);
 void__		sb(t_stack pile);
 void__		ss(t_stack pile);

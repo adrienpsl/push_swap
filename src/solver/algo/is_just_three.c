@@ -53,19 +53,19 @@ void			sort_3_fuck_little(t_stack stack)
 	set_tab_ab(pile, tab);
 	if (ft_strcmp(tab, "abb") == FALSE)
 	{
-		do_instruct("ra",stack);
+		do_instruct("ra\n",stack);
 		need_swap(stack);
-		do_instruct("rra",stack);
+		do_instruct("rra\n",stack);
 	}
 	else if (ft_strcmp(tab, "bab") == FALSE)
 	{
-		do_instruct("rra",stack);
+		do_instruct("rra\n",stack);
 		need_swap(stack);
-		do_instruct("rra",stack);
+		do_instruct("rra\n",stack);
 	}
 	else if (ft_strcmp(tab, "bba") == FALSE)
 	{
 		need_swap(stack);
-		do_instruct("rra",stack);
+		do_instruct("rra\n",stack);
 	}
 }

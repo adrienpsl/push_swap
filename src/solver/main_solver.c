@@ -17,7 +17,7 @@ int check(char *s, void *ptr)
 {
 	(void) s;
 	(void) ptr;
-//	if (1
+//	if (1e
 //		&& ft_strchr(s, ' ') != NULL
 //		&& str_by_func(s, ft_isdigit) == TRUE)
 //		return (' ');
@@ -25,11 +25,11 @@ int check(char *s, void *ptr)
 }
 
 
-void	struct_and_list_build(t_argv *argv, t_stack *stack, int ac, char **av)
+void	struct_and_list_build(t_stack *stack, int ac, char **av)
 {
-	*argv = new_argv("vam", ac, av);
-	argv_set_check(check, check, *argv);
-	*stack = get_stack_filled(*argv);
+	if (ac <= 1)
+		exit(EXIT_SUCCESS);
+	*stack = get_stack_filled(ac, av);
 	build_lst_a_index((*stack)->pile_a);
 }
 
@@ -69,28 +69,50 @@ void	dll_print_str2(t_dll lst)
 }
 
 
-int		main(int ac, char **av)
+int		is_or(t_dll_c c_list, size_t lenght)
 {
-	t_argv	argv;
-	t_stack	stack;
-	int		all_nb;
+	size_t	i;
+	t_dll_l	link;
+	t_dll_l	next;
 
-	struct_and_list_build(&argv, &stack, ac, av);
-	set_stack_visu(stack);
-	stack->argv = argv->option_found;
-	all_nb = stack->pile_a->length;
-	if (all_nb)
+	i = 1;
+	link = c_list->top;
+	next = link->next;
+	while (i < lenght)
 	{
-		if (all_nb <= 3)
-			is_3_algo(stack);
-		else
-			is_more_3(stack);
-		push_instruc_list(stack->last_instruct, stack);
-		dll_print_str2(stack->list_instruc);
-		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
-			test_visu(stack);
+		if (dll_l_get_int(link) >= dll_l_get_int(next))
+		{
+			return (FALSE);
+		}
+		link = next;
+		next = link->next;
+		++i;
 	}
-	destroy_argv(&argv);
-	destroy_stack(&stack);
-	return (EXIT_SUCCESS);
+	return (TRUE);
 }
+
+//int		main(int ac, char **av)
+//{
+//	t_argv	argv;
+//	t_stack	stack;
+//	int		all_nb;
+//
+//	struct_and_list_build(&argv, &stack, ac, av);
+//	set_stack_visu(stack);
+//	stack->argv = argv->option_found;
+//	all_nb = stack->pile_a->length;
+//	if (all_nb && is_or(stack->pile_a, stack->pile_a->length) == FALSE)
+//	{
+//		if (all_nb <= 3)
+//			is_3_algo(stack);
+//		else
+//			is_more_3(stack);
+//		push_instruc_list(stack->last_instruct, stack);
+//		dll_print_str2(stack->list_instruc);
+//		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
+//			test_visu(stack);
+//	}
+//	destroy_argv(&argv);
+//	destroy_stack(&stack);
+//	return (EXIT_SUCCESS);
+//}

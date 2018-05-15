@@ -12,12 +12,12 @@
 
 #include "../../includes/all_includes.h"
 
-t_stack		get_stack_filled(t_argv argv)
+t_stack		get_stack_filled(int ac, char **av)
 {
 	t_stack stack;
 
 	stack = new_stack();
-	stack->pile_a = get_list_a(argv);
+	stack->pile_a = get_list_a(ac, av);
 	return (stack);
 }
 

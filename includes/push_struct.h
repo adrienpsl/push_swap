@@ -16,6 +16,12 @@
 #include "all_includes.h"
 #include "struct_visu.h"
 
+typedef struct		s_get_ar
+{
+	c
+}					t_get_ar;
+
+
 typedef struct		s_med
 {
 	size_t			mediane;
