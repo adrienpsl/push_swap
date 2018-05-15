@@ -58,7 +58,7 @@ void	do_intructions(t_argv argv, t_stack stack)
 {
 	char *instruct;
 
-	while (argv_get_next_argv(&instruct, argv) == TRUE)
+	while (get_next_line(0, &instruct) == TRUE)
 	{
 		check_and_apply_instruct(instruct, stack);
 	}
