@@ -31,6 +31,12 @@ static int		break_action_for_solver(int is_solver, char *cur_av,
 	return (FALSE);
 }
 
+
+// un truc pour get les options,
+
+// si espace, et que digit, je split
+// il me faut un truc pour les options
+
 t_dll_c			get_list_a(t_argv argv, int is_solver)
 {
 	t_dll_c	c_list;
