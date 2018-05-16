@@ -84,7 +84,7 @@ int		main(int ac, char **av)
 {
 	t_stack	stack;
 	int		all_nb;
-	static char op[4] = "";
+	static char op[4] = "vma";
 
 	struct_and_list_build(&stack, ac, av);
 	set_stack_visu(stack);
@@ -101,6 +101,6 @@ int		main(int ac, char **av)
 		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
 			test_visu(stack);
 	}
-	destroy_stack(&stack);
+//	destroy_stack(&stack);
 	return (EXIT_SUCCESS);
 }
