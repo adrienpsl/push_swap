@@ -91,28 +91,25 @@ int		is_or(t_dll_c c_list, size_t lenght)
 	return (TRUE);
 }
 
-//int		main(int ac, char **av)
-//{
-//	t_argv	argv;
-//	t_stack	stack;
-//	int		all_nb;
-//
-//	struct_and_list_build(&argv, &stack, ac, av);
-//	set_stack_visu(stack);
-//	stack->argv = argv->option_found;
-//	all_nb = stack->pile_a->length;
-//	if (all_nb && is_or(stack->pile_a, stack->pile_a->length) == FALSE)
-//	{
-//		if (all_nb <= 3)
-//			is_3_algo(stack);
-//		else
-//			is_more_3(stack);
-//		push_instruc_list(stack->last_instruct, stack);
-//		dll_print_str2(stack->list_instruc);
-//		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
-//			test_visu(stack);
-//	}
-//	destroy_argv(&argv);
-//	destroy_stack(&stack);
-//	return (EXIT_SUCCESS);
-//}
+int		main(int ac, char **av)
+{
+	t_stack	stack;
+	int		all_nb;
+
+	struct_and_list_build(&stack, ac, av);
+	set_stack_visu(stack);
+	all_nb = stack->pile_a->length;
+	if (all_nb && is_or(stack->pile_a, stack->pile_a->length) == FALSE)
+	{
+		if (all_nb <= 3)
+			is_3_algo(stack);
+		else
+			is_more_3(stack);
+		push_instruc_list(stack->last_instruct, stack);
+		dll_print_str2(stack->list_instruc);
+		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
+			test_visu(stack);
+	}
+	destroy_stack(&stack);
+	return (EXIT_SUCCESS);
+}

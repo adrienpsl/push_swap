@@ -18,7 +18,11 @@
 
 typedef struct		s_get_ar
 {
-	c
+	char **tab;
+	int size_tab;
+	int i;
+	char *out;
+	int split;
 }					t_get_ar;
 
 
