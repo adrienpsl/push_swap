@@ -13,18 +13,6 @@
 #include "../../includes/all_includes.h"
 
 
-int check(char *s, void *ptr)
-{
-	(void) s;
-	(void) ptr;
-//	if (1e
-//		&& ft_strchr(s, ' ') != NULL
-//		&& str_by_func(s, ft_isdigit) == TRUE)
-//		return (' ');
-	return (FALSE);
-}
-
-
 void	struct_and_list_build(t_stack *stack, int ac, char **av)
 {
 	if (ac <= 1)
@@ -91,14 +79,17 @@ int		is_or(t_dll_c c_list, size_t lenght)
 	return (TRUE);
 }
 
+
 int		main(int ac, char **av)
 {
 	t_stack	stack;
 	int		all_nb;
+	static char op[4] = "vam";
 
 	struct_and_list_build(&stack, ac, av);
 	set_stack_visu(stack);
 	all_nb = stack->pile_a->length;
+	stack->argv = op;
 	if (all_nb && is_or(stack->pile_a, stack->pile_a->length) == FALSE)
 	{
 		if (all_nb <= 3)
