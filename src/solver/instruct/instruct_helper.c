@@ -74,7 +74,7 @@ void			do_inst(char raw_instruction, int option, t_stack stack)
 {
 	char instruction[5];
 
-	ft_memset(instruction, 0, sizeof(char) * 4);
+	ft_memset(instruction, 0, sizeof(char) * 5);
 	stack->current_pile == 'A' ?
 	pile_a(raw_instruction, option, instruction) :
 	pile_b(raw_instruction, option, instruction);
@@ -86,6 +86,9 @@ void			push_instruc_list(char *intruct, t_stack stack)
 {
 	t_dll_l link;
 
-	link = new_dll_l(intruct, ft_strlen(intruct));
+//	ft_printf("%d \n", ft_strlen(intruct));
+
+//	ft_printf("%s",intruct);
+	link = new_dll_l(intruct, ft_strlen(intruct) + 1);
 	dll_add(link, stack->list_instruc);
 }

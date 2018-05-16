@@ -53,14 +53,16 @@ void	do_instruct(char *instruc, t_stack stack)
 	{
 		if (r_style(instruc, stack) || rr_style(instruc, stack))
 		{
-			ft_memset(stack->last_instruct, 0, sizeof(char) * 4);
+			ft_memset(stack->last_instruct, 0, sizeof(char) * 5);
 			stack->count++;
 			return ;
 		}
 		else
+		{
 			push_instruc_list(stack->last_instruct, stack);
+		}
 		stack->count++;
-		ft_memset(stack->last_instruct, 0, sizeof(char) * 4);
+		ft_memset(stack->last_instruct, 0, sizeof(char) * 5);
 		ft_strcpy(stack->last_instruct, instruc);
 	}
 	else

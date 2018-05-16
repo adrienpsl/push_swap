@@ -53,7 +53,7 @@ int		main(int ac, char **av)
 {
 	t_stack	stack;
 
-	if (ac >= 1)
+	if (ac <= 1)
 		exit(EXIT_SUCCESS);
 	stack = get_stack_filled(ac, av);
 	do_intructions(stack);
