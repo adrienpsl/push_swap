@@ -86,9 +86,6 @@ void			push_instruc_list(char *intruct, t_stack stack)
 {
 	t_dll_l link;
 
-//	ft_printf("%d \n", ft_strlen(intruct));
-
-//	ft_printf("%s",intruct);
 	link = new_dll_l(intruct, ft_strlen(intruct) + 1);
 	dll_add(link, stack->list_instruc);
 }

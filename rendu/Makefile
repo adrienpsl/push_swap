@@ -10,7 +10,7 @@ __TEXT_2__ = \t\t\033[1;33mCompilation\t\033[0;32m[OK]\033[0m"
 #*------------------------------------*\
 #    path all src
 #*------------------------------------*/
-#__PATH__ = ./
+__PATH__ = ./
 
 #*------------------------------------*\
 #    name
@@ -93,9 +93,9 @@ $(__NAME__): $(__OBJ__)
 $(__CHEKER_NAME__): $(__OBJ_C__)
 
 #	build other lib 	################################
-	@make -C $(__LIB_FT_PATH__)
+#	@make -C $(__LIB_FT_PATH__)
 
-	@make -C $(__LIB_MLX_PATH__)
+#	@make -C $(__LIB_MLX_PATH__)
 	$(__TEXT_1__) mlx $(__TEXT_2__)
 
 
@@ -108,17 +108,20 @@ $(__CHEKER_NAME__): $(__OBJ_C__)
 #*------------------------------------*\
 #    if change into .c
 #*------------------------------------*/
-%.o: %.c
+%.o: %.c includes/all_includes.h includes/mlx.h includes/push_struct.h includes/struct_visu.h
 	@$(__CC__) $(__CFLAG__) -I $(__HEADER_DIR__) -I $(__LIB_FT_INC__) -I $(__LIB_MLX_PATH__) -o $@ -c $<
 
 
 clean:
+	@make clean -C $(__LIB_FT_PATH__)
+	@make clean -C $(__LIB_MLX_PATH__)
 	@rm -rf $(__OBJ__)
 	@rm -rf $(__OBJ_C__)
 	@echo "\033[1;34mpush_swap\t\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
 
 
 fclean: clean
+	@make fclean -C $(__LIB_FT_PATH__)
 	@rm -rf $(__NAME__)
 	@rm -rf $(__CHEKER_NAME__)
 	@echo "\033[1;34mpush_swap\t\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"

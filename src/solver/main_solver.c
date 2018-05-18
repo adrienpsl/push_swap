@@ -12,7 +12,6 @@
 
 #include "../../includes/all_includes.h"
 
-
 void	struct_and_list_build(t_stack *stack, int ac, char **av)
 {
 	if (ac <= 1)
@@ -44,19 +43,6 @@ void	is_more_3(t_stack stack)
 	}
 }
 
-void	dll_print_str2(t_dll lst)
-{
-	t_dll_l link;
-
-	link = lst->top;
-	while (link)
-	{
-		ft_printf("%s", link->content);
-		link = link->next;
-	}
-}
-
-
 int		is_or(t_dll_c c_list, size_t lenght)
 {
 	size_t	i;
@@ -79,12 +65,11 @@ int		is_or(t_dll_c c_list, size_t lenght)
 	return (TRUE);
 }
 
-
 int		main(int ac, char **av)
 {
-	t_stack	stack;
-	int		all_nb;
-	static char op[4] = "vma";
+	t_stack			stack;
+	int				all_nb;
+	static char		op[4] = "";
 
 	struct_and_list_build(&stack, ac, av);
 	set_stack_visu(stack);
@@ -101,6 +86,6 @@ int		main(int ac, char **av)
 		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
 			test_visu(stack);
 	}
-//	destroy_stack(&stack);
+	destroy_stack(&stack);
 	return (EXIT_SUCCESS);
 }

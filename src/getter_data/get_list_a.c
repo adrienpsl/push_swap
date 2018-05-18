@@ -12,7 +12,7 @@
 
 #include "../../includes/all_includes.h"
 
-int count_split(char **tab)
+int			count_split(char **tab)
 {
 	int i;
 
@@ -25,7 +25,7 @@ int count_split(char **tab)
 	return (i);
 }
 
-void set_ar(int ac, char **av, t_get_ar *ar)
+void		set_ar(int ac, char **av, t_get_ar *ar)
 {
 	ft_memset(ar, 0, sizeof(t_get_ar));
 	ar->split = ft_strchr(av[1], ' ') ? TRUE : FALSE;
@@ -42,7 +42,7 @@ void set_ar(int ac, char **av, t_get_ar *ar)
 	}
 }
 
-int get_argv_list_a(t_get_ar *ar)
+int			get_argv_list_a(t_get_ar *ar)
 {
 	if (ar->i < ar->size_tab)
 	{
@@ -55,12 +55,12 @@ int get_argv_list_a(t_get_ar *ar)
 	return (FALSE);
 }
 
-t_dll_c get_list_a(int ac, char **av)
+t_dll_c		get_list_a(int ac, char **av)
 {
-	t_dll_c c_list;
-	t_dll_l link;
-	t_data data;
-	t_get_ar ar;
+	t_dll_c		c_list;
+	t_dll_l		link;
+	t_data		data;
+	t_get_ar	ar;
 
 	c_list = new_dll_c();
 	set_ar(ac, av, &ar);

@@ -1,5 +1,17 @@
-#ifndef FDF_STRUCT_H
-# define FDF_STRUCT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adpusel <adpusel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/19 10:48:07 by adpusel           #+#    #+#             */
+/*   Updated: 2017/11/16 12:45:50 by adpusel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef STRUCT_VISU_H
+# define STRUCT_VISU_H
 
 # include "all_includes.h"
 
@@ -7,7 +19,7 @@ typedef struct		s_color_
 {
 	int				quick;
 	long			color;
-} 					t_color_;
+}					t_color_;
 
 typedef t_color_ *t_color;
 

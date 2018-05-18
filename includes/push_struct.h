@@ -13,25 +13,24 @@
 #ifndef PUSH_SWAP_PUSH_STRUCT_H
 # define PUSH_SWAP_PUSH_STRUCT_H
 
-#include "all_includes.h"
-#include "struct_visu.h"
+# include "all_includes.h"
+# include "struct_visu.h"
 
 typedef struct		s_get_ar
 {
-	char **tab;
-	int size_tab;
-	int i;
-	char *out;
-	int split;
+	char			**tab;
+	int				size_tab;
+	int				i;
+	char			*out;
+	int				split;
 }					t_get_ar;
-
 
 typedef struct		s_med
 {
 	size_t			mediane;
 	size_t			medianne_push;
 
-} 					t_med;
+}					t_med;
 
 typedef struct		s_browse
 {
@@ -75,13 +74,15 @@ typedef struct		s_stack
 	char			*argv;
 	t_dll			v_data;
 	t_dll			color_tmp;
-}					*t_stack;
+}					t_stack_00;
+typedef t_stack_00 *t_stack;
 
 typedef struct		s_data
 {
 	int				nb;
 	int				quick;
 	char			n;
-}					*t_data;
+}					t_data_00;
+typedef t_data_00 *t_data;
 
 #endif

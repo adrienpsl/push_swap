@@ -3,6 +3,7 @@
 #    commande tric
 #*------------------------------------*/
 trick = cd src ; find . -type f -name '*.c' | sed 's/^..//'  |  tr '\n' ' ' | pbcopy  ; ..
+trick = ls | tr '\n' ' ' | pbcopy
 
 
 #*------------------------------------*\
@@ -39,6 +40,8 @@ __SRC__ = $(addprefix $(__SOURCES_PATH__), $(__TMP__))
 
 __OBJ__ = $(__SRC__:.c=.o)
 
+__H__ = dll_c_header.h dll_header.h dll_l_header.h gnl.h libft_debug.h libft_define.h libft_memory_function.h libft_nb_function.h libft_str_function.h printf_header.h sll_header.h sll_l_header.h
+
 
 #*------------------------------------*\
 #    make rule
@@ -58,7 +61,7 @@ $(__NAME__): $(__OBJ__)
 #*------------------------------------*\
 #    if change into .c
 #*------------------------------------*/
-%.o: %.c
+%.o: %.c ft_library_header.h ${__H__}
 	@$(__CC__) $(__CFLAG__) -I $(__HEADER__) -o $@ -c $<
 
 

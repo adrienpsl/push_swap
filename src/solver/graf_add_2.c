@@ -53,3 +53,15 @@ void	create_graf_link(t_stack stack)
 								:
 	build_graf_test_mem(stack);
 }
+
+void	dll_print_str2(t_dll lst)
+{
+	t_dll_l link;
+
+	link = lst->top;
+	while (link)
+	{
+		ft_printf("%s", link->content);
+		link = link->next;
+	}
+}

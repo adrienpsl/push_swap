@@ -33,9 +33,16 @@ void	destoye_link(t_dll_l link)
 
 void	destroy_stack(t_stack *s)
 {
-	t_stack stack;
+	t_stack	stack;
+	t_v		v;
 
 	stack = *s;
+	v = stack->visu;
+	if (v)
+	{
+		mlx_destroy_image(v->mlx_data.mlx, v->mlx_data.img);
+		free(v);
+	}
 	if (stack->pile_a)
 		destroy_dll_c(&stack->pile_a);
 	if (stack->pile_b)

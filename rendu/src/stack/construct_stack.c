@@ -38,8 +38,11 @@ void	destroy_stack(t_stack *s)
 
 	stack = *s;
 	v = stack->visu;
-	mlx_destroy_image(v->mlx_data.mlx, v->mlx_data.img);
-	free(v);
+	if (v)
+	{
+		mlx_destroy_image(v->mlx_data.mlx, v->mlx_data.img);
+		free(v);
+	}
 	if (stack->pile_a)
 		destroy_dll_c(&stack->pile_a);
 	if (stack->pile_b)

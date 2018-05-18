@@ -25,6 +25,7 @@
 typedef int		t_int___;
 typedef void	t_void__;
 
+int				is_or(t_dll_c c_list, size_t lenght);
 void			dll_print_str2(t_dll lst);
 int				check(char *s, void *ptr);
 t_void__		create_graf_link(t_stack stack);
