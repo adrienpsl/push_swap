@@ -14,7 +14,6 @@
 # define PUSH_SWAP_PUSH_STRUCT_H
 
 # include "all_includes.h"
-# include "struct_visu.h"
 
 typedef struct		s_get_ar
 {
@@ -46,13 +45,6 @@ typedef struct		s_quick
 	int				counter_quick;
 	char			sens;
 }					t_quick;
-
-typedef struct		s_stack_visu_00
-{
-	t_dll			pile_a;
-	t_dll			pile_b;
-}					t_stack_visu_00;
-typedef t_stack_visu_00 *t_stack_visu;
 
 /*
 **    structure

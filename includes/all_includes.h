@@ -18,8 +18,6 @@
 
 # include "../lib/libft/ft_library_header.h"
 # include "push_struct.h"
-# include "struct_visu.h"
-# include "../lib/mlx/mlx.h"
 # include <limits.h>
 
 typedef int		t_int___;
@@ -37,7 +35,6 @@ t_int___		get_median_push(t_dll_c origin, t_browse *browse, t_int___ med,
 t_int___		*get_fill_tab(t_dll_c list, size_t length);
 t_void__		browse_push(t_stack stack, t_int___ nb_top_pile);
 t_void__		ft_putnbr_str(t_int___ n, char *str);
-t_v				new_visu(t_int___ x, t_int___ y, char *name);
 t_void__		test_visu(t_stack stack);
 t_void__		set_stack_visu(t_stack stack);
 t_void__		do_inst(char raw_instruction, t_int___ option, t_stack stack);
@@ -88,18 +85,9 @@ t_void__		rr(t_stack pile);
 t_void__		rra(t_stack pile);
 t_void__		rrb(t_stack pile);
 t_void__		rrr(t_stack pile);
-t_void__		the_legende(t_mlx_data mlx_data, t_rec_link rec, t_fig_2 fig2);
 t_void__		build_lst_a_index(t_dll_c c_list);
 t_void__		do_instruct(char *instruc, t_stack stack);
 t_void__		print_stack(t_stack stack);
 t_void__		print_quick(t_dll_c lst);
-t_void__		recangle(t_fig_2 fig2, t_mlx_data mlx_data);
-t_void__		trace_legend_rec(t_fig_2 fig2, t_mlx_data visu, t_rec_link rec);
-long			is_color(t_dll color_list, t_int___ quick);
-t_dll_l			new_color_link(t_int___ quick, long color);
-t_int___		is_same_quick(t_dll_l color_link, t_int___ quick);
-t_void__		set_color(t_dll_l color_link, long color);
-t_dll			get_list_rec(t_dll_c pile, t_dll color_pile);
-t_void__		print_list(t_v visu, t_int___ x, t_int___ mode);
 
 #endif

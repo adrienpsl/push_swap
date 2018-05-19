@@ -27,6 +27,8 @@ int					ft_isascii(int c);
 int					ft_isalnum(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_is_not_digit(int c);
+
 
 /*
 **  str function

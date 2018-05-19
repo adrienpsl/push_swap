@@ -1,3 +1,4 @@
+
 //int is_low_10(int nb)
 //{
 //	if (nb < 10)

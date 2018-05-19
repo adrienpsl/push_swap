@@ -41,6 +41,8 @@ int				is_valide_number(char *nb_str, t_dll_c c_liste)
 {
 	long nb;
 
+	if (str_by_func(nb_str, &ft_is_not_digit) == TRUE)
+		exit_wrong_nb();
 	nb = ft_atoi(nb_str);
 	if (is_a_number(nb, nb_str) == FALSE)
 		exit_wrong_nb();

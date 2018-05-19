@@ -25,14 +25,12 @@ int		is_ordered(t_dll_c c_list, size_t lenght)
 	{
 		if (dll_l_get_int(link) >= dll_l_get_int(next))
 		{
-			ft_printf("KO\n");
 			return (FALSE);
 		}
 		link = next;
 		next = link->next;
 		++i;
 	}
-	ft_printf("OK\n");
 	return (TRUE);
 }
 
@@ -63,6 +61,7 @@ void	do_intructions(t_stack stack)
 	char *instruct;
 	char *ins;
 
+	instruct = NULL;
 	while (get_next_line(0, &instruct) == TRUE)
 	{
 		ins = ft_strjoin(instruct, "\n");
@@ -73,7 +72,6 @@ void	do_intructions(t_stack stack)
 	}
 	if (instruct)
 	    free(instruct);
-
 }
 
 int		main(int ac, char **av)
@@ -83,9 +81,13 @@ int		main(int ac, char **av)
 	if (ac <= 1)
 		exit(EXIT_SUCCESS);
 	stack = get_stack_filled(ac, av);
-
-	if (stack->pile_a->length)
-		is_ordered(stack->pile_a, stack->pile_a->length);
+	do_intructions(stack);
+	if (stack->pile_a->length &&
+		stack->pile_b->length == 0 &&
+		is_ordered(stack->pile_a, stack->pile_a->length))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
 	destroy_stack(&stack);
 	return (EXIT_SUCCESS);
 }
