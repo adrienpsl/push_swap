@@ -64,23 +64,24 @@ int		is_or(t_dll_c c_list, size_t lenght)
 	return (TRUE);
 }
 
-int		main(int ac, char **av)
-{
-	t_stack			stack;
-	int				all_nb;
-	static char		op[4] = "";
-
-	struct_and_list_build(&stack, ac, av);
-	all_nb = stack->pile_a->length;
-	stack->argv = op;
-	if (all_nb && is_or(stack->pile_a, stack->pile_a->length) == FALSE)
-	{
-		if (all_nb <= 3)
-			is_3_algo(stack);
-		else
-			is_more_3(stack);
-		push_instruc_list(stack->last_instruct, stack);`
-	}
-	destroy_stack(&stack);
-	return (EXIT_SUCCESS);
-}
+//int		main(int ac, char **av)
+//{
+//	t_stack			stack;
+//	int				all_nb;
+//	static char		op[4] = "";
+//
+//	struct_and_list_build(&stack, ac, av);
+//	all_nb = stack->pile_a->length;
+//	stack->argv = op;
+//	if (all_nb && is_or(stack->pile_a, stack->pile_a->length) == FALSE)
+//	{
+//		if (all_nb <= 3)
+//			is_3_algo(stack);
+//		else
+//			is_more_3(stack);
+//		push_instruc_list(stack->last_instruct, stack);
+//		dll_print_str2(stack->list_instruc);
+//	}
+//	destroy_stack(&stack);
+//	return (EXIT_SUCCESS);
+//}

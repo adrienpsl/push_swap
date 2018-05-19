@@ -47,3 +47,15 @@ void print_stack(t_stack stack)
 	printf(" \n");;
 	ft_printf("%d \n", stack->count);
 };
+
+void	dll_print_str2(t_dll lst)
+{
+	t_dll_l link;
+
+	link = lst->top;
+	while (link)
+	{
+		ft_printf("%s", link->content);
+		link = link->next;
+	}
+}

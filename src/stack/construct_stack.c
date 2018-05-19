@@ -22,7 +22,6 @@ void	set_stack(char name_pile, t_stack stack)
 void	destroy_stack(t_stack *s)
 {
 	t_stack	stack;
-	t_v		v;
 
 	stack = *s;
 	if (stack->pile_a)

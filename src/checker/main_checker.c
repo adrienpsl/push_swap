@@ -76,15 +76,16 @@ void	do_intructions(t_stack stack)
 
 }
 
-//int		main(int ac, char **av)
-//{
-//	t_stack	stack;
-//
-//	if (ac <= 1)
-//		exit(EXIT_SUCCESS);
-//	stack = get_stack_filled(ac, av);
-//	if (stack->pile_a->length)
-//		is_ordered(stack->pile_a, stack->pile_a->length);
-//	destroy_stack(&stack);
-//	return (EXIT_SUCCESS);
-//}
+int		main(int ac, char **av)
+{
+	t_stack	stack;
+
+	if (ac <= 1)
+		exit(EXIT_SUCCESS);
+	stack = get_stack_filled(ac, av);
+
+	if (stack->pile_a->length)
+		is_ordered(stack->pile_a, stack->pile_a->length);
+	destroy_stack(&stack);
+	return (EXIT_SUCCESS);
+}
