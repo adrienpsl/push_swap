@@ -19,62 +19,20 @@ void	set_stack(char name_pile, t_stack stack)
 		name_pile == 'A' ? stack->pile_a : stack->pile_b;
 }
 
-void	destoye_link(t_dll_l link)
-{
-	t_stack_visu stack_v;
-
-	stack_v = link->content;
-	if (stack_v->pile_a)
-		destroy_dll(&stack_v->pile_a);
-	if (stack_v->pile_b)
-		destroy_dll(&stack_v->pile_b);
-	free(link->content);
-}
-
 void	destroy_stack(t_stack *s)
 {
 	t_stack	stack;
 	t_v		v;
 
 	stack = *s;
-	v = stack->visu;
-	if (v)
-	{
-		mlx_destroy_image(v->mlx_data.mlx, v->mlx_data.img);
-		free(v);
-	}
 	if (stack->pile_a)
 		destroy_dll_c(&stack->pile_a);
 	if (stack->pile_b)
 		destroy_dll_c(&stack->pile_b);
 	if (stack->list_instruc)
 		destroy_dll(&stack->list_instruc);
-	if (stack->color_tmp)
-		destroy_dll(&stack->color_tmp);
-	if (stack->v_data)
-		destroy_dll_func(&stack->v_data, &destoye_link);
 	free(stack);
 	*s = NULL;
-}
-
-t_v		new_visu(int x, int y, char *name)
-{
-	t_v			visu;
-	t_mlx_data	mlx;
-	int			a;
-	int			b;
-	int			c;
-
-	visu = ft_malloc_protect(sizeof(t_v_00));
-	visu->list_color = new_dll();
-	mlx = &visu->mlx_data;
-	mlx->mlx = mlx_init();
-	mlx->x = x - 50;
-	mlx->y = y - 50;
-	mlx->window = mlx_new_window(mlx->mlx, x, y, name);
-	mlx->img = mlx_new_image(mlx->mlx, X_WINDOW, Y_WINDOW);
-	mlx->str_img = mlx_get_data_addr(mlx->img, &a, &b, &c);
-	return (visu);
 }
 
 t_stack	new_stack(void)

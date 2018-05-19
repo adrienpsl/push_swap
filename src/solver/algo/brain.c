@@ -45,7 +45,6 @@ void	first_passage_a(t_stack stack)
 		set_middle_algo(pile, stack->browse.quick_count + 1);
 	if (ft_strchr(stack->argv, 'a') || ft_strchr(stack->argv, 'm'))
 		print_stack(stack);
-	create_graf_link(stack);
 	set_stack('A', stack);
 }
 
@@ -76,7 +75,6 @@ void	brain_is_beauty(t_stack stack)
 		update_quick(stack);
 		if (ft_strchr(stack->argv, 'a') || ft_strchr(stack->argv, 'm'))
 			print_stack(stack);
-		create_graf_link(stack);
 	}
 	manage_all_short(stack);
 }

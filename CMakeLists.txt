@@ -60,7 +60,7 @@ add_executable(push_swap
         ${head}
         )
 
-target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/lib/mlx/libmlx.a)
-target_link_libraries(push_swap "-framework OpenGL")
-target_link_libraries(push_swap "-framework AppKit")
+#target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/lib/mlx/libmlx.a)
+#target_link_libraries(push_swap "-framework OpenGL")
+#target_link_libraries(push_swap "-framework AppKit")
 

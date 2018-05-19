@@ -60,7 +60,6 @@ typedef t_stack_visu_00 *t_stack_visu;
 
 typedef struct		s_stack
 {
-	t_v				visu;
 	t_dll_c			pile_a;
 	t_dll_c			pile_b;
 	t_dll			list_instruc;
@@ -72,8 +71,6 @@ typedef struct		s_stack
 	t_quick			quick;
 	t_med			med;
 	char			*argv;
-	t_dll			v_data;
-	t_dll			color_tmp;
 }					t_stack_00;
 typedef t_stack_00 *t_stack;
 

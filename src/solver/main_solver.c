@@ -39,7 +39,6 @@ void	is_more_3(t_stack stack)
 		brain_is_beauty(stack);
 		if (ft_strchr(stack->argv, 'a') || ft_strchr(stack->argv, 'm'))
 			print_stack(stack);
-		create_graf_link(stack);
 	}
 }
 
@@ -72,7 +71,6 @@ int		main(int ac, char **av)
 	static char		op[4] = "";
 
 	struct_and_list_build(&stack, ac, av);
-	set_stack_visu(stack);
 	all_nb = stack->pile_a->length;
 	stack->argv = op;
 	if (all_nb && is_or(stack->pile_a, stack->pile_a->length) == FALSE)
@@ -81,10 +79,7 @@ int		main(int ac, char **av)
 			is_3_algo(stack);
 		else
 			is_more_3(stack);
-		push_instruc_list(stack->last_instruct, stack);
-		dll_print_str2(stack->list_instruc);
-		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
-			test_visu(stack);
+		push_instruc_list(stack->last_instruct, stack);`
 	}
 	destroy_stack(&stack);
 	return (EXIT_SUCCESS);
