@@ -69,7 +69,11 @@ void	do_intructions(t_stack stack)
 		check_and_apply_instruct(ins, stack);
 		free(ins);
 		free(instruct);
+		instruct = NULL;
 	}
+	if (instruct)
+	    free(instruct);
+
 }
 
 int		main(int ac, char **av)
@@ -79,12 +83,6 @@ int		main(int ac, char **av)
 	if (ac <= 1)
 		exit(EXIT_SUCCESS);
 	stack = get_stack_filled(ac, av);
-	if (is_ord(stack->pile_a, stack->pile_a->length) == TRUE)
-	{
-		ft_printf("OK\n");
-		exit(EXIT_SUCCESS);
-	}
-	do_intructions(stack);
 	if (stack->pile_a->length)
 		is_ordered(stack->pile_a, stack->pile_a->length);
 	destroy_stack(&stack);
