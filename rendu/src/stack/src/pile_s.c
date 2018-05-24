@@ -10,43 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/all_includes.h"
+#include "../../../includes/all_includes.h"
 
-static long		is_a_number(int nb, char *nb_str)
+void	sa(t_stack stack)
 {
-	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
-		return (FALSE);
-	return (TRUE);
+	t_dll_c			pile_a;
+	struct s_data	a;
+	struct s_data	b;
+
+	pile_a = stack->pile_a;
+	if (pile_a->length > 1)
+	{
+		ft_memcpy(&a, pile_a->top->content, sizeof(struct s_data));
+		ft_memcpy(&b, pile_a->top->next->content, sizeof(struct s_data));
+		ft_memcpy(pile_a->top->content, &b, sizeof(struct s_data));
+		ft_memcpy(pile_a->top->next->content, &a, sizeof(struct s_data));
+	}
 }
 
-static int		is_an_int(long nb)
+void	sb(t_stack stack)
 {
-	if (nb > INT_MAX || nb < INT_MIN)
-		exit_wrong_nb();
-	return ((int)nb);
+	t_dll_c			pile_b;
+	struct s_data	a;
+	struct s_data	b;
+
+	pile_b = stack->pile_b;
+	if (pile_b->length > 1)
+	{
+		ft_memcpy(&a, pile_b->top->content, sizeof(struct s_data));
+		ft_memcpy(&b, pile_b->top->next->content, sizeof(struct s_data));
+		ft_memcpy(pile_b->top->content, &b, sizeof(struct s_data));
+		ft_memcpy(pile_b->top->next->content, &a, sizeof(struct s_data));
+	}
 }
 
-static int		cmp_exist(int nb1, int nb2)
+void	ss(t_stack stack)
 {
-	return (nb1 == nb2);
-}
-
-static void		is_single(t_dll_c c_list, int nb)
-{
-	if (dll_l_iter_int(c_list, nb, &cmp_exist) != FALSE)
-		exit_wrong_nb();
-}
-
-int				is_valide_number(char *nb_str, t_dll_c c_liste)
-{
-	long nb;
-
-	if (ft_is_all_number(nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = ft_atoi(nb_str);
-	if (is_a_number(nb, nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = is_an_int(nb);
-	is_single(c_liste, nb);
-	return ((int)nb);
+	sa(stack);
+	sb(stack);
 }

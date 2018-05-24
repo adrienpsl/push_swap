@@ -10,43 +10,54 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/all_includes.h"
+#include "../../ft_library_header.h"
 
-static long		is_a_number(int nb, char *nb_str)
+int				dll_l_is_bigger(t_dll_l a, t_dll_l b)
 {
-	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
-		return (FALSE);
-	return (TRUE);
+	int c;
+	int d;
+
+	c = dll_l_get_int(a);
+	d = dll_l_get_int(b);
+	return (c > d);
 }
 
-static int		is_an_int(long nb)
+int				dll_l_is_lower(t_dll_l a, t_dll_l b)
 {
-	if (nb > INT_MAX || nb < INT_MIN)
-		exit_wrong_nb();
-	return ((int)nb);
+	return (dll_l_get_int(a) < dll_l_get_int(b));
 }
 
-static int		cmp_exist(int nb1, int nb2)
+static void		swap(t_dll_l a, t_dll_l b)
 {
-	return (nb1 == nb2);
+	int temp;
+
+	temp = dll_l_get_int(a);
+	*(int *)a->content = *(int *)b->content;
+	*(int *)b->content = temp;
 }
 
-static void		is_single(t_dll_c c_list, int nb)
+void			ft_quick_sort_dll(t_dll_l start, t_dll_l end, t_dll list)
 {
-	if (dll_l_iter_int(c_list, nb, &cmp_exist) != FALSE)
-		exit_wrong_nb();
-}
+	t_dll_l left;
+	t_dll_l right;
+	t_dll_l pivot;
 
-int				is_valide_number(char *nb_str, t_dll_c c_liste)
-{
-	long nb;
-
-	if (ft_is_all_number(nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = ft_atoi(nb_str);
-	if (is_a_number(nb, nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = is_an_int(nb);
-	is_single(c_liste, nb);
-	return ((int)nb);
+	if (start == end)
+		return ;
+	pivot = start;
+	left = start;
+	right = end;
+	while (1)
+	{
+		while (left && pivot && dll_l_is_lower(left, pivot))
+			left = left->next;
+		while (right && pivot && dll_l_is_bigger(right, pivot))
+			right = right->prev;
+		if (left < right)
+			swap(left, right);
+		else
+			break ;
+	}
+	ft_quick_sort_dll(start, right, list);
+	ft_quick_sort_dll(right->next, end, list);
 }

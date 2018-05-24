@@ -12,41 +12,37 @@
 
 #include "../../includes/all_includes.h"
 
-static long		is_a_number(int nb, char *nb_str)
+void	set_stack(char name_pile, t_stack stack)
 {
-	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
-		return (FALSE);
-	return (TRUE);
+	stack->current_pile = name_pile == 'A' ? 'A' : 'B';
+	stack->currrent_pile_dll =
+		name_pile == 'A' ? stack->pile_a : stack->pile_b;
 }
 
-static int		is_an_int(long nb)
+void	destroy_stack(t_stack *s)
 {
-	if (nb > INT_MAX || nb < INT_MIN)
-		exit_wrong_nb();
-	return ((int)nb);
+	t_stack	stack;
+
+	stack = *s;
+	if (stack->pile_a)
+		destroy_dll_c(&stack->pile_a);
+	if (stack->pile_b)
+		destroy_dll_c(&stack->pile_b);
+	if (stack->list_instruc)
+		destroy_dll(&stack->list_instruc);
+	free(stack);
+	*s = NULL;
 }
 
-static int		cmp_exist(int nb1, int nb2)
+t_stack	new_stack(void)
 {
-	return (nb1 == nb2);
-}
+	t_stack stack;
 
-static void		is_single(t_dll_c c_list, int nb)
-{
-	if (dll_l_iter_int(c_list, nb, &cmp_exist) != FALSE)
-		exit_wrong_nb();
-}
-
-int				is_valide_number(char *nb_str, t_dll_c c_liste)
-{
-	long nb;
-
-	if (ft_is_all_number(nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = ft_atoi(nb_str);
-	if (is_a_number(nb, nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = is_an_int(nb);
-	is_single(c_liste, nb);
-	return ((int)nb);
+	stack = ft_malloc_protect(sizeof(struct s_stack));
+	ft_memset(stack, 0, sizeof(struct s_stack));
+	stack->pile_a = NULL;
+	stack->pile_b = new_dll_c();
+	stack->list_instruc = new_dll();
+	stack->browse.quick_count = 1;
+	return (stack);
 }

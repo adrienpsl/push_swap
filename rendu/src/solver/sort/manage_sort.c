@@ -10,43 +10,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/all_includes.h"
+#include "../../../includes/all_includes.h"
 
-static long		is_a_number(int nb, char *nb_str)
+void	is44(t_stack stack)
 {
-	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
-		return (FALSE);
-	return (TRUE);
+	stack->quick.sens == 'T' ?
+	sort_4_top(stack) :
+	sort_4_end(stack);
 }
 
-static int		is_an_int(long nb)
+void	is33(t_stack stack)
 {
-	if (nb > INT_MAX || nb < INT_MIN)
-		exit_wrong_nb();
-	return ((int)nb);
+	stack->quick.sens == 'T' ?
+	sort_3_top(stack) :
+	sort_3_end(stack);
 }
 
-static int		cmp_exist(int nb1, int nb2)
+void	is22(t_stack stack)
 {
-	return (nb1 == nb2);
+	stack->quick.sens == 'T' ?
+	sort_2_top(stack) :
+	sort_2_end(stack);
 }
 
-static void		is_single(t_dll_c c_list, int nb)
+void	manage_all_short(t_stack stack)
 {
-	if (dll_l_iter_int(c_list, nb, &cmp_exist) != FALSE)
-		exit_wrong_nb();
-}
+	t_quick *quick;
 
-int				is_valide_number(char *nb_str, t_dll_c c_liste)
-{
-	long nb;
-
-	if (ft_is_all_number(nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = ft_atoi(nb_str);
-	if (is_a_number(nb, nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = is_an_int(nb);
-	is_single(c_liste, nb);
-	return ((int)nb);
+	quick = &stack->quick;
+	update_quick(stack);
+	while (quick->counter_quick < 5 && stack->pile_b->length)
+	{
+		if (quick->counter_quick == 4)
+			is44(stack);
+		else if (quick->counter_quick == 3)
+			is33(stack);
+		else if (quick->counter_quick == 2)
+			is22(stack);
+		placed_quick_by_sort(stack);
+		update_quick(stack);
+	}
 }

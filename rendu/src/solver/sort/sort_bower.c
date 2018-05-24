@@ -10,43 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/all_includes.h"
+#include "../../../includes/all_includes.h"
 
-static long		is_a_number(int nb, char *nb_str)
+void	sort_browser(t_stack stack, size_t med, size_t lim)
 {
-	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
-		return (FALSE);
-	return (TRUE);
+	size_t	top_pile;
+	t_dll_c	pile;
+
+	pile = stack->currrent_pile_dll;
+	while (lim > 0)
+	{
+		top_pile = dll_l_get_int(pile->top);
+		if ((stack->current_pile == 'A' && top_pile < med) ||
+			(stack->current_pile == 'B' && top_pile >= med))
+			do_inst('p', NO, stack);
+		else
+			do_inst('r', NO, stack);
+		--lim;
+	}
 }
 
-static int		is_an_int(long nb)
+void	sort_browser_reverse(t_stack stack, size_t med, size_t lim)
 {
-	if (nb > INT_MAX || nb < INT_MIN)
-		exit_wrong_nb();
-	return ((int)nb);
-}
+	size_t	top_pile;
+	t_dll_c	pile;
 
-static int		cmp_exist(int nb1, int nb2)
-{
-	return (nb1 == nb2);
-}
-
-static void		is_single(t_dll_c c_list, int nb)
-{
-	if (dll_l_iter_int(c_list, nb, &cmp_exist) != FALSE)
-		exit_wrong_nb();
-}
-
-int				is_valide_number(char *nb_str, t_dll_c c_liste)
-{
-	long nb;
-
-	if (ft_is_all_number(nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = ft_atoi(nb_str);
-	if (is_a_number(nb, nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = is_an_int(nb);
-	is_single(c_liste, nb);
-	return ((int)nb);
+	pile = stack->currrent_pile_dll;
+	while (lim > 0)
+	{
+		do_inst('a', NO, stack);
+		top_pile = dll_l_get_int(pile->top);
+		if ((stack->current_pile == 'A' && top_pile < med) ||
+			(stack->current_pile == 'B' && top_pile >= med))
+			do_inst('p', NO, stack);
+		--lim;
+	}
 }

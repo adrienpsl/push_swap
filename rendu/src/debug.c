@@ -10,43 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/all_includes.h"
+# include "../includes/all_includes.h"
 
-static long		is_a_number(int nb, char *nb_str)
+void	print_quick(t_dll_c lst)
 {
-	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
-		return (FALSE);
-	return (TRUE);
+	ssize_t i ;
+	t_dll_l link;
+
+	link= lst->top;
+	i = lst->length;
+	if (lst->length == 0)
+		return;
+	while (i != -1)
+	{
+		ft_printf("%2d ", get_quick(link));
+		i--;
+		if (i == 0)
+			ft_printf(" -- ");
+		link = link->next;
+	}
+	ft_printf(" \n");
 }
 
-static int		is_an_int(long nb)
+void print_stack(t_stack stack)
 {
-	if (nb > INT_MAX || nb < INT_MIN)
-		exit_wrong_nb();
-	return ((int)nb);
-}
+	ft_printf("\n\n------------------------------------------- \n");
+	ft_printf("A :");
+	dll_c_print_lst(stack->pile_a);
+	ft_printf("   ");
+	print_quick(stack->pile_a);
+	ft_printf(" \n");
+	ft_printf("B :");
+	dll_c_print_lst(stack->pile_b);
+	ft_printf("   ");
+	print_quick(stack->pile_b);
+	printf(" \n");;
+	ft_printf("%d \n", stack->count);
+};
 
-static int		cmp_exist(int nb1, int nb2)
+void	dll_print_str2(t_dll lst)
 {
-	return (nb1 == nb2);
-}
+	t_dll_l link;
 
-static void		is_single(t_dll_c c_list, int nb)
-{
-	if (dll_l_iter_int(c_list, nb, &cmp_exist) != FALSE)
-		exit_wrong_nb();
-}
-
-int				is_valide_number(char *nb_str, t_dll_c c_liste)
-{
-	long nb;
-
-	if (ft_is_all_number(nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = ft_atoi(nb_str);
-	if (is_a_number(nb, nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = is_an_int(nb);
-	is_single(c_liste, nb);
-	return ((int)nb);
+	link = lst->top;
+	while (link)
+	{
+		ft_printf("%s", link->content);
+		link = link->next;
+	}
 }

@@ -10,43 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/all_includes.h"
+#ifndef DLL_L_HEADER_H
+# define DLL_L_HEADER_H
+# include <stdlib.h>
 
-static long		is_a_number(int nb, char *nb_str)
+/*
+**    structure :
+*/
+typedef struct			s_dll_l_00
 {
-	if (nb == 0 && ft_strchr(nb_str, '0') == FALSE)
-		return (FALSE);
-	return (TRUE);
-}
+	void				*content;
+	size_t				content_size;
+	struct s_dll_l_00	*next;
+	struct s_dll_l_00	*prev;
+}						t_dll_l_00;
+typedef t_dll_l_00 *t_dll_l;
 
-static int		is_an_int(long nb)
-{
-	if (nb > INT_MAX || nb < INT_MIN)
-		exit_wrong_nb();
-	return ((int)nb);
-}
+/*
+**    construct
+*/
+void					destroy_dll_l(t_dll_l *l);
+t_dll_l					new_dll_l(void *content, size_t size);
+void					destroy_dll_l_func(t_dll_l *l, void (*func) (t_dll_l));
 
-static int		cmp_exist(int nb1, int nb2)
-{
-	return (nb1 == nb2);
-}
+/*
+**    utils =======================
+*/
+void					reset_ptr_dll_l(t_dll_l link);
 
-static void		is_single(t_dll_c c_list, int nb)
-{
-	if (dll_l_iter_int(c_list, nb, &cmp_exist) != FALSE)
-		exit_wrong_nb();
-}
+/*
+**    getter data
+*/
+int						dll_l_get_int(t_dll_l link);
 
-int				is_valide_number(char *nb_str, t_dll_c c_liste)
-{
-	long nb;
-
-	if (ft_is_all_number(nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = ft_atoi(nb_str);
-	if (is_a_number(nb, nb_str) == FALSE)
-		exit_wrong_nb();
-	nb = is_an_int(nb);
-	is_single(c_liste, nb);
-	return ((int)nb);
-}
+#endif
