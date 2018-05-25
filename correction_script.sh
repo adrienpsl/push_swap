@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # make re
 
+mem=1;
+
 function intro()
 {
-    echo; echo;
-    echo ========================================
+#    echo; echo;
+#    echo ========================================
     echo "test de push_swap avec $1 numero 10 fois"
 }
 
@@ -29,50 +31,69 @@ if [ "$a" != "OK" ];
 
 function err_str ()
 {
-    echo ========================================
-    echo "test avec $1 en str"
+#    echo ========================================
+#    echo "test avec $1 en str"
 
     a=`./checker $1`
     b=`./push_swap $1`
 
-	if [ "$a" != "Error" ];
-	then
-		echo "-------   $1"
-		echo "check err : $a"
-	fi
 
-    if [ "$b" != "Error" ];
+
+    if [ "$mem" = 1 ];
     then
-		echo "-------   $1"
-		echo "push err : $b"
+        valgrind --log-fd=1 ./checker $1 | grep "definitely lost"
+        valgrind --log-fd=1 ./push_swap $1 | grep "definitely lost"
+
+    else
+
+            if [ "$a" != "Error" ];
+        then
+            echo "-------   $1"
+            echo "check err : $a"
+        fi
+
+        if [ "$b" != "Error" ];
+        then
+            echo "-------   $1"
+            echo "push err : $b"
+        fi
+
+
 	fi
 
-    valgrind --log-fd=1 ./checker $1 | grep "definitely lost"
-    valgrind --log-fd=1 ./push_swap $1 | grep "definitely lost"
+
 }
 
 function err_arg ()
 {
-    echo ========================================
-    echo "test avec $1 en arg"
+#    echo ========================================
+#    echo "test avec $1 en arg"
 
     a=`./checker $@`
     b=`./push_swap $@`
 
-	if [ "$a" != "Error" ];
-	then
-		echo "-------   $@"
-		echo "check err : $a"
-	fi
 
-    if [ "$b" != "Error" ];
+    if [ "$mem" = 1 ];
     then
-		echo "-------   $@"
-		echo "push err : $b"
-	fi
+        valgrind --log-fd=1 ./checker $1 | grep "definitely lost"
+        valgrind --log-fd=1 ./push_swap $1 | grep "definitely lost"
 
-    valgrind --log-fd=1 ./checker $@ | grep "definitely lost"
-    valgrind --log-fd=1 ./push_swap $@ | grep "definitely lost"
+    else
+
+            if [ "$a" != "Error" ];
+        then
+            echo "-------   $@"
+            echo "check err : $a"
+        fi
+
+        if [ "$b" != "Error" ];
+        then
+            echo "-------   $@"
+            echo "push err : $b"
+        fi
+
+
+	fi
 }
 
 #    # que push push
@@ -85,28 +106,34 @@ function err_arg ()
 #    ARG=`ruby -e "$nb"` ;
 #    ./push_swap "$ARG"  | valgrind --log-fd=1 ./checker "$ARG"#
 
-function memcheck()
-{
-    nb="puts (1..$1).to_a.shuffle.join(' ')"
-    ARG=`ruby -e "$nb"` ;
-    valgrind --log-fd=1 ./push_swap "$ARG" | grep "definitely lost"
-    ./push_swap "$ARG"  | valgrind --log-fd=1 ./checker "$ARG" | grep "definitely lost"
-    ./push_swap "$ARG"  | ./checker "$ARG"
-    ./push_swap "$ARG"  | wc -l
-
-}
 
 function check_mem()
 {
-    echo; echo;
     echo ========================================
-    echo "test de push_swap avec $1 numero 10 fois"
+    echo "test de push_swap avec $1 numero 30 fois"
+    moy_ins=0;
 
-    for tt in `seq 1 10`
+    for tt in `seq 1 30`
     do
-       memcheck $1
-       echo;
+         nb="puts (1..$1).to_a.shuffle.join(' ')"
+         ARG=`ruby -e "$nb"` ;
+
+        if [ "$mem" = 1 ];
+        then
+            valgrind --log-fd=1 ./push_swap "$ARG" | grep "definitely lost"
+            ./push_swap "$ARG"  | valgrind --log-fd=1 ./checker "$ARG" | grep "definitely lost"
+        else
+             ./push_swap "$ARG"  | ./checker "$ARG"
+            nb_ins=`./push_swap "$ARG"  | wc -l`
+            ((moy_ins+=nb_ins))
+	    fi
     done
+    echo moyen---------------
+    echo $moy_ins
+    ((moy_ins/=30))
+    echo $moy_ins
+
+
 }
 
 
@@ -114,59 +141,60 @@ function check_mem()
 ##*------------------------------------*\
 ##    simple error
 #*------------------------------------*/
-#echo "bullshit test -------------------------------"
-#err_str a
-#err_str "a"
-#
-#err_str a d
-#err_str "a b"
-#
-#err_arg 444d
-#err_str "444d"
-#
-#err_arg 444d
-#err_str "444d 55"
-#
-#err_arg a111
-#err_str "a111 887"
-#
-#err_arg -111-
-#err_str "-111-"
-#
-#err_str "55 44 22 44"
-#err_arg 55 44 22 44
-#
-#err_str "14 4 44 4564654646465"
-#err_arg 14 4 44 4564654646465
+echo "bullshit test -------------------------------"
+err_str a
+err_str "a"
+
+err_str a d
+err_str "a b"
+
+err_arg 444d
+err_str "444d"
+
+err_arg 444d
+err_str "444d 55"
+
+err_arg a111
+err_str "a111 887"
+
+err_arg -111-
+err_str "-111-"
+
+err_str "55 44 22 44"
+err_arg 55 44 22 44
+
+err_str "14 4 44 4564654646465"
+err_arg 14 4 44 4564654646465
 
 ##*------------------------------------*\
 ##    LIMIT
 ##*------------------------------------*/
-border 2147483647
-border "2147483648"
-border -2147483648
-border "-2147483648"
-border 0
-border "0"
-border -0
-border "-0"
-valgrind --log-fd=1 ./checker 0 | grep "definitely lost"
-valgrind --log-fd=1 ./push_swap 0 | grep "definitely lost"
-
-valgrind --log-fd=1 ./checker  | grep "definitely lost"
-valgrind --log-fd=1 ./push_swap | grep "definitely lost"
+#border 2147483647
+#border "2147483647"
+#border -2147483648
+#border "-2147483648"
+#border 0
+#border "0"
+#border -0
+#border "-0"
+#valgrind --log-fd=1 ./checker 0 | grep "definitely lost"
+#valgrind --log-fd=1 ./push_swap 0 | grep "definitely lost"
+#
+#valgrind --log-fd=1 ./checker  | grep "definitely lost"
+#valgrind --log-fd=1 ./push_swap | grep "definitely lost"
 
 
 
 check_mem 1
 check_mem 2
 check_mem 3
-check_mem 15
+check_mem 12
 check_mem 50
 check_mem 100
 check_mem 500
 check_mem 1000
 check_mem 5000
+check_mem 40000
 
 #leaks_check
 
