@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   sll_construct.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adpusel <adpusel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 10:48:07 by adpusel           #+#    #+#             */
-/*   Updated: 2017/11/16 12:45:50 by adpusel          ###   ########.fr       */
+/*   Updated: 2018/05/04 16:43:59 by adpusel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../ft_library_header.h"
+#ifndef ARGV_H
+# define ARGV_H
+# include <ntsid.h>
 
-void	ft_free_split(char ***t)
+# define GNL_BUFF 512
+
+typedef struct		s_gnl
 {
-	char *tmp;
-	char **tab;
+	char			*str;
+	int				fd;
+	int				r_stt;
+	struct s_gnl	*next;
+}					t_gnl;
 
-	tab = *t;
-	if (tab)
-	{
-		while (*tab != 0)
-		{
-			tmp = *tab;
-			free(*tab);
-			tmp = NULL;
-			tab++;
-		}
-		free(*t);
-		*t = NULL;
-	}
-}
+int					get_next_line(const int fd, char **line);
+int					ft_error(char *str);
+int					open_file(char *name);
+
+#endif

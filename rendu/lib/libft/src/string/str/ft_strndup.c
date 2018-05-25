@@ -18,8 +18,7 @@ char	*ft_strndup(char const *s, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (!(str = (char*)malloc(len + 1)))
-		return (NULL);
+	str = ft_malloc_protect(len + 1);
 	ft_strncpy(str, s, len);
 	str[len] = 0;
 	return (str);

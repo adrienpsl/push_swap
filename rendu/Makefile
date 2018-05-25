@@ -93,9 +93,9 @@ $(__NAME__): $(__OBJ__)
 $(__CHEKER_NAME__): $(__OBJ_C__)
 
 #	build other lib 	################################
-#	@make -C $(__LIB_FT_PATH__)
+	@make -C $(__LIB_FT_PATH__)
 
-#	@make -C $(__LIB_MLX_PATH__)
+	@make -C $(__LIB_MLX_PATH__)
 	$(__TEXT_1__) mlx $(__TEXT_2__)
 
 

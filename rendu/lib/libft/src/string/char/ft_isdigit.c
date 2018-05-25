@@ -18,3 +18,10 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
+
+int	ft_is_not_digit(int c)
+{
+	if ((c >= '0' && c <= '9'))
+		return (0);
+	return (1);
+}

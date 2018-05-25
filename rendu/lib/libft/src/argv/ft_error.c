@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpusel <adpusel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nbrucker <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/19 10:48:07 by adpusel           #+#    #+#             */
-/*   Updated: 2017/11/16 12:45:50 by adpusel          ###   ########.fr       */
+/*   Created: 2017/12/07 18:37:49 by nbrucker          #+#    #+#             */
+/*   Updated: 2017/12/07 18:37:49 by nbrucker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../ft_library_header.h"
+#include "../../ft_library_header.h"
 
-void	ft_free_split(char ***t)
+int	ft_error(char *error_name)
 {
-	char *tmp;
-	char **tab;
-
-	tab = *t;
-	if (tab)
-	{
-		while (*tab != 0)
-		{
-			tmp = *tab;
-			free(*tab);
-			tmp = NULL;
-			tab++;
-		}
-		free(*t);
-		*t = NULL;
-	}
+	ft_putendl_fd(error_name, 1);
+	exit(EXIT_FAILURE);
 }

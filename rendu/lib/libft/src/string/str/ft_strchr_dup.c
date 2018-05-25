@@ -14,10 +14,11 @@
 
 char	*ft_strchr_dup(char *s, char c)
 {
-	char *out;
+	char		*out;
+	static int	i = 0;
 
-	if (!(out = (char*)malloc(ft_strchr_len(s, c) + 1)))
-		return (NULL);
-	ft_strncpy(out, s, ft_strchr_len(s, c));
+	i = ft_strchr_len(s, c);
+	out = ft_malloc_protect(i + 1);
+	ft_strncpy(out, s, i);
 	return (out);
 }

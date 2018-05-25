@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adpusel <adpusel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nbrucker <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/19 10:48:07 by adpusel           #+#    #+#             */
-/*   Updated: 2017/11/16 12:45:50 by adpusel          ###   ########.fr       */
+/*   Created: 2017/12/07 18:37:49 by nbrucker          #+#    #+#             */
+/*   Updated: 2017/12/07 18:37:49 by nbrucker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../ft_library_header.h"
+#include <fcntl.h>
+#include "../../ft_library_header.h"
 
-void	ft_free_split(char ***t)
+int	open_file(char *name)
 {
-	char *tmp;
-	char **tab;
+	int fd;
 
-	tab = *t;
-	if (tab)
-	{
-		while (*tab != 0)
-		{
-			tmp = *tab;
-			free(*tab);
-			tmp = NULL;
-			tab++;
-		}
-		free(*t);
-		*t = NULL;
-	}
+	fd = open(name, O_RDONLY);
+	return (fd > 0 ?
+			fd
+					:
+			ft_error("error opening file !"));
 }

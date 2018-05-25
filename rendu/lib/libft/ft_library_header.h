@@ -91,7 +91,7 @@
 /*
 **    gnl
 */
-# include "include/gnl.h"
+# include "include/argv.h"
 
 void	ft_quick_sort(int *tab, int start, int end);
 void	ft_quick_sort_dll(t_dll_l start, t_dll_l end, t_dll list);

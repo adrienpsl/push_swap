@@ -60,8 +60,7 @@ int		read_line(t_gnl *gnl, char **line)
 	{
 		buf[gnl->r_stt] = '\0';
 		tmp = gnl->str;
-		if (!(gnl->str = ft_strjoin(gnl->str, buf)))
-			return (-1);
+		gnl->str = ft_strjoin(gnl->str, buf);
 		free(tmp);
 		if (ft_strclen(gnl->str, '\n') != -1)
 			return (read_left(gnl, line, '\n'));

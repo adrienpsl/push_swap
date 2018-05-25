@@ -27,6 +27,7 @@ int					ft_isascii(int c);
 int					ft_isalnum(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_is_not_digit(int c);
 
 /*
 **  str function
@@ -75,10 +76,16 @@ int					ft_is_all_number(char *s);
 char				**ft_strsplit(char const *s, char c);
 void				ft_free_split(char ***t);
 void				ft_free_doublechar_tab(char ***tab);
+int					count_split(char **tab);
 
 /*
 **  uni function
 */
 void				ft_put_uni(int c);
+
+/*
+**    mem_function
+*/
+void				free_str(char **str);
 
 #endif

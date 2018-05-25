@@ -12,6 +12,15 @@
 
 #include "../../../ft_library_header.h"
 
+int					count_split(char **tab)
+{
+	static int i = 0;
+
+	while (tab[i])
+		i++;
+	return (i);
+}
+
 static char			**double_malloc(int mal2)
 {
 	char **tab;

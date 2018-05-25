@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sll_construct.c                                    :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adpusel <adpusel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 10:48:07 by adpusel           #+#    #+#             */
-/*   Updated: 2018/05/04 16:43:59 by adpusel          ###   ########.fr       */
+/*   Updated: 2017/11/16 12:45:50 by adpusel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
-# define GNL_H
+#include "../../../ft_library_header.h"
 
-typedef struct		s_gnl
+void	free_str(char **str)
 {
-	char			*str;
-	int				fd;
-	int				r_stt;
-	struct s_gnl	*next;
-}					t_gnl;
-
-int					get_next_line(const int fd, char **line);
-
-#endif
+	if (*str)
+	{
+		free((*str));
+		*str = NULL;
+	}
+}
