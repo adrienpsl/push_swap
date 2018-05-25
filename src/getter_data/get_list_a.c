@@ -12,19 +12,6 @@
 
 #include "../../includes/all_includes.h"
 
-int			count_split(char **tab)
-{
-	int i;
-
-	i = 0;
-	while (*tab)
-	{
-		tab++;
-		i++;
-	}
-	return (i);
-}
-
 void		set_ar(int ac, char **av, t_get_ar *ar)
 {
 	ft_memset(ar, 0, sizeof(t_get_ar));
