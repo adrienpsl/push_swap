@@ -12,7 +12,38 @@
 
 #include "../../includes/all_includes.h"
 
-int		is_ordered(t_dll_c c_list, size_t lenght)
+void	struct_and_list_build(t_stack *stack, int ac, char **av)
+{
+	if (ac <= 1)
+		exit(EXIT_SUCCESS);
+	*stack = get_stack_filled(ac, av);
+	build_lst_a_index((*stack)->pile_a);
+}
+
+void	is_3_algo(t_stack stack)
+{
+	set_stack('A', stack);
+	if (stack->pile_a->length <= 2)
+		need_swap(stack);
+	if (stack->pile_a->length == 3)
+		sort_3_fuck_little(stack);
+}
+
+void	is_more_3(t_stack stack)
+{
+	first_passage_a(stack);
+	if (stack->pile_a->length == 4 && stack->pile_b->length == 0)
+		sort_4_top(stack);
+	while (stack->pile_b->length)
+	{
+		brain_is_beauty(stack);
+		if (ft_strchr(stack->argv, 'a') || ft_strchr(stack->argv, 'm'))
+			print_stack(stack);
+		create_graf_link(stack);
+	}
+}
+
+int		is_or(t_dll_c c_list, size_t lenght)
 {
 	size_t	i;
 	t_dll_l	link;
@@ -32,62 +63,29 @@ int		is_ordered(t_dll_c c_list, size_t lenght)
 		++i;
 	}
 	return (TRUE);
-}
-
-int		is_ord(t_dll_c c_list, size_t lenght)
-{
-	size_t	i;
-	t_dll_l	link;
-	t_dll_l	next;
-
-	i = 1;
-	link = c_list->top;
-	next = link->next;
-	while (i < lenght)
-	{
-		if (dll_l_get_int(link) >= dll_l_get_int(next))
-		{
-			return (FALSE);
-		}
-		link = next;
-		next = link->next;
-		++i;
-	}
-	return (TRUE);
-}
-
-void	do_intructions(t_stack stack)
-{
-	char *instruct;
-	char *ins;
-
-	instruct = NULL;
-	while (get_next_line(0, &instruct) == TRUE)
-	{
-		ins = ft_strjoin(instruct, "\n");
-		check_and_apply_instruct(ins, stack);
-		free(ins);
-		free(instruct);
-		instruct = NULL;
-	}
-	if (instruct)
-		free(instruct);
 }
 
 int		main(int ac, char **av)
 {
-	t_stack	stack;
+	t_stack			stack;
+	int				all_nb;
+	static char		op[4] = "va";
 
-	if (ac <= 1)
-		exit(EXIT_SUCCESS);
-	stack = get_stack_filled(ac, av);
-	do_intructions(stack);
-	if (stack->pile_a->length &&
-		stack->pile_b->length == 0 &&
-		is_ordered(stack->pile_a, stack->pile_a->length))
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
+	struct_and_list_build(&stack, ac, av);
+	set_stack_visu(stack);
+	all_nb = stack->pile_a->length;
+	stack->argv = op;
+	if (all_nb && is_or(stack->pile_a, stack->pile_a->length) == FALSE)
+	{
+		if (all_nb <= 3)
+			is_3_algo(stack);
+		else
+			is_more_3(stack);
+		push_instruc_list(stack->last_instruct, stack);
+		dll_print_str2(stack->list_instruc);
+		if (stack->pile_a->length > 20 && ft_strchr(stack->argv, 'v'))
+			test_visu(stack);
+	}
 	destroy_stack(&stack);
 	return (EXIT_SUCCESS);
 }

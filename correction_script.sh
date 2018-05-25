@@ -81,10 +81,9 @@ function err_arg ()
 #    valgrind --log-fd=1 ./push_swap "$ARG"
 #
 #    # que check check
-#    nb="puts (1..10).to_a.shuffle.join(' ')"
+#    nb="puts (1..40000).to_a.shuffle.join(' ')"
 #    ARG=`ruby -e "$nb"` ;
-#    ./push_swap "$ARG"  | valgrind --log-fd=1 ./checker "$ARG"
-
+#    ./push_swap "$ARG"  | valgrind --log-fd=1 ./checker "$ARG"#
 
 function memcheck()
 {
@@ -112,40 +111,39 @@ function check_mem()
 
 
 
-#*------------------------------------*\
-#    simple error
-*------------------------------------*/
-echo "bullshit test -------------------------------"
-err_str a
-err_str "a"
-
-err_str a d
-err_str "a b"
-
-err_arg 444d
-err_str "444d"
-
-err_arg 444d
-err_str "444d 55"
-
-err_arg a111
-err_str "a111 887"
-
-err_arg -111-
-err_str "-111-"
-
-err_str "55 44 22 44"
-err_arg 55 44 22 44
-
-err_str "14 4 44 4564654646465"
-err_arg 14 4 44 4564654646465
-
-
-#*------------------------------------*\
-#    LIMIT
+##*------------------------------------*\
+##    simple error
 #*------------------------------------*/
+#echo "bullshit test -------------------------------"
+#err_str a
+#err_str "a"
+#
+#err_str a d
+#err_str "a b"
+#
+#err_arg 444d
+#err_str "444d"
+#
+#err_arg 444d
+#err_str "444d 55"
+#
+#err_arg a111
+#err_str "a111 887"
+#
+#err_arg -111-
+#err_str "-111-"
+#
+#err_str "55 44 22 44"
+#err_arg 55 44 22 44
+#
+#err_str "14 4 44 4564654646465"
+#err_arg 14 4 44 4564654646465
+
+##*------------------------------------*\
+##    LIMIT
+##*------------------------------------*/
 border 2147483647
-border "2147483647"
+border "2147483648"
 border -2147483648
 border "-2147483648"
 border 0
