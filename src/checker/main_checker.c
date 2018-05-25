@@ -74,20 +74,20 @@ void	do_intructions(t_stack stack)
 	    free(instruct);
 }
 
-//int		main(int ac, char **av)
-//{
-//	t_stack	stack;
-//
-//	if (ac <= 1)
-//		exit(EXIT_SUCCESS);
-//	stack = get_stack_filled(ac, av);
-//	do_intructions(stack);
-//	if (stack->pile_a->length &&
-//		stack->pile_b->length == 0 &&
-//		is_ordered(stack->pile_a, stack->pile_a->length))
-//		ft_printf("OK\n");
-//	else
-//		ft_printf("KO\n");
-//	destroy_stack(&stack);
-//	return (EXIT_SUCCESS);
-//}
+int		main(int ac, char **av)
+{
+	t_stack	stack;
+
+	if (ac <= 1)
+		exit(EXIT_SUCCESS);
+	stack = get_stack_filled(ac, av);
+	do_intructions(stack);
+	if (stack->pile_a->length &&
+		stack->pile_b->length == 0 &&
+		is_ordered(stack->pile_a, stack->pile_a->length))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	destroy_stack(&stack);
+	return (EXIT_SUCCESS);
+}
