@@ -21,7 +21,7 @@ static long		is_a_number(int nb, char *nb_str)
 
 static int		is_an_int(long nb)
 {
-	if (nb > INT_MAX || nb < INT_MIN)
+	if (nb > 2147483647 || nb < -2147483648)
 		exit_wrong_nb();
 	return ((int)nb);
 }
