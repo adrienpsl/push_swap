@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 # make re
 
-mem=1;
+mem=0;
 
 function intro()
 {
-#    echo; echo;
-#    echo ========================================
     echo "test de push_swap avec $1 numero 10 fois"
 }
 
@@ -31,8 +29,6 @@ if [ "$a" != "OK" ];
 
 function err_str ()
 {
-#    echo ========================================
-#    echo "test avec $1 en str"
 
     a=`./checker $1`
     b=`./push_swap $1`
@@ -57,8 +53,6 @@ function err_str ()
             echo "-------   $1"
             echo "push err : $b"
         fi
-
-
 	fi
 
 
@@ -66,9 +60,6 @@ function err_str ()
 
 function err_arg ()
 {
-#    echo ========================================
-#    echo "test avec $1 en arg"
-
     a=`./checker $@`
     b=`./push_swap $@`
 
@@ -123,15 +114,21 @@ function check_mem()
             valgrind --log-fd=1 ./push_swap "$ARG" | grep "definitely lost"
             ./push_swap "$ARG"  | valgrind --log-fd=1 ./checker "$ARG" | grep "definitely lost"
         else
-             ./push_swap "$ARG"  | ./checker "$ARG"
-            nb_ins=`./push_swap "$ARG"  | wc -l`
+             is_ok=`./push_swap "$ARG"  | ./checker "$ARG"`
+                if [ "$is_ok" != "OK" ];
+                    then
+                        echo pas ok
+                fi
+
+             nb_ins=`./push_swap "$ARG"  | wc -l`
+
             ((moy_ins+=nb_ins))
 	    fi
     done
     echo moyen---------------
-    echo $moy_ins
+    echo "$moy_ins"
     ((moy_ins/=30))
-    echo $moy_ins
+    echo "$moy_ins"
 
 
 }
