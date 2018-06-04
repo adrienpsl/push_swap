@@ -16,7 +16,7 @@
 # define X_WINDOW 2500
 # define Y_WINDOW 2500
 
-# include "../lib/libft/ft_library_header.h"
+# include "../libft/ft_library_header.h"
 # include "push_struct.h"
 # include <limits.h>
 

@@ -31,7 +31,7 @@ __CFLAGS__ = -Wall -Werror -Wextra
 #*------------------------------------*/
 
 #lib ft :
-__LIB_FT_PATH__ = ${__PATH__}lib/libft/
+__LIB_FT_PATH__ = ${__PATH__}/libft/
 __LIB_FT_INC__ = ${__LIB_FT_PATH__}ft_library_header.h
 
 #lib mlx :

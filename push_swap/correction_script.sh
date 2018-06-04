@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # make re
-
-mem=0;
+read mem
 
 function intro()
 {
@@ -121,14 +120,17 @@ function check_mem()
                 fi
 
              nb_ins=`./push_swap "$ARG"  | wc -l`
-
+             echo "$nb_ins";
+#               if [[ $1 == ]]
+#                then
+#             fi
             ((moy_ins+=nb_ins))
 	    fi
     done
     echo moyen---------------
-    echo "$moy_ins"
+#    echo "$moy_ins"
     ((moy_ins/=30))
-    echo "$moy_ins"
+#    echo "$moy_ins"
 
 
 }

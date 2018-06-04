@@ -9,13 +9,17 @@ set(CMAKE_C_COMPILER "/usr/bin/gcc")
 file(GLOB head "includes/*.h")
 #include_directories(${PROJECT_SOURCE_DIR}/include)
 
+
+
+
+
 include_directories(includes/*.h)
 
-file(GLOB sources0 "src/*.c")
-file(GLOB sources1 "lib/libft/src/**/*.c")
-file(GLOB sources2 "lib/libft/src/**/**/*.c")
-file(GLOB sources3 "lib/libft/src/**/**/**/*.c")
-file(GLOB sources4 "lib/libft/src/**/**/**/**/*.c")
+file(GLOB sources0 "push_swap/src/*.c")
+file(GLOB sources1 "push_swap/libft/src/**/*.c")
+file(GLOB sources2 "push_visu/libft/src/**/**/*.c")
+file(GLOB sources3 "push_visu/libft/src/**/**/**/*.c")
+file(GLOB sources4 "push_visu/libft/src/**/**/**/**/*.c")
 file(GLOB sources5 "lib/libft/src/**/**/**/**/**/*.c")
 file(GLOB sources6 "test/*.c")
 
