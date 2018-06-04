@@ -6,7 +6,7 @@ set(CMAKE_C_COMPILER "/usr/bin/gcc")
 
 #set ( CMAKE_C_FLAGS "-Wall -Wextra -Werror")
 
-file(GLOB head "includes/*.h")
+
 #include_directories(${PROJECT_SOURCE_DIR}/include)
 
 #*------------------------------------*\
@@ -18,7 +18,8 @@ set(LIBFT "${REPO}/libft")
 #*------------------------------------*\
 #    --  THE HEADERS --
 #*------------------------------------*/
-include_directories("${REPO}/includes/*.h")
+file(GLOB head "${REPO}/includes/*.h")
+#include_directories("${REPO}/includes/*.h")
 
 #*------------------------------------*\
 #    -- LIB FT FILE --
@@ -46,9 +47,6 @@ file(GLOB sources05 "${REPO}/**/**/**/**/**/*.c")
 #    --  TEST FILE  --
 #*------------------------------------*/
 file(GLOB sources06 "test/*.c")
-
-
-
 #file(GLOB sources07 "includes/*.c")
 #file(GLOB sources08 "includes/*.h")
 
@@ -71,20 +69,20 @@ set(
         ${sources04}
         ${sources05}
         ${sources06}
-#        ${sources07}
-#        ${sources08}
-
+        #        ${sources07}
+        #        ${sources08}
 )
 
 #*------------------------------------*\
 #    --  ADD TO PROGRAMME  --
 #*------------------------------------*/
 
-add_executable(push_swap
+add_executable(
+        push_swap
         main.c
         ${sources}
         ${head}
-        )
+)
 
 #*------------------------------------*\
 #    --  LINK OTHER LIB  --
