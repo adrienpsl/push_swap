@@ -10,43 +10,51 @@ file(GLOB head "includes/*.h")
 #include_directories(${PROJECT_SOURCE_DIR}/include)
 
 #*------------------------------------*\
-#    --  THE HEADERS --
-#*------------------------------------*/
-include_directories(includes/*.h)
-
-#*------------------------------------*\
 #    --  PATH  --
 #*------------------------------------*/
-
 set(REPO "push_swap")
-set(LIBFT "${REPO}")
+set(LIBFT "${REPO}/libft")
 
+#*------------------------------------*\
+#    --  THE HEADERS --
+#*------------------------------------*/
+include_directories("${REPO}/includes/*.h")
 
 #*------------------------------------*\
 #    -- LIB FT FILE --
 #*------------------------------------*/
-file(GLOB sources0 "REPO/src/*.c")
-file(GLOB sources1 "push_swap/libft/src/**/*.c")
-file(GLOB sources2 "push_visu/libft/src/**/**/*.c")
-file(GLOB sources3 "push_visu/libft/src/**/**/**/*.c")
-file(GLOB sources4 "push_visu/libft/src/**/**/**/**/*.c")
-file(GLOB sources5 "lib/libft/src/**/**/**/**/**/*.c")
-file(GLOB sources6 "test/*.c")
+file(GLOB sources0 "${LIBFT}/src/*.c")
+file(GLOB sources1 "${LIBFT}/src/**/*.c")
+file(GLOB sources2 "${LIBFT}/src/**/**/*.c")
+file(GLOB sources3 "${LIBFT}/src/**/**/**/*.c")
+file(GLOB sources4 "${LIBFT}/src/**/**/**/**/*.c")
+file(GLOB sources5 "${LIBFT}/**/**/**/**/**/*.c")
+file(GLOB sources6 "${LIBFT}/test/*.c")
+
+#*------------------------------------*\
+#    --  PROJET FILE  --
+#*------------------------------------*/
+file(GLOB sources00 "${REPO}/src/*.c")
+file(GLOB sources01 "${REPO}/**/*.c")
+file(GLOB sources02 "${REPO}/**/**/*.c")
+file(GLOB sources03 "${REPO}/**/**/**/*.c")
+file(GLOB sources04 "${REPO}/**/**/**/**/*.c")
+file(GLOB sources05 "${REPO}/**/**/**/**/**/*.c")
 
 
-file(GLOB sources00 "src/*.c")
-file(GLOB sources01 "REPO/**/*.c")
-file(GLOB sources02 "src/**/**/*.c")
-file(GLOB sources03 "src/**/**/**/*.c")
-file(GLOB sources04 "src/**/**/**/**/*.c")
-file(GLOB sources05 "src/**/**/**/**/**/*.c")
-
+#*------------------------------------*\
+#    --  TEST FILE  --
+#*------------------------------------*/
 file(GLOB sources06 "test/*.c")
 
-file(GLOB sources07 "includes/*.c")
-file(GLOB sources08 "includes/*.h")
 
-# all sources
+
+#file(GLOB sources07 "includes/*.c")
+#file(GLOB sources08 "includes/*.h")
+
+#*------------------------------------*\
+#    --  MIXE ALL SOURCES  --
+#*------------------------------------*/
 set(
         sources
         ${sources1}
@@ -63,10 +71,14 @@ set(
         ${sources04}
         ${sources05}
         ${sources06}
-        ${sources07}
-        ${sources08}
+#        ${sources07}
+#        ${sources08}
 
 )
+
+#*------------------------------------*\
+#    --  ADD TO PROGRAMME  --
+#*------------------------------------*/
 
 add_executable(push_swap
         main.c
@@ -74,6 +86,9 @@ add_executable(push_swap
         ${head}
         )
 
+#*------------------------------------*\
+#    --  LINK OTHER LIB  --
+#*------------------------------------*/
 #target_link_libraries(push_swap ${CMAKE_SOURCE_DIR}/lib/mlx/libmlx.a)
 #target_link_libraries(push_swap "-framework OpenGL")
 #target_link_libraries(push_swap "-framework AppKit")
