@@ -9,13 +9,23 @@ set(CMAKE_C_COMPILER "/usr/bin/gcc")
 file(GLOB head "includes/*.h")
 #include_directories(${PROJECT_SOURCE_DIR}/include)
 
-
-
-
-
+#*------------------------------------*\
+#    --  THE HEADERS --
+#*------------------------------------*/
 include_directories(includes/*.h)
 
-file(GLOB sources0 "push_swap/src/*.c")
+#*------------------------------------*\
+#    --  PATH  --
+#*------------------------------------*/
+
+set(REPO "push_swap")
+set(LIBFT "${REPO}")
+
+
+#*------------------------------------*\
+#    -- LIB FT FILE --
+#*------------------------------------*/
+file(GLOB sources0 "REPO/src/*.c")
 file(GLOB sources1 "push_swap/libft/src/**/*.c")
 file(GLOB sources2 "push_visu/libft/src/**/**/*.c")
 file(GLOB sources3 "push_visu/libft/src/**/**/**/*.c")
@@ -25,7 +35,7 @@ file(GLOB sources6 "test/*.c")
 
 
 file(GLOB sources00 "src/*.c")
-file(GLOB sources01 "src/**/*.c")
+file(GLOB sources01 "REPO/**/*.c")
 file(GLOB sources02 "src/**/**/*.c")
 file(GLOB sources03 "src/**/**/**/*.c")
 file(GLOB sources04 "src/**/**/**/**/*.c")
