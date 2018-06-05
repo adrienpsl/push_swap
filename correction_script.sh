@@ -107,6 +107,8 @@ function check_mem()
 
     for tt in `seq 1 30`
     do
+         # "a=ruby -e 'puts (0..99).to_a.shuffle.join(' ')' ; `./push_swap "a"  | ./checker "$a | wc -l"
+
          nb="puts (1..$1).to_a.shuffle.join(' ')"
          ARG=`ruby -e "$nb"` ;
 
