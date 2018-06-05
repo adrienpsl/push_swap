@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/all_includes.h"
+#include "../includes/all_includes.h"
 
 void	print_quick(t_dll_c lst)
 {
-	ssize_t i ;
+	ssize_t i;
 	t_dll_l link;
 
-	link= lst->top;
+	link = lst->top;
 	i = lst->length;
 	if (lst->length == 0)
-		return;
+		return ;
 	while (i != -1)
 	{
 		ft_printf("%2d ", get_quick(link));
@@ -32,7 +32,7 @@ void	print_quick(t_dll_c lst)
 	ft_printf(" \n");
 }
 
-void print_stack(t_stack stack)
+void	print_stack(t_stack stack)
 {
 	ft_printf("\n\n------------------------------------------- \n");
 	ft_printf("A :");
@@ -44,9 +44,9 @@ void print_stack(t_stack stack)
 	dll_c_print_lst(stack->pile_b);
 	ft_printf("   ");
 	print_quick(stack->pile_b);
-	printf(" \n");;
+	ft_printf(" \n");
 	ft_printf("%d \n", stack->count);
-};
+}
 
 void	dll_print_str2(t_dll lst)
 {

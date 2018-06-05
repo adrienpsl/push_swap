@@ -27,7 +27,7 @@ void			set_index_ab(t_dll_c pile_1, size_t size)
 	while (size > 0)
 	{
 		a = dll_l_get_int(link_p2);
-		((t_data) link_p1->content)->n = a == 0 ? 'a' : 'b';
+		((t_data)link_p1->content)->n = a == 0 ? 'a' : 'b';
 		link_p1 = link_p1->next;
 		link_p2 = link_p2->next;
 		size--;
@@ -35,11 +35,11 @@ void			set_index_ab(t_dll_c pile_1, size_t size)
 	destroy_dll_c(&pile_2);
 }
 
-void static		set_tab_ab(t_dll_c pile, char tab[])
+static void		set_tab_ab(t_dll_c pile, char tab[])
 {
-	tab[0] = ((t_data) pile->top->content)->n;
-	tab[1] = ((t_data) pile->top->next->content)->n;
-	tab[2] = ((t_data) pile->top->next->next->content)->n;
+	tab[0] = ((t_data)pile->top->content)->n;
+	tab[1] = ((t_data)pile->top->next->content)->n;
+	tab[2] = ((t_data)pile->top->next->next->content)->n;
 }
 
 void			sort_3_fuck_little(t_stack stack)
@@ -53,19 +53,19 @@ void			sort_3_fuck_little(t_stack stack)
 	set_tab_ab(pile, tab);
 	if (ft_strcmp(tab, "abb") == FALSE)
 	{
-		do_instruct("ra\n",stack);
+		do_instruct("ra\n", stack);
 		need_swap(stack);
-		do_instruct("rra\n",stack);
+		do_instruct("rra\n", stack);
 	}
 	else if (ft_strcmp(tab, "bab") == FALSE)
 	{
-		do_instruct("rra\n",stack);
+		do_instruct("rra\n", stack);
 		need_swap(stack);
-		do_instruct("rra\n",stack);
+		do_instruct("rra\n", stack);
 	}
 	else if (ft_strcmp(tab, "bba") == FALSE)
 	{
 		need_swap(stack);
-		do_instruct("rra\n",stack);
+		do_instruct("rra\n", stack);
 	}
 }

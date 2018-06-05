@@ -2,6 +2,8 @@
 # make re
 read mem
 
+nm -u push_swap
+
 function intro()
 {
     echo "test de push_swap avec $1 numero 10 fois"
